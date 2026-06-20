@@ -1,13 +1,17 @@
 import { Outlet } from "react-router-dom";
+import { Container } from "@mui/material";
 import Navbar from "./Navigation/Navbar";
 import Footer from "./Footer";
-import { Container } from "@mui/material";
+import AuthModal from "../../features/auth/components/AuthModal";
+import { useState } from "react";
 
 function MainLayout() {
+  const [openAuthModal, setOpenAuthModal] = useState(false);
+
   return (
     <>
       <header>
-        <Navbar />
+        <Navbar showAuthModal={setOpenAuthModal} />
       </header>
       <main>
         <Container>
@@ -17,6 +21,7 @@ function MainLayout() {
       <footer>
         <Footer />
       </footer>
+      <AuthModal isOpen={openAuthModal} onShow={setOpenAuthModal} />
     </>
   );
 }

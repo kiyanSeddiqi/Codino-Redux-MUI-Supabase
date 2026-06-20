@@ -1,13 +1,20 @@
 @font-face {
-  @font-face {
-    font-family: "Vazirmatn";
-    src: url("../src/assets/fonts/Vazirmatn[wght].woff2")
-      format("woff2-variations");
-    font-weight: 100 900;
-    font-display: swap;
-  }
+  font-family: "Vazirmatn";
+  src: url("../src/assets/fonts/Vazirmatn[wght].woff2")
+    format("woff2-variations");
+  font-weight: 100 900;
+  font-display: swap;
 }
 
 * {
   scrollbar-width: thin;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
 }

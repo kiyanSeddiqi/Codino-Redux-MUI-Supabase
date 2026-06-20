@@ -6,6 +6,7 @@ const getTheme = (mode) => {
     palette: {
       mode,
       iconAccent: isDark ? "#ff4aff" : "#ff0eff",
+      menuItemBg: isDark ? "#bb86fc24" : "#6700e512",
       primary: {
         main: isDark ? "#BB86FC" : "#6700E5",
       },
@@ -47,6 +48,7 @@ const getTheme = (mode) => {
         defaultProps: {
           variant: "contained",
           disableFocusRipple: true,
+          disableRipple: true,
         },
         styleOverrides: {
           root: {
@@ -54,8 +56,10 @@ const getTheme = (mode) => {
             padding: 10,
             "&.Mui-focusVisible": {
               outline: "2px solid #C6B3FF",
-              outlineOffset: "2px",
+              outlineOffset: "0px",
             },
+            gap: "8px",
+            lineHeight: "1.5",
           },
         },
       },
@@ -64,7 +68,7 @@ const getTheme = (mode) => {
           root: {
             backgroundColor: isDark ? "#1A1A26" : "#FFFFFF",
             "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-              borderColor: "#ff4aff",
+              borderColor: "#C6B3FF",
             },
             "& .MuiOutlinedInput-notchedOutline": {
               borderColor: isDark ? "#2A2A3A" : "#E2DFF5",

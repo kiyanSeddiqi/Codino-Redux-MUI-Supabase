@@ -5,9 +5,7 @@ function Home() {
   return (
     <>
       <Box>
-        <Typography sx={{ fontWeight: 700 }}>
-          منزل ما همینجاست همه هستیم شما بیاید
-        </Typography>
+        <Typography sx={{ fontWeight: 700 }}>home </Typography>
         <SvgIcon name="digitalMarket" />
         <SvgIcon name="devOps" />
       </Box>

@@ -1,4 +1,4 @@
-export const menuItems = [
+export const categoryMenuData = [
   {
     title: "دسته بندی دوره ها",
     children: [
@@ -172,12 +172,16 @@ export const menuItems = [
       },
     ],
   },
+];
+
+export const menuData = [
   {
     title: "بلاگ کدینو",
-    path: "/",
+    path: "/blog",
   },
   {
     title: "مسیر های یادگیری",
+    path: "/roadmap",
     children: [
       { title: "همه مسیر های یادگیری", path: "/" },
       { title: "مسیر یادگیری برنامه نویسی", path: "/" },
@@ -188,10 +192,10 @@ export const menuItems = [
   },
   {
     title: "پک های آموزشی",
-    path: "/",
+    path: "/packs",
   },
   {
     title: "درباره ما",
-    path: "/",
+    path: "/about-us",
   },
 ];

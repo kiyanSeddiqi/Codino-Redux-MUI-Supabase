@@ -14,8 +14,11 @@ import { Link } from "react-router-dom";
 import Logo from "../../ui/Logo";
 import ThemeSwitch from "../../ui/ThemeSwitch";
 import CategoryBtn from "./CategoryBtn";
+import Searchbar from "./Searchbar";
+import NavbarMenu from "./NavbarMenu";
+import { Login } from "@mui/icons-material";
 
-function Navbar() {
+function Navbar({ showAuthModal }) {
   return (
     <>
       <AppBar sx={appBar}>
@@ -24,10 +27,18 @@ function Navbar() {
             <ThemeSwitch />
             <Logo />
             <CategoryBtn />
+            <Searchbar />
+            <NavbarMenu />
           </Box>
-          <Box>
-            <Link>کمی متن تصادفی</Link>
-          </Box>
+          <Button variant="outlined" onClick={() => showAuthModal(true)}>
+            <Login />
+            <Box
+              component="span"
+              sx={{ display: { xs: "hidden", lg: "block" } }}
+            >
+              ورود یا ثبت نام
+            </Box>
+          </Button>
         </Toolbar>
       </AppBar>
     </>
