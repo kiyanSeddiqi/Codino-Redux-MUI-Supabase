@@ -1,14 +1,16 @@
 import { Search } from "@mui/icons-material";
 import { Box, InputAdornment, InputBase, TextField } from "@mui/material";
 import { navbarSearchInput, searchIcon } from "../../../styles/styles";
+import SearchDropdown from "./SearchDropdown";
+import { useState } from "react";
 
 function Searchbar() {
+  const [searchValue, setSearchValue] = useState("");
+
   return (
     <>
-      <Box
-        sx={{ display: { xs: "hidden", lg: "block" }, position: "relative" }}
-      >
-        <form>
+      <Box sx={{ display: { xs: "none", xl: "block" }, position: "relative" }}>
+        <form onSubmit={(e) => e.preventDefault()}>
           <Search sx={searchIcon} />
           <InputBase
             type="text"
@@ -16,8 +18,11 @@ function Searchbar() {
             name="search"
             placeholder="جستجو ..."
             sx={navbarSearchInput}
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
           />
         </form>
+        <SearchDropdown searchValue={searchValue} onSearch={setSearchValue} />
       </Box>
     </>
   );

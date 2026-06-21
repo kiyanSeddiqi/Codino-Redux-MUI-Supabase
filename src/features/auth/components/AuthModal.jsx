@@ -28,6 +28,7 @@ function AuthModal({ isOpen, onShow }) {
         open={isOpen}
         onClose={() => onShow(false)}
         sx={authModalContainer}
+        disableScrollLock
       >
         <Logo />
         <Box sx={authModalPaper}>
@@ -83,6 +84,7 @@ function AuthModal({ isOpen, onShow }) {
             </label>
             <InputBase
               type="text"
+              id={loginType === "email" ? "email" : "phone"}
               autoComplete="off"
               name="search"
               placeholder={

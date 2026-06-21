@@ -30,7 +30,7 @@ const getTheme = (mode) => {
     success: { main: "#4CAF50" },
     warning: { main: "#FFB300" },
     error: { main: "#F44336" },
-    direction: "rtl",
+    // direction: "rtl",
     typography: {
       fontFamily: `"Vazirmatn","sans-serif"`,
     },
@@ -40,7 +40,8 @@ const getTheme = (mode) => {
         sm: 600,
         md: 768,
         lg: 1024,
-        xl: 1536,
+        xl: 1280,
+        "2xl": 1536,
       },
     },
     components: {

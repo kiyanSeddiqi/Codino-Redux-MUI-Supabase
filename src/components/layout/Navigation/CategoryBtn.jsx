@@ -9,10 +9,10 @@ import {
   Paper,
 } from "@mui/material";
 import {
-  coursesList,
-  coursesListScrollable,
-  coursesMenu,
-  menuDivider,
+  categoryMainMenuList,
+  categoryMenuBox,
+  categoryMenuDivider,
+  categoryMenuList,
 } from "../../../styles/styles";
 import { categoryMenuData } from "../../../data/menu";
 import SvgIcon from "../../ui/SvgIcon";
@@ -32,7 +32,7 @@ function CategoryBtn() {
   const handleClose = () => setAnchorEl(null);
   return (
     <>
-      <Box sx={{ display: { xs: "hidden", lg: "block" } }}>
+      <Box sx={{ display: { xs: "none", lg: "block" } }}>
         <Button
           id={buttonId}
           aria-controls={open ? menuId : undefined}
@@ -59,11 +59,11 @@ function CategoryBtn() {
               },
             },
             paper: {
-              sx: coursesMenu(),
+              sx: categoryMenuBox,
             },
           }}
         >
-          <Box sx={coursesListScrollable}>
+          <Box sx={categoryMainMenuList}>
             {categoryMenuData[0]?.children?.map((item) => (
               <MenuItem
                 disableRipple
@@ -95,12 +95,13 @@ function CategoryBtn() {
               </MenuItem>
             ))}
           </Box>
-          <Box sx={menuDivider}></Box>
-          <Box sx={coursesList}>
+          <Box sx={categoryMenuDivider}></Box>
+          <Box sx={categoryMenuList}>
             {activeCategory?.children?.map((item) => (
               <MenuItem
                 key={item.title}
                 component={Link}
+                disableRipple
                 to={item.path}
                 onClick={handleClose}
                 sx={{

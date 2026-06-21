@@ -6,8 +6,6 @@ function Home() {
     <>
       <Box>
         <Typography sx={{ fontWeight: 700 }}>home </Typography>
-        <SvgIcon name="digitalMarket" />
-        <SvgIcon name="devOps" />
       </Box>
     </>
   );

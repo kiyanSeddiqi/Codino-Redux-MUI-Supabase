@@ -2,10 +2,33 @@ import { Opacity, Padding } from "@mui/icons-material";
 import { grey } from "@mui/material/colors";
 import { position } from "stylis";
 
+export const flexBetween = (gap = 0, flexDir = "row") => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  gap,
+  flexDirection: flexDir,
+});
+
+export const flexCenter = (gap = 0, flexDir = "row") => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap,
+  flexDirection: flexDir,
+});
+
+export const flexCol = (gap = 0) => ({
+  display: "flex",
+  flexDirection: "column",
+  gap,
+});
+
+// ====== NAVBAR ======
 export const appBar = (theme) => ({
   borderBottom: 1,
   borderColor: theme.palette.divider,
-  minHeight: "94px",
+  // minHeight: "94px",
   py: 2.5,
   position: "static",
   bgcolor: theme.palette.background.paper,
@@ -14,14 +37,19 @@ export const appBar = (theme) => ({
   boxShadow: "none",
 });
 
-export const toolBar = {
+export const toolBar = (theme) => ({
   maxWidth: "1660px",
   mx: "auto",
-  px: 4,
   width: "100%",
   minHeight: "0 !important",
   justifyContent: "space-between",
-};
+  [theme.breakpoints.up("lg")]: {
+    padding: "0 32px",
+  },
+  [theme.breakpoints.down("lg")]: {
+    padding: "0 16px",
+  },
+});
 
 export const navWrapper = {
   display: "flex",
@@ -39,7 +67,7 @@ export const themeBtn = (theme) => ({
   position: "relative",
   padding: "5px",
   cursor: "pointer",
-  bgcolor: "divider",
+  bgcolor: theme.palette.divider,
 });
 
 export const themeBall = (theme) => ({
@@ -49,7 +77,6 @@ export const themeBall = (theme) => ({
   borderRadius: "50%",
   width: "22px",
   height: "22px",
-  // bgcolor: theme.palette.secondary.main,
   bgcolor: theme.palette.background.default,
   transform:
     theme.palette.mode === "dark" ? "translateX(20px)" : "translateX(0)",
@@ -62,36 +89,39 @@ export const logo = {
   display: "flex",
 };
 
-export const coursesMenu = (theme) => ({
+// ====== CATEGORY MENU ======
+export const categoryMenuBox = (theme) => ({
   padding: 2.5,
   borderRadius: "10px",
   border: 1,
-  borderColor: "divider",
+  borderColor: theme.palette.divider,
   mt: 0.5,
   scrollbarWidth: "none",
 });
 
-export const coursesList = {
+export const categoryMenuList = {
   display: "flex",
   flexDirection: "column",
   gap: "8px",
   width: "300px",
 };
-export const coursesListScrollable = {
-  ...coursesList,
+
+export const categoryMainMenuList = {
+  ...categoryMenuList,
   maxHeight: "63svh",
   overflowY: "auto",
   scrollbarWidth: "none",
   gap: "12px",
 };
 
-export const menuDivider = {
-  bgcolor: "divider",
+export const categoryMenuDivider = (theme) => ({
+  bgcolor: theme.palette.divider,
   mx: "8px",
   width: "1px",
   height: "63svh",
-};
+});
 
+// ====== NAVBAR SEARCH ======
 export const navbarSearchInput = (theme) => ({
   borderRadius: "10px",
   height: "46px",
@@ -113,34 +143,55 @@ export const navbarSearchInput = (theme) => ({
   },
 });
 
-export const searchIcon = {
+export const searchIcon = (theme) => ({
   position: "absolute",
   top: 10,
   right: 9,
   zIndex: 10,
-  color: "primary.main",
+  color: theme.palette.primary.main,
+});
+
+export const searchDropdownBox = {
+  position: "absolute",
+  top: "110%",
+  right: 0,
+  bgcolor: "background.paper",
+  borderRadius: "10px",
+  border: 1,
+  borderColor: "divider",
+  zIndex: 30,
+  width: "500px",
+  display: "flex",
+  flexDirection: "column",
+  gap: 2.5,
+  boxShadow: 8,
+  p: 2.5,
+  transformOrigin: "right top",
 };
 
+export const searchDropDownListBtn = {
+  borderRadius: "10px",
+  textAlign: "right",
+  "&:hover, &:focus": { bgcolor: "menuItemBg", color: "primary.main" },
+  transition: "0.2s ease",
+};
+
+// ====== NAVBAR MENU ======
 export const navItem = {
   position: "relative",
   paddingY: "16px",
-  "&:hover .dropdown": {
-    opacity: 1,
-    visibility: "visible",
-    transform: "translateY(0)",
-  },
 };
 
-export const navLink = {
+export const navLink = (theme) => ({
   fontWeight: "500",
   transition: "color 0.2s ease",
   "&.active": {
-    color: "primary.main",
+    color: theme.palette.primary.main,
   },
   "&:hover": {
-    color: "primary.main",
+    color: theme.palette.primary.main,
   },
-};
+});
 
 export const navLinkDropdown = (theme) => ({
   position: "absolute",
@@ -150,31 +201,29 @@ export const navLinkDropdown = (theme) => ({
   minWidth: 242,
   boxShadow: 3,
   borderRadius: "10px",
-  opacity: 0,
-  visibility: "hidden",
-  transform: "translateY(10px)",
   transition: "0.2s ease",
   zIndex: 10,
   p: 2.5,
   display: "flex",
   flexDirection: "column",
-  gap: 2,
+  gap: "12px",
   border: `1px solid ${theme.palette.divider}`,
+  transformOrigin: "right top",
 });
 
-export const navLinkNested = {
+export const navLinkDropdownBtn = (theme) => ({
   display: "block",
-  padding: "8px 16px",
   borderRadius: "6px",
-  color: "text.primary",
+  color: theme.palette.text.primary,
   transition: "0.2s ease",
+  textAlign: "right",
   "&:hover": {
-    color: "primary.main",
+    color: theme.palette.primary.main,
     bgcolor: "menuItemBg",
   },
-};
-// ====== AUTH MODAL ======
+});
 
+// ====== AUTH MODAL ======
 export const authModalContainer = {
   "& .MuiDialog-paper": {
     p: 4,
