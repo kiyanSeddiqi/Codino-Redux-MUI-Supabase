@@ -13,11 +13,12 @@ import {
   categoryMenuBox,
   categoryMenuDivider,
   categoryMenuList,
-} from "../../../styles/styles";
-import { categoryMenuData } from "../../../data/menu";
-import SvgIcon from "../../ui/SvgIcon";
+} from "../styles/navbarStyles";
+
 import { useId, useState } from "react";
 import { Link } from "react-router-dom";
+import { categoryMenuData } from "../../../../data/menu";
+import SvgIcon from "../../../ui/SvgIcon";
 
 function CategoryBtn() {
   const id = useId();
@@ -25,7 +26,7 @@ function CategoryBtn() {
   const menuId = `${id}-menu`;
   const [anchorEl, setAnchorEl] = useState(null);
   const [activeCategory, setActiveCategory] = useState(
-    categoryMenuData[0].children[0],
+    categoryMenuData[0]?.children?.[0] ?? null,
   );
   const open = Boolean(anchorEl);
   const handleOpen = (e) => setAnchorEl(e.currentTarget);
@@ -41,7 +42,7 @@ function CategoryBtn() {
           onClick={handleOpen}
           variant="outlined"
         >
-          <Apps sx={{ color: "primary.main" }} />
+          <Apps />
           دسته بندی دوره ها
         </Button>
         <Menu
@@ -49,6 +50,14 @@ function CategoryBtn() {
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "right",
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
           slotProps={{
             list: {
               "aria-labelledby": buttonId,
@@ -74,10 +83,10 @@ function CategoryBtn() {
                   gap: "4px",
                   borderRadius: "6px",
                   py: "4px",
-                  color:
-                    activeCategory.title === item.title
-                      ? "primary.light"
-                      : "text.main",
+                  color: "text.main",
+                  "&.Mui-selected": {
+                    color: "primary.light",
+                  },
                   transition: "0.2s ease",
                 }}
               >

@@ -8,17 +8,18 @@ import {
   Typography,
 } from "@mui/material";
 import Logo from "../../../components/ui/Logo";
-import {
-  authMethodSlider,
-  authModalContainer,
-  authModalForm,
-  authModalInput,
-  authModalPaper,
-  authModalSwitchBox,
-  authModalSwitchBtn,
-} from "../../../styles/styles";
+
 import { useState } from "react";
 import SvgIcon from "../../../components/ui/SvgIcon";
+import {
+  authMethodSlider,
+  authModalBox,
+  authModalDialog,
+  authModalForm,
+  authModalInput,
+  authModalSwitchBox,
+  authModalSwitchBtn,
+} from "../styles/authStyles";
 
 function AuthModal({ isOpen, onShow }) {
   const [loginType, setLoginType] = useState("email");
@@ -27,33 +28,35 @@ function AuthModal({ isOpen, onShow }) {
       <Dialog
         open={isOpen}
         onClose={() => onShow(false)}
-        sx={authModalContainer}
+        sx={authModalDialog}
         disableScrollLock
       >
         <Logo />
-        <Box sx={authModalPaper}>
-          <DialogTitle sx={{ fontSize: 16, p: 0 }}>ورود یا ثبت نام</DialogTitle>
+        <Box sx={authModalBox}>
+          <DialogTitle sx={{ fontSize: { xs: 14, sm: 16 }, p: 0 }}>
+            ورود یا ثبت نام
+          </DialogTitle>
           <Box sx={authModalSwitchBox}>
             <Box sx={{ position: "relative", display: "flex" }}>
               <Button
                 onClick={() => setLoginType("email")}
                 variant="text"
-                sx={{
-                  ...authModalSwitchBtn,
+                sx={(theme) => ({
+                  ...authModalSwitchBtn(theme),
                   color:
                     loginType === "email" ? "primary.main" : "text.secondary",
-                }}
+                })}
               >
                 ایمیل و رمز عبور
               </Button>
               <Button
                 onClick={() => setLoginType("phone")}
                 variant="text"
-                sx={{
-                  ...authModalSwitchBtn,
+                sx={(theme) => ({
+                  ...authModalSwitchBtn(theme),
                   color:
                     loginType === "phone" ? "primary.main" : "text.secondary",
-                }}
+                })}
               >
                 شماره همراه
               </Button>

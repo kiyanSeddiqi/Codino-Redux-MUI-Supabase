@@ -9,14 +9,15 @@ import {
   MenuList,
 } from "@mui/material";
 import { Link, NavLink } from "react-router-dom";
-import { menuData } from "../../../data/menu";
+import { menuData } from "../../../../data/menu";
+
+import { useState } from "react";
 import {
   navItem,
   navLink,
   navLinkDropdown,
   navLinkDropdownBtn,
-} from "../../../styles/styles";
-import { useState } from "react";
+} from "../styles/navbarStyles";
 
 function Menu() {
   const [openIndex, setOpenIndex] = useState(null);
