@@ -5,16 +5,14 @@ const getTheme = (mode) => {
   return createTheme({
     palette: {
       mode,
-      iconAccent: isDark ? "#ff4aff" : "#ff0eff",
-      menuItemBg: isDark ? "#bb86fc24" : "#6700e512",
       primary: {
         main: isDark ? "#BB86FC" : "#6700E5",
       },
       secondary: {
-        main: isDark ? "#C6B3FF" : "#B388FF",
-        light: "#D9CCFF",
+        // main: isDark ? "#C6B3FF" : "#B388FF",
+        main: "#D9CCFF",
         dark: "#B09AFF",
-        contrastText: "#160949",
+        contrastText: "#360077",
       },
       text: {
         primary: isDark ? "#F5F5F7" : "#1E1E1E",
@@ -25,6 +23,8 @@ const getTheme = (mode) => {
         paper: isDark ? "#1A1A26" : "#FFFFFF",
       },
       divider: isDark ? "#494b55" : "#d7d4ec",
+      iconAccent: isDark ? "#ff4aff" : "#ff0eff",
+      menuItemBg: isDark ? "#bb86fc24" : "#6700e512",
     },
     accent: { main: "#ff4aff" },
     success: { main: "#4CAF50" },
@@ -63,6 +63,18 @@ const getTheme = (mode) => {
             lineHeight: "1.5",
           },
         },
+        variants: [
+          {
+            props: { variant: "contained", color: "primary" },
+            style: {
+              backgroundColor: "#6700E5",
+              color: "#fff",
+              "&:hover": {
+                backgroundColor: "#5a00cc",
+              },
+            },
+          },
+        ],
       },
       MuiOutlinedInput: {
         styleOverrides: {

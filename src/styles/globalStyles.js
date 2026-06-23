@@ -29,3 +29,10 @@ export const logo = (theme) => ({
     height: "auto",
   },
 });
+
+export const textPrimary = {
+  color: "primary.main",
+};
+export const textSecondary = {
+  color: "text.secondary",
+};
