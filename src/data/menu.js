@@ -31,7 +31,7 @@ export const categoryMenuData = [
         ],
       },
       {
-        title: "پایگاه داده ها و مدیریت داده",
+        title: "پایگاه داده ها",
         iconName: "dataBase",
         children: [
           { title: "همه آموزش های این دسته", path: "/" },
@@ -160,7 +160,7 @@ export const categoryMenuData = [
         ],
       },
       {
-        title: "سیستم عامل ها",
+        title: "سیستم عامل ها ",
         iconName: "os",
         children: [
           { title: "همه آموزش های این دسته", path: "/" },

@@ -38,3 +38,7 @@ ul {
 li {
   list-style: none;
 }
+
+.grid {
+  /* grid-template-columns: ; */
+}

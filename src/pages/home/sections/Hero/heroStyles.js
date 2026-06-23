@@ -1,4 +1,3 @@
-import { AspectRatio, BorderColor } from "@mui/icons-material";
 import { flexCenter, flexCol } from "../../../../styles/globalStyles";
 import { position } from "stylis";
 
@@ -8,6 +7,7 @@ export const heroContainer = (theme) => ({
   gap: 5,
   flexDirection: "column-reverse",
   mt: 4,
+  mb: 12.5,
   [theme.breakpoints.up("lg")]: {
     flexDirection: "row",
   },

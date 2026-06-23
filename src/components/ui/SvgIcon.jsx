@@ -18,6 +18,7 @@ function SvgIcon({ name, size = 30 }) {
         style={{
           color: theme.palette.primary.main || "inherit",
           "--accent-clr": theme.palette.iconAccent,
+          transition: "all 0.3s ease",
         }}
       />
     </>

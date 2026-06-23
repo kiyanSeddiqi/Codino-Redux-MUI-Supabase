@@ -1,9 +1,9 @@
 export const appBar = (theme) => ({
+  position: "static",
   borderBottom: 1,
   borderColor: theme.palette.divider,
   // minHeight: "94px",
   py: 2.5,
-  position: "static",
   bgcolor: theme.palette.background.paper,
   flexDirection: "row",
   color: theme.palette.text.primary,
