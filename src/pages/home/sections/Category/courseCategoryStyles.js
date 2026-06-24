@@ -16,25 +16,21 @@ export const courseCategoryTitle = (theme) => ({
   },
 });
 
-export const courseCategoryGrid = (theme) => ({
+export const courseCategoryGrid = {
   display: "grid",
   width: "100%",
-  gap: 2.5,
+  gap: {
+    xs: "12px",
+    sm: 2.5,
+  },
   fontSize: "14px",
-  gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-  [theme.breakpoints.up("xl")]: {
-    gridTemplateColumns: "repeat(6, minmax(0, 1fr))",
+  gridTemplateColumns: {
+    xs: "repeat(2, minmax(0, 1fr))",
+    md: "repeat(4, minmax(0, 1fr))",
+    lg: "repeat(5, minmax(0, 1fr))",
+    xl: "repeat(6, minmax(0, 1fr))",
   },
-  [theme.breakpoints.up("lg")]: {
-    gridTemplateColumns: "repeat(5, minmax(0, 1fr))",
-  },
-  [theme.breakpoints.up("md")]: {
-    gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
-  },
-  [theme.breakpoints.up("xs")]: {
-    gap: "12px",
-  },
-});
+};
 
 export const courseCategoryGridItem = (theme) => ({
   ...flexCenter(1, "column"),

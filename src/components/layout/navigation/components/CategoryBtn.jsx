@@ -18,7 +18,7 @@ import {
 import { useId, useState } from "react";
 import { Link } from "react-router-dom";
 import { categoryMenuData } from "../../../../data/menu";
-import SvgIcon from "../../../ui/SvgIcon";
+import SvgIcon from "../../../ui/SvgIcon/SvgIcon";
 
 function CategoryBtn() {
   const id = useId();
@@ -50,6 +50,7 @@ function CategoryBtn() {
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}
+          disableScrollLock
           anchorOrigin={{
             vertical: "bottom",
             horizontal: "right",
@@ -85,18 +86,22 @@ function CategoryBtn() {
                   py: "4px",
                   color: "text.main",
                   "&.Mui-selected": {
-                    color: "primary.light",
+                    color: "primary.main",
                   },
                   transition: "0.2s ease",
                 }}
               >
-                <ListItemIcon>
+                <ListItemIcon sx={{ color: "text.primary" }}>
                   <SvgIcon name={item.iconName} size={28} />
                 </ListItemIcon>
                 <ListItemText
                   slotProps={{
                     primary: {
-                      sx: { fontSize: 14 },
+                      sx: {
+                        fontSize: 14,
+                        whiteSpace: "normal",
+                        wordBreak: "break-word",
+                      },
                     },
                   }}
                   primary={item.title}

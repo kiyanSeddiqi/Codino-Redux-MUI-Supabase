@@ -11,9 +11,7 @@ function MainLayout() {
 
   return (
     <>
-      <header>
-        <Navbar showAuthModal={setOpenAuthModal} />
-      </header>
+      <Navbar showAuthModal={setOpenAuthModal} />
       <main>
         <Container>
           <Outlet />

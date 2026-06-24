@@ -6,6 +6,7 @@ import {
   IconButton,
   Paper,
   Typography,
+  useTheme,
 } from "@mui/material";
 import {
   heroBtnWrapper,
@@ -14,7 +15,6 @@ import {
   heroSliderBox,
   heroSliderImg,
   heroSliderNavBox,
-  heroSliderNavBtn,
   heroStats,
   heroStatsText,
   heroText,
@@ -28,7 +28,8 @@ import {
   textSecondary,
 } from "../../../../styles/globalStyles";
 import { ArrowOutward, ChevronLeft, ChevronRight } from "@mui/icons-material";
-import SvgIcon from "../../../../components/ui/SvgIcon";
+import SvgIcon from "../../../../components/ui/SvgIcon/SvgIcon";
+import SliderNavBtn from "../../../../components/ui/SliderNavBtn/SliderNavBtn";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
@@ -43,8 +44,8 @@ import "swiper/css";
 import "swiper/css/autoplay";
 
 const heroImgData = [hero_b_1, hero_b_2, hero_b_3, hero_b_4];
-
 function Hero() {
+  const theme = useTheme();
   return (
     <>
       <Box component="section" sx={heroContainer}>
@@ -137,25 +138,7 @@ function Hero() {
             ))}
           </Swiper>
           <Box sx={heroSliderNavBox}>
-            <ButtonGroup sx={heroSliderNavBtn}>
-              <Button
-                className="swiper-button-next"
-                disableRipple
-                variant="text"
-                sx={flexCenter}
-              >
-                <ChevronRight sx={{ fontSize: "20px" }} />
-              </Button>
-              <Divider orientation="vertical" flexItem />
-              <Button
-                className="swiper-button-prev"
-                disableRipple
-                variant="text"
-                sx={flexCenter}
-              >
-                <ChevronLeft sx={{ fontSize: "20px" }} />
-              </Button>
-            </ButtonGroup>
+            <SliderNavBtn />
           </Box>
         </Box>
       </Box>

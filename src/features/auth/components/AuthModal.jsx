@@ -7,10 +7,10 @@ import {
   InputBase,
   Typography,
 } from "@mui/material";
-import Logo from "../../../components/ui/Logo";
+import Logo from "../../../components/ui/Logo/Logo";
 
 import { useState } from "react";
-import SvgIcon from "../../../components/ui/SvgIcon";
+import SvgIcon from "../../../components/ui/SvgIcon/SvgIcon";
 import {
   authMethodSlider,
   authModalBox,

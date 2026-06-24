@@ -25,11 +25,12 @@ const getTheme = (mode) => {
       divider: isDark ? "#494b55" : "#d7d4ec",
       iconAccent: isDark ? "#ff4aff" : "#ff0eff",
       menuItemBg: isDark ? "#bb86fc24" : "#6700e512",
+      accent: { main: "#ff4aff" },
+      success: { main: "#4CAF50" },
+      warning: { main: "#FFB300" },
+      error: { main: "#ff5b09 ", light: isDark ? "#54342B" : "#FFDECE" },
     },
-    accent: { main: "#ff4aff" },
-    success: { main: "#4CAF50" },
-    warning: { main: "#FFB300" },
-    error: { main: "#F44336" },
+
     // direction: "rtl",
     typography: {
       fontFamily: `"Vazirmatn","sans-serif"`,
@@ -130,6 +131,21 @@ const getTheme = (mode) => {
           "*:focus-visible": {
             outline: "2px solid #C6B3FF",
             outlineOffset: "4px",
+          },
+        },
+      },
+      MuiTooltip: {
+        defaultProps: {
+          arrow: true,
+          placement: "top",
+        },
+        styleOverrides: {
+          tooltip: {
+            fontSize: "14px",
+            backgroundColor: "divider",
+          },
+          arrow: {
+            color: "divider",
           },
         },
       },

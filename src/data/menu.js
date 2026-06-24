@@ -124,6 +124,20 @@ export const categoryMenuData = [
         ],
       },
       {
+        title: "معماری نرم افزار",
+        iconName: "chart",
+        children: [
+          { title: "همه آموزش های این دسته", path: "/" },
+          { title: "الگوهای طراحی (Design Patterns) ", path: "/" },
+          {
+            title: "معماری میکروسرویس‌ها (Microservices Architecture)",
+            path: "/",
+          },
+          { title: "طراحی سیستم‌ها (System Design)", path: "/" },
+          { title: "کدنویسی تمیز (Clean Code) و ریفکتورینگ", path: "/" },
+        ],
+      },
+      {
         title: "برنامه نویسی دسکتاپ",
         iconName: "desktop",
         children: [
@@ -169,6 +183,30 @@ export const categoryMenuData = [
             path: "/",
           },
         ],
+      },
+      {
+        title: "نرم افزارهای کاربردی ",
+        iconName: "software",
+        children: [
+          { title: "همه آموزش های این دسته", path: "/" },
+          {
+            title: "ابزارهای گوگل",
+            path: "/",
+          },
+          {
+            title: "برنامه نویسی برای کودکان و نوجوانان",
+            path: "/",
+          },
+          {
+            title: "توسعه ربات های تلگرام",
+            path: "/",
+          },
+        ],
+      },
+      {
+        title: "کدینو پلاس ( با زیرنویس فارسی )",
+        iconName: "codinoPlus",
+        children: [{ title: "همه آموزش های این دسته", path: "/" }],
       },
     ],
   },

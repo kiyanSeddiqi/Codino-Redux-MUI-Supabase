@@ -89,9 +89,6 @@ export const heroStatsText = (theme) => ({
     "& > span": {
       fontSize: "12px",
     },
-    // "& > h3": {
-    //   fontSize: "14px",
-    // },
   },
 });
 
@@ -125,18 +122,4 @@ export const heroSliderNavBox = (theme) => ({
   bottom: "22px",
   right: "22px",
   zIndex: 10,
-});
-
-export const heroSliderNavBtn = (theme) => ({
-  ...flexCenter("10px"),
-  p: "10px",
-  borderRadius: "6px",
-  bgcolor: "background.default",
-  "& > .MuiButtonBase-root ": {
-    width: "24px",
-    height: "24px",
-    p: 0,
-    minWidth: 0,
-    borderRadius: "2px",
-  },
 });

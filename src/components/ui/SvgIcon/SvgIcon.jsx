@@ -1,14 +1,14 @@
 import { useTheme } from "@emotion/react";
 
-const icons = import.meta.glob("../../assets/images/icons/*.svg", {
+const icons = import.meta.glob("../../../assets/images/icons/*.svg", {
   query: "?react",
   import: "default",
   eager: true,
 });
 
-function SvgIcon({ name, size = 30 }) {
+function SvgIcon({ name, size = 30, color = "inherit" }) {
   const theme = useTheme();
-  const Svg = icons[`../../assets/images/icons/${name}.svg`];
+  const Svg = icons[`../../../assets/images/icons/${name}.svg`];
 
   return Svg ? (
     <>
@@ -16,7 +16,7 @@ function SvgIcon({ name, size = 30 }) {
         width={size}
         height={size}
         style={{
-          color: theme.palette.primary.main || "inherit",
+          color,
           "--accent-clr": theme.palette.iconAccent,
           transition: "all 0.3s ease",
         }}

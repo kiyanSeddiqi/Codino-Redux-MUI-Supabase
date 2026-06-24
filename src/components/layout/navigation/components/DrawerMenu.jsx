@@ -11,11 +11,11 @@ import {
 } from "@mui/material";
 import { Close, Login } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import Logo from "../../../ui/Logo";
+import Logo from "../../../ui/Logo/Logo";
 import { drawerMenuData } from "../../../../data/menu";
 import { drawerMenuBox, drawerMenuListBtn } from "../styles/navbarStyles";
 import { flexBetween, flexCol } from "../../../../styles/globalStyles";
-import ThemeSwitch from "../../../ui/ThemeSwitch";
+import ThemeSwitch from "../../../ui/ThemeSwitch/ThemeSwitch";
 
 function DrawerMenu({ isOpen, onShow, showAuthModal }) {
   return (

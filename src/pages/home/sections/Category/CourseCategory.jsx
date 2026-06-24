@@ -7,7 +7,7 @@ import {
 } from "./courseCategoryStyles";
 import { categoryMenuData } from "../../../../data/menu";
 import { Link } from "react-router-dom";
-import SvgIcon from "../../../../components/ui/SvgIcon";
+import SvgIcon from "../../../../components/ui/SvgIcon/SvgIcon";
 
 function CourseCategory() {
   return (

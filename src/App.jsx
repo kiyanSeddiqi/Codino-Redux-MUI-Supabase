@@ -25,7 +25,6 @@ const router = createBrowserRouter([
 
 function App() {
   const mode = useSelector((state) => state.theme.mode);
-
   const theme = useMemo(() => getTheme(mode), [mode]);
 
   useEffect(() => {

@@ -1,8 +1,9 @@
 export const appBar = (theme) => ({
-  position: "static",
+  position: "sticky",
+  top: 0,
+  zIndex: 1100,
   borderBottom: 1,
   borderColor: theme.palette.divider,
-  // minHeight: "94px",
   py: 2.5,
   bgcolor: theme.palette.background.paper,
   flexDirection: "row",
@@ -70,7 +71,7 @@ export const categoryMenuList = {
   display: "flex",
   flexDirection: "column",
   gap: "8px",
-  width: "300px",
+  width: 300,
 };
 
 export const categoryMainMenuList = {
