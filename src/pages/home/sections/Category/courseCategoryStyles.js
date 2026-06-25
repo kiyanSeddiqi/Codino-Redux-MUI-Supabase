@@ -2,7 +2,10 @@ import { flexCenter, flexCol } from "../../../../styles/globalStyles";
 
 export const courseCategoryContainer = (theme) => ({
   ...flexCol(2.5),
-  mb: 12.5,
+  mb: {
+    xs: 8,
+    md: 12.5,
+  },
 });
 
 export const courseCategoryTitle = (theme) => ({

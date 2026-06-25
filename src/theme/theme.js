@@ -28,9 +28,8 @@ const getTheme = (mode) => {
       accent: { main: "#ff4aff" },
       success: { main: "#4CAF50" },
       warning: { main: "#FFB300" },
-      error: { main: "#ff5b09 ", light: isDark ? "#54342B" : "#FFDECE" },
+      error: { main: "#ff5b09", light: isDark ? "#54342B" : "#FFDECE" },
     },
-
     // direction: "rtl",
     typography: {
       fontFamily: `"Vazirmatn","sans-serif"`,

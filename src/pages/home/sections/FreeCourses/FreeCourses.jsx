@@ -1,16 +1,15 @@
 import { Box, Typography } from "@mui/material";
-import { recentUpdatesContainer } from "./recentUpdatesStyles";
 import { flexBetween, flexCol } from "../../../../styles/globalStyles";
 import SliderNavBtn from "../../../../components/ui/SliderNavBtn/SliderNavBtn";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import { productData } from "../../../../data/productData";
 import ProductCard from "../../../../features/product/components/ProductCard";
+import { productData } from "../../../../data/productData";
 
 import "swiper/css";
-import "swiper/css/navigation";
 
-function RecentUpdates() {
+function FreeCourses() {
+  const freeProducts = productData.filter((item) => item.price === 0);
   return (
     <>
       <Box
@@ -28,7 +27,7 @@ function RecentUpdates() {
             component="h4"
             sx={{ fontSize: { xs: "20px", lg: "24px" }, fontWeight: 600 }}
           >
-            آخرین به روزرسانی ها
+            دوره های رایگان
           </Typography>
           <SliderNavBtn />
         </Box>
@@ -51,7 +50,7 @@ function RecentUpdates() {
               1280: { slidesPerView: 4.5, spaceBetween: 20 },
             }}
           >
-            {productData.map((item, i) => (
+            {freeProducts.map((item, i) => (
               <SwiperSlide key={item.id}>
                 <ProductCard itemData={item} />
               </SwiperSlide>
@@ -63,4 +62,4 @@ function RecentUpdates() {
   );
 }
 
-export default RecentUpdates;
+export default FreeCourses;

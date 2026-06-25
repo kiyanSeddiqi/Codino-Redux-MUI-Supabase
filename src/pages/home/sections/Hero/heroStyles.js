@@ -7,7 +7,10 @@ export const heroContainer = (theme) => ({
   gap: 5,
   flexDirection: "column-reverse",
   mt: 4,
-  mb: 12.5,
+  mb: {
+    xs: 8,
+    md: 12.5,
+  },
   [theme.breakpoints.up("lg")]: {
     flexDirection: "row",
   },

@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import {
   cardContainer,
+  cardContent,
   cardImg,
   cardImgBox,
   cardLevelBadge,
@@ -24,21 +25,29 @@ import {
   PermIdentity,
 } from "@mui/icons-material";
 import { addComma } from "../../../utils/helpers";
+import {
+  expertCardContainer,
+  expertCardImgBox,
+} from "../../../pages/home/sections/Expert/expertCoursesStyles";
 
 const levelLabels = {
   beginner: "مقدماتی",
   advanced: "مقدماتی تا پیشرفته",
 };
 
-function ProductCard({ itemData }) {
+function ProductCard({ itemData, layout = "default" }) {
   const theme = useTheme();
   return (
     <>
-      <Card sx={cardContainer}>
-        <Box component={Link} to={itemData.slug} sx={cardImgBox}>
+      <Card sx={[layout === "expert" ? expertCardContainer : cardContainer]}>
+        <Box
+          component={Link}
+          to={itemData.slug}
+          sx={[layout === "expert" ? expertCardImgBox : cardImgBox]}
+        >
           <CardMedia sx={cardImg} image={itemData.img} />
         </Box>
-        <CardContent sx={{ ...flexCol(2), p: 0 }}>
+        <CardContent sx={cardContent}>
           <Box sx={cardTitleBox}>
             <Box sx={{ display: "flex", gap: 1 }}>
               <Box sx={cardLevelBadge}>{levelLabels[itemData.level]}</Box>

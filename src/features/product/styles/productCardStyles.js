@@ -9,6 +9,7 @@ import {
   fontSize,
   justifyContent,
   lineHeight,
+  maxWidth,
 } from "@mui/system";
 import { flexCol } from "../../../styles/globalStyles";
 
@@ -16,11 +17,23 @@ export const cardContainer = (theme) => ({
   ...flexCol(2),
   bgcolor: "transparent",
   boxShadow: "none",
+  width: "100%",
+  maxWidth: "300px",
+  [theme.breakpoints.down(480)]: {
+    maxWidth: "100%",
+  },
   transition: "transform 0.3s ease",
   "&:hover .MuiCardMedia-root": {
     transform: "scale(1.1) rotate(-1deg)",
   },
 });
+
+export const cardContent = {
+  ...flexCol(2),
+  p: 0,
+  "&:last-child": { pb: 0 },
+  width: "100%",
+};
 
 export const cardImgBox = (theme) => ({
   width: "100%",
@@ -67,4 +80,5 @@ export const cardTitle = (theme) => ({
   WebkitBoxOrient: "vertical",
   WebkitLineClamp: 1,
   lineHeight: "20px",
+  // minHeight: "40px",
 });
