@@ -1,5 +1,9 @@
 import { Box, Typography } from "@mui/material";
-import { flexCol } from "../../../../styles/globalStyles";
+import {
+  flexCol,
+  sectionStyle,
+  sectionTitle,
+} from "../../../../styles/globalStyles";
 import { expertContainer } from "./expertCoursesStyles";
 import { productData } from "../../../../data/productData";
 import ProductCard from "../../../../features/product/components/ProductCard";
@@ -11,14 +15,8 @@ function ExpertCourses() {
 
   return (
     <>
-      <Box
-        component="section"
-        sx={{ ...flexCol(2.5), mb: 12.5, alignItems: "start" }}
-      >
-        <Typography
-          component="h4"
-          sx={{ fontSize: { xs: "20px", lg: "24px" }, fontWeight: 600 }}
-        >
+      <Box component="section" sx={{ ...sectionStyle, alignItems: "start" }}>
+        <Typography component="h4" sx={sectionTitle}>
           دوره های متخصص
         </Typography>
         <Box sx={expertContainer}>

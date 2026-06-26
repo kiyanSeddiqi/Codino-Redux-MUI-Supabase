@@ -1,29 +1,27 @@
-export const appBar = (theme) => ({
+export const appBar = {
   position: "sticky",
   top: 0,
   zIndex: 1100,
   borderBottom: 1,
-  borderColor: theme.palette.divider,
+  borderColor: "divider",
   py: 2.5,
-  bgcolor: theme.palette.background.paper,
+  bgcolor: "background.default",
   flexDirection: "row",
-  color: theme.palette.text.primary,
+  color: "text.primary",
   boxShadow: "none",
-});
+};
 
-export const toolBar = (theme) => ({
-  maxWidth: "1660px",
+export const toolBar = {
+  maxWidth: 1660,
   mx: "auto",
   width: "100%",
   minHeight: "0 !important",
   justifyContent: "space-between",
-  [theme.breakpoints.up("lg")]: {
-    padding: "0 32px",
+  px: {
+    xs: 2,
+    lg: 4,
   },
-  [theme.breakpoints.down("lg")]: {
-    padding: "0 16px",
-  },
-});
+};
 
 export const navWrapper = {
   display: "flex",
@@ -31,7 +29,7 @@ export const navWrapper = {
   gap: { xs: 1, lg: 2.5 },
 };
 
-export const themeBtn = (theme) => ({
+export const themeBtn = {
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
@@ -41,8 +39,8 @@ export const themeBtn = (theme) => ({
   position: "relative",
   padding: "5px",
   cursor: "pointer",
-  bgcolor: theme.palette.divider,
-});
+  bgcolor: "divider",
+};
 
 export const themeIndicator = (theme) => ({
   position: "absolute",
@@ -51,21 +49,21 @@ export const themeIndicator = (theme) => ({
   borderRadius: "50%",
   width: "22px",
   height: "22px",
-  bgcolor: theme.palette.background.default,
+  bgcolor: "background.default",
   transform:
     theme.palette.mode === "dark" ? "translateX(20px)" : "translateX(0)",
-  transition: "transform 0.2s linear",
+  transition: "transform 0.2s ease",
 });
 
 // ====== CATEGORY MENU ======
-export const categoryMenuBox = (theme) => ({
+export const categoryMenuBox = {
   padding: 2.5,
   borderRadius: "10px",
   border: 1,
-  borderColor: theme.palette.divider,
+  borderColor: "divider",
   mt: 0.5,
   scrollbarWidth: "none",
-});
+};
 
 export const categoryMenuList = {
   display: "flex",
@@ -82,12 +80,12 @@ export const categoryMainMenuList = {
   gap: "12px",
 };
 
-export const categoryMenuDivider = (theme) => ({
-  bgcolor: theme.palette.divider,
+export const categoryMenuDivider = {
+  bgcolor: "divider",
   mx: "8px",
   width: "1px",
   height: "63svh",
-});
+};
 
 // ====== NAVBAR MENU ======
 export const navItem = {
@@ -95,16 +93,16 @@ export const navItem = {
   paddingY: "16px",
 };
 
-export const navLink = (theme) => ({
+export const navLink = {
   fontWeight: "500",
   transition: "color 0.2s ease",
   "&.active": {
-    color: theme.palette.primary.main,
+    color: "primary.main",
   },
   "&:hover": {
-    color: theme.palette.primary.main,
+    color: "primary.main",
   },
-});
+};
 
 export const navLinkDropdown = (theme) => ({
   position: "absolute",
@@ -124,17 +122,17 @@ export const navLinkDropdown = (theme) => ({
   transformOrigin: "right top",
 });
 
-export const navLinkDropdownBtn = (theme) => ({
+export const navLinkDropdownBtn = {
   display: "block",
   borderRadius: "6px",
-  color: theme.palette.text.primary,
+  color: "text.primary",
   transition: "0.2s ease",
   textAlign: "right",
   "&:hover": {
-    color: theme.palette.primary.main,
+    color: "primary.main",
     bgcolor: "menuItemBg",
   },
-});
+};
 
 export const drawerMenuBox = {
   width: 300,

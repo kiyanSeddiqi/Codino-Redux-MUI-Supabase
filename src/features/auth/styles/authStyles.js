@@ -1,26 +1,28 @@
-export const authModalDialog = (theme) => ({
+import { flexCol } from "../../../styles/globalStyles";
+
+export const authModalDialog = {
   "& .MuiDialog-paper": {
-    p: 4,
     m: 0,
-    gap: 5,
     borderRadius: "8px",
     width: "400px",
     maxHeight: "90svh",
     alignItems: "center",
-    [theme.breakpoints.down("sm")]: {
-      p: "20px",
-      gap: 3,
+    p: {
+      xs: 2.5,
+      sm: 4,
+    },
+    gap: {
+      xs: 3,
+      sm: 5,
     },
   },
   "& .MuiBackdrop-root": {
     backdropFilter: "blur(6px)",
   },
-});
+};
 
 export const authModalBox = {
-  display: "flex",
-  flexDirection: "column",
-  gap: 3,
+  ...flexCol(3),
   width: "100%",
 };
 
@@ -33,14 +35,13 @@ export const authModalSwitchBox = {
 export const authModalSwitchBtn = (theme) => ({
   px: 0,
   flex: 1,
-  fontSize: "16px",
   zIndex: 2,
+  fontSize: {
+    xs: "14px",
+    sm: "16px",
+  },
   "&:hover": {
     bgcolor: "transparent",
-  },
-  [theme.breakpoints.down("sm")]: {
-    fontSize: "14px",
-    linHeight: "none",
   },
 });
 
@@ -57,13 +58,11 @@ export const authMethodSlider = {
 };
 
 export const authModalForm = {
+  ...flexCol(3),
   width: "100%",
-  display: "flex",
-  flexDirection: "column",
-  gap: 3,
 };
 
-export const authModalInput = (theme) => ({
+export const authModalInput = {
   p: "8px 12px",
   borderRadius: "12px",
   border: "2px solid transparent",
@@ -76,11 +75,12 @@ export const authModalInput = (theme) => ({
     padding: "0px",
   },
   "& input::placeholder": {
-    color: theme.palette.text.secondary,
+    color: "text.secondary",
     opacity: 1,
     textAlign: "left",
   },
   "&:focus-within": {
-    border: `2px solid ${theme.palette.primary.main}`,
+    border: "2px solid ",
+    borderColor: "primary.main",
   },
-});
+};

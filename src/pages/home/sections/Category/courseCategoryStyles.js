@@ -1,24 +1,5 @@
 import { flexCenter, flexCol } from "../../../../styles/globalStyles";
 
-export const courseCategoryContainer = (theme) => ({
-  ...flexCol(2.5),
-  mb: {
-    xs: 8,
-    md: 12.5,
-  },
-});
-
-export const courseCategoryTitle = (theme) => ({
-  ...flexCol("6px"),
-  "& > h4": {
-    fontSize: "24px",
-    fontWeight: "600",
-    [theme.breakpoints.down("lg")]: {
-      fontSize: "20px",
-    },
-  },
-});
-
 export const courseCategoryGrid = {
   display: "grid",
   width: "100%",
@@ -39,10 +20,7 @@ export const courseCategoryGridItem = (theme) => ({
   ...flexCenter(1, "column"),
   width: "100%",
   minHeight: "120px",
-  fontSize: "12px",
   textAlign: "center",
-  p: 2.5,
-
   border: 1,
   borderColor: "divider",
   transition: "all 0.3s ease",
@@ -54,12 +32,16 @@ export const courseCategoryGridItem = (theme) => ({
     },
     borderColor: "primary.main",
   },
-  [theme.breakpoints.up("lg")]: {
-    fontSize: "14px",
-    borderRadius: "24px",
+  fontSize: {
+    xs: "12px",
+    lg: "14px",
   },
-  [theme.breakpoints.up("xs")]: {
-    p: "12px",
-    borderRadius: "14px",
+  borderRadius: {
+    xs: "14px",
+    lg: "24px",
+  },
+  p: {
+    xs: "12px",
+    lg: "20px",
   },
 });

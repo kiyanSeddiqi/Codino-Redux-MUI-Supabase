@@ -64,7 +64,7 @@ function SearchModal({ isOpen, onShow }) {
                 name="search"
                 placeholder="دنبال چی میگردی؟"
                 sx={(theme) => ({
-                  ...navbarSearchInput(theme),
+                  ...navbarSearchInput,
                   width: "100%",
                 })}
                 value={searchValue}

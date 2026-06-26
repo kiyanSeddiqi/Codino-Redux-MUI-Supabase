@@ -23,4 +23,8 @@ export const bannerSliderBox = {
     opacity: 1,
     width: "26px",
   },
+  mb: {
+    xs: 8,
+    md: 12.5,
+  },
 };

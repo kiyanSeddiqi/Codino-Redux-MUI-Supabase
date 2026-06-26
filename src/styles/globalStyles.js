@@ -20,19 +20,26 @@ export const flexCol = (gap = 0) => ({
   gap,
 });
 
-export const logo = (theme) => ({
-  width: "95px",
-  height: "31px",
-  display: "flex",
-  [theme.breakpoints.down("md")]: {
-    width: "80px",
-    height: "auto",
+export const sectionStyle = {
+  mb: {
+    xs: 8,
+    md: 12.5,
   },
-});
+  ...flexCol(2.5),
+};
+
+export const sectionTitle = {
+  fontSize: {
+    lg: "24px",
+    xs: "20px",
+  },
+  fontWeight: "600",
+};
 
 export const textPrimary = {
   color: "primary.main",
 };
+
 export const textSecondary = {
   color: "text.secondary",
 };

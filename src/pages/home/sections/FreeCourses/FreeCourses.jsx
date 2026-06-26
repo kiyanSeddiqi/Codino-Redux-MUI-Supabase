@@ -1,5 +1,10 @@
 import { Box, Typography } from "@mui/material";
-import { flexBetween, flexCol } from "../../../../styles/globalStyles";
+import {
+  flexBetween,
+  flexCol,
+  sectionStyle,
+  sectionTitle,
+} from "../../../../styles/globalStyles";
 import SliderNavBtn from "../../../../components/ui/SliderNavBtn/SliderNavBtn";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -12,21 +17,9 @@ function FreeCourses() {
   const freeProducts = productData.filter((item) => item.price === 0);
   return (
     <>
-      <Box
-        component="section"
-        sx={{
-          ...flexCol(2.5),
-          mb: {
-            xs: 8,
-            md: 12.5,
-          },
-        }}
-      >
+      <Box component="section" sx={sectionStyle}>
         <Box sx={{ ...flexBetween("row") }}>
-          <Typography
-            component="h4"
-            sx={{ fontSize: { xs: "20px", lg: "24px" }, fontWeight: 600 }}
-          >
+          <Typography component="h4" sx={sectionTitle}>
             دوره های رایگان
           </Typography>
           <SliderNavBtn />

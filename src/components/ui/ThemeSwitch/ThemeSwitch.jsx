@@ -1,6 +1,6 @@
 import { DarkMode, LightMode } from "@mui/icons-material";
 import { Box, Tooltip } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toggleTheme } from "../../../store/slices/themeSlice";
 import {
   themeBtn,
@@ -9,7 +9,6 @@ import {
 
 function ThemeSwitch({ sx }) {
   const dispatch = useDispatch();
-  const mode = useSelector((state) => state.theme.mode);
   return (
     <>
       <Tooltip title="تغییر تم">

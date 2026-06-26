@@ -18,9 +18,9 @@ import Menu from "./Menu";
 import { Apps, Login, Search } from "@mui/icons-material";
 import { useState } from "react";
 import DrawerMenu from "./DrawerMenu";
-import CategoryBtn from "./CategoryBtn";
 import { flexCenter } from "../../../../styles/globalStyles.js";
 import SearchModal from "../../../../features/search/components/SearchModal.jsx";
+import CategoryMenu from "./CategoryMenu.jsx";
 
 function Navbar({ showAuthModal, showSearchModal }) {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -49,7 +49,7 @@ function Navbar({ showAuthModal, showSearchModal }) {
             {/* Desktop Menu */}
             <ThemeSwitch sx={{ display: { xs: "none", lg: "flex" } }} />
             <Logo />
-            <CategoryBtn />
+            <CategoryMenu />
             <Searchbar />
             <Menu />
           </Box>

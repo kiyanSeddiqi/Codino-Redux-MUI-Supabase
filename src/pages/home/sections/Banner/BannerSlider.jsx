@@ -11,16 +11,7 @@ import "swiper/css/pagination";
 function BannerSlider() {
   return (
     <>
-      <Box
-        component="section"
-        sx={{
-          ...bannerSliderBox,
-          mb: {
-            xs: 8,
-            md: 12.5,
-          },
-        }}
-      >
+      <Box component="section" sx={bannerSliderBox}>
         <Swiper
           modules={[Pagination, Autoplay]}
           spaceBetween={0}

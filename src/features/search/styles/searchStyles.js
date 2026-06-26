@@ -1,31 +1,34 @@
-export const navbarSearchInput = (theme) => ({
+export const navbarSearchInput = {
   borderRadius: "10px",
   height: "46px",
   width: "250px",
   border: "2px solid transparent",
-  bgcolor: theme.palette.background.default,
+  bgcolor: "divider",
   paddingRight: "40px",
   fontSize: "14px",
+  color: "text.primary",
+  fontWeight: 500,
   transition: "border 0.3s ease",
   "& input": {
     padding: "0px",
   },
   "& input::placeholder": {
-    color: theme.palette.text.secondary,
+    color: "text.secondary",
     opacity: 1,
   },
   "&:focus-within": {
-    border: `2px solid ${theme.palette.primary.main}`,
+    border: "2px solid",
+    borderColor: "primary.main",
   },
-});
+};
 
-export const searchIcon = (theme) => ({
+export const searchIcon = {
   position: "absolute",
   top: 10,
   right: 9,
   zIndex: 10,
-  color: theme.palette.primary.main,
-});
+  color: "primary.main",
+};
 
 export const searchDropdownBox = {
   position: "absolute",
@@ -52,42 +55,36 @@ export const searchDropDownListBtn = {
   transition: "0.2s ease",
 };
 
-export const searchModalDialog = (theme) => ({
+export const searchModalDialog = {
+  display: { xl: "none", xs: "block" },
+
   "& .MuiDialog-paper": {
-    p: 2,
+    p: { xs: "16px 16px 8px", sm: "20px 32px 8px", md: 2 },
     m: 0,
     gap: 2,
-    borderRadius: "8px",
-    minWidth: "50%",
-    [theme.breakpoints.down("md")]: {
-      width: "100%",
-      maxWidth: "100%",
-      position: "fixed",
-      bottom: 0,
-      borderRadius: "16px 16px 0 0 ",
-      p: "20px 32px 8px ",
+    borderRadius: { xs: "16px 16px 0 0", md: 2 },
+    minWidth: { md: "50%" },
+    position: { xs: "fixed", md: "static" },
+    bottom: { xs: 0 },
+    width: {
+      xs: "100%",
+      md: "70%",
+      lg: "50%",
     },
-    [theme.breakpoints.down("sm")]: {
-      p: "16px 16px 8px ",
-    },
+    maxWidth: "100%",
   },
+
   "& .MuiBackdrop-root": {
     backdropFilter: "blur(6px)",
   },
-  [theme.breakpoints.up("lg")]: {
-    display: "none",
-  },
-  [theme.breakpoints.down("lg")]: {
-    display: "block",
-  },
-});
+};
 
-export const searchModalTitle = (theme) => ({
+export const searchModalTitle = {
   p: 0,
   color: "text.secondary",
   fontWeight: "600",
-  fontSize: "18px",
-  [theme.breakpoints.down("md")]: {
-    fontSize: "16px",
+  fontSize: {
+    xs: "16px",
+    md: "18px",
   },
-});
+};

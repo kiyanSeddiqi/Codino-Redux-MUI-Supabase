@@ -1,20 +1,25 @@
 import { Box, Typography } from "@mui/material";
 import {
-  courseCategoryContainer,
   courseCategoryGrid,
   courseCategoryGridItem,
-  courseCategoryTitle,
 } from "./courseCategoryStyles";
 import { categoryMenuData } from "../../../../data/menu";
 import { Link } from "react-router-dom";
 import SvgIcon from "../../../../components/ui/SvgIcon/SvgIcon";
+import {
+  flexCol,
+  sectionStyle,
+  sectionTitle,
+} from "../../../../styles/globalStyles";
 
 function CourseCategory() {
   return (
     <>
-      <Box component="section" sx={courseCategoryContainer}>
-        <Box sx={courseCategoryTitle}>
-          <Typography component="h4">چی میخوای یاد بگیری؟</Typography>
+      <Box component="section" sx={sectionStyle}>
+        <Box sx={flexCol("6px")}>
+          <Typography component="h4" sx={sectionTitle}>
+            چی میخوای یاد بگیری؟
+          </Typography>
           <Typography sx={{ lineHeight: "32px" }}>
             دسته‌بندی‌های آموزشی کدیاد رو ببین و از جایی شروع کن که برات جذابه.
           </Typography>

@@ -20,7 +20,7 @@ import { Link } from "react-router-dom";
 import { categoryMenuData } from "../../../../data/menu";
 import SvgIcon from "../../../ui/SvgIcon/SvgIcon";
 
-function CategoryBtn() {
+function CategoryMenu() {
   const id = useId();
   const buttonId = `${id}-button`;
   const menuId = `${id}-menu`;
@@ -144,4 +144,4 @@ function CategoryBtn() {
   );
 }
 
-export default CategoryBtn;
+export default CategoryMenu;

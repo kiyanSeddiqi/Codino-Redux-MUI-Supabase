@@ -1,4 +1,4 @@
-export const expertContainer = (theme) => ({
+export const expertContainer = {
   display: "flex",
   flexWrap: "wrap",
   alignItems: "center",
@@ -8,7 +8,7 @@ export const expertContainer = (theme) => ({
     md: "row",
   },
   gap: 2.5,
-});
+};
 
 export const expertCardContainer = (theme) => ({
   display: "flex",
