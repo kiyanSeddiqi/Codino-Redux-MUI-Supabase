@@ -4,8 +4,10 @@ import Hero from "./sections/Hero/Hero";
 import CourseCategory from "./sections/Category/CourseCategory";
 import RecentUpdates from "./sections/RecentUpdates/RecentUpdates";
 import ExpertCourses from "./sections/Expert/ExpertCourses";
-import FreeCourses from "./sections/FreeCourses/FreeCourses";
 import BannerSlider from "./sections/Banner/BannerSlider";
+import DailySuggest from "./sections/DailySuggest/DailySuggest";
+import WhyChooseUs from "./sections/WhyChooseUs/WhyChooseUs";
+import BestSellers from "./sections/BestSellers/BestSellers";
 
 function Home() {
   return (
@@ -14,8 +16,10 @@ function Home() {
       <CourseCategory />
       <RecentUpdates />
       <ExpertCourses />
-      <FreeCourses />
+      <DailySuggest />
       <BannerSlider />
+      <WhyChooseUs />
+      <BestSellers />
     </>
   );
 }

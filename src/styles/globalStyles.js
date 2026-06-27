@@ -20,6 +20,12 @@ export const flexCol = (gap = 0) => ({
   gap,
 });
 
+export const flexBox = (gap = 0) => ({
+  display: "flex",
+  alignItems: "center",
+  gap,
+});
+
 export const sectionStyle = {
   mb: {
     xs: 8,

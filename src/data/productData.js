@@ -13,7 +13,7 @@ export const productData = [
     hasCertificate: false,
     slug: "/course/seo-from-zero-to-hero",
     category: [""],
-    tags: [""],
+    tags: ["best-seller"],
     created_at: "2024-01-01T11:00:00Z",
   },
   {
@@ -28,7 +28,7 @@ export const productData = [
     hasCertificate: true,
     slug: "/course/learn-seo-specialized",
     category: [""],
-    tags: [""],
+    tags: ["best-seller"],
     created_at: "2024-01-01T11:00:00Z",
   },
   {
@@ -43,7 +43,7 @@ export const productData = [
     hasCertificate: false,
     category: [""],
     slug: "/course/start-with-c-in-4-hours-calculator-project",
-    tags: [""],
+    tags: ["best-seller"],
     created_at: "2024-01-01T11:00:00Z",
   },
   {
@@ -58,7 +58,7 @@ export const productData = [
     hasCertificate: false,
     category: [""],
     slug: "/course/learn-advanced-csharp-net",
-    tags: [""],
+    tags: ["best-seller"],
     created_at: "2024-01-01T11:00:00Z",
   },
   {
@@ -73,7 +73,7 @@ export const productData = [
     hasCertificate: false,
     category: [""],
     slug: "/course/learn-python-from-zero",
-    tags: [""],
+    tags: ["best-seller"],
     created_at: "2024-01-01T11:00:00Z",
   },
   {
@@ -88,7 +88,7 @@ export const productData = [
     hasCertificate: false,
     category: [""],
     slug: "/course/programming-beginner-guide",
-    tags: [""],
+    tags: ["best-seller"],
     created_at: "2024-01-01T11:00:00Z",
   },
   {
@@ -103,7 +103,7 @@ export const productData = [
     hasCertificate: false,
     category: [""],
     slug: "/course/automate-boring-stuff-python-udemy",
-    tags: [""],
+    tags: ["daily"],
     created_at: "2024-01-01T11:00:00Z",
   },
   {
@@ -118,7 +118,7 @@ export const productData = [
     hasCertificate: false,
     category: ["expert"],
     slug: "/expert/front-end",
-    tags: [""],
+    tags: ["daily"],
     created_at: "2024-01-01T11:00:00Z",
   },
   {
@@ -133,7 +133,7 @@ export const productData = [
     hasCertificate: false,
     category: ["expert"],
     slug: "/expert/programming-to-income",
-    tags: [""],
+    tags: ["daily"],
     created_at: "2024-01-01T11:00:00Z",
   },
   {
@@ -148,7 +148,7 @@ export const productData = [
     hasCertificate: false,
     category: ["expert"],
     slug: "/expert/android-with-kotlin-and-java",
-    tags: [""],
+    tags: ["daily"],
     created_at: "2024-01-01T11:00:00Z",
   },
   {
@@ -163,7 +163,7 @@ export const productData = [
     hasCertificate: false,
     category: [""],
     slug: "/course/java-in-4-hours",
-    tags: [""],
+    tags: ["daily"],
     created_at: "2024-01-01T11:00:00Z",
   },
   {
@@ -178,7 +178,7 @@ export const productData = [
     hasCertificate: false,
     category: [""],
     slug: "/course/creating-a-shooter-game-in-unreal-engine",
-    tags: [""],
+    tags: ["daily"],
     created_at: "2024-01-01T11:00:00Z",
   },
 ];

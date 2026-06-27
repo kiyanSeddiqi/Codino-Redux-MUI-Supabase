@@ -1,29 +1,29 @@
 import {
-  b_1_desktop,
-  b_1_mobile,
-  b_2_desktop,
-  b_2_mobile,
-  b_3_desktop,
-  b_3_mobile,
   b_4,
   b_5,
   b_6,
+  gem,
+  gem_mobile,
+  plus,
+  plus_mobile,
+  teachers,
+  teachers_mobile,
 } from "./imgSource";
 
 export const bannerData = [
   {
-    desktopImgSrc: b_1_desktop,
-    mobileImgSrc: b_1_mobile,
+    desktopImgSrc: teachers,
+    mobileImgSrc: teachers_mobile,
     path: "/join-us",
   },
   {
-    desktopImgSrc: b_2_desktop,
-    mobileImgSrc: b_2_mobile,
+    desktopImgSrc: gem,
+    mobileImgSrc: gem_mobile,
     path: "/codino-gem",
   },
   {
-    desktopImgSrc: b_3_desktop,
-    mobileImgSrc: b_3_mobile,
+    desktopImgSrc: plus,
+    mobileImgSrc: plus_mobile,
     path: "/subscription",
   },
   {

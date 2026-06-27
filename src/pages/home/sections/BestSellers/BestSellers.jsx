@@ -13,14 +13,16 @@ import { productData } from "../../../../data/productData";
 
 import "swiper/css";
 
-function FreeCourses() {
-  const freeProducts = productData.filter((item) => item.price === 0);
+function BestSellers() {
+  const bestSellerProducts = productData.filter((item) =>
+    item.tags.includes("best-seller"),
+  );
   return (
     <>
       <Box component="section" sx={sectionStyle}>
         <Box sx={{ ...flexBetween("row") }}>
           <Typography component="h4" sx={sectionTitle}>
-            دوره های رایگان
+            پر فروش ترین ها
           </Typography>
           <SliderNavBtn />
         </Box>
@@ -43,7 +45,7 @@ function FreeCourses() {
               1280: { slidesPerView: 4.5, spaceBetween: 20 },
             }}
           >
-            {freeProducts.map((item, i) => (
+            {bestSellerProducts.map((item, i) => (
               <SwiperSlide key={item.id}>
                 <ProductCard itemData={item} />
               </SwiperSlide>
@@ -55,4 +57,4 @@ function FreeCourses() {
   );
 }
 
-export default FreeCourses;
+export default BestSellers;
