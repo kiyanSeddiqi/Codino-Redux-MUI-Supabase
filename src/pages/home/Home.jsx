@@ -8,6 +8,8 @@ import BannerSlider from "./sections/Banner/BannerSlider";
 import DailySuggest from "./sections/DailySuggest/DailySuggest";
 import WhyChooseUs from "./sections/WhyChooseUs/WhyChooseUs";
 import BestSellers from "./sections/BestSellers/BestSellers";
+import RoadMap from "./sections/Roadmap/RoadMap";
+import MentorGuidance from "./sections/MentorGuidance/MentorGuidance";
 
 function Home() {
   return (
@@ -20,6 +22,8 @@ function Home() {
       <BannerSlider />
       <WhyChooseUs />
       <BestSellers />
+      <RoadMap />
+      <MentorGuidance />
     </>
   );
 }

@@ -9,7 +9,7 @@ function SliderNavBtn() {
     <>
       <ButtonGroup sx={sliderNavBtn}>
         <Button
-          className="swiper-button-next"
+          className="swiper-btn-next"
           disableRipple
           variant="text"
           sx={flexCenter}
@@ -18,7 +18,7 @@ function SliderNavBtn() {
         </Button>
         <Divider orientation="vertical" flexItem />
         <Button
-          className="swiper-button-prev"
+          className="swiper-btn-prev"
           disableRipple
           variant="text"
           sx={flexCenter}

@@ -17,7 +17,7 @@ import "swiper/css/navigation";
 function RecentUpdates() {
   return (
     <>
-      <Box component="section" sx={sectionStyle}>
+      <Box component="section" className="recent-section" sx={sectionStyle}>
         <Box sx={{ ...flexBetween("row") }}>
           <Typography component="h4" sx={sectionTitle}>
             آخرین به روزرسانی ها
@@ -31,8 +31,8 @@ function RecentUpdates() {
             slidesPerView={4.5}
             speed={500}
             navigation={{
-              prevEl: ".swiper-button-prev",
-              nextEl: ".swiper-button-next",
+              prevEl: ".recent-section .swiper-btn-prev",
+              nextEl: ".recent-section .swiper-btn-next",
             }}
             loop={true}
             breakpoints={{

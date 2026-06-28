@@ -45,7 +45,12 @@ function ProductCard({ itemData, layout = "default" }) {
           to={itemData.slug}
           sx={[layout === "expert" ? expertCardImgBox : cardImgBox]}
         >
-          <CardMedia sx={cardImg} image={itemData.img} />
+          <CardMedia
+            sx={cardImg}
+            image={itemData.img}
+            component="img"
+            loading="lazy"
+          />
         </Box>
         <CardContent sx={cardContent}>
           <Box sx={cardTitleBox}>

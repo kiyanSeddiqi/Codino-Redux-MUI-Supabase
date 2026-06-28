@@ -19,8 +19,11 @@ import roadmap_android from "../assets/images/Roadmap/android.webp";
 import roadmap_front from "../assets/images/Roadmap/front.webp";
 import roadmap_back from "../assets/images/Roadmap/back.webp";
 import roadmap_seo from "../assets/images/Roadmap/seo.webp";
-import roadmap_block from "../assets/images/Roadmap/block.webp";
 import roadmap_mobile from "../assets/images/Roadmap/mobile.webp";
+import roadmap_web from "../assets/images/Roadmap/web.webp";
+import mentor_1 from "../assets/images/Mentors/mentor_1.webp";
+import mentor_2 from "../assets/images/Mentors/mentor_2.webp";
+import mentor_3 from "../assets/images/Mentors/mentor_3.webp";
 
 export {
   darkLogo,
@@ -44,6 +47,9 @@ export {
   roadmap_front,
   roadmap_back,
   roadmap_seo,
-  roadmap_block,
   roadmap_mobile,
+  roadmap_web,
+  mentor_1,
+  mentor_2,
+  mentor_3,
 };

@@ -19,7 +19,11 @@ function BestSellers() {
   );
   return (
     <>
-      <Box component="section" sx={sectionStyle}>
+      <Box
+        component="section"
+        className="bestSellers-section"
+        sx={sectionStyle}
+      >
         <Box sx={{ ...flexBetween("row") }}>
           <Typography component="h4" sx={sectionTitle}>
             پر فروش ترین ها
@@ -33,8 +37,8 @@ function BestSellers() {
             slidesPerView={4.5}
             speed={500}
             navigation={{
-              prevEl: ".swiper-button-prev",
-              nextEl: ".swiper-button-next",
+              prevEl: ".bestSellers-section .swiper-btn-prev",
+              nextEl: ".bestSellers-section .swiper-btn-next",
             }}
             loop={true}
             breakpoints={{

@@ -48,7 +48,7 @@ function Hero() {
   const theme = useTheme();
   return (
     <>
-      <Box component="section" sx={heroContainer}>
+      <Box component="section" className="hero-section" sx={heroContainer}>
         <Box sx={heroTextBox}>
           <Box sx={heroText}>
             <Typography sx={textPrimary}>
@@ -111,8 +111,8 @@ function Hero() {
             slidesPerView={1}
             speed={1200}
             navigation={{
-              prevEl: ".swiper-button-prev",
-              nextEl: ".swiper-button-next",
+              prevEl: ".hero-section .swiper-btn-prev",
+              nextEl: ".hero-section .swiper-btn-next",
             }}
             autoplay={{
               delay: 4000,
