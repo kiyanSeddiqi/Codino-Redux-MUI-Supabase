@@ -11,6 +11,8 @@ import BestSellers from "./sections/BestSellers/BestSellers";
 import RoadMap from "./sections/Roadmap/RoadMap";
 import MentorQuote from "./sections/MentorGuidance/MentorQuote";
 import CodinoPlus from "./sections/CodinoPlus/CodinoPlus";
+import Blog from "./sections/Blog/Blog";
+import Faq from "./sections/FAQ/Faq";
 
 function Home() {
   return (
@@ -26,6 +28,8 @@ function Home() {
       <RoadMap />
       <MentorQuote />
       <CodinoPlus />
+      <Blog />
+      <Faq />
     </>
   );
 }

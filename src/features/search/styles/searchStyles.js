@@ -38,7 +38,7 @@ export const searchDropdownBox = {
   borderRadius: "10px",
   border: 1,
   borderColor: "divider",
-  zIndex: 30,
+  zIndex: 50,
   width: "500px",
   display: "flex",
   flexDirection: "column",
