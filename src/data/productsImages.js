@@ -10,6 +10,11 @@ import work from "../assets/images/Products/work.webp";
 import android_expert from "../assets/images/Products/android-expert.webp";
 import java_fast from "../assets/images/Products/java-fast.webp";
 import shooter_game from "../assets/images/Products/shooter-game.webp";
+import web_bootcamp from "../assets/images/Products/bootcamp.webp";
+import js_udemy from "../assets/images/Products/js-udemy.webp";
+import git_udemy from "../assets/images/Products/git-udemy.webp";
+import python_100_udemy from "../assets/images/Products/python-100.webp";
+import hack_udemy from "../assets/images/Products/hack.webp";
 
 export const productsImgs = {
   seo_7step,
@@ -24,4 +29,9 @@ export const productsImgs = {
   android_expert,
   java_fast,
   shooter_game,
+  web_bootcamp,
+  js_udemy,
+  git_udemy,
+  python_100_udemy,
+  hack_udemy,
 };

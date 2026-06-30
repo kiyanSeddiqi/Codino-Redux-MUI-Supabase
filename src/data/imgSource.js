@@ -24,6 +24,7 @@ import roadmap_web from "../assets/images/Roadmap/web.webp";
 import mentor_1 from "../assets/images/Mentors/mentor_1.webp";
 import mentor_2 from "../assets/images/Mentors/mentor_2.webp";
 import mentor_3 from "../assets/images/Mentors/mentor_3.webp";
+import platforms from "../assets/images/Banner/platforms.webp";
 
 export {
   darkLogo,
@@ -52,4 +53,5 @@ export {
   mentor_1,
   mentor_2,
   mentor_3,
+  platforms,
 };

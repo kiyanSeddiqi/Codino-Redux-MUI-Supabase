@@ -37,6 +37,7 @@ const levelLabels = {
 
 function ProductCard({ itemData, layout = "default" }) {
   const theme = useTheme();
+
   return (
     <>
       <Card sx={[layout === "expert" ? expertCardContainer : cardContainer]}>

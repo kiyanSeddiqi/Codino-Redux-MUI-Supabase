@@ -9,7 +9,8 @@ import DailySuggest from "./sections/DailySuggest/DailySuggest";
 import WhyChooseUs from "./sections/WhyChooseUs/WhyChooseUs";
 import BestSellers from "./sections/BestSellers/BestSellers";
 import RoadMap from "./sections/Roadmap/RoadMap";
-import MentorGuidance from "./sections/MentorGuidance/MentorGuidance";
+import MentorQuote from "./sections/MentorGuidance/MentorQuote";
+import CodinoPlus from "./sections/CodinoPlus/CodinoPlus";
 
 function Home() {
   return (
@@ -23,7 +24,8 @@ function Home() {
       <WhyChooseUs />
       <BestSellers />
       <RoadMap />
-      <MentorGuidance />
+      <MentorQuote />
+      <CodinoPlus />
     </>
   );
 }
