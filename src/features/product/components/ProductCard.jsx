@@ -49,6 +49,7 @@ function ProductCard({ itemData, layout = "default" }) {
           <CardMedia
             sx={cardImg}
             image={itemData.img}
+            alt={`تصویر ${itemData.title}`}
             component="img"
             loading="lazy"
           />
@@ -121,7 +122,11 @@ function ProductCard({ itemData, layout = "default" }) {
                 </Typography>
               )}
             </Box>
-            <Link to={itemData.slug} style={{ display: "flex" }}>
+            <Link
+              to={itemData.slug}
+              style={{ display: "flex" }}
+              aria-label="دکمه نمایش جزییات محصول"
+            >
               <ArrowOutward
                 sx={{
                   rotate: "-90deg",

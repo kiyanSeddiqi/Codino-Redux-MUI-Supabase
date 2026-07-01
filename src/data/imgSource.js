@@ -6,14 +6,15 @@ import hero_b_3 from "../assets/images/Hero/hero_b_3.webp";
 import hero_b_4 from "../assets/images/Hero/hero_b_4.webp";
 import daily_suggest from "../assets/images/Banner/daily_suggest.webp";
 import teachers from "../assets/images/Banner/teachers.webp";
-import teachers_mobile from "../assets/images/Banner/teachers-mobile.webp";
+import teachers_mobile from "../assets/images/Banner/teachers_mobile.webp";
 import gem from "../assets/images/Banner/gem.webp";
-import gem_mobile from "../assets/images/Banner/gem-mobile.webp";
-import plus from "../assets/images/Banner/plus.webp";
-import plus_mobile from "../assets/images/Banner/plus-mobile.webp";
-import b_4 from "../assets/images/Banner/b_4.webp";
-import b_5 from "../assets/images/Banner/b_5.webp";
-import b_6 from "../assets/images/Banner/b_6.webp";
+import gem_mobile from "../assets/images/Banner/gem_mobile.webp";
+// import plus from "../assets/images/Banner/plus.webp";
+// import plus_mobile from "../assets/images/Banner/plus-mobile.png";
+import payment from "../assets/images/Banner/payment.webp";
+import payment_mobile from "../assets/images/Banner/payment_mobile.webp";
+// import b_5 from "../assets/images/Banner/b_5.webp";
+// import b_6 from "../assets/images/Banner/b_6.png";
 import why_choose from "../assets/images/Banner/why_choose.webp";
 import roadmap_android from "../assets/images/Roadmap/android.webp";
 import roadmap_front from "../assets/images/Roadmap/front.webp";
@@ -38,15 +39,16 @@ export {
   hero_b_3,
   hero_b_4,
   daily_suggest,
-  b_4,
-  b_5,
-  b_6,
+  payment,
+  payment_mobile,
+  // b_5,
+  // b_6,
   teachers,
   teachers_mobile,
   gem,
   gem_mobile,
-  plus,
-  plus_mobile,
+  // plus,
+  // plus_mobile,
   why_choose,
   roadmap_android,
   roadmap_front,

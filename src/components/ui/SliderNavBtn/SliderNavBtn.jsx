@@ -13,6 +13,7 @@ function SliderNavBtn() {
           disableRipple
           variant="text"
           sx={flexCenter}
+          aria-label="دکمه اسلاید بعدی"
         >
           <ChevronRight sx={{ fontSize: "20px" }} />
         </Button>
@@ -22,6 +23,7 @@ function SliderNavBtn() {
           disableRipple
           variant="text"
           sx={flexCenter}
+          aria-label="دکمه اسلاید قبلی"
         >
           <ChevronLeft sx={{ fontSize: "20px" }} />
         </Button>

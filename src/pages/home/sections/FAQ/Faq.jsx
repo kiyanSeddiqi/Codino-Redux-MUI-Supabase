@@ -20,9 +20,11 @@ function faq() {
             جواب سوالت رو اینجا پیدا کن...
           </Typography>
         </Box>
-        {faqData.map((item) => (
-          <FaqAccordion key={item.id} itemData={item} />
-        ))}
+        <Box>
+          {faqData.map((item) => (
+            <FaqAccordion key={item.id} itemData={item} />
+          ))}
+        </Box>
       </Box>
     </>
   );

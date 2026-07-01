@@ -20,7 +20,12 @@ function DailySuggest() {
         </Typography>
         <Box sx={{ display: "flex", gap: 2.5 }}>
           <Box sx={dailySuggestImgBox}>
-            <Box component="img" sx={dailySuggestImg} src={daily_suggest}></Box>
+            <Box
+              component="img"
+              sx={dailySuggestImg}
+              src={daily_suggest}
+              alt="بنر پیشنهاد روز"
+            ></Box>
           </Box>
           <Swiper
             spaceBetween={20}

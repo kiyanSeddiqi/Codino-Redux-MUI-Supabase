@@ -30,6 +30,7 @@ function RoadMapCard({ itemData }) {
             loading="lazy"
             sx={roadMapCardImg}
             image={itemData.imgSrc}
+            alt={`بنر ${itemData.title}`}
           />
         </Box>
         <CardContent sx={roadMapCardContent}>
