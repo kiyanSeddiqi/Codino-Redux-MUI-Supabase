@@ -3,10 +3,14 @@ import {
   payment_mobile,
   gem,
   gem_mobile,
-  // plus,
-  // plus_mobile,
+  plus,
+  plus_mobile,
   teachers,
   teachers_mobile,
+  frontend,
+  frontend_mobile,
+  android,
+  android_mobile,
 } from "./imgSource";
 
 export const bannerData = [
@@ -21,24 +25,24 @@ export const bannerData = [
     mobileImgSrc: gem_mobile,
     path: "/codino-gem",
   },
-  // {
-  //   desktopImgSrc: plus,
-  //   mobileImgSrc: plus_mobile,
-  //   path: "/subscription",
-  // },
+  {
+    desktopImgSrc: plus,
+    mobileImgSrc: plus_mobile,
+    path: "/subscription",
+  },
   {
     desktopImgSrc: payment,
     mobileImgSrc: payment_mobile,
     path: "/courses",
   },
-  // {
-  //   desktopImgSrc: b_5,
-  //   mobileImgSrc: null,
-  //   path: "/expert/front-end",
-  // },
-  // {
-  //   desktopImgSrc: b_6,
-  //   mobileImgSrc: null,
-  //   path: "/expert/android-with-kotlin-and-java",
-  // },
+  {
+    desktopImgSrc: frontend,
+    mobileImgSrc: frontend_mobile,
+    path: "/expert/front-end",
+  },
+  {
+    desktopImgSrc: android,
+    mobileImgSrc: android_mobile,
+    path: "/expert/android-with-kotlin-and-java",
+  },
 ];

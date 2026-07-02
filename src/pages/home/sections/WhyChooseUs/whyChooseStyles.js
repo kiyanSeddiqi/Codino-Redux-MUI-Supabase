@@ -16,7 +16,7 @@ export const whyChooseUsBox = {
 
 export const whyChooseUsImgBox = {
   width: {
-    xs: "80%",
+    xs: "100%",
     lg: "50%",
   },
 };

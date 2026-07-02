@@ -24,31 +24,10 @@ function FaqAccordion({ itemData }) {
           aria-controls={`${id}-panel1-content`}
           id={`${id}-panel1-header`}
         >
-          <Typography
-            sx={{
-              lineHeight: "24px",
-              fontWeight: 500,
-              fontSize: {
-                xs: "14px",
-                sm: "16px",
-              },
-            }}
-          >
-            {itemData.q}
-          </Typography>
+          <Typography sx={{ fontWeight: 500 }}>{itemData.q}</Typography>
         </AccordionSummary>
         <AccordionDetails sx={{ pt: 0 }}>
-          <Typography
-            sx={{
-              fontSize: {
-                xs: "14px",
-                sm: "16px",
-              },
-              lineHeight: "24px",
-            }}
-          >
-            {itemData.a}
-          </Typography>
+          <Typography>{itemData.a}</Typography>
         </AccordionDetails>
       </Accordion>
     </>

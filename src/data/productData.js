@@ -4,6 +4,7 @@ export const productData = [
   {
     id: 1,
     title: "دوره رایگان ۷ قدم ساده سئو - از صفر تا اولین رتبه در گوگل",
+    description: "",
     img: productsImgs.seo_7step,
     level: "beginner",
     status: "completed",

@@ -8,11 +8,18 @@ export const faqContainer = {
 export const faqAccordion = {
   bgcolor: "background.default",
   boxShadow: "none",
-  border: "none",
-  borderBottom: 1,
-  borderColor: "divider",
   "&.Mui-expanded": {
     margin: 0,
+  },
+  "& .MuiTypography-root": {
+    fontSize: {
+      xs: "14px",
+      sm: "16px",
+    },
+    lineHeight: "32px",
+  },
+  "&.Mui-expanded:before": {
+    opacity: 1,
   },
 };
 
@@ -23,6 +30,8 @@ export const faqAccordionSummary = {
   px: 0,
   py: 2.5,
   minHeight: 0,
+  my: 0,
+
   "& .MuiAccordionSummary-content": {
     margin: 0,
   },
