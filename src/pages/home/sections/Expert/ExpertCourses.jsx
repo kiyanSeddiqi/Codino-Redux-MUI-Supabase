@@ -10,7 +10,7 @@ import ProductCard from "../../../../features/product/components/ProductCard";
 
 function ExpertCourses() {
   const expertCourses = productData.filter((item) =>
-    item.category.includes("expert"),
+    item.tags.includes("expert"),
   );
 
   return (

@@ -43,7 +43,7 @@ function RecentUpdates() {
               1280: { slidesPerView: 4.5, spaceBetween: 20 },
             }}
           >
-            {productData.map((item, i) => (
+            {productData.slice(0, 8).map((item, i) => (
               <SwiperSlide key={item.id}>
                 <ProductCard itemData={item} />
               </SwiperSlide>

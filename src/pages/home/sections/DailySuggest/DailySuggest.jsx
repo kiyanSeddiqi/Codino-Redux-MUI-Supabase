@@ -10,7 +10,7 @@ import { daily_suggest } from "../../../../data/imgSource";
 
 function DailySuggest() {
   const dailyProducts = productData.filter((item) =>
-    item.tags.includes("daily"),
+    item.tags.includes("suggest"),
   );
   return (
     <>

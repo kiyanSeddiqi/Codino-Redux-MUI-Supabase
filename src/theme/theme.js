@@ -26,9 +26,15 @@ const getTheme = (mode) => {
       iconAccent: isDark ? "#ff4aff" : "#ff0eff",
       menuItemBg: isDark ? "#bb86fc24" : "#6700e512",
       accent: { main: "#ff4aff" },
-      success: { main: "#4CAF50" },
+      success: {
+        main: isDark ? "#00d0bf" : "#007e04",
+        light: isDark ? "#00d0bf33" : "#CCF6F2",
+      },
       warning: { main: "#FFB300" },
-      error: { main: "#ff5b09", light: isDark ? "#54342B" : "#FFDECE" },
+      error: {
+        main: isDark ? "#ff874b" : "#b33b00",
+        light: isDark ? "#54342B" : "#FFDECE",
+      },
     },
     // direction: "rtl",
     typography: {

@@ -28,7 +28,7 @@ import { addComma } from "../../../utils/helpers";
 import {
   expertCardContainer,
   expertCardImgBox,
-} from "../../../pages/home/sections/Expert/expertCoursesStyles";
+} from "../../../pages/home/Sections/Expert/expertCoursesStyles";
 
 const levelLabels = {
   beginner: "مقدماتی",
@@ -43,7 +43,7 @@ function ProductCard({ itemData, layout = "default" }) {
       <Card sx={[layout === "expert" ? expertCardContainer : cardContainer]}>
         <Box
           component={Link}
-          to={itemData.slug}
+          to={`/course/${itemData.slug}`}
           sx={[layout === "expert" ? expertCardImgBox : cardImgBox]}
         >
           <CardMedia
@@ -83,7 +83,7 @@ function ProductCard({ itemData, layout = "default" }) {
             <Typography
               variant="h5"
               component={Link}
-              to={itemData.slug}
+              to={`/course/${itemData.slug}`}
               sx={cardTitle}
             >
               {itemData.title}
@@ -123,7 +123,7 @@ function ProductCard({ itemData, layout = "default" }) {
               )}
             </Box>
             <Link
-              to={itemData.slug}
+              to={`/course/${itemData.slug}`}
               style={{ display: "flex" }}
               aria-label="دکمه نمایش جزییات محصول"
             >
