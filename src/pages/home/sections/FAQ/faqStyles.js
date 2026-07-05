@@ -18,8 +18,11 @@ export const faqAccordion = {
     },
     lineHeight: "32px",
   },
-  "&.Mui-expanded:before": {
+  "&.Mui-expanded::before": {
     opacity: 1,
+  },
+  "& .MuiAccordionSummary-content.Mui-expanded": {
+    my: 0,
   },
 };
 

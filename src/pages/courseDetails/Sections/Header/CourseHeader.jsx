@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Chip, Typography } from "@mui/material";
 import { flexBetween, flexBox } from "../../../../styles/globalStyles";
 import CourseBadge from "./CourseBadge";
 import SvgIcon from "../../../../components/ui/SvgIcon/SvgIcon";
@@ -21,13 +21,20 @@ function CourseHeader() {
             >
               دوره به پایان رسیده
             </CourseBadge>
-            <CourseBadge
+
+            <Chip
+              color="success"
+              label="امکان پرداخت قسطی"
+              icon={<SvgIcon name="credit" size={24} />}
+            />
+
+            {/* <CourseBadge
               iconName={"credit"}
               color="success.main"
               bgcolor="success.light"
             >
               امکان پرداخت قسطی
-            </CourseBadge>
+            </CourseBadge> */}
             <CourseBadge iconName={"certificate"} border={1}>
               گواهینامه پایان دوره
             </CourseBadge>
