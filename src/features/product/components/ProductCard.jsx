@@ -14,7 +14,7 @@ import {
   cardTitle,
   cardTitleBox,
 } from "../styles/productCardStyles";
-import { Box, Divider, Tooltip, useTheme } from "@mui/material";
+import { Box, Chip, Divider, Tooltip, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import { flexBetween, flexCenter, flexCol } from "../../../styles/globalStyles";
 import SvgIcon from "../../../components/ui/SvgIcon/SvgIcon";
@@ -57,7 +57,11 @@ function ProductCard({ itemData, layout = "default" }) {
         <CardContent sx={cardContent}>
           <Box sx={cardTitleBox}>
             <Box sx={{ display: "flex", gap: 1 }}>
-              <Box sx={cardLevelBadge}>{levelLabels[itemData.level]}</Box>
+              <Chip
+                color="info"
+                label={levelLabels[itemData.level]}
+                sx={{ height: "26px" }}
+              />
               {itemData.status === "completed" ? (
                 <Tooltip title="دوره به پایان رسیده">
                   <Box sx={{ ...cardStatusBadge, bgcolor: "error.light" }}>

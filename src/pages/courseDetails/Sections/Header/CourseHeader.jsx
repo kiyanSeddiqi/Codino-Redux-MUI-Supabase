@@ -1,6 +1,5 @@
 import { Box, Chip, Typography } from "@mui/material";
 import { flexBetween, flexBox } from "../../../../styles/globalStyles";
-import CourseBadge from "./CourseBadge";
 import SvgIcon from "../../../../components/ui/SvgIcon/SvgIcon";
 import { courseHeaderBox, courseHeaderTitle } from "./courseHeaderStyles";
 
@@ -11,33 +10,23 @@ function CourseHeader() {
         <Typography component="h1" sx={courseHeaderTitle}>
           آموزش پایتون (python) - از مقدماتی تا پیشرفته
         </Typography>
-
         <Box sx={flexBetween("row")}>
           <Box sx={flexBox("10px")}>
-            <CourseBadge
-              iconName={"doc"}
-              color="error.main"
-              bgcolor="error.light"
-            >
-              دوره به پایان رسیده
-            </CourseBadge>
-
+            <Chip
+              color="error"
+              label="دوره به پایان رسیده"
+              icon={<SvgIcon name="doc" size={24} />}
+            />
             <Chip
               color="success"
               label="امکان پرداخت قسطی"
               icon={<SvgIcon name="credit" size={24} />}
             />
-
-            {/* <CourseBadge
-              iconName={"credit"}
-              color="success.main"
-              bgcolor="success.light"
-            >
-              امکان پرداخت قسطی
-            </CourseBadge> */}
-            <CourseBadge iconName={"certificate"} border={1}>
-              گواهینامه پایان دوره
-            </CourseBadge>
+            <Chip
+              variant="outlined"
+              label="گواهینامه پایان دوره"
+              icon={<SvgIcon name="certificate" size={24} />}
+            />
           </Box>
           <Box sx={flexBox(1)}>
             <Typography>از میانگین 250 رأی</Typography>

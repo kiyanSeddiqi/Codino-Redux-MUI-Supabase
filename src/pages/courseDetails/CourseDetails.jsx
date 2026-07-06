@@ -4,7 +4,11 @@ import { courseContainer, courseContentBox } from "./courseDetailStyles";
 import CourseHeader from "./Sections/Header/CourseHeader";
 import BreadCrumb from "./Sections/Header/BreadCrumb";
 import CourseTabs from "./Sections/Tabs/CourseTabs";
-import CourseOutlines from "./Sections/Outlines/CourseOutlines";
+import CourseChapterSection from "./Sections/Chapters/CourseChapterSection";
+import CourseContentSection from "./Sections/Content/CourseContentSection";
+import CourseFaqSection from "./Sections/Faq/CourseFaqSection";
+import CoursePrerequisiteSection from "./Sections/Prerequisites/CoursePrerequisiteSection";
+import CourseCommentSection from "./Sections/Comments/CourseCommentSection";
 
 function CourseDetails() {
   return (
@@ -12,10 +16,14 @@ function CourseDetails() {
       <Box sx={courseContainer}>
         <BreadCrumb />
         <Box sx={courseContentBox}>
-          <Box component="section" sx={{ ...flexCol("40px"), flex: "70%" }}>
+          <Box sx={{ ...flexCol("40px"), flex: "70%" }}>
             <CourseHeader />
             <CourseTabs />
-            <CourseOutlines />
+            <CourseChapterSection />
+            <CourseContentSection />
+            <CourseFaqSection />
+            <CoursePrerequisiteSection />
+            <CourseCommentSection />
           </Box>
           <Box component="aside" sx={{ width: "30%" }}></Box>
         </Box>

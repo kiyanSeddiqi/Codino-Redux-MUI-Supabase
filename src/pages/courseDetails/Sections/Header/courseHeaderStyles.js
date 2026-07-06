@@ -26,10 +26,3 @@ export const courseHeaderTitle = {
   },
   fontWeight: 600,
 };
-
-export const courseBadge = {
-  ...flexBox("4px"),
-  borderRadius: "8px",
-  p: "6px 12px",
-  fontSize: "12px",
-};

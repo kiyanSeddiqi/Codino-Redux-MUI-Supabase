@@ -8,27 +8,29 @@ import {
 } from "@mui/material";
 import { useId, useState } from "react";
 import {
+  chapterAccordion,
+  chapterAccordionSummary,
+  chapterLessonStats,
   courseChapterNum,
   courseChapterTitle,
-  outlineAccordion,
-  outlineAccordionSummary,
-  outlineLessonStats,
-} from "./courseOutlineStyles";
-import { flexBetween, flexBox } from "../../../../styles/globalStyles";
+  lessonEmptyBox,
+} from "./courseChapterStyles";
+import { flexBetween, flexBox, flexCol } from "../../../../styles/globalStyles";
 import { ExpandMore } from "@mui/icons-material";
+import CourseLessons from "./CourseLessons";
 
-function CourseOutlineAccordion({ itemData }) {
+function ChapterAccordion({ itemData }) {
   const [expanded, setExpanded] = useState(false);
   const id = useId();
   return (
     <>
       <Accordion
-        sx={outlineAccordion}
+        sx={chapterAccordion}
         expanded={expanded}
         onChange={() => setExpanded(!expanded)}
       >
         <AccordionSummary
-          sx={outlineAccordionSummary}
+          sx={chapterAccordionSummary}
           expandIcon={<ExpandMore />}
           aria-controls={`${id}-panel1-content`}
           id={`${id}-panel1-header`}
@@ -41,23 +43,33 @@ function CourseOutlineAccordion({ itemData }) {
               <Typography sx={courseChapterTitle}>{itemData.title}</Typography>
             </Box>
             <Box sx={flexBox(2.5)}>
-              <Box sx={outlineLessonStats}>
+              <Box sx={chapterLessonStats}>
                 <Typography component="span">{itemData.duration}</Typography>
                 <Divider orientation="vertical" flexItem />
-                <Typography component="span">{itemData.duration}</Typography>
+                <Typography component="span">
+                  {itemData.lessons.length} جلسه
+                </Typography>
               </Box>
             </Box>
           </Box>
         </AccordionSummary>
         <AccordionDetails sx={{ p: 0 }}>
           <Divider sx={{ my: 3 }} />
-          {itemData.lessons.map((lesson) => (
-            <p>{lesson.title}</p>
-          ))}
+          {itemData.lessons.length > 0 ? (
+            <Box component="ul" sx={flexCol(3)}>
+              {itemData.lessons.map((lesson) => (
+                <CourseLessons key={lesson.id} lessonData={lesson} />
+              ))}
+            </Box>
+          ) : (
+            <Box sx={lessonEmptyBox}>
+              هنوز ویدئویی برای این فصل ثبت نشده است
+            </Box>
+          )}
         </AccordionDetails>
       </Accordion>
     </>
   );
 }
 
-export default CourseOutlineAccordion;
+export default ChapterAccordion;

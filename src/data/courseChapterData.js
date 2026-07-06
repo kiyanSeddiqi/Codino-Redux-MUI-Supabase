@@ -1,6 +1,6 @@
 import { duration } from "@mui/material";
 
-export const outlineData = [
+export const chaptersData = [
   {
     id: 1,
     title: "مقدمات و پیش نیازها",

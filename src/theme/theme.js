@@ -27,12 +27,12 @@ const getTheme = (mode) => {
       menuItemBg: isDark ? "#bb86fc24" : "#6700e512",
       accent: { main: "#ff4aff" },
       success: {
-        main: isDark ? "#00d0bf" : "#007e04",
+        main: isDark ? "#08e9d6" : "#007e04",
         light: isDark ? "#00d0bf33" : "#CCF6F2",
       },
       warning: { main: "#FFB300" },
       error: {
-        main: isDark ? "#ff874b" : "#b33b00",
+        main: isDark ? "#ff9560" : "#b33b00",
         light: isDark ? "#54342B" : "#FFDECE",
       },
     },
@@ -152,6 +152,39 @@ const getTheme = (mode) => {
           arrow: {
             color: "divider",
           },
+        },
+      },
+      MuiChip: {
+        styleOverrides: {
+          root: {
+            borderRadius: 8,
+            fontWeight: 500,
+            padding: "4px 8px",
+            fontSize: "12px",
+            height: "auto",
+            display: "flex",
+            border: "1px solid transparent",
+            gap: 4,
+            "& .MuiChip-label": {
+              padding: 0,
+            },
+          },
+          colorSuccess: ({ theme }) => ({
+            backgroundColor: theme.palette.success.light,
+            color: theme.palette.success.main,
+          }),
+          colorError: ({ theme }) => ({
+            backgroundColor: theme.palette.error.light,
+            color: theme.palette.error.main,
+          }),
+          colorInfo: ({ theme }) => ({
+            backgroundColor: theme.palette.menuItemBg,
+            color: theme.palette.primary.light,
+          }),
+          outlined: ({ theme }) => ({
+            backgroundColor: "transparent",
+            border: `1px solid ${theme.palette.divider}`,
+          }),
         },
       },
     },

@@ -1,6 +1,6 @@
 import { flexBox } from "../../../../styles/globalStyles";
 
-export const outlineSectionTitle = {
+export const chapterSectionTitle = {
   fontSize: {
     xs: "20px",
     lg: "24px",
@@ -8,7 +8,7 @@ export const outlineSectionTitle = {
   fontWeight: 600,
 };
 
-export const outlineStats = {
+export const chapterStats = {
   fontSize: {
     xs: "12px",
     lg: "14px",
@@ -16,7 +16,7 @@ export const outlineStats = {
   color: "text.secondary",
 };
 
-export const outlineAccordion = {
+export const chapterAccordion = {
   bgcolor: "background.default",
   p: 2.5,
   minHeight: "70px",
@@ -51,7 +51,7 @@ export const courseChapterTitle = {
   fontWeight: 600,
 };
 
-export const outlineAccordionSummary = {
+export const chapterAccordionSummary = {
   px: 0,
   minHeight: 0,
   my: 0,
@@ -68,10 +68,33 @@ export const outlineAccordionSummary = {
   },
 };
 
-export const outlineLessonStats = {
+export const chapterLessonStats = {
   ...flexBox(2),
   "& .MuiTypography-root": {
     fontSize: "14px",
     color: "text.secondary",
   },
+};
+
+export const lessonItemTitleBox = {
+  display: "flex",
+  alignItems: {
+    lg: "center",
+  },
+  flexDirection: {
+    xs: "column",
+    lg: "row",
+  },
+  gap: {
+    xs: "4px",
+    md: "20px",
+  },
+};
+
+export const lessonEmptyBox = {
+  color: "error.main",
+  bgcolor: "error.light",
+  fontSize: "14px",
+  p: "10px 20px",
+  borderRadius: "12px",
 };
