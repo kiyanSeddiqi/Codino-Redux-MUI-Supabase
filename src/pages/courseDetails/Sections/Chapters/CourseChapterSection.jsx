@@ -13,7 +13,7 @@ function CourseChapterSection() {
 
   return (
     <>
-      <Box id="#chapter" component="section" sx={flexCol(2.5)}>
+      <Box id="chapter" component="section" sx={flexCol(2.5)}>
         <Box sx={flexBox(3)}>
           <Typography component="h5" sx={chapterSectionTitle}>
             سرفصل های دوره

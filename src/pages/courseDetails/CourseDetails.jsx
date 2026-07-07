@@ -9,6 +9,9 @@ import CourseContentSection from "./Sections/Content/CourseContentSection";
 import CourseFaqSection from "./Sections/Faq/CourseFaqSection";
 import CoursePrerequisiteSection from "./Sections/Prerequisites/CoursePrerequisiteSection";
 import CourseCommentSection from "./Sections/Comments/CourseCommentSection";
+import CourseTeacherSection from "./Sections/Teacher/CourseTeacherSection";
+import CourseSidebar from "./Sections/Sidebar/CourseSidebar";
+import RelatedCourses from "./Sections/RelatedCourses/RelatedCourses";
 
 function CourseDetails() {
   return (
@@ -16,7 +19,7 @@ function CourseDetails() {
       <Box sx={courseContainer}>
         <BreadCrumb />
         <Box sx={courseContentBox}>
-          <Box sx={{ ...flexCol("40px"), flex: "70%" }}>
+          <Box sx={{ ...flexCol("40px"), flex: 1, flexShrink: 0 }}>
             <CourseHeader />
             <CourseTabs />
             <CourseChapterSection />
@@ -24,9 +27,13 @@ function CourseDetails() {
             <CourseFaqSection />
             <CoursePrerequisiteSection />
             <CourseCommentSection />
+            <CourseTeacherSection />
           </Box>
-          <Box component="aside" sx={{ width: "30%" }}></Box>
+          <Box component="aside" sx={{ width: { xs: "100%", lg: "25%" } }}>
+            <CourseSidebar />
+          </Box>
         </Box>
+        <RelatedCourses />
       </Box>
     </>
   );

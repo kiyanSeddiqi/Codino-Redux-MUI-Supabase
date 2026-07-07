@@ -5,7 +5,7 @@ import { useState } from "react";
 const tabs = [
   {
     label: "سرفصل‌ های دوره",
-    id: "outline",
+    id: "chapter",
   },
   {
     label: "محتوای دوره",
@@ -35,9 +35,14 @@ function CourseTabs() {
   const handleChange = (event, newValue) => {
     setActiveTab(newValue);
 
-    document.getElementById(tabs[newValue].id)?.scrollIntoView({
-      behavior: "smooth",
-    });
+    const element = document.getElementById(tabs[newValue].id);
+    if (element) {
+      const y = element.getBoundingClientRect().top + window.pageYOffset - 150;
+      window.scrollTo({
+        top: y,
+        behavior: "smooth",
+      });
+    }
   };
   return (
     <>

@@ -4,7 +4,7 @@ import { flexCol, sectionTitle } from "../../../../styles/globalStyles";
 function CoursePrerequisiteSection() {
   return (
     <>
-      <Box id="#prerequisites" component="section" sx={flexCol(2.5)}>
+      <Box id="prerequisites" component="section" sx={flexCol(2.5)}>
         <Typography sx={sectionTitle} component="h4">
           پیش نیازها
         </Typography>

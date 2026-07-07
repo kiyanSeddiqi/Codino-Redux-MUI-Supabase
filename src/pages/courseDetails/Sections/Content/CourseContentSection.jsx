@@ -5,7 +5,7 @@ import { courseContentData } from "../../../../data/courseContentData";
 function CourseContentSection() {
   return (
     <>
-      <Box id="#content" component="section" sx={flexCol(2.5)}>
+      <Box id="content" component="section" sx={flexCol(2.5)}>
         <Typography sx={sectionTitle} component="h4">
           محتوای دوره
         </Typography>

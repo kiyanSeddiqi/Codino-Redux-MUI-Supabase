@@ -5,11 +5,12 @@ import {
   sectionTitle,
 } from "../../../../styles/globalStyles";
 import { courseCommentData } from "../../../../data/courseCommentData";
+import CommentList from "./CommentList";
 
 function CourseCommentSection() {
   return (
     <>
-      <Box id="#comment" component="section" sx={flexCol(2.5)}>
+      <Box id="comments" component="section" sx={flexCol(2.5)}>
         <Box sx={flexBox(2.5)}>
           <Typography component="h4" sx={sectionTitle}>
             دیدگاه ها
@@ -22,6 +23,7 @@ function CourseCommentSection() {
             {courseCommentData.length} دیدگاه
           </Typography>
         </Box>
+        <CommentList />
       </Box>
     </>
   );

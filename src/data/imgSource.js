@@ -32,6 +32,10 @@ import unreal_blog from "../assets/images/Blog/unreal-engine.webp";
 import kpi_blog from "../assets/images/Blog/kpi.webp";
 import time_blog from "../assets/images/Blog/time.webp";
 import focus_blog from "../assets/images/Blog/focus.webp";
+import default_avatar from "../assets/images/Users/default_user.webp";
+import userAvatar_1 from "../assets/images/Users/user_1.webp";
+import userAvatar_2 from "../assets/images/Users/user_2.webp";
+import userAvatar_3 from "../assets/images/Users/user_3.webp";
 
 export {
   darkLogo,
@@ -68,4 +72,8 @@ export {
   kpi_blog,
   time_blog,
   focus_blog,
+  default_avatar,
+  userAvatar_1,
+  userAvatar_2,
+  userAvatar_3,
 };

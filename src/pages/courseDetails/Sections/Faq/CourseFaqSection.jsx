@@ -6,7 +6,7 @@ import FaqAccordion from "../../../home/Sections/FAQ/FaqAccordion";
 function CourseFaqSection() {
   return (
     <>
-      <Box id="#faq" component="section" sx={flexCol(2.5)}>
+      <Box id="faq" component="section" sx={flexCol(2.5)}>
         <Typography sx={sectionTitle} component="h4">
           سوالات متداول
         </Typography>
