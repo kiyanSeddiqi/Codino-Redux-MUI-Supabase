@@ -35,7 +35,13 @@ function ChapterAccordion({ itemData }) {
           aria-controls={`${id}-panel1-content`}
           id={`${id}-panel1-header`}
         >
-          <Box sx={{ ...flexBetween("row"), width: "100%" }}>
+          <Box
+            sx={{
+              ...flexBetween(1, "row"),
+              width: "100%",
+              flexWrap: "wrap",
+            }}
+          >
             <Box sx={flexBox(2.5)}>
               <Typography component="strong" sx={courseChapterNum}>
                 {itemData.id}

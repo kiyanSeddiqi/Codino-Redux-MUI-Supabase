@@ -4,26 +4,26 @@ import {
   flexCol,
   sectionTitle,
 } from "../../../../styles/globalStyles";
-import { mentor_1 } from "../../../../data/imgSource";
+import { default_avatar, mentor_1 } from "../../../../data/imgSource";
 import { Groups, Person } from "@mui/icons-material";
 
-function CourseTeacherSection() {
+function CourseTeacherSection({ product }) {
   return (
     <>
       <Box id="teacher" component="section" sx={flexCol(2.5)}>
         <Typography sx={sectionTitle} component="h4">
-          درباره ی مدرس
+          دربارۀ مدرس
         </Typography>
-        <Box sx={{ ...flexBox(2.5), alignItems: "flex-start" }}>
-          <Avatar
-            sx={{ width: "48px", height: "48px" }}
-            src={mentor_1}
-            alt="تصویر مدرس دوره"
-          />
-          <Box sx={{ ...flexCol(2.5), flex: 1 }}>
+        <Box sx={{ ...flexCol(2.5), alignItems: "flex-start" }}>
+          <Box sx={flexBox(2.5)}>
+            <Avatar
+              sx={{ width: "48px", height: "48px" }}
+              src={product.teacher !== "کدینو پلاس" ? mentor_1 : default_avatar}
+              alt="تصویر مدرس دوره"
+            />
             <Box sx={flexCol("4px")}>
               <Typography sx={{ fontWeight: 500, color: "primary.main" }}>
-                قاسم بساکی
+                {product.teacher}
               </Typography>
               <Typography
                 variant="caption"
@@ -36,7 +36,9 @@ function CourseTeacherSection() {
                 mahdicmptr@gmail.com
               </Typography>
             </Box>
-            <Box sx={flexBox(3)}>
+          </Box>
+          <Box sx={flexCol(2.5)}>
+            <Box sx={{ ...flexBox(2.5), flexWrap: "wrap" }}>
               <Box sx={flexBox("12px")}>
                 <Groups sx={{ fontSize: "22px" }} />
                 <Typography
@@ -59,7 +61,14 @@ function CourseTeacherSection() {
                 </Typography>
               </Box>
             </Box>
-            <Box sx={{ "& p": { lineHeight: "32px" } }}>
+            <Box
+              sx={{
+                "& p": {
+                  lineHeight: "32px",
+                  fontSize: { xs: "14px", md: "16px" },
+                },
+              }}
+            >
               <Typography>
                 7سال فعالیت در زمینه وب، به عنوان فول استک
               </Typography>

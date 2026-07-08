@@ -8,12 +8,15 @@ export const courseBreadcrumb = {
       color: "text.primary",
     },
   },
+  "& .MuiBreadcrumbs-ol": {
+    rowGap: 1,
+  },
 };
 
 export const courseHeaderBox = {
   display: {
     xs: "none",
-    lg: "flex",
+    md: "flex",
   },
   flexDirection: "column",
   gap: 2,

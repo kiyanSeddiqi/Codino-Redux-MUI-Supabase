@@ -7,6 +7,22 @@ export const sidebarContainer = {
   width: "100%",
 };
 
+export const sidebarHeaderBox = {
+  display: {
+    xs: "flex",
+    md: "none",
+  },
+  flexDirection: "column",
+  gap: 2,
+};
+export const sidebarHeaderTitle = {
+  fontSize: {
+    xs: "20px",
+    lg: "24px",
+  },
+  fontWeight: 600,
+};
+
 export const sidebarImgBox = {
   position: "relative",
   borderRadius: "16px",
@@ -35,7 +51,10 @@ export const imgBackdrop = {
 
 export const sidebarinfoBox = {
   ...flexCol(2.5),
-  p: 2.5,
+  p: {
+    xs: 2,
+    lg: 2.5,
+  },
   borderRadius: "16px",
   border: 1,
   borderColor: "divider",
@@ -46,8 +65,12 @@ export const sidebarGemBox = {
   "& span": {
     fontSize: "14px",
   },
-  p: "16px 20px",
+  p: {
+    xs: "16px",
+    xl: "16px 20px",
+  },
   border: 1,
   borderColor: "divider",
   borderRadius: "16px",
+  flexWrap: "wrap",
 };

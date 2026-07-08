@@ -76,7 +76,7 @@ export const chaptersData = [
   },
   {
     id: 2,
-    title: "مفاهیم مهم جاوااسکریپت در ریکت",
+    title: "مفاهیم مهم جاوااسکریپت در ری اکت",
     duration: "02:25:32",
     lessons: [
       {

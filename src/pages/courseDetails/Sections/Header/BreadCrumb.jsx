@@ -3,7 +3,7 @@ import { courseBreadcrumb } from "./courseHeaderStyles";
 import { NavigateBefore } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
-function BreadCrumb() {
+function BreadCrumb({ product }) {
   return (
     <>
       <Breadcrumbs
@@ -15,7 +15,7 @@ function BreadCrumb() {
         <Link to="/courses">دوره ها</Link>
         <Link to="/">پایتون</Link>
         <Typography sx={{ color: "text.primary", fontSize: "14px" }}>
-          آموزش پایتون (python) - از مقدماتی تا پیشرفته
+          {product.title}
         </Typography>
       </Breadcrumbs>
     </>

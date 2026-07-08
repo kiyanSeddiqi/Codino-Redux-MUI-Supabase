@@ -14,7 +14,7 @@ function CourseChapterSection() {
   return (
     <>
       <Box id="chapter" component="section" sx={flexCol(2.5)}>
-        <Box sx={flexBox(3)}>
+        <Box sx={{ ...flexBox(2), flexWrap: "wrap" }}>
           <Typography component="h5" sx={chapterSectionTitle}>
             سرفصل های دوره
           </Typography>

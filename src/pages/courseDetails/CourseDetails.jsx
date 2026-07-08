@@ -1,6 +1,10 @@
 import { Box } from "@mui/material";
 import { flexBetween, flexBox, flexCol } from "../../styles/globalStyles";
-import { courseContainer, courseContentBox } from "./courseDetailStyles";
+import {
+  courseContainer,
+  courseContentBox,
+  courseSidbarBox,
+} from "./courseDetailStyles";
 import CourseHeader from "./Sections/Header/CourseHeader";
 import BreadCrumb from "./Sections/Header/BreadCrumb";
 import CourseTabs from "./Sections/Tabs/CourseTabs";
@@ -12,25 +16,35 @@ import CourseCommentSection from "./Sections/Comments/CourseCommentSection";
 import CourseTeacherSection from "./Sections/Teacher/CourseTeacherSection";
 import CourseSidebar from "./Sections/Sidebar/CourseSidebar";
 import RelatedCourses from "./Sections/RelatedCourses/RelatedCourses";
+import { useParams } from "react-router-dom";
+import { productData } from "../../data/productData";
 
 function CourseDetails() {
+  const { slug } = useParams();
+  const product = productData.find((item) => item?.slug === slug);
   return (
     <>
       <Box sx={courseContainer}>
-        <BreadCrumb />
+        <BreadCrumb product={product} />
         <Box sx={courseContentBox}>
-          <Box sx={{ ...flexCol("40px"), flex: 1, flexShrink: 0 }}>
-            <CourseHeader />
+          <Box
+            sx={{
+              ...flexCol("40px"),
+              flex: 1,
+              minWidth: 0,
+            }}
+          >
+            <CourseHeader product={product} />
             <CourseTabs />
             <CourseChapterSection />
             <CourseContentSection />
             <CourseFaqSection />
             <CoursePrerequisiteSection />
-            <CourseCommentSection />
-            <CourseTeacherSection />
+            <CourseCommentSection product={product} />
+            <CourseTeacherSection product={product} />
           </Box>
-          <Box component="aside" sx={{ width: { xs: "100%", lg: "25%" } }}>
-            <CourseSidebar />
+          <Box component="aside" sx={courseSidbarBox}>
+            <CourseSidebar product={product} />
           </Box>
         </Box>
         <RelatedCourses />

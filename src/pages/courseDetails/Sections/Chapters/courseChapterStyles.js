@@ -18,8 +18,14 @@ export const chapterStats = {
 
 export const chapterAccordion = {
   bgcolor: "background.default",
-  p: 2.5,
-  minHeight: "70px",
+  p: {
+    xs: "14px",
+    md: 2.5,
+  },
+  minHeight: {
+    xs: "auto",
+    md: "70px",
+  },
   boxShadow: "none",
   "&.Mui-expanded": {
     margin: 0,
@@ -49,6 +55,10 @@ export const courseChapterTitle = {
     lg: "16px",
   },
   fontWeight: 600,
+  overflow: "hidden",
+  display: "-webkit-box",
+  WebkitBoxOrient: "vertical",
+  WebkitLineClamp: 1,
 };
 
 export const chapterAccordionSummary = {
@@ -87,7 +97,8 @@ export const lessonItemTitleBox = {
   },
   gap: {
     xs: "4px",
-    md: "20px",
+    lg: "14px",
+    lg: "20px",
   },
 };
 
@@ -97,4 +108,12 @@ export const lessonEmptyBox = {
   fontSize: "14px",
   p: "10px 20px",
   borderRadius: "12px",
+};
+
+export const lessonItemTitle = {
+  fontSize: { xs: "14px", md: "12px", lg: "14px" },
+  overflow: "hidden",
+  display: "-webkit-box",
+  WebkitBoxOrient: "vertical",
+  WebkitLineClamp: 1,
 };

@@ -7,7 +7,7 @@ import {
 import { courseCommentData } from "../../../../data/courseCommentData";
 import CommentList from "./CommentList";
 
-function CourseCommentSection() {
+function CourseCommentSection({ product }) {
   return (
     <>
       <Box id="comments" component="section" sx={flexCol(2.5)}>
@@ -23,7 +23,7 @@ function CourseCommentSection() {
             {courseCommentData.length} دیدگاه
           </Typography>
         </Box>
-        <CommentList />
+        <CommentList courseTeacher={product.teacher} />
       </Box>
     </>
   );

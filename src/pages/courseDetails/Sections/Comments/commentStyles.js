@@ -3,7 +3,7 @@ import { flexCol } from "../../../../styles/globalStyles";
 export const commentItem = {
   ...flexCol("14px"),
   py: 2.5,
-  "&:first-child": {
+  "&:first-of-type": {
     pt: 0,
   },
   "&:last-child": {
@@ -22,7 +22,7 @@ export const commentItem = {
 export const commentReplyBox = {
   ...flexCol(2.5),
   my: 2,
-  pr: 7,
+  pr: { xs: 4, lg: 7 },
 };
 
 export const replyInnerBox = {
@@ -35,25 +35,10 @@ export const replyInnerBox = {
 export const replyHeaderBox = {
   display: "flex",
   gap: 2,
-  alignItems: {
-    xs: "start",
-    lg: "center",
-  },
-  justifyContent: {
-    xs: "space-between",
-    lg: "flex-start",
-  },
+  flexWrap: "wrap",
+  alignItems: "center",
+  justifyContent: "flex-start",
   pt: 2,
   borderTop: 1,
   borderColor: "divider",
-};
-
-export const replyAvatarBox = {
-  display: "flex",
-  alignItems: { lg: "center" },
-  flexDirection: {
-    xs: "column-reverse",
-    lg: "row",
-  },
-  gap: 1,
 };

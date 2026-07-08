@@ -12,6 +12,18 @@ export const courseContentBox = {
   gap: 4,
   flexDirection: {
     xs: "column-reverse",
-    lg: "row",
+    md: "row",
+  },
+};
+
+export const courseSidbarBox = {
+  flexBasis: {
+    md: "35%",
+    lg: "30%",
+    xl: "25%",
+  },
+  flexShrink: 0,
+  width: {
+    xs: "100%",
   },
 };

@@ -3,30 +3,42 @@ import { flexBetween, flexBox } from "../../../../styles/globalStyles";
 import SvgIcon from "../../../../components/ui/SvgIcon/SvgIcon";
 import { courseHeaderBox, courseHeaderTitle } from "./courseHeaderStyles";
 
-function CourseHeader() {
+function CourseHeader({ product }) {
   return (
     <>
       <Box sx={courseHeaderBox}>
         <Typography component="h1" sx={courseHeaderTitle}>
-          آموزش پایتون (python) - از مقدماتی تا پیشرفته
+          {product.title}
         </Typography>
-        <Box sx={flexBetween("row")}>
+        <Box sx={{ ...flexBetween(2, "row"), flexWrap: "wrap" }}>
           <Box sx={flexBox("10px")}>
-            <Chip
-              color="error"
-              label="دوره به پایان رسیده"
-              icon={<SvgIcon name="doc" size={24} />}
-            />
-            <Chip
-              color="success"
-              label="امکان پرداخت قسطی"
-              icon={<SvgIcon name="credit" size={24} />}
-            />
-            <Chip
-              variant="outlined"
-              label="گواهینامه پایان دوره"
-              icon={<SvgIcon name="certificate" size={24} />}
-            />
+            {product.status === "completed" ? (
+              <Chip
+                color="error"
+                label="دوره به پایان رسیده"
+                icon={<SvgIcon name="doc" size={24} />}
+              />
+            ) : (
+              <Chip
+                color="info"
+                label="دوره درحال برگزاری"
+                icon={<SvgIcon name="refresh" size={24} />}
+              />
+            )}
+            {product.hasInstallment && (
+              <Chip
+                color="success"
+                label="امکان پرداخت قسطی"
+                icon={<SvgIcon name="credit" size={24} />}
+              />
+            )}
+            {product.hasCertificate && (
+              <Chip
+                variant="outlined"
+                label="گواهینامه پایان دوره"
+                icon={<SvgIcon name="certificate" size={24} />}
+              />
+            )}
           </Box>
           <Box sx={flexBox(1)}>
             <Typography>از میانگین 250 رأی</Typography>
@@ -42,14 +54,10 @@ function CourseHeader() {
           </Box>
         </Box>
       </Box>
-      <Typography sx={{ mb: 2, lineHeight: "32px" }}>
-        اگر شما هم قصد یادگیری زبان همه کاره پایتون را دارید، مسیر درستی را
-        انتخاب کرده اید. فرقی نمی کند که ابتدای راه باشید یا نیمه های مسیر، دوره
-        آموزش پایتون (python) یک تجربه یادگیری گام به گام را ارائه می دهد که هم
-        مفاهیم پایه و هم مفاهیم پیشرفته را پوشش می دهد. در این راهنمای جامع، ما
-        به بررسی چیستی پایتون، کاربرد های آن، ویژگی ‌های کلیدی، پیش نیاز ها،
-        بازار کار، مهارت‌ های تکمیلی، آینده پایتون و ... خواهیم پرداخت. در طول
-        دوره نیز، پروژه‌ هایی عملی برای تقویت مهارت‌ های شما ارائه می شود.
+      <Typography
+        sx={{ lineHeight: "32px", fontSize: { xs: "14px", md: "16px" } }}
+      >
+        {product.description}
       </Typography>
     </>
   );

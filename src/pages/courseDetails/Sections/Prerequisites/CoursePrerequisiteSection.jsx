@@ -8,7 +8,13 @@ function CoursePrerequisiteSection() {
         <Typography sx={sectionTitle} component="h4">
           پیش نیازها
         </Typography>
-        <Box sx={flexCol(2.5)}>
+        <Box
+          sx={{
+            ...flexCol(2.5),
+            mb: 3,
+            "& p": { fontSize: { xs: "14px", md: "16px" } },
+          }}
+        >
           <Typography>آموزش جاوا اسکریپت</Typography>
           <Typography>آموزش HTML و CSS</Typography>
           <Typography>آموزش الگوریتم و فلوچارت</Typography>

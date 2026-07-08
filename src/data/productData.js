@@ -623,7 +623,7 @@ export const productData = [
     description:
       "در این آموزش عمیق و عملی از یودمی با تدریس Vitor Mazuco، یاد می‌گیری چطور با استفاده از توزیع تخصصی Kali Linux و ابزارهای قدرتمند تست نفوذ مثل Nmap، Metasploit، Wireshark، Hydra، Burp Suite و ده‌ها ابزار دیگر، امنیت سیستم‌ها را ارزیابی و آسیب‌پذیری‌ها را شناسایی کنی.",
     img: productsImgs.hack_udemy,
-    level: "advnaced",
+    level: "advanced",
     status: "completed",
     duration: "25 : 16 : 59",
     teacher: "کدینو پلاس",
@@ -642,7 +642,7 @@ export const productData = [
     description:
       "آیا آماده‌اید تا وارد دنیای توسعه بازی شوید و بازی‌ای خلق کنید که بازیکنان موبایل را ساعت‌ها مشغول کند؟ دوره «توسعه بازی استراتژی زمان واقعی (RTS) موبایل با زبان C# و Unity 2D» به شما امکان می‌دهد از صفر تا انتشار در فروشگاه اپلیکیشن، مسیر کامل ساخت یک بازی RTS را یاد بگیرید.",
     img: productsImgs.rts_game,
-    level: "advnaced",
+    level: "advanced",
     status: "completed",
     duration: "36 : 37 : 60",
     teacher: "کدینو پلاس",

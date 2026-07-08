@@ -1,6 +1,10 @@
 export const tabContainer = {
   position: "sticky",
-  top: "94px",
+  top: {
+    xs: "83px",
+    md: "87px",
+    lg: "94px",
+  },
   zIndex: 50,
   bgcolor: "background.default",
   pt: "4px",
@@ -8,13 +12,13 @@ export const tabContainer = {
 
 export const tabsComponent = (theme) => ({
   minHeight: "42px",
+  borderBottom: 1,
+  borderColor: "divider",
   "& .MuiTabs-indicator": {
     display: "none",
   },
   "& .MuiTabs-list": {
     gap: 1,
-    borderBottom: 1,
-    borderColor: "divider",
   },
   "& .MuiTab-root": {
     color: "text.primary",
@@ -23,10 +27,16 @@ export const tabsComponent = (theme) => ({
     borderColor: "divider",
     borderTopLeftRadius: "8px",
     borderTopRightRadius: "8px",
-    fontSize: "16px",
+    fontSize: {
+      xs: "14px",
+      lg: "16px",
+    },
     minHeight: "42px",
     minWidth: 0,
-    p: "8px 20px",
+    p: {
+      xs: "8px 16px",
+      md: "8px 20px",
+    },
     bgcolor: "background.paper",
     transition: "background-color .2s, color .2s, border-color .2s",
   },

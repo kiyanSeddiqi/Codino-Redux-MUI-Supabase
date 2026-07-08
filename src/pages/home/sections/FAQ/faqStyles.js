@@ -31,7 +31,10 @@ export const faqAccordionSummary = {
   alignItems: "center",
   gap: 2,
   px: 0,
-  py: 2.5,
+  py: {
+    xs: 2,
+    md: 2.5,
+  },
   minHeight: 0,
   my: 0,
 

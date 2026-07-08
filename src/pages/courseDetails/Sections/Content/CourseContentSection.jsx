@@ -9,7 +9,9 @@ function CourseContentSection() {
         <Typography sx={sectionTitle} component="h4">
           محتوای دوره
         </Typography>
-        <Typography sx={{ lineHeight: "32px" }}>
+        <Typography
+          sx={{ lineHeight: "32px", fontSize: { xs: "14px", md: "16px" } }}
+        >
           فریم‌ورک محبوب React یکی از پرتقاضاترین کتابخانه‌های جاوااسکریپت در
           بازار کار برنامه‌نویسی فرانت‌اند است. تقریباً تمام شرکت‌های بزرگ
           نرم‌افزاری و استارتاپ‌ها در دنیا و ایران از React برای توسعه
@@ -17,13 +19,16 @@ function CourseContentSection() {
           می‌تواند نقطه شروعی عالی برای ورود به دنیای برنامه‌نویسی حرفه‌ای و
           بازار کار پردرآمد باشد.
         </Typography>
-        <Typography component="strong" sx={{ fontWeight: 700 }}>
+        <Typography
+          component="strong"
+          sx={{ fontWeight: 700, fontSize: { xs: "14px", md: "16px" } }}
+        >
           چرا این دوره با دوره‌های دیگر متفاوت است؟
         </Typography>
         <Box component="ul" sx={{ ...flexCol(2), pr: 5 }}>
           {courseContentData.map((item, i) => (
             <Box key={i} component="li" sx={{ listStyle: "disc" }}>
-              <Typography>
+              <Typography sx={{ fontSize: { xs: "14px", md: "16px" } }}>
                 <strong>{item.title}</strong>
                 {item.description}
               </Typography>
