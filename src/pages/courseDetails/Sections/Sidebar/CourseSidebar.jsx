@@ -14,6 +14,8 @@ import SvgIcon from "../../../../components/ui/SvgIcon/SvgIcon";
 import { flexBetween, flexBox, flexCol } from "../../../../styles/globalStyles";
 import { addComma } from "../../../../utils/helpers";
 import { AccessTime, Person } from "@mui/icons-material";
+import { useState } from "react";
+import VideoDialog from "./VideoDialog";
 
 const levelLabels = {
   beginner: "مقدماتی",
@@ -21,7 +23,7 @@ const levelLabels = {
 };
 
 function CourseSidebar({ product }) {
-  console.log(product);
+  const [openVideo, setOpenVideo] = useState(false);
 
   return (
     <>
@@ -81,7 +83,7 @@ function CourseSidebar({ product }) {
             alt={`تصویر ${product.title}`}
             sx={sidebarImg}
           />
-          <Box sx={imgBackdrop}>
+          <Box sx={imgBackdrop} onClick={() => setOpenVideo(true)}>
             <SvgIcon name="playVideoFilled" color="#fff" size={120} />
           </Box>
         </Box>
@@ -100,7 +102,7 @@ function CourseSidebar({ product }) {
             )}
           </Box>
           <Button>ثبت نام در دوره</Button>
-          {product.tags.includes("plus") ? (
+          {product.tags.includes("plus") && (
             <Box sx={flexCol(1)}>
               <Typography
                 variant="caption"
@@ -118,16 +120,6 @@ function CourseSidebar({ product }) {
                 خرید اشتراک
               </Button>
             </Box>
-          ) : (
-            <>
-              {product.hasInstallment && (
-                <Button color="secondary">
-                  <SvgIcon name="credit" size={20} />
-                  خرید اقساطی دوره
-                </Button>
-              )}
-              <Divider />
-            </>
           )}
           {product.hasInstallment && (
             <Button color="secondary">
@@ -258,6 +250,11 @@ function CourseSidebar({ product }) {
           </Box>
         )}
       </Box>
+      <VideoDialog
+        isOpen={openVideo}
+        onShow={setOpenVideo}
+        videoTitle={product.title}
+      />
     </>
   );
 }

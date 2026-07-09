@@ -148,6 +148,7 @@ const getTheme = (mode) => {
           tooltip: {
             fontSize: "14px",
             backgroundColor: "divider",
+            fontWeight: 400,
           },
           arrow: {
             color: "divider",
