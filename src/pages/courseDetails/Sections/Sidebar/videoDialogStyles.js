@@ -23,7 +23,6 @@ export const videoWatchFrame = {
   borderRadius: "16px",
   maxHeight: "80svh",
   position: "relative",
-  overflow: "clip",
 };
 
 export const videoBackdrop = (isPlaying) => ({
@@ -68,10 +67,11 @@ export const videoControlBox = (isFullscreen) => ({
   bgcolor: "#292a33",
   borderRadius: "16px",
   color: "#fff",
-  // position: isFullscreen ? "absolute" : "relative",
-  // bottom: isFullscreen ? 0 : "auto",
-  // left: 0,
-  // right: 0,
+  position: isFullscreen ? "absolute" : "relative",
+  bottom: isFullscreen ? "0px" : "auto",
+  right: 0,
+  left: 0,
+  zIndex: 50,
 });
 
 export const videoTitleBox = {
@@ -107,6 +107,10 @@ export const videoTimeSlider = {
     width: 16,
     height: 16,
     bgcolor: "#fff",
+    "&::after": {
+      width: "20px",
+      height: "20px",
+    },
   },
   "& .MuiSlider-track": {
     bgcolor: "accent.main",
@@ -128,19 +132,24 @@ export const volumeBox = {
   bottom: "38px",
   left: "50%",
   transform: "translateX(-50%)",
-  bgcolor: "#292a33",
-  borderRadius: "12px",
-  px: 1,
-  py: 2,
+  bgcolor: "background.default",
+  borderRadius: "16px",
+  p: "12px 8px",
+  border: 1,
+  borderColor: "divider",
+  height: "165px",
 };
 
 export const volumeSlider = {
   height: 110,
-
   "& .MuiSlider-thumb": {
     width: 12,
     height: 12,
     bgcolor: "#fff",
+    "&::after": {
+      width: "20px",
+      height: "20px",
+    },
   },
 
   "& .MuiSlider-track": {
