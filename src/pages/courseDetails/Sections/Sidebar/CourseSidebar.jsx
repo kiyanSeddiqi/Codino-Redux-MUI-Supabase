@@ -15,7 +15,7 @@ import { flexBetween, flexBox, flexCol } from "../../../../styles/globalStyles";
 import { addComma } from "../../../../utils/helpers";
 import { AccessTime, Person } from "@mui/icons-material";
 import { useState } from "react";
-import VideoDialog from "./VideoDialog";
+import VideoDialog from "./VideoDialog/VideoDialog";
 
 const levelLabels = {
   beginner: "مقدماتی",

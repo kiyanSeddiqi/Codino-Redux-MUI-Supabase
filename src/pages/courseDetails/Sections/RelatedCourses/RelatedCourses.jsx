@@ -11,7 +11,7 @@ import { productData } from "../../../../data/productData";
 import ProductCard from "../../../../features/product/components/ProductCard";
 
 function RelatedCourses() {
-  const tempCategory = "front-end";
+  const tempCategory = "frontend";
   const relatedCourses = productData.filter((item) =>
     item.categories.includes(tempCategory),
   );

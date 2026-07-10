@@ -26,11 +26,11 @@ import {
   volumeBox,
   volumeSlider,
 } from "./videoDialogStyles";
-import { imgBackdrop } from "./sideBarStyles";
-import SvgIcon from "../../../../components/ui/SvgIcon/SvgIcon";
-import courseVideo from "../../../../../src/assets/video/course_video.mp4";
+import { imgBackdrop } from "../sideBarStyles";
+import SvgIcon from "../../../../../components/ui/SvgIcon/SvgIcon";
+import courseVideo from "../../../../../../src/assets/video/course_video.mp4";
 import { useEffect, useRef, useState } from "react";
-import { flexBetween, flexBox } from "../../../../styles/globalStyles";
+import { flexBetween, flexBox } from "../../../../../styles/globalStyles";
 import {
   Forward10,
   Fullscreen,
@@ -43,7 +43,7 @@ import {
   VolumeOff,
   VolumeUp,
 } from "@mui/icons-material";
-import { formatTime } from "../../../../utils/formatTime";
+import { formatTime } from "../../../../../utils/formatTime";
 
 function VideoDialog({ isOpen, onShow, videoTitle }) {
   const videoRef = useRef(null);
@@ -210,29 +210,6 @@ function VideoDialog({ isOpen, onShow, videoTitle }) {
                 transition: "opacity .3s",
               }}
             >
-              <Box sx={videoTitleBox}>
-                <Stack
-                  direction="row"
-                  spacing={0}
-                  sx={{
-                    ...videoTimeSliderBox,
-                    display: { xs: "flex", lg: "none" },
-                  }}
-                >
-                  <Typography component="span" sx={videoTimeSliderNum}>
-                    {formatTime(currentTime)}
-                  </Typography>
-                  <Slider
-                    value={currentTime}
-                    max={duration}
-                    onChange={handleSeek}
-                    sx={videoTimeSlider}
-                  />
-                  <Typography component="span" sx={videoTimeSliderNum}>
-                    {formatTime(duration)}
-                  </Typography>
-                </Stack>
-              </Box>
               <Box sx={flexBetween(1)}>
                 <Box sx={flexBox(1)}>
                   <IconButton

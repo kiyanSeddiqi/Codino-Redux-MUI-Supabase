@@ -5,12 +5,14 @@ import AuthModal from "../../features/auth/components/AuthModal";
 import { useState } from "react";
 import SearchModal from "../../features/search/components/SearchModal";
 import Footer from "./Footer/Footer";
+import ScrollToTop from "./ScrollToTop";
 
 function MainLayout() {
   const [openAuthModal, setOpenAuthModal] = useState(false);
 
   return (
     <>
+      <ScrollToTop />
       <Navbar showAuthModal={setOpenAuthModal} />
       <main>
         <Container>
