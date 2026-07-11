@@ -41,6 +41,9 @@ export const chapterAccordion = {
   "&::before": {
     display: "none",
   },
+  "& .MuiButtonBase-root:focus": {
+    bgcolor: "transparent",
+  },
 };
 
 export const courseChapterNum = {

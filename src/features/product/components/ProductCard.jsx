@@ -16,7 +16,12 @@ import {
 } from "../styles/productCardStyles";
 import { Box, Chip, Divider, Tooltip, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
-import { flexBetween, flexCenter, flexCol } from "../../../styles/globalStyles";
+import {
+  flexBetween,
+  flexBox,
+  flexCenter,
+  flexCol,
+} from "../../../styles/globalStyles";
 import SvgIcon from "../../../components/ui/SvgIcon/SvgIcon";
 import {
   AccessAlarm,
@@ -56,32 +61,43 @@ function ProductCard({ itemData, layout = "default" }) {
         </Box>
         <CardContent sx={cardContent}>
           <Box sx={cardTitleBox}>
-            <Box sx={{ display: "flex", gap: 1 }}>
-              <Chip
-                color="info"
-                label={levelLabels[itemData.level]}
-                sx={{ height: "26px" }}
-              />
-              {itemData.status === "completed" ? (
-                <Tooltip title="دوره به پایان رسیده">
-                  <Box sx={{ ...cardStatusBadge, bgcolor: "error.light" }}>
-                    <SvgIcon
-                      name="doc"
-                      size={18}
-                      color={theme.palette.error.main}
-                    />
-                  </Box>
-                </Tooltip>
-              ) : (
-                <Tooltip title="دوره درحال بروز رسانی">
-                  <Box sx={{ ...cardStatusBadge, bgcolor: "menuItemBg" }}>
-                    <SvgIcon
-                      name="refresh"
-                      size={18}
-                      color={theme.palette.primary.main}
-                    />
-                  </Box>
-                </Tooltip>
+            <Box sx={flexBetween(1)}>
+              <Box sx={flexBox(1)}>
+                <Chip
+                  color="info"
+                  label={levelLabels[itemData.level]}
+                  sx={{ height: "26px" }}
+                />
+                {itemData.status === "completed" ? (
+                  <Tooltip title="دوره به پایان رسیده">
+                    <Box
+                      aria-label="آیکون پایان دوره"
+                      sx={{ ...cardStatusBadge, bgcolor: "error.light" }}
+                    >
+                      <SvgIcon
+                        name="doc"
+                        size={18}
+                        color={theme.palette.error.main}
+                      />
+                    </Box>
+                  </Tooltip>
+                ) : (
+                  <Tooltip title="دوره درحال بروز رسانی">
+                    <Box
+                      aria-label="آیکون بروز رسانی"
+                      sx={{ ...cardStatusBadge, bgcolor: "menuItemBg" }}
+                    >
+                      <SvgIcon
+                        name="refresh"
+                        size={18}
+                        color={theme.palette.primary.main}
+                      />
+                    </Box>
+                  </Tooltip>
+                )}
+              </Box>
+              {itemData.hasCertificate && (
+                <SvgIcon name="certificate" size={24} />
               )}
             </Box>
             <Typography
@@ -126,9 +142,13 @@ function ProductCard({ itemData, layout = "default" }) {
                 </Typography>
               )}
             </Box>
-            <Link
+            <Box
+              component={Link}
               to={`/course/${itemData.slug}`}
-              style={{ display: "flex" }}
+              sx={{
+                display: "flex",
+                "&:focus": { outline: "none" },
+              }}
               aria-label="دکمه نمایش جزییات محصول"
             >
               <ArrowOutward
@@ -138,7 +158,7 @@ function ProductCard({ itemData, layout = "default" }) {
                   cursor: "pointer",
                 }}
               />
-            </Link>
+            </Box>
           </Box>
         </CardContent>
       </Card>

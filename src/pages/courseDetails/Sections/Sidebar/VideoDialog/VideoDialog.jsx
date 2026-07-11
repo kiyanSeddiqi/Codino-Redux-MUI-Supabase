@@ -44,18 +44,18 @@ import {
   VolumeUp,
 } from "@mui/icons-material";
 import { formatTime } from "../../../../../utils/formatTime";
+import VideoSpeed from "./VideoSpeed";
 
 function VideoDialog({ isOpen, onShow, videoTitle }) {
   const videoRef = useRef(null);
   const playerRef = useRef(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showFullscreenControls, setShowFullscreenControls] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [playbackRate, setPlaybackRate] = useState(1);
-  const open = Boolean(anchorEl);
+
   const [volume, setVolume] = useState(100);
   const [isMuted, setIsMuted] = useState(false);
   const [showVolume, setShowVolume] = useState(false);
@@ -105,17 +105,6 @@ function VideoDialog({ isOpen, onShow, videoTitle }) {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleCloseSpeedMenu = () => {
-    setAnchorEl(null);
-  };
-
-  const handleChangeSpeed = (speed) => {
-    if (!videoRef.current) return;
-
-    videoRef.current.playbackRate = speed;
-    setPlaybackRate(speed);
-  };
-
   const handleVolumeChange = (_, value) => {
     if (!videoRef.current) return;
 
@@ -149,10 +138,9 @@ function VideoDialog({ isOpen, onShow, videoTitle }) {
 
   useEffect(() => {
     if (!isFullscreen || !showFullscreenControls) return;
-
     const timer = setTimeout(() => {
       setShowFullscreenControls(false);
-    }, 3000);
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, [showFullscreenControls, isFullscreen]);
@@ -205,11 +193,39 @@ function VideoDialog({ isOpen, onShow, videoTitle }) {
               className="video-controlbox"
               sx={{
                 ...videoControlBox(isFullscreen),
+                gap: 0,
+                pb: 0,
                 opacity: showFullscreenControls ? 1 : 0,
                 pointerEvents: showFullscreenControls ? "auto" : "none",
                 transition: "opacity .3s",
               }}
             >
+              <Stack
+                direction="row"
+                spacing={0}
+                sx={{
+                  ...videoTimeSliderBox,
+                  display: { xs: "flex", lg: "none" },
+                }}
+              >
+                <Typography component="span" sx={videoTimeSliderNum}>
+                  {formatTime(currentTime)}
+                </Typography>
+                <Slider
+                  value={currentTime}
+                  max={duration}
+                  onChange={handleSeek}
+                  sx={{
+                    ...videoTimeSlider,
+                    "&.MuiSlider-root": {
+                      py: 0,
+                    },
+                  }}
+                />
+                <Typography component="span" sx={videoTimeSliderNum}>
+                  {formatTime(duration)}
+                </Typography>
+              </Stack>
               <Box sx={flexBetween(1)}>
                 <Box sx={flexBox(1)}>
                   <IconButton
@@ -228,65 +244,11 @@ function VideoDialog({ isOpen, onShow, videoTitle }) {
                   >
                     <Settings />
                   </IconButton>
-                  <Menu
-                    disablePortal
+                  <VideoSpeed
+                    videoRef={videoRef}
                     anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleCloseSpeedMenu}
-                    anchorOrigin={{
-                      vertical: "top",
-                      horizontal: "center",
-                    }}
-                    transformOrigin={{
-                      vertical: "bottom",
-                      horizontal: "center",
-                    }}
-                    sx={{
-                      "& .MuiList-root": {
-                        p: "8px 16px",
-                        display: "flex",
-                        gap: 1,
-                        flexDirection: "column",
-                      },
-                      "& .MuiPaper-root": {
-                        borderRadius: "16px",
-                        bgcolor: "background.default",
-                      },
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        fontSize: 14,
-                        textAlign: "center",
-                      }}
-                    >
-                      سرعت پخش
-                    </Typography>
-                    {[0.5, 1, 1.5, 2].map((speed) => (
-                      <MenuItem
-                        disableRipple
-                        key={speed}
-                        onClick={() => handleChangeSpeed(speed)}
-                        sx={{
-                          display: "flex",
-                          justifyContent: "flex-start",
-                          gap: 1.5,
-                          p: 0,
-                          fontFamily: "sans-serif",
-                          fontWeight: 500,
-                          "&:hover": { bgcolor: "transparent" },
-                        }}
-                      >
-                        <Checkbox
-                          checked={playbackRate === speed}
-                          disableRipple
-                          size="small"
-                          sx={{ p: 0 }}
-                        />
-                        {speed}x
-                      </MenuItem>
-                    ))}
-                  </Menu>
+                    setAnchorEl={setAnchorEl}
+                  />
                   <Box
                     sx={{ position: "relative" }}
                     onMouseEnter={() => setShowVolume(true)}
@@ -392,7 +354,7 @@ function VideoDialog({ isOpen, onShow, videoTitle }) {
         </Box>
         <Box className="video-controlbox" sx={videoControlBox(isFullscreen)}>
           <Box sx={videoTitleBox}>
-            <Typography sx={{ fontSize: { xs: "14px", md: "16px" }, mt: 1 }}>
+            <Typography sx={{ fontSize: { xs: "14px", md: "16px" } }}>
               {videoTitle}
             </Typography>
             <Stack
@@ -435,64 +397,11 @@ function VideoDialog({ isOpen, onShow, videoTitle }) {
               >
                 <Settings />
               </IconButton>
-              <Menu
+              <VideoSpeed
+                videoRef={videoRef}
                 anchorEl={anchorEl}
-                open={open}
-                onClose={handleCloseSpeedMenu}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "center",
-                }}
-                transformOrigin={{
-                  vertical: "bottom",
-                  horizontal: "center",
-                }}
-                sx={{
-                  "& .MuiList-root": {
-                    p: "8px 16px",
-                    display: "flex",
-                    gap: 1,
-                    flexDirection: "column",
-                  },
-                  "& .MuiPaper-root": {
-                    borderRadius: "16px",
-                    bgcolor: "background.default",
-                  },
-                }}
-              >
-                <Typography
-                  sx={{
-                    fontSize: 14,
-                    textAlign: "center",
-                  }}
-                >
-                  سرعت پخش
-                </Typography>
-                {[0.5, 1, 1.5, 2].map((speed) => (
-                  <MenuItem
-                    disableRipple
-                    key={speed}
-                    onClick={() => handleChangeSpeed(speed)}
-                    sx={{
-                      display: "flex",
-                      justifyContent: "flex-start",
-                      gap: 1.5,
-                      p: 0,
-                      fontFamily: "sans-serif",
-                      fontWeight: 500,
-                      "&:hover": { bgcolor: "transparent" },
-                    }}
-                  >
-                    <Checkbox
-                      checked={playbackRate === speed}
-                      disableRipple
-                      size="small"
-                      sx={{ p: 0 }}
-                    />
-                    {speed}x
-                  </MenuItem>
-                ))}
-              </Menu>
+                setAnchorEl={setAnchorEl}
+              />
               <Box
                 sx={{ position: "relative" }}
                 onMouseEnter={() => setShowVolume(true)}

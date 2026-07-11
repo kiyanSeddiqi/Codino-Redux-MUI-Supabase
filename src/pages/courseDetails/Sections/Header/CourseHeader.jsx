@@ -1,9 +1,11 @@
-import { Box, Chip, Typography } from "@mui/material";
+import { Box, Chip, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { flexBetween, flexBox } from "../../../../styles/globalStyles";
 import SvgIcon from "../../../../components/ui/SvgIcon/SvgIcon";
 import { courseHeaderBox, courseHeaderTitle } from "./courseHeaderStyles";
 
 function CourseHeader({ product }) {
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   return (
     <>
       <Box sx={courseHeaderBox}>
@@ -32,7 +34,7 @@ function CourseHeader({ product }) {
                 icon={<SvgIcon name="credit" size={24} />}
               />
             )}
-            {product.hasCertificate && (
+            {product.hasCertificate && isDesktop && (
               <Chip
                 variant="outlined"
                 label="گواهینامه پایان دوره"

@@ -6,7 +6,7 @@ import {
   Divider,
   Typography,
 } from "@mui/material";
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import {
   chapterAccordion,
   chapterAccordionSummary,
@@ -19,9 +19,14 @@ import { flexBetween, flexBox, flexCol } from "../../../../styles/globalStyles";
 import { ExpandMore } from "@mui/icons-material";
 import CourseLessons from "./CourseLessons";
 
-function ChapterAccordion({ itemData }) {
+function ChapterAccordion({ itemData, currentId }) {
   const [expanded, setExpanded] = useState(false);
   const id = useId();
+
+  useEffect(() => {
+    setExpanded(false);
+  }, [currentId]);
+
   return (
     <>
       <Accordion

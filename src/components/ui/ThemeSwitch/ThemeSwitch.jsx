@@ -12,7 +12,11 @@ function ThemeSwitch({ sx }) {
   return (
     <>
       <Tooltip title="تغییر تم">
-        <Box sx={[themeBtn, sx]} onClick={() => dispatch(toggleTheme())}>
+        <Box
+          aria-label="دکمه تغییر تم"
+          sx={[themeBtn, sx]}
+          onClick={() => dispatch(toggleTheme())}
+        >
           <DarkMode sx={{ fontSize: 16, color: "primary.main" }} />
           <LightMode sx={{ fontSize: 16 }} />
           <Box component="span" sx={themeIndicator}></Box>

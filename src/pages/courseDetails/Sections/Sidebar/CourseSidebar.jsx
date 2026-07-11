@@ -15,7 +15,7 @@ import { flexBetween, flexBox, flexCol } from "../../../../styles/globalStyles";
 import { addComma } from "../../../../utils/helpers";
 import { AccessTime, Person } from "@mui/icons-material";
 import { useState } from "react";
-import VideoDialog from "./VideoDialog/VideoDialog";
+import VideoDialog from "./VideoDialog/VideoDialog.jsx";
 
 const levelLabels = {
   beginner: "مقدماتی",
@@ -82,6 +82,8 @@ function CourseSidebar({ product }) {
             src={product.img}
             alt={`تصویر ${product.title}`}
             sx={sidebarImg}
+            fetchPriority="high"
+            loading="eager"
           />
           <Box sx={imgBackdrop} onClick={() => setOpenVideo(true)}>
             <SvgIcon name="playVideoFilled" color="#fff" size={120} />

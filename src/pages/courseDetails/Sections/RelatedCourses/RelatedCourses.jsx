@@ -10,11 +10,16 @@ import { Navigation } from "swiper/modules";
 import { productData } from "../../../../data/productData";
 import ProductCard from "../../../../features/product/components/ProductCard";
 
-function RelatedCourses() {
-  const tempCategory = "frontend";
-  const relatedCourses = productData.filter((item) =>
-    item.categories.includes(tempCategory),
+function RelatedCourses({ sameCategory, currentProductId }) {
+  const relatedCourses = productData.filter(
+    (item) =>
+      item.id !== currentProductId &&
+      sameCategory.some((cat) => item?.categories.includes(cat)),
   );
+
+  const canLoop = relatedCourses.length > 4;
+
+  if (relatedCourses.length == 0) return;
   return (
     <>
       <Box
@@ -26,7 +31,7 @@ function RelatedCourses() {
           <Typography component="h4" sx={sectionTitle}>
             دوره های مرتبط
           </Typography>
-          <SliderNavBtn />
+          {canLoop && <SliderNavBtn />}
         </Box>
         <Box>
           <Swiper
@@ -34,11 +39,11 @@ function RelatedCourses() {
             spaceBetween={20}
             slidesPerView={4.5}
             speed={500}
+            loop={canLoop}
             navigation={{
               prevEl: ".relatedCourses-section .swiper-btn-prev",
               nextEl: ".relatedCourses-section .swiper-btn-next",
             }}
-            loop={true}
             breakpoints={{
               300: { slidesPerView: 1, spaceBetween: 20 },
               420: { slidesPerView: 2, spaceBetween: 20 },

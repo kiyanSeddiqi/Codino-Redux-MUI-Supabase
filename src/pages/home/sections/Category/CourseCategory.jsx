@@ -29,7 +29,7 @@ function CourseCategory() {
             <Box
               key={i}
               component={Link}
-              to={item.path}
+              to={item.children[0].path}
               sx={courseCategoryGridItem}
             >
               <SvgIcon name={item.iconName} size={28} />

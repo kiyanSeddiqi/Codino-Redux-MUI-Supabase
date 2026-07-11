@@ -18,14 +18,27 @@ import CourseSidebar from "./Sections/Sidebar/CourseSidebar";
 import RelatedCourses from "./Sections/RelatedCourses/RelatedCourses";
 import { useParams } from "react-router-dom";
 import { productData } from "../../data/productData";
+import { categoriesData } from "../../data/categories";
 
 function CourseDetails() {
   const { slug } = useParams();
   const product = productData.find((item) => item?.slug === slug);
+  const courseMainCategory = categoriesData.find(
+    (item) => item?.category === product?.categories[0],
+  );
   return (
     <>
       <Box sx={courseContainer}>
-        <BreadCrumb product={product} />
+        <BreadCrumb
+          items={[
+            { title: "دوره ها", link: "/courses" },
+            {
+              title: courseMainCategory.title,
+              link: `/courses/${courseMainCategory.category}`,
+            },
+            { title: product.title },
+          ]}
+        />
         <Box sx={courseContentBox}>
           <Box
             sx={{
@@ -36,7 +49,7 @@ function CourseDetails() {
           >
             <CourseHeader product={product} />
             <CourseTabs />
-            <CourseChapterSection />
+            <CourseChapterSection currentProductId={product.id} />
             <CourseContentSection />
             <CourseFaqSection />
             <CoursePrerequisiteSection />
@@ -47,7 +60,10 @@ function CourseDetails() {
             <CourseSidebar product={product} />
           </Box>
         </Box>
-        <RelatedCourses />
+        <RelatedCourses
+          sameCategory={product.categories}
+          currentProductId={product.id}
+        />
       </Box>
     </>
   );

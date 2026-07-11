@@ -30,6 +30,7 @@ export const cardImgBox = {
   maxHeight: {
     md: "360px",
   },
+  "&:focus": { outline: "none" },
 };
 
 export const cardImg = {
@@ -66,4 +67,5 @@ export const cardTitle = {
   WebkitBoxOrient: "vertical",
   WebkitLineClamp: 1,
   lineHeight: "20px",
+  "&:focus": { outline: "none" },
 };

@@ -23,6 +23,11 @@ export const videoWatchFrame = {
   borderRadius: "16px",
   maxHeight: "80svh",
   position: "relative",
+  "&:fullscreen": {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 };
 
 export const videoBackdrop = (isPlaying) => ({
@@ -37,10 +42,12 @@ export const videoBackdrop = (isPlaying) => ({
 
 export const videoTag = {
   width: "100%",
-  height: "100%",
-  borderRadius: "16px",
-  objectFit: "cover",
+  height: "auto",
+  maxWidth: "100%",
+  maxHeight: "100%",
+  objectFit: "contain",
   display: "block",
+  borderRadius: "16px",
 };
 
 export const videoPlayBtn = (isPlaying) => ({
@@ -72,6 +79,7 @@ export const videoControlBox = (isFullscreen) => ({
   right: 0,
   left: 0,
   zIndex: 50,
+  // ---
 });
 
 export const videoTitleBox = {
@@ -125,6 +133,28 @@ export const videoTimeSlider = {
 export const videoTimeSliderNum = {
   minWidth: "38px",
   fontFamily: "sans-serif",
+};
+
+export const videoSpeedBox = {
+  "& .MuiList-root": {
+    p: "8px 16px",
+    display: "flex",
+    gap: 1,
+    flexDirection: "column",
+  },
+  "& .MuiPaper-root": {
+    borderRadius: "16px",
+    bgcolor: "background.default",
+  },
+};
+export const videoSpeedItem = {
+  display: "flex",
+  justifyContent: "flex-start",
+  gap: 1.5,
+  p: 0,
+  fontFamily: "sans-serif",
+  fontWeight: 500,
+  "&:hover": { bgcolor: "transparent" },
 };
 
 export const volumeBox = {

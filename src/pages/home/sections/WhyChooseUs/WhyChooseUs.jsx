@@ -62,7 +62,7 @@ function WhyChooseUs() {
               </ListItem>
             </List>
             <Box sx={flexBox("12px")}>
-              <Button component={Link} to="/course" sx={flexBox("8px")}>
+              <Button component={Link} to="/courses" sx={flexBox("8px")}>
                 مشاهده دوره ها
                 <ArrowOutward sx={{ rotate: "-90deg", fontSize: "20px" }} />
               </Button>

@@ -24,6 +24,7 @@ export const categoriesData = [
   { title: "فرانت اند", category: "frontend" },
   { title: "روبی", category: "ruby" },
   { title: "کاتلین", category: "kotlin" },
+  { title: "گولنگ (Golang)", category: "golang" },
   { title: "توسعه فول استک", category: "full-stack" },
   { title: "وردپرس", category: "wordpress" },
   {
@@ -74,5 +75,13 @@ export const categoriesData = [
   {
     title: "فیگما",
     category: "figma",
+  },
+  {
+    title: "مدیریت ورژن‌ها با Git و GitHub",
+    category: "git-github",
+  },
+  {
+    title: "طراحی سیستم‌ها (System Design)",
+    category: "system-design",
   },
 ];

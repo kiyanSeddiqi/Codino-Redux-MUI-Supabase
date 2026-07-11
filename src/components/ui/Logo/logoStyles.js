@@ -8,4 +8,5 @@ export const logo = {
     xs: "auto",
     md: 31,
   },
+  aspectRatio: "auto",
 };

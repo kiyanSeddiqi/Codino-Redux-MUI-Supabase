@@ -4,11 +4,7 @@ import { NavigateBefore } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { categoriesData } from "../../../../data/categories";
 
-function BreadCrumb({ product }) {
-  const courseMainCategory = categoriesData.find(
-    (item) => item.category === product.categories[0],
-  );
-
+function BreadCrumb({ items }) {
   return (
     <>
       <Breadcrumbs
@@ -17,13 +13,21 @@ function BreadCrumb({ product }) {
         aria-label="breadcrumb"
       >
         <Link to="/">صفحه اصلی</Link>
-        <Link to="/courses">دوره ها</Link>
-        <Link to={`/courses/${courseMainCategory.category}`}>
-          {courseMainCategory.title}
-        </Link>
-        <Typography sx={{ color: "text.primary", fontSize: "14px" }}>
-          {product.title}
-        </Typography>
+        {items.map((item, index) => {
+          const isLast = index === item.length - 1;
+          return isLast || !item.link ? (
+            <Typography
+              key={index}
+              sx={{ color: "text.primary", fontSize: "14px" }}
+            >
+              {item.title}
+            </Typography>
+          ) : (
+            <Link key={index} to={item.link}>
+              {item.title}
+            </Link>
+          );
+        })}
       </Breadcrumbs>
     </>
   );

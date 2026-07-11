@@ -5,7 +5,7 @@ import { chapterSectionTitle, chapterStats } from "./courseChapterStyles";
 import { chaptersData } from "../../../../data/courseChapterData";
 import ChapterAccordion from "./ChapterAccordion";
 
-function CourseChapterSection() {
+function CourseChapterSection({ currentProductId }) {
   const sessionsNumber = chaptersData.reduce(
     (acc, curr) => acc + curr.lessons.length,
     0,
@@ -30,7 +30,11 @@ function CourseChapterSection() {
         </Box>
         <Box sx={flexCol(2.5)}>
           {chaptersData.map((item) => (
-            <ChapterAccordion key={item.id} itemData={item} />
+            <ChapterAccordion
+              key={item.id}
+              itemData={item}
+              currentId={currentProductId}
+            />
           ))}
         </Box>
       </Box>

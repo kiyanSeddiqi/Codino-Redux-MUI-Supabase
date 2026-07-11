@@ -1,12 +1,24 @@
 import { Checkbox, Menu, MenuItem, Typography } from "@mui/material";
 import { useState } from "react";
+import { videoSpeedBox, videoSpeedItem } from "./videoDialogStyles";
 
-function VideoSpeed() {
+function VideoSpeed({ videoRef, anchorEl, setAnchorEl }) {
+  const [playbackRate, setPlaybackRate] = useState(1);
+  const open = Boolean(anchorEl);
+
+  const handleCloseSpeedMenu = () => setAnchorEl(null);
+  const handleChangeSpeed = (speed) => {
+    if (!videoRef.current) return;
+
+    videoRef.current.playbackRate = speed;
+    setPlaybackRate(speed);
+  };
+
   return (
     <>
       <Menu
-        disablePortal
         anchorEl={anchorEl}
+        disablePortal
         open={open}
         onClose={handleCloseSpeedMenu}
         anchorOrigin={{
@@ -17,18 +29,7 @@ function VideoSpeed() {
           vertical: "bottom",
           horizontal: "center",
         }}
-        sx={{
-          "& .MuiList-root": {
-            p: "8px 16px",
-            display: "flex",
-            gap: 1,
-            flexDirection: "column",
-          },
-          "& .MuiPaper-root": {
-            borderRadius: "16px",
-            bgcolor: "background.default",
-          },
-        }}
+        sx={videoSpeedBox}
       >
         <Typography
           sx={{
@@ -43,15 +44,7 @@ function VideoSpeed() {
             disableRipple
             key={speed}
             onClick={() => handleChangeSpeed(speed)}
-            sx={{
-              display: "flex",
-              justifyContent: "flex-start",
-              gap: 1.5,
-              p: 0,
-              fontFamily: "sans-serif",
-              fontWeight: 500,
-              "&:hover": { bgcolor: "transparent" },
-            }}
+            sx={videoSpeedItem}
           >
             <Checkbox
               checked={playbackRate === speed}
