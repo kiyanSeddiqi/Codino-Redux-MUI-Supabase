@@ -2,8 +2,13 @@ import { Checkbox, Menu, MenuItem, Typography } from "@mui/material";
 import { useState } from "react";
 import { videoSpeedBox, videoSpeedItem } from "./videoDialogStyles";
 
-function VideoSpeed({ videoRef, anchorEl, setAnchorEl }) {
-  const [playbackRate, setPlaybackRate] = useState(1);
+function VideoSpeed({
+  videoRef,
+  anchorEl,
+  setAnchorEl,
+  playbackRate,
+  setPlaybackRate,
+}) {
   const open = Boolean(anchorEl);
 
   const handleCloseSpeedMenu = () => setAnchorEl(null);

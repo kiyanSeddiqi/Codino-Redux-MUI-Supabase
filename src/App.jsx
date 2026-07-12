@@ -7,6 +7,7 @@ import { useEffect, useMemo, useState } from "react";
 import getTheme from "./theme/theme";
 import { useSelector } from "react-redux";
 import CourseDetails from "./pages/courseDetails/CourseDetails";
+import Courses from "./pages/courses/Courses";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "/course/:slug",
         element: <CourseDetails />,
+      },
+      {
+        path: "/courses",
+        element: <Courses />,
       },
       {
         path: "*",

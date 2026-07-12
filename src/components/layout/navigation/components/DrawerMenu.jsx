@@ -12,10 +12,10 @@ import {
 import { Close, Login } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Logo from "../../../ui/Logo/Logo";
-import { drawerMenuData } from "../../../../data/menu";
-import { drawerMenuBox, drawerMenuListBtn } from "../styles/navbarStyles";
+import { mobileMenuBox, mobileMenuListBtn } from "../styles/navbarStyles";
 import { flexBetween, flexCol } from "../../../../styles/globalStyles";
 import ThemeSwitch from "../../../ui/ThemeSwitch/ThemeSwitch";
+import { mobileMenuData } from "../../../../data/menuData";
 
 function DrawerMenu({ isOpen, onShow, showAuthModal }) {
   return (
@@ -26,7 +26,7 @@ function DrawerMenu({ isOpen, onShow, showAuthModal }) {
         onClose={() => onShow(false)}
         sx={{ display: { xs: "block", lg: "none" } }}
       >
-        <Box sx={drawerMenuBox}>
+        <Box sx={mobileMenuBox}>
           {/* Header */}
           <Box sx={flexBetween(0, "row")}>
             <Logo />
@@ -37,13 +37,13 @@ function DrawerMenu({ isOpen, onShow, showAuthModal }) {
           <Divider sx={{ my: 2.5 }} />
           {/* Menu */}
           <List disablePadding sx={flexCol(1)}>
-            {drawerMenuData?.map((item) => (
+            {mobileMenuData?.map((item) => (
               <ListItemButton
                 disableRipple
                 key={item.title}
                 component={Link}
                 to={item.path}
-                sx={drawerMenuListBtn}
+                sx={mobileMenuListBtn}
                 onClick={() => onShow(false)}
               >
                 <ListItemText

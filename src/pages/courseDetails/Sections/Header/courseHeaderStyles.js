@@ -1,18 +1,5 @@
 import { flexBox } from "../../../../styles/globalStyles";
 
-export const courseBreadcrumb = {
-  fontSize: "14px",
-  "& a": {
-    transition: "color 0.2s ease",
-    "&:hover": {
-      color: "text.primary",
-    },
-  },
-  "& .MuiBreadcrumbs-ol": {
-    rowGap: 1,
-  },
-};
-
 export const courseHeaderBox = {
   display: {
     xs: "none",

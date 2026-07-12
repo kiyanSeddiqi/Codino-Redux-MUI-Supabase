@@ -2,6 +2,7 @@ import { Apps } from "@mui/icons-material";
 import {
   Box,
   Button,
+  Divider,
   ListItemIcon,
   ListItemText,
   Menu,
@@ -11,23 +12,20 @@ import {
 import {
   categoryMainMenuList,
   categoryMenuBox,
-  categoryMenuDivider,
   categoryMenuList,
 } from "../styles/navbarStyles";
 
 import { useId, useState } from "react";
 import { Link } from "react-router-dom";
-import { categoryMenuData } from "../../../../data/menu";
 import SvgIcon from "../../../ui/SvgIcon/SvgIcon";
+import { categoryData } from "../../../../data/categoryData";
 
 function CategoryMenu() {
   const id = useId();
   const buttonId = `${id}-button`;
   const menuId = `${id}-menu`;
   const [anchorEl, setAnchorEl] = useState(null);
-  const [activeCategory, setActiveCategory] = useState(
-    categoryMenuData[0]?.children?.[0] ?? null,
-  );
+  const [activeCategory, setActiveCategory] = useState(categoryData[1] ?? null);
   const open = Boolean(anchorEl);
   const handleOpen = (e) => setAnchorEl(e.currentTarget);
   const handleClose = () => setAnchorEl(null);
@@ -74,49 +72,56 @@ function CategoryMenu() {
           }}
         >
           <Box sx={categoryMainMenuList}>
-            {categoryMenuData[0]?.children?.map((item) => (
-              <MenuItem
-                disableRipple
-                key={item.title}
-                selected={activeCategory.title === item.title}
-                onClick={() => setActiveCategory(item)}
-                sx={{
-                  gap: "4px",
-                  borderRadius: "6px",
-                  py: "4px",
-                  color: "text.main",
-                  "&.Mui-selected": {
-                    color: "primary.main",
-                  },
-                  transition: "0.2s ease",
-                }}
-              >
-                <ListItemIcon sx={{ color: "text.primary" }}>
-                  <SvgIcon name={item.iconName} size={28} />
-                </ListItemIcon>
-                <ListItemText
-                  slotProps={{
-                    primary: {
-                      sx: {
-                        fontSize: 14,
-                        whiteSpace: "normal",
-                        wordBreak: "break-word",
-                      },
+            {categoryData?.map((item) => {
+              if (item.children.length === 0) return;
+              return (
+                <MenuItem
+                  disableRipple
+                  key={item.title}
+                  selected={activeCategory.title === item.title}
+                  onClick={() => setActiveCategory(item)}
+                  sx={{
+                    gap: "4px",
+                    borderRadius: "6px",
+                    py: "4px",
+                    color: "text.main",
+                    "&.Mui-selected": {
+                      color: "primary.main",
                     },
+                    transition: "0.2s ease",
                   }}
-                  primary={item.title}
-                />
-              </MenuItem>
-            ))}
+                >
+                  <ListItemIcon sx={{ color: "text.primary" }}>
+                    <SvgIcon name={item.iconName} size={28} />
+                  </ListItemIcon>
+                  <ListItemText
+                    slotProps={{
+                      primary: {
+                        sx: {
+                          fontSize: 14,
+                          whiteSpace: "normal",
+                          wordBreak: "break-word",
+                        },
+                      },
+                    }}
+                    primary={item.title}
+                  />
+                </MenuItem>
+              );
+            })}
           </Box>
-          <Box sx={categoryMenuDivider}></Box>
+          <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />
           <Box sx={categoryMenuList}>
-            {activeCategory?.children?.map((item) => (
+            {activeCategory?.children.map((item) => (
               <MenuItem
                 key={item.title}
                 component={Link}
                 disableRipple
-                to={item.path}
+                to={
+                  item.slug === ""
+                    ? `courses/${activeCategory.slug}`
+                    : `courses/${item.slug}`
+                }
                 onClick={handleClose}
                 sx={{
                   gap: "4px",

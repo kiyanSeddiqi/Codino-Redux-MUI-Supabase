@@ -4,7 +4,7 @@ import { flexCol, sectionTitle } from "../../../../styles/globalStyles";
 import { faqData } from "../../../../data/faqData";
 import FaqAccordion from "./FaqAccordion";
 
-function faq() {
+function Faq() {
   return (
     <>
       <Box sx={faqContainer}>
@@ -30,4 +30,4 @@ function faq() {
   );
 }
 
-export default faq;
+export default Faq;

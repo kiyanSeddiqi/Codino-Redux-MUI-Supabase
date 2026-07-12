@@ -55,6 +55,7 @@ function VideoDialog({ isOpen, onShow, videoTitle }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [playbackRate, setPlaybackRate] = useState(1);
 
   const [volume, setVolume] = useState(100);
   const [isMuted, setIsMuted] = useState(false);
@@ -248,6 +249,8 @@ function VideoDialog({ isOpen, onShow, videoTitle }) {
                     videoRef={videoRef}
                     anchorEl={anchorEl}
                     setAnchorEl={setAnchorEl}
+                    playbackRate={playbackRate}
+                    setPlaybackRate={setPlaybackRate}
                   />
                   <Box
                     sx={{ position: "relative" }}
@@ -401,6 +404,8 @@ function VideoDialog({ isOpen, onShow, videoTitle }) {
                 videoRef={videoRef}
                 anchorEl={anchorEl}
                 setAnchorEl={setAnchorEl}
+                playbackRate={playbackRate}
+                setPlaybackRate={setPlaybackRate}
               />
               <Box
                 sx={{ position: "relative" }}

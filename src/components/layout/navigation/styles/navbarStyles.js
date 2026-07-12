@@ -80,13 +80,6 @@ export const categoryMainMenuList = {
   gap: "12px",
 };
 
-export const categoryMenuDivider = {
-  bgcolor: "divider",
-  mx: "8px",
-  width: "1px",
-  height: "63svh",
-};
-
 // ====== NAVBAR MENU ======
 export const navItem = {
   position: "relative",
@@ -134,7 +127,7 @@ export const navLinkDropdownBtn = {
   },
 };
 
-export const drawerMenuBox = {
+export const mobileMenuBox = {
   width: 300,
   height: "100%",
   p: 2,
@@ -142,7 +135,7 @@ export const drawerMenuBox = {
   flexDirection: "column",
 };
 
-export const drawerMenuListBtn = {
+export const mobileMenuListBtn = {
   borderRadius: "10px",
   textAlign: "right",
   "&:hover, &:focus": { bgcolor: "menuItemBg", color: "primary.main" },

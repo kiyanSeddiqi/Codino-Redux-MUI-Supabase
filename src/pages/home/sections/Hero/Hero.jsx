@@ -63,7 +63,7 @@ function Hero() {
                 و با پشتیبانی و مشاوره! فقط کافیه شروع کنی، بقیش با ما.
               </Typography>
               <Box sx={heroBtnWrapper}>
-                <Button component={Link} to="/course">
+                <Button component={Link} to="/courses">
                   مشاهده دوره ها
                   <ArrowOutward sx={{ rotate: "-90deg", fontSize: "20px" }} />
                 </Button>

@@ -6,7 +6,6 @@ import {
   courseSidbarBox,
 } from "./courseDetailStyles";
 import CourseHeader from "./Sections/Header/CourseHeader";
-import BreadCrumb from "./Sections/Header/BreadCrumb";
 import CourseTabs from "./Sections/Tabs/CourseTabs";
 import CourseChapterSection from "./Sections/Chapters/CourseChapterSection";
 import CourseContentSection from "./Sections/Content/CourseContentSection";
@@ -18,14 +17,17 @@ import CourseSidebar from "./Sections/Sidebar/CourseSidebar";
 import RelatedCourses from "./Sections/RelatedCourses/RelatedCourses";
 import { useParams } from "react-router-dom";
 import { productData } from "../../data/productData";
-import { categoriesData } from "../../data/categories";
+import BreadCrumb from "../../components/ui/Breadcrumb/BreadCrumb";
+import { categoryData } from "../../data/categoryData";
 
 function CourseDetails() {
   const { slug } = useParams();
   const product = productData.find((item) => item?.slug === slug);
-  const courseMainCategory = categoriesData.find(
-    (item) => item?.category === product?.categories[0],
-  );
+
+  const subCategory = categoryData
+    .flatMap((category) => category.children)
+    .find((child) => child.slug === product.categories[0]);
+
   return (
     <>
       <Box sx={courseContainer}>
@@ -33,8 +35,8 @@ function CourseDetails() {
           items={[
             { title: "دوره ها", link: "/courses" },
             {
-              title: courseMainCategory.title,
-              link: `/courses/${courseMainCategory.category}`,
+              title: subCategory?.title,
+              link: `/courses/${subCategory?.slug}`,
             },
             { title: product.title },
           ]}

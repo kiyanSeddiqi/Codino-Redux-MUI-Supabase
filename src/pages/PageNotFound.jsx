@@ -1,6 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import { flexBox, flexCol } from "../styles/globalStyles";
 import SvgIcon from "../components/ui/SvgIcon/SvgIcon";
+import { Link } from "react-router-dom";
 
 function PageNotFound() {
   return (
@@ -35,7 +36,9 @@ function PageNotFound() {
         </Box>
 
         <Typography>صفحه موردنظر یافت نشد</Typography>
-        <Button>بازگشت به خانه</Button>
+        <Button component={Link} to="/">
+          بازگشت به خانه
+        </Button>
       </Box>
     </>
   );

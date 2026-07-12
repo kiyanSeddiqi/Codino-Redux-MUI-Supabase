@@ -1,14 +1,13 @@
 import { Breadcrumbs, Typography } from "@mui/material";
-import { courseBreadcrumb } from "./courseHeaderStyles";
 import { NavigateBefore } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import { categoriesData } from "../../../../data/categories";
+import { breadCrumbStyle } from "./breadcrumbStyles";
 
 function BreadCrumb({ items }) {
   return (
     <>
       <Breadcrumbs
-        sx={courseBreadcrumb}
+        sx={breadCrumbStyle}
         separator={<NavigateBefore fontSize="small" />}
         aria-label="breadcrumb"
       >

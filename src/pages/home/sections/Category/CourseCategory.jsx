@@ -1,9 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import {
-  courseCategoryGrid,
-  courseCategoryGridItem,
-} from "./courseCategoryStyles";
-import { categoryMenuData } from "../../../../data/menu";
+import { courseCategoryCard, courseCategoryGrid } from "./courseCategoryStyles";
 import { Link } from "react-router-dom";
 import SvgIcon from "../../../../components/ui/SvgIcon/SvgIcon";
 import {
@@ -11,6 +7,7 @@ import {
   sectionStyle,
   sectionTitle,
 } from "../../../../styles/globalStyles";
+import { categoryData } from "../../../../data/categoryData";
 
 function CourseCategory() {
   return (
@@ -25,17 +22,20 @@ function CourseCategory() {
           </Typography>
         </Box>
         <Box sx={courseCategoryGrid}>
-          {categoryMenuData[0]?.children?.map((item, i) => (
-            <Box
-              key={i}
-              component={Link}
-              to={item.children[0].path}
-              sx={courseCategoryGridItem}
-            >
-              <SvgIcon name={item.iconName} size={28} />
-              <Box component="span">{item.title}</Box>
-            </Box>
-          ))}
+          {categoryData?.map((item, i) => {
+            if (item.children.length === 0) return;
+            return (
+              <Box
+                key={i}
+                component={Link}
+                to={`${item.slug}`}
+                sx={(theme) => courseCategoryCard(theme, "120px")}
+              >
+                <SvgIcon name={item.iconName} size={28} />
+                <Typography component="span">{item.title}</Typography>
+              </Box>
+            );
+          })}
         </Box>
       </Box>
     </>

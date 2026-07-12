@@ -9,7 +9,6 @@ import {
   MenuList,
 } from "@mui/material";
 import { Link, NavLink } from "react-router-dom";
-import { menuData } from "../../../../data/menu";
 
 import { useState } from "react";
 import {
@@ -18,6 +17,7 @@ import {
   navLinkDropdown,
   navLinkDropdownBtn,
 } from "../styles/navbarStyles";
+import { desktopMenuData } from "../../../../data/menuData";
 
 function Menu() {
   const [openIndex, setOpenIndex] = useState(null);
@@ -30,7 +30,7 @@ function Menu() {
         }}
       >
         <Box component="ul" sx={{ display: "flex", gap: 2, fontSize: "14px" }}>
-          {menuData.map((item) => (
+          {desktopMenuData.map((item) => (
             <Box
               component="li"
               key={item.title}

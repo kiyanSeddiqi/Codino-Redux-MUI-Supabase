@@ -16,10 +16,11 @@ export const courseCategoryGrid = {
   },
 };
 
-export const courseCategoryGridItem = (theme) => ({
-  ...flexCenter(1, "column"),
-  width: "100%",
-  minHeight: "120px",
+export const courseCategoryCard = (theme, minHeight) => ({
+  ...flexCol(1),
+  alignItems: "center",
+  justifyContent: "center",
+  minHeight,
   textAlign: "center",
   border: 1,
   borderColor: "divider",
@@ -32,10 +33,13 @@ export const courseCategoryGridItem = (theme) => ({
     },
     borderColor: "primary.main",
   },
-  fontSize: {
-    xs: "12px",
-    lg: "14px",
+  "& span": {
+    fontSize: {
+      xs: "12px",
+      lg: "14px",
+    },
   },
+
   borderRadius: {
     xs: "14px",
     lg: "24px",
