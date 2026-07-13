@@ -37,7 +37,6 @@ export const faqAccordionSummary = {
   },
   minHeight: 0,
   my: 0,
-
   "& .MuiAccordionSummary-content": {
     margin: 0,
   },

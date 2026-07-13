@@ -6,7 +6,7 @@ import {
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 
 import "swiper/css";
 import SliderNavBtn from "../../../../components/ui/SliderNavBtn/SliderNavBtn.jsx";
@@ -15,8 +15,28 @@ import { courseCategoryCardTitle } from "../../coursesStyles.js";
 import { categoryData } from "../../../../data/categoryData.js";
 import SvgIcon from "../../../../components/ui/SvgIcon/SvgIcon.jsx";
 import { Box, Typography } from "@mui/material";
+import { useEffect, useRef } from "react";
 
 function CategorySilder() {
+  const { slug } = useParams();
+  const navigate = useNavigate();
+  const swiperRef = useRef(null);
+
+  useEffect(() => {
+    if (!swiperRef.current) return;
+
+    if (slug) {
+      const activeIndex = categoryData.findIndex((item) => item.slug === slug);
+
+      if (activeIndex !== -1) {
+        const targetIndex = Math.max(activeIndex - 1, 0);
+        swiperRef.current.slideToLoop(targetIndex);
+      }
+    } else {
+      swiperRef.current.slideToLoop(0);
+    }
+  }, [slug]);
+
   return (
     <>
       <Box sx={flexCol(2.5)} component="section" className="courses-section">
@@ -29,10 +49,11 @@ function CategorySilder() {
       </Box>
       <Box>
         <Swiper
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
           modules={[Navigation]}
           spaceBetween={20}
           slidesPerView={3.5}
-          speed={500}
+          speed={700}
           navigation={{
             prevEl: ".courses-section .swiper-btn-prev",
             nextEl: ".courses-section .swiper-btn-next",
@@ -51,9 +72,26 @@ function CategorySilder() {
             <SwiperSlide key={item.id}>
               <Box
                 key={i}
-                component={Link}
-                to={`${item.slug}`}
-                sx={courseCategoryCard}
+                onClick={() =>
+                  navigate(item.slug ? `/courses/${item.slug}` : "/courses")
+                }
+                sx={(theme) => ({
+                  ...courseCategoryCard(theme, ""),
+                  ...(item.slug === slug && {
+                    bgcolor: "menuItemBg",
+                    color:
+                      theme.palette.mode === "dark"
+                        ? "text.primary"
+                        : "primary.main",
+                    "& svg": {
+                      color:
+                        theme.palette.mode === "dark"
+                          ? "#fff !important"
+                          : "primary.main",
+                    },
+                    borderColor: "primary.main",
+                  }),
+                })}
               >
                 <SvgIcon name={item.iconName} size={28} />
                 <Typography component="span" sx={courseCategoryCardTitle}>

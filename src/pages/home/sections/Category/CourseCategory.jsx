@@ -28,7 +28,7 @@ function CourseCategory() {
               <Box
                 key={i}
                 component={Link}
-                to={`${item.slug}`}
+                to={`courses/${item.slug}`}
                 sx={(theme) => courseCategoryCard(theme, "120px")}
               >
                 <SvgIcon name={item.iconName} size={28} />

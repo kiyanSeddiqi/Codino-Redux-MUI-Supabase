@@ -25,6 +25,7 @@ export const courseCategoryCard = (theme, minHeight) => ({
   border: 1,
   borderColor: "divider",
   transition: "all 0.3s ease",
+  cursor: "pointer",
   "&:hover": {
     bgcolor: "menuItemBg",
     color: theme.palette.mode === "dark" ? "text.primary" : "primary.main",

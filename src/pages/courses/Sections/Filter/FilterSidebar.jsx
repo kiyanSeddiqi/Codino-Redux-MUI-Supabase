@@ -1,33 +1,39 @@
-import { ChevronLeft, Tune } from "@mui/icons-material";
+import { ChevronLeft, Search, Tune } from "@mui/icons-material";
 import { flexBox } from "../../../../styles/globalStyles";
-import { filterSidebar } from "./coursesFilterStyles";
-import { Box, Button, Typography } from "@mui/material";
+import { filterSidebar, searchBox } from "./coursesFilterStyles";
+import { Box, Button, Divider, InputBase, Typography } from "@mui/material";
+import CategoryAccordion from "./CategoryAccordion";
 
 function FilterSidebar() {
   return (
     <>
       <Box sx={filterSidebar} component="aside">
-        <Box sx={flexBox("12px")}>
-          <Tune />
-          <Typography component="span">فیلتر ها</Typography>
-          <Button
-            variant="text"
-            sx={{
-              "&:hover svg": { opacity: 1, transform: "translateX(0)" },
-              gap: 1,
-            }}
-          >
-            حذف همه
-            <ChevronLeft
-              sx={{
-                fontSize: "18px",
-                transform: "translateX(22px)",
-                opacity: 0,
-                transition: "all 0.2s",
-              }}
+        <Box>
+          {/* FILTER HEADER */}
+          <Box sx={flexBox("12px")}>
+            <Tune />
+            <Typography component="span">فیلتر ها</Typography>
+            <Button variant="text">حذف همه</Button>
+          </Box>
+          {/* SEARCH BOX */}
+          <Box sx={searchBox}>
+            <Search sx={{ fontSize: "22px" }} />
+            <InputBase
+              type="text"
+              autoComplete="off"
+              name="search"
+              placeholder="جستجو از میان نتایج"
             />
-          </Button>
+            <Button
+              sx={{ fontSize: "10px", p: "6px 8px", borderRadius: "4px" }}
+            >
+              جستجو
+            </Button>
+          </Box>
         </Box>
+        <Divider />
+        <CategoryAccordion />
+        <Divider />
       </Box>
     </>
   );
