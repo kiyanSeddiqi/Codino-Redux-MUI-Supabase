@@ -1,4 +1,4 @@
-import { flexBox } from "../../../../styles/globalStyles";
+import { flexBox, flexCol } from "../../../../styles/globalStyles";
 
 export const filterContainer = {
   display: "flex",
@@ -71,4 +71,10 @@ export const catAccordionSummary = {
   "& .MuiAccordionSummary-content": {
     margin: 0,
   },
+};
+
+export const filterListBox = {
+  ...flexCol("4px"),
+  maxHeight: "300px",
+  overflow: "auto",
 };

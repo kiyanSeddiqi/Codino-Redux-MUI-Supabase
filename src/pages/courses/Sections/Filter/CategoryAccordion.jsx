@@ -12,8 +12,11 @@ import { flexBetween, flexCol } from "../../../../styles/globalStyles";
 import {
   catAccordion,
   catAccordionSummary,
+  filterListBox,
   searchBox,
 } from "./coursesFilterStyles";
+import CategoryFilterList from "./CategoryFilterList";
+import { categoryData } from "../../../../data/categoryData";
 
 function CategoryAccordion() {
   const [expanded, setExpanded] = useState(false);
@@ -43,6 +46,12 @@ function CategoryAccordion() {
                 name="search"
                 placeholder="جستجو ..."
               />
+            </Box>
+            <Box sx={filterListBox}>
+              {categoryData.map((item) => {
+                if (item.children.length === 0) return;
+                return <CategoryFilterList key={item.id} itemData={item} />;
+              })}
             </Box>
           </Box>
         </AccordionDetails>
