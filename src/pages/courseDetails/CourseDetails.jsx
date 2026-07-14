@@ -24,23 +24,25 @@ function CourseDetails() {
   const { slug } = useParams();
   const product = productData.find((item) => item?.slug === slug);
 
-  const subCategory = categoryData
-    .flatMap((category) => category.children)
-    .find((child) => child.slug === product.categories[0]);
+  const subCategory = product?.categories[0]
+    ? categoryData
+        .flatMap((category) => category.children)
+        .find((child) => child.slug === product.categories[0])
+    : null;
+
+  const items = [{ title: "دوره ها", link: "/courses" }];
+  if (subCategory) {
+    items.push({
+      title: subCategory.title,
+      link: `/courses/${subCategory.slug}`,
+    });
+  }
+  items.push({ title: product.title });
 
   return (
     <>
       <Box sx={courseContainer}>
-        <BreadCrumb
-          items={[
-            { title: "دوره ها", link: "/courses" },
-            {
-              title: subCategory?.title,
-              link: `/courses/${subCategory?.slug}`,
-            },
-            { title: product.title },
-          ]}
-        />
+        <BreadCrumb items={items} />
         <Box sx={courseContentBox}>
           <Box
             sx={{

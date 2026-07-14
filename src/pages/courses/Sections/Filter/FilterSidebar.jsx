@@ -3,6 +3,8 @@ import { flexBox } from "../../../../styles/globalStyles";
 import { filterSidebar, searchBox } from "./coursesFilterStyles";
 import { Box, Button, Divider, InputBase, Typography } from "@mui/material";
 import CategoryAccordion from "./CategoryAccordion";
+import StatusAccordion from "./StatusAccordion";
+import SwitchboxFilter from "./SwitchboxFilter";
 
 function FilterSidebar() {
   return (
@@ -34,6 +36,9 @@ function FilterSidebar() {
         <Divider />
         <CategoryAccordion />
         <Divider />
+        <StatusAccordion />
+        <Divider />
+        <SwitchboxFilter />
       </Box>
     </>
   );

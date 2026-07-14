@@ -10,8 +10,8 @@ import {
 import { useId, useState } from "react";
 import { flexBetween, flexCol } from "../../../../styles/globalStyles";
 import {
-  catAccordion,
-  catAccordionSummary,
+  filterAccordion,
+  filterAccordionTitle,
   filterListBox,
   searchBox,
 } from "./coursesFilterStyles";
@@ -24,12 +24,12 @@ function CategoryAccordion() {
   return (
     <>
       <Accordion
-        sx={catAccordion}
+        sx={filterAccordion}
         expanded={expanded}
         onChange={() => setExpanded(!expanded)}
       >
         <AccordionSummary
-          sx={catAccordionSummary}
+          sx={filterAccordionTitle}
           expandIcon={<ExpandMore />}
           aria-controls={`${id}-panel1-content`}
           id={`${id}-panel1-header`}

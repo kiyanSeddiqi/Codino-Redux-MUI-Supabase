@@ -13,6 +13,8 @@ import {
   cardStatusBadge,
   cardTitle,
   cardTitleBox,
+  featuredCardContainer,
+  featuredCardImgBox,
 } from "../styles/productCardStyles";
 import { Box, Chip, Divider, Tooltip, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -30,10 +32,6 @@ import {
   PermIdentity,
 } from "@mui/icons-material";
 import { addComma } from "../../../utils/helpers";
-import {
-  expertCardContainer,
-  expertCardImgBox,
-} from "../../../pages/home/Sections/Expert/expertCoursesStyles";
 
 const levelLabels = {
   beginner: "مقدماتی",
@@ -45,11 +43,13 @@ function ProductCard({ itemData, layout = "default" }) {
 
   return (
     <>
-      <Card sx={[layout === "expert" ? expertCardContainer : cardContainer]}>
+      <Card
+        sx={[layout === "featured" ? featuredCardContainer : cardContainer]}
+      >
         <Box
           component={Link}
           to={`/course/${itemData.slug}`}
-          sx={[layout === "expert" ? expertCardImgBox : cardImgBox]}
+          sx={[layout === "featured" ? featuredCardImgBox : cardImgBox]}
         >
           <CardMedia
             sx={cardImg}
@@ -131,7 +131,8 @@ function ProductCard({ itemData, layout = "default" }) {
                 component="strong"
                 sx={{
                   fontWeight: 700,
-                  fontSize: itemData.price !== 0 && "18px",
+                  fontSize: itemData.price !== 0 ? "18px" : undefined,
+                  color: layout === "featured" ? "primary.main" : undefined,
                 }}
               >
                 {itemData.price === 0 ? "رایگان!" : addComma(itemData.price)}

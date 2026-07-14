@@ -43,7 +43,7 @@ export const searchBox = {
   },
 };
 
-export const catAccordion = {
+export const filterAccordion = {
   bgcolor: "background.default",
   boxShadow: "none",
   "&::before": {
@@ -63,7 +63,7 @@ export const catAccordion = {
   },
 };
 
-export const catAccordionSummary = {
+export const filterAccordionTitle = {
   px: 0,
   py: 1,
   minHeight: 0,
@@ -76,5 +76,163 @@ export const catAccordionSummary = {
 export const filterListBox = {
   ...flexCol("4px"),
   maxHeight: "300px",
-  overflow: "auto",
+  overflowY: "auto",
+  overflowX: "hidden",
+};
+
+export const filterOption = {
+  "& .MuiFormControlLabel-label": {
+    fontSize: "12px",
+  },
+  gap: "10px",
+  mr: 0,
+};
+
+export const filterOptionCheckbox = {
+  "&.Mui-checked": {
+    color: "primary.main",
+  },
+  "& .MuiSvgIcon-root": {
+    color: "primary.main",
+  },
+  p: 0,
+};
+
+export const switchboxStyle = (theme) => ({
+  width: 60,
+  height: 34,
+  p: 0,
+
+  "& .MuiSwitch-switchBase": {
+    p: 0,
+    transitionDuration: "500ms",
+    top: "5px",
+    left: "5px",
+
+    "&.Mui-checked": {
+      transform: "translateX(25.5px) rotate(90deg)",
+      color: "#fff",
+
+      "& + .MuiSwitch-track": {
+        bgcolor: "primary.main",
+        opacity: 1,
+      },
+    },
+  },
+
+  "& .MuiSwitch-thumb": {
+    width: 24,
+    height: 24,
+    boxShadow: "none",
+    borderRadius: "8px",
+  },
+
+  "& .MuiSwitch-track": {
+    borderRadius: "10px",
+    bgcolor: "divider",
+    opacity: 1,
+  },
+});
+
+export const switchBoxlLabel = {
+  "& .MuiFormControlLabel-label": {
+    fontSize: {
+      xs: "14px",
+      xl: "16px",
+    },
+  },
+  mr: 0,
+  gap: "10px",
+};
+
+export const sortContainer = {
+  display: {
+    xs: "none",
+    lg: "flex",
+  },
+  alignItems: "center",
+  gap: "10px",
+};
+
+export const sortMobileContainer = {
+  display: {
+    xs: "flex",
+    lg: "none",
+  },
+  gap: 2.5,
+  "& button": {
+    borderRadius: "8px",
+    gap: "12px",
+    width: "100%",
+    py: "16px",
+  },
+};
+
+export const coursesCardCotainer = {
+  display: "grid",
+  gridTemplateColumns: {
+    xs: "repeat(1, minmax(0, 1fr))",
+    md: "repeat(3, minmax(0, 1fr))",
+    lg: "repeat(4, minmax(0, 1fr))",
+  },
+  gap: 2.5,
+};
+
+export const sortMobileBadge = (theme) => ({
+  p: "4px 12px",
+  borderRadius: "8px",
+  display: "grid",
+  placeItems: "center",
+  fontSize: "14px",
+  bgcolor: "primary.main",
+  color: theme.palette.mode === "dark" ? "secondary.contrastText" : "#fff",
+  lineHeight: "16px",
+  minWidth: 24,
+});
+
+export const filterModalStyle = {
+  display: { lg: "none", xs: "block" },
+  "& .MuiDialog-paper": {
+    p: { xs: "16px 16px 8px", sm: "20px 32px 8px", md: 2 },
+    m: 0,
+    gap: 2,
+    borderRadius: { xs: "16px 16px 0 0", md: "8px" },
+    minWidth: { md: "50%" },
+    position: { xs: "fixed", md: "static" },
+    bottom: { xs: 0 },
+    width: {
+      xs: "100%",
+      md: "50%",
+    },
+    maxWidth: "100%",
+    bgcolor: "background.default",
+  },
+
+  "& .MuiBackdrop-root": {
+    backdropFilter: "blur(6px)",
+  },
+};
+
+export const filterModalTitle = {
+  ...flexBox(1),
+  p: 0,
+  color: "text.secondary",
+  fontWeight: "600",
+  fontSize: {
+    xs: "16px",
+    md: "18px",
+  },
+};
+
+export const sortModalList = {
+  "& .MuiListItemText-root": {
+    textAlign: "right",
+  },
+  "& .MuiListItem-root": {
+    p: 0,
+  },
+  "& .MuiListItemButton-root": {
+    px: 0,
+    py: 2.5,
+  },
 };
