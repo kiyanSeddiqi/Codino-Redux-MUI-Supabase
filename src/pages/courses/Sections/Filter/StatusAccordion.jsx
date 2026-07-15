@@ -8,11 +8,15 @@ import {
   Typography,
 } from "@mui/material";
 import { useId, useState } from "react";
-import { filterAccordion, filterAccordionTitle } from "./coursesFilterStyles";
+import {
+  filterAccordion,
+  filterAccordionTitle,
+  statusFilterBtn,
+} from "./coursesFilterStyles";
 import { flexBox } from "../../../../styles/globalStyles";
 
-function StatusAccordion() {
-  const [expanded, setExpanded] = useState(false);
+function StatusAccordion({ onFilterStatus, statusValue }) {
+  const [expanded, setExpanded] = useState(true);
   const id = useId();
   return (
     <>
@@ -34,14 +38,37 @@ function StatusAccordion() {
             sx={{
               ...flexBox("12px"),
               flexWrap: "wrap",
-              "& > *": { borderRadius: "6px" },
               mt: "12px",
             }}
           >
-            <Button variant="outlined">همه دوره ها</Button>
-            <Button variant="outlined">درحال بروز رسانی</Button>
-            <Button variant="outlined">به اتمام رسیده </Button>
-            <Button variant="outlined">به زودی </Button>
+            <Button
+              sx={statusFilterBtn}
+              onClick={() => onFilterStatus("all")}
+              variant={statusValue === "all" ? "contained" : "outlined"}
+            >
+              همه دوره ها
+            </Button>
+            <Button
+              sx={statusFilterBtn}
+              onClick={() => onFilterStatus("updating")}
+              variant={statusValue === "updating" ? "contained" : "outlined"}
+            >
+              درحال بروز رسانی
+            </Button>
+            <Button
+              sx={statusFilterBtn}
+              onClick={() => onFilterStatus("completed")}
+              variant={statusValue === "completed" ? "contained" : "outlined"}
+            >
+              به اتمام رسیده
+            </Button>
+            <Button
+              sx={statusFilterBtn}
+              onClick={() => onFilterStatus("soon")}
+              variant={statusValue === "soon" ? "contained" : "outlined"}
+            >
+              به زودی
+            </Button>
           </Box>
         </AccordionDetails>
       </Accordion>

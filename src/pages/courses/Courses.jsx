@@ -9,14 +9,19 @@ import { categoryData } from "../../data/categoryData";
 
 function Courses() {
   const { slug } = useParams();
-  const mainCategory = categoryData.find((item) => item.slug === slug);
+  const currentCategory =
+    categoryData.find((item) => item.slug === slug) ??
+    categoryData
+      .flatMap((item) => item.children)
+      .find((child) => child.slug === slug);
 
   const breadcrumbItems = [
     { title: "دوره ها", link: slug ? "/courses" : undefined },
   ];
   if (slug) {
-    breadcrumbItems.push({ title: mainCategory?.title });
+    breadcrumbItems.push({ title: currentCategory?.title });
   }
+
   return (
     <>
       <Box sx={coursesContainer}>

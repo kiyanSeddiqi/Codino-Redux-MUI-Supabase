@@ -6,7 +6,14 @@ import CategoryAccordion from "./CategoryAccordion";
 import StatusAccordion from "./StatusAccordion";
 import SwitchboxFilter from "./SwitchboxFilter";
 
-function FilterSidebar() {
+function FilterSidebar({
+  searchInput,
+  onInputChange,
+  onSearch,
+  onClearFilters,
+  onFilterStatus,
+  statusValue,
+}) {
   return (
     <>
       <Box sx={filterSidebar} component="aside">
@@ -15,7 +22,9 @@ function FilterSidebar() {
           <Box sx={flexBox("12px")}>
             <Tune />
             <Typography component="span">فیلتر ها</Typography>
-            <Button variant="text">حذف همه</Button>
+            <Button onClick={onClearFilters} variant="text">
+              حذف همه
+            </Button>
           </Box>
           {/* SEARCH BOX */}
           <Box sx={searchBox}>
@@ -25,8 +34,16 @@ function FilterSidebar() {
               autoComplete="off"
               name="search"
               placeholder="جستجو از میان نتایج"
+              value={searchInput}
+              onChange={(e) => onInputChange(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  onSearch();
+                }
+              }}
             />
             <Button
+              onClick={() => onSearch()}
               sx={{ fontSize: "10px", p: "6px 8px", borderRadius: "4px" }}
             >
               جستجو
@@ -36,7 +53,10 @@ function FilterSidebar() {
         <Divider />
         <CategoryAccordion />
         <Divider />
-        <StatusAccordion />
+        <StatusAccordion
+          onFilterStatus={onFilterStatus}
+          statusValue={statusValue}
+        />
         <Divider />
         <SwitchboxFilter />
       </Box>

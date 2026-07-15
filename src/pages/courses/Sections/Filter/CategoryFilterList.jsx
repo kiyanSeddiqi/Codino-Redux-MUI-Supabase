@@ -9,7 +9,7 @@ import {
   FormGroup,
   Typography,
 } from "@mui/material";
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import {
   filterAccordion,
   filterAccordionTitle,
@@ -17,10 +17,22 @@ import {
   filterOptionCheckbox,
 } from "./coursesFilterStyles";
 import { flexCol } from "../../../../styles/globalStyles";
+import { useNavigate } from "react-router-dom";
 
-function CategoryFilterList({ itemData }) {
-  const [expanded, setExpanded] = useState(false);
+function CategoryFilterList({ itemData, currentSlug }) {
   const id = useId();
+  const navigate = useNavigate();
+
+  const hasActiveChild =
+    itemData.slug === currentSlug ||
+    itemData.children.some((child) => child.slug === currentSlug);
+
+  const [expanded, setExpanded] = useState(hasActiveChild);
+
+  useEffect(() => {
+    setExpanded(hasActiveChild);
+  }, [hasActiveChild]);
+
   return (
     <>
       <Accordion
@@ -41,14 +53,20 @@ function CategoryFilterList({ itemData }) {
           </Typography>
         </AccordionSummary>
         <AccordionDetails sx={{ p: 0, pr: 4 }}>
-          <FormGroup sx={{ gap: 1 }}>
+          <FormGroup sx={{ gap: 1, pl: "12px" }}>
             {itemData?.children.map((child, i) => {
               if (child.slug.length === 0) return;
               return (
                 <FormControlLabel
                   key={i}
                   sx={filterOption}
-                  control={<Checkbox sx={filterOptionCheckbox} />}
+                  control={
+                    <Checkbox
+                      checked={child.slug === currentSlug}
+                      onChange={() => navigate(`/courses/${child.slug}`)}
+                      sx={filterOptionCheckbox}
+                    />
+                  }
                   label={child.title}
                 />
               );

@@ -1,3 +1,4 @@
+import { red } from "@mui/material/colors";
 import { flexBox, flexCol } from "../../../../styles/globalStyles";
 
 export const filterContainer = {
@@ -97,6 +98,20 @@ export const filterOptionCheckbox = {
   },
   p: 0,
 };
+
+export const statusFilterBtn = {
+  borderRadius: "6px",
+  border: 1,
+  borderColor: "primary.main",
+};
+
+export const notFoundMsg = (theme) => ({
+  color: theme.palette.mode === "dark" ? "accent.main" : red[700],
+  fontSize: {
+    xs: "16px",
+    lg: "20px",
+  },
+});
 
 export const switchboxStyle = (theme) => ({
   width: 60,

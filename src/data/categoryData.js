@@ -124,8 +124,8 @@ export const categoryData = [
     slug: "soft-skill",
     children: [
       { title: "همه آموزش های این دسته", slug: "" },
-      { title: "ساخت شخصیت فریلنسری", slug: "soft-skill" },
-      { title: "برندینگ شخصی", slug: "soft-skill" },
+      { title: "ساخت شخصیت فریلنسری", slug: "freelance-personality" },
+      { title: "برندینگ شخصی", slug: "personal-branding" },
     ],
   },
   {
@@ -165,19 +165,19 @@ export const categoryData = [
       },
       {
         title: "یادگیری ماشین (Machine Learning) با سی شارپ",
-        slug: "ai-and-machine-learning",
+        slug: "machine-learning-with-c-sharp",
       },
       {
         title: "پردازش تصویر و بینایی ماشین (Computer Vision)",
-        slug: "ai-and-machine-learning",
+        slug: "computer-vision",
       },
       {
         title: "مهندسی پرامپت",
-        slug: "ai-and-machine-learning",
+        slug: "prompt-engineering",
       },
       {
         title: "چت جی‌پی‌تی (ChatGPT)",
-        slug: "ai-and-machine-learning",
+        slug: "chatgpt",
       },
     ],
   },
@@ -192,10 +192,10 @@ export const categoryData = [
         slug: "",
       },
       { title: "سئو (SEO)", slug: "seo-courses" },
-      { title: "بازاریابی محتوایی", slug: "seo-courses" },
+      { title: "بازاریابی محتوایی", slug: "content-marketing" },
       {
         title: "بازاریابی شبکه های اجتماعی (Social Media)",
-        slug: "seo-courses",
+        slug: "social-media",
       },
     ],
   },
@@ -215,15 +215,15 @@ export const categoryData = [
       },
       {
         title: "الگوهای طراحی (Design Patterns) ",
-        slug: "system-design",
+        slug: "design-patterns",
       },
       {
         title: "معماری میکروسرویس‌ها (Microservices Architecture)",
-        slug: "system-design",
+        slug: "microservices-architecture",
       },
       {
         title: "کدنویسی تمیز (Clean Code) و ریفکتورینگ",
-        slug: "system-design",
+        slug: "clean-code-and-refactoring",
       },
     ],
   },
@@ -243,7 +243,7 @@ export const categoryData = [
       },
       {
         title: "توسعه نرم‌افزارهای دسکتاپ با سی‌شارپ و دات‌نت ",
-        slug: "desktop-development-with-python",
+        slug: "desktop-development-with-dotnet",
       },
     ],
   },
@@ -258,7 +258,7 @@ export const categoryData = [
         title: "مدیریت ورژن‌ها با Git و GitHub",
         slug: "git-github",
       },
-      { title: "مدیریت سرور ها", slug: "git-github" },
+      { title: "مدیریت سرور ها", slug: "server-management" },
     ],
   },
   {
@@ -272,7 +272,7 @@ export const categoryData = [
         title: "فیگما",
         slug: "figma",
       },
-      { title: "مبانی طراحی UI/UX", slug: "figma" },
+      { title: "مبانی طراحی UI/UX", slug: "basics-of-ui-and-ux" },
     ],
   },
   {

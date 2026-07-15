@@ -41,7 +41,6 @@ function SortModal({ isOpen, onShow }) {
             <Divider sx={{ my: 2, display: { xs: "none", md: "block" } }} />
           </Box>
         </Box>
-        {/* <Divider /> */}
         <List sx={sortModalList} disablePadding>
           <ListItem divider>
             <ListItemButton>

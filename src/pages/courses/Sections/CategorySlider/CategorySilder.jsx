@@ -26,10 +26,14 @@ function CategorySilder() {
     if (!swiperRef.current) return;
 
     if (slug) {
-      const activeIndex = categoryData.findIndex((item) => item.slug === slug);
+      const activeIndex = categoryData.findIndex(
+        (item) =>
+          item.slug === slug ||
+          item.children.some((child) => child.slug === slug),
+      );
 
       if (activeIndex !== -1) {
-        const targetIndex = Math.max(activeIndex - 1, 0);
+        const targetIndex = Math.max(activeIndex - 2, 0);
         swiperRef.current.slideToLoop(targetIndex);
       }
     } else {
@@ -68,38 +72,43 @@ function CategorySilder() {
             1536: { slidesPerView: 5.2, spaceBetween: 20 },
           }}
         >
-          {categoryData.map((item, i) => (
-            <SwiperSlide key={item.id}>
-              <Box
-                key={i}
-                onClick={() =>
-                  navigate(item.slug ? `/courses/${item.slug}` : "/courses")
-                }
-                sx={(theme) => ({
-                  ...courseCategoryCard(theme, ""),
-                  ...(item.slug === slug && {
-                    bgcolor: "menuItemBg",
-                    color:
-                      theme.palette.mode === "dark"
-                        ? "text.primary"
-                        : "primary.main",
-                    "& svg": {
+          {categoryData.map((item, i) => {
+            const isActive =
+              item.slug === slug ||
+              item.children.some((child) => child.slug === slug);
+            return (
+              <SwiperSlide key={item.id}>
+                <Box
+                  key={i}
+                  onClick={() =>
+                    navigate(item.slug ? `/courses/${item.slug}` : "/courses")
+                  }
+                  sx={(theme) => ({
+                    ...courseCategoryCard(theme, ""),
+                    ...(isActive && {
+                      bgcolor: "menuItemBg",
                       color:
                         theme.palette.mode === "dark"
-                          ? "#fff !important"
+                          ? "text.primary"
                           : "primary.main",
-                    },
-                    borderColor: "primary.main",
-                  }),
-                })}
-              >
-                <SvgIcon name={item.iconName} size={28} />
-                <Typography component="span" sx={courseCategoryCardTitle}>
-                  {item.title}
-                </Typography>
-              </Box>
-            </SwiperSlide>
-          ))}
+                      "& svg": {
+                        color:
+                          theme.palette.mode === "dark"
+                            ? "#fff !important"
+                            : "primary.main",
+                      },
+                      borderColor: "primary.main",
+                    }),
+                  })}
+                >
+                  <SvgIcon name={item.iconName} size={28} />
+                  <Typography component="span" sx={courseCategoryCardTitle}>
+                    {item.title}
+                  </Typography>
+                </Box>
+              </SwiperSlide>
+            );
+          })}
         </Swiper>
       </Box>
     </>

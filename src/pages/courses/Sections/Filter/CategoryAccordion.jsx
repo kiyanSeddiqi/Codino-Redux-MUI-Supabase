@@ -7,7 +7,7 @@ import {
   InputBase,
   Typography,
 } from "@mui/material";
-import { useId, useState } from "react";
+import { useId, useMemo, useState } from "react";
 import { flexBetween, flexCol } from "../../../../styles/globalStyles";
 import {
   filterAccordion,
@@ -17,10 +17,30 @@ import {
 } from "./coursesFilterStyles";
 import CategoryFilterList from "./CategoryFilterList";
 import { categoryData } from "../../../../data/categoryData";
+import { useParams } from "react-router-dom";
 
 function CategoryAccordion() {
-  const [expanded, setExpanded] = useState(false);
+  const { slug } = useParams();
+  const [expanded, setExpanded] = useState(true);
+  const [searchQury, setSearchQuery] = useState("");
   const id = useId();
+
+  const filteredCats = useMemo(() => {
+    const query = searchQury.trim().toLocaleLowerCase();
+
+    if (!query) return categoryData;
+
+    return categoryData.filter((item) => {
+      const parentMatch = item.title.toLocaleLowerCase().includes(query);
+
+      const childMatch = item.children.some((child) =>
+        child.title.toLocaleLowerCase().includes(query),
+      );
+
+      return parentMatch || childMatch;
+    });
+  }, [searchQury]);
+
   return (
     <>
       <Accordion
@@ -45,12 +65,20 @@ function CategoryAccordion() {
                 autoComplete="off"
                 name="search"
                 placeholder="جستجو ..."
+                value={searchQury}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </Box>
             <Box sx={filterListBox}>
-              {categoryData.map((item) => {
-                if (item.children.length === 0) return;
-                return <CategoryFilterList key={item.id} itemData={item} />;
+              {filteredCats.map((item) => {
+                if (!item.children.length) return null;
+                return (
+                  <CategoryFilterList
+                    key={item.id}
+                    itemData={item}
+                    currentSlug={slug}
+                  />
+                );
               })}
             </Box>
           </Box>

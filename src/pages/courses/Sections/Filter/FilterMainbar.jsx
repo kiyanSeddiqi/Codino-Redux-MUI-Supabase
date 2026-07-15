@@ -2,21 +2,49 @@ import { Box, Button, Typography } from "@mui/material";
 import {
   coursesCardCotainer,
   filterMainbar,
+  notFoundMsg,
   sortContainer,
   sortMobileBadge,
   sortMobileContainer,
 } from "./coursesFilterStyles";
-import { flexBox } from "../../../../styles/globalStyles";
-import { FilterList, Tune } from "@mui/icons-material";
+import { flexBox, flexCenter } from "../../../../styles/globalStyles";
+import {
+  ArrowOutward,
+  CallReceived,
+  ExpandMore,
+  FilterList,
+  Tune,
+} from "@mui/icons-material";
 import { productData } from "../../../../data/productData";
 import ProductCard from "../../../../features/product/components/ProductCard";
 import FilterModal from "./FilterModal";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import SortModal from "./SortModal";
 
-function FilterMainbar() {
+function FilterMainbar({ searchQuery, courseStatus }) {
   const [openFilterModal, setOpenFilterModal] = useState(false);
   const [openSortModal, setOpenSortModal] = useState(false);
+
+  const filteredCourses = useMemo(() => {
+    let courses = [...productData];
+
+    // SEARCH
+    if (searchQuery.trim()) {
+      courses = courses.filter((p) =>
+        p.title
+          .toLocaleLowerCase()
+          .includes(searchQuery.trim().toLocaleLowerCase()),
+      );
+    }
+
+    // STATUS
+    if (courseStatus !== "all") {
+      courses = courses.filter((course) => course.status === courseStatus);
+    }
+
+    return courses;
+  }, [searchQuery, courseStatus]);
+
   return (
     <>
       <Box sx={filterMainbar} component="main">
@@ -55,10 +83,32 @@ function FilterMainbar() {
           </Button>
           <SortModal isOpen={openSortModal} onShow={setOpenSortModal} />
         </Box>
-        <Box sx={coursesCardCotainer}>
-          {productData.slice(0, 12).map((item) => (
-            <ProductCard layout="featured" key={item.id} itemData={item} />
-          ))}
+        {filteredCourses.length > 0 ? (
+          <Box sx={coursesCardCotainer}>
+            {filteredCourses.map((item) => (
+              <ProductCard layout="featured" key={item.id} itemData={item} />
+            ))}
+          </Box>
+        ) : (
+          <Box
+            sx={{
+              height: "150px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 2.5,
+            }}
+          >
+            <Typography sx={notFoundMsg}>نتیجه ای یافت نشد !</Typography>
+            <Typography> لطفا نگارش کلمات یا فیلتر را تغییر دهید</Typography>
+          </Box>
+        )}
+        <Box sx={{ textAlign: "center" }}>
+          <Button color="secondary">
+            مشاهده بیشتر
+            <ExpandMore />
+          </Button>
         </Box>
       </Box>
     </>
