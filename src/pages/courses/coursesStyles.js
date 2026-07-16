@@ -1,7 +1,7 @@
 import { flexCol } from "../../styles/globalStyles";
 
 export const coursesContainer = {
-  ...flexCol(5),
+  ...flexCol(4),
   mt: 4,
   mb: 6,
 };

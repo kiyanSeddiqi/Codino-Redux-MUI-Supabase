@@ -15,7 +15,7 @@ import { courseCategoryCardTitle } from "../../coursesStyles.js";
 import { categoryData } from "../../../../data/categoryData.js";
 import SvgIcon from "../../../../components/ui/SvgIcon/SvgIcon.jsx";
 import { Box, Typography } from "@mui/material";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function CategorySilder() {
   const { slug } = useParams();
@@ -41,12 +41,18 @@ function CategorySilder() {
     }
   }, [slug]);
 
+  const currentCategory = categoryData.find(
+    (item) =>
+      item.slug === slug || item.children.some((child) => child.slug === slug),
+  );
+  const sliderTitle = currentCategory?.title ?? "دسته بندی ها";
+
   return (
     <>
       <Box sx={flexCol(2.5)} component="section" className="courses-section">
         <Box sx={{ ...flexBetween("row") }}>
           <Typography component="h4" sx={sectionTitle}>
-            دسته بندی ها
+            {sliderTitle ?? " دسته بندی ها"}
           </Typography>
           <SliderNavBtn />
         </Box>

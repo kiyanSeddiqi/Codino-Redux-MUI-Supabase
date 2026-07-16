@@ -11,7 +11,7 @@ import { useId, useState } from "react";
 import {
   filterAccordion,
   filterAccordionTitle,
-  statusFilterBtn,
+  activeFilterBtn,
 } from "./coursesFilterStyles";
 import { flexBox } from "../../../../styles/globalStyles";
 
@@ -42,28 +42,28 @@ function StatusAccordion({ onFilterStatus, statusValue }) {
             }}
           >
             <Button
-              sx={statusFilterBtn}
+              sx={activeFilterBtn}
               onClick={() => onFilterStatus("all")}
               variant={statusValue === "all" ? "contained" : "outlined"}
             >
               همه دوره ها
             </Button>
             <Button
-              sx={statusFilterBtn}
+              sx={activeFilterBtn}
               onClick={() => onFilterStatus("updating")}
               variant={statusValue === "updating" ? "contained" : "outlined"}
             >
               درحال بروز رسانی
             </Button>
             <Button
-              sx={statusFilterBtn}
+              sx={activeFilterBtn}
               onClick={() => onFilterStatus("completed")}
               variant={statusValue === "completed" ? "contained" : "outlined"}
             >
               به اتمام رسیده
             </Button>
             <Button
-              sx={statusFilterBtn}
+              sx={activeFilterBtn}
               onClick={() => onFilterStatus("soon")}
               variant={statusValue === "soon" ? "contained" : "outlined"}
             >

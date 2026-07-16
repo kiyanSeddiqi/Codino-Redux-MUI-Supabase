@@ -706,7 +706,7 @@ export const productData = [
     categories: ["unity", "game-development"],
     tags: [""],
     hasCertificate: true,
-    hasInstallment: false,
+    hasInstallment: true,
     created_at: "2026-06-08T11:00:00Z",
   },
   {
@@ -724,7 +724,7 @@ export const productData = [
     categories: ["unreal-engine", "game-development"],
     tags: [""],
     hasCertificate: false,
-    hasInstallment: false,
+    hasInstallment: true,
     created_at: "2026-06-29T11:00:00Z",
   },
   {

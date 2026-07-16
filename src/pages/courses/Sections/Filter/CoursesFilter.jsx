@@ -8,7 +8,12 @@ function CoursesFilter() {
   const [searchInput, setSearchInput] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [status, setStatus] = useState("all");
-
+  const [sort, setSort] = useState("latest");
+  const [accessFilter, setAccessFilter] = useState({
+    plus: false,
+    installment: false,
+    free: false,
+  });
   function handleSearch() {
     setSearchQuery(searchInput);
   }
@@ -17,6 +22,19 @@ function CoursesFilter() {
     setSearchInput("");
     setSearchQuery("");
     setStatus("all");
+    setSort("latest");
+    setAccessFilter({
+      plus: false,
+      installment: false,
+      free: false,
+    });
+  }
+
+  function handleAccessFilter(name, checked) {
+    setAccessFilter((prev) => ({
+      ...prev,
+      [name]: checked,
+    }));
   }
 
   return (
@@ -29,8 +47,16 @@ function CoursesFilter() {
           onClearFilters={handleClearFilters}
           onFilterStatus={setStatus}
           statusValue={status}
+          onFilterAccess={handleAccessFilter}
+          accessFilter={accessFilter}
         />
-        <FilterMainbar searchQuery={searchQuery} courseStatus={status} />
+        <FilterMainbar
+          searchQuery={searchQuery}
+          courseStatus={status}
+          accessFilter={accessFilter}
+          sortValue={sort}
+          onSort={setSort}
+        />
       </Box>
     </>
   );

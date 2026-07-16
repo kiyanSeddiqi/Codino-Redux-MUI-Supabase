@@ -13,6 +13,8 @@ function FilterSidebar({
   onClearFilters,
   onFilterStatus,
   statusValue,
+  onFilterAccess,
+  accessFilter,
 }) {
   return (
     <>
@@ -58,7 +60,10 @@ function FilterSidebar({
           statusValue={statusValue}
         />
         <Divider />
-        <SwitchboxFilter />
+        <SwitchboxFilter
+          onFilterAccess={onFilterAccess}
+          accessFilter={accessFilter}
+        />
       </Box>
     </>
   );

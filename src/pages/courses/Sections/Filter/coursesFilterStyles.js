@@ -99,7 +99,7 @@ export const filterOptionCheckbox = {
   p: 0,
 };
 
-export const statusFilterBtn = {
+export const activeFilterBtn = {
   borderRadius: "6px",
   border: 1,
   borderColor: "primary.main",
