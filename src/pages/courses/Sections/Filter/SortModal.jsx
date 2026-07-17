@@ -17,7 +17,30 @@ import {
 } from "./coursesFilterStyles";
 import { flexBetween, flexCol } from "../../../../styles/globalStyles";
 
-function SortModal({ isOpen, onShow }) {
+const sortItems = [
+  {
+    title: "جدید ترین",
+    payload: "latest",
+  },
+  {
+    title: "پر فروش ترین",
+    payload: "best-seller",
+  },
+  {
+    title: "ارزان ترین",
+    payload: "price-asc",
+  },
+  {
+    title: "گران ترین",
+    payload: "price-desc",
+  },
+  {
+    title: "پر بازدید ترین",
+    payload: "most-visited",
+  },
+];
+
+function SortModal({ isOpen, onShow, filters, dispatch }) {
   return (
     <>
       <Dialog
@@ -26,42 +49,40 @@ function SortModal({ isOpen, onShow }) {
         disableScrollLock
         sx={filterModalStyle}
       >
-        <Box sx={flexCol("20px", "row")}>
-          {/* header */}
-          <Box>
-            <Box sx={flexBetween(0, "row")}>
-              <DialogTitle sx={filterModalTitle}>
-                <FilterList />
-                مرتب سازی بر اساس
-              </DialogTitle>
-              <IconButton onClick={() => onShow(false)}>
-                <Close sx={{ fontSize: { xs: "20px", md: "24px" } }} />
-              </IconButton>
-            </Box>
-            <Divider sx={{ my: 2, display: { xs: "none", md: "block" } }} />
+        {/* header */}
+        <Box>
+          <Box sx={flexBetween(0, "row")}>
+            <DialogTitle sx={filterModalTitle}>
+              <FilterList />
+              مرتب سازی بر اساس
+            </DialogTitle>
+            <IconButton onClick={() => onShow(false)}>
+              <Close sx={{ fontSize: { xs: "20px", md: "24px" } }} />
+            </IconButton>
           </Box>
+          <Divider sx={{ my: 2 }} />
         </Box>
         <List sx={sortModalList} disablePadding>
-          <ListItem divider>
-            <ListItemButton>
-              <ListItemText primary="جدید ترین" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem divider>
-            <ListItemButton>
-              <ListItemText primary="گران ترین" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem divider>
-            <ListItemButton>
-              <ListItemText primary="ارزان ترین" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemText primary="پربازدید ترین" />
-            </ListItemButton>
-          </ListItem>
+          {sortItems.map((item, i) => (
+            <ListItem key={item.payload} divider={i !== sortItems.length - 1}>
+              <ListItemButton
+                disableRipple
+                sx={{
+                  color:
+                    filters.sort === item.payload ? "primary.main" : "inherit",
+                }}
+                onClick={() => {
+                  dispatch({
+                    type: "SET_SORT",
+                    payload: item.payload,
+                  });
+                  onShow(false);
+                }}
+              >
+                <ListItemText primary={item.title} />
+              </ListItemButton>
+            </ListItem>
+          ))}
         </List>
       </Dialog>
     </>

@@ -6,16 +6,7 @@ import CategoryAccordion from "./CategoryAccordion";
 import StatusAccordion from "./StatusAccordion";
 import SwitchboxFilter from "./SwitchboxFilter";
 
-function FilterSidebar({
-  searchInput,
-  onInputChange,
-  onSearch,
-  onClearFilters,
-  onFilterStatus,
-  statusValue,
-  onFilterAccess,
-  accessFilter,
-}) {
+function FilterSidebar({ filters, dispatch }) {
   return (
     <>
       <Box sx={filterSidebar} component="aside">
@@ -24,7 +15,10 @@ function FilterSidebar({
           <Box sx={flexBox("12px")}>
             <Tune />
             <Typography component="span">فیلتر ها</Typography>
-            <Button onClick={onClearFilters} variant="text">
+            <Button
+              onClick={() => dispatch({ type: "CLEAR_FILTERS" })}
+              variant="text"
+            >
               حذف همه
             </Button>
           </Box>
@@ -36,16 +30,18 @@ function FilterSidebar({
               autoComplete="off"
               name="search"
               placeholder="جستجو از میان نتایج"
-              value={searchInput}
-              onChange={(e) => onInputChange(e.target.value)}
+              value={filters.search.input}
+              onChange={(e) =>
+                dispatch({ type: "SEARCH_INPUT", payload: e.target.value })
+              }
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
-                  onSearch();
+                  dispatch({ type: "SEARCH_QUERY" });
                 }
               }}
             />
             <Button
-              onClick={() => onSearch()}
+              onClick={() => dispatch({ type: "SEARCH_QUERY" })}
               sx={{ fontSize: "10px", p: "6px 8px", borderRadius: "4px" }}
             >
               جستجو
@@ -55,15 +51,9 @@ function FilterSidebar({
         <Divider />
         <CategoryAccordion />
         <Divider />
-        <StatusAccordion
-          onFilterStatus={onFilterStatus}
-          statusValue={statusValue}
-        />
+        <StatusAccordion statusValue={filters.status} dispatch={dispatch} />
         <Divider />
-        <SwitchboxFilter
-          onFilterAccess={onFilterAccess}
-          accessFilter={accessFilter}
-        />
+        <SwitchboxFilter accessValue={filters.access} dispatch={dispatch} />
       </Box>
     </>
   );

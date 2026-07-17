@@ -2,61 +2,60 @@ import { Box } from "@mui/material";
 import { filterContainer } from "./coursesFilterStyles";
 import FilterSidebar from "./FilterSidebar";
 import FilterMainbar from "./FilterMainbar";
-import { useState } from "react";
+import { useReducer, useState } from "react";
 
-function CoursesFilter() {
-  const [searchInput, setSearchInput] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [status, setStatus] = useState("all");
-  const [sort, setSort] = useState("latest");
-  const [accessFilter, setAccessFilter] = useState({
+const initialFilters = {
+  search: {
+    input: "",
+    qury: "",
+  },
+  status: "all",
+  sort: "latest",
+  access: {
     plus: false,
     installment: false,
     free: false,
-  });
-  function handleSearch() {
-    setSearchQuery(searchInput);
-  }
+  },
+};
 
-  function handleClearFilters() {
-    setSearchInput("");
-    setSearchQuery("");
-    setStatus("all");
-    setSort("latest");
-    setAccessFilter({
-      plus: false,
-      installment: false,
-      free: false,
-    });
-  }
+const filterReducer = (state, action) => {
+  switch (action.type) {
+    case "SEARCH_INPUT":
+      return { ...state, search: { ...state.search, input: action.payload } };
+    case "SEARCH_QUERY":
+      return {
+        ...state,
+        search: { ...state.search, query: state.search.input },
+      };
+      break;
+    case "SET_STATUS":
+      return { ...state, status: action.payload };
+    case "SET_SORT":
+      return { ...state, sort: action.payload };
+    case "SET_ACCESS":
+      return {
+        ...state,
+        access: {
+          ...state.access,
+          [action.name]: action.checked,
+        },
+      };
+    case "CLEAR_FILTERS":
+      return initialFilters;
 
-  function handleAccessFilter(name, checked) {
-    setAccessFilter((prev) => ({
-      ...prev,
-      [name]: checked,
-    }));
+    default:
+      return state;
   }
+};
+
+function CoursesFilter() {
+  const [filters, dispatch] = useReducer(filterReducer, initialFilters);
 
   return (
     <>
       <Box sx={filterContainer}>
-        <FilterSidebar
-          searchInput={searchInput}
-          onInputChange={setSearchInput}
-          onSearch={handleSearch}
-          onClearFilters={handleClearFilters}
-          onFilterStatus={setStatus}
-          statusValue={status}
-          onFilterAccess={handleAccessFilter}
-          accessFilter={accessFilter}
-        />
-        <FilterMainbar
-          searchQuery={searchQuery}
-          courseStatus={status}
-          accessFilter={accessFilter}
-          sortValue={sort}
-          onSort={setSort}
-        />
+        <FilterSidebar filters={filters} dispatch={dispatch} />
+        <FilterMainbar filters={filters} dispatch={dispatch} />
       </Box>
     </>
   );

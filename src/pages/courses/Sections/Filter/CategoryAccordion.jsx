@@ -19,7 +19,7 @@ import CategoryFilterList from "./CategoryFilterList";
 import { categoryData } from "../../../../data/categoryData";
 import { useParams } from "react-router-dom";
 
-function CategoryAccordion() {
+function CategoryAccordion({ onClose }) {
   const { slug } = useParams();
   const [expanded, setExpanded] = useState(true);
   const [searchQury, setSearchQuery] = useState("");
@@ -77,6 +77,7 @@ function CategoryAccordion() {
                     key={item.id}
                     itemData={item}
                     currentSlug={slug}
+                    onClose={onClose}
                   />
                 );
               })}

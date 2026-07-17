@@ -23,81 +23,16 @@ import FilterModal from "./FilterModal";
 import { useEffect, useMemo, useState } from "react";
 import SortModal from "./SortModal";
 import { useParams } from "react-router-dom";
+import useCourseFilters from "./hooks/useCourseFilters";
 
-function FilterMainbar({
-  searchQuery,
-  courseStatus,
-  accessFilter,
-  sortValue,
-  onSort,
-}) {
+function FilterMainbar({ filters, dispatch }) {
+  const { search, status, access, sort } = filters;
   const { slug } = useParams();
+  const filteredCourses = useCourseFilters(filters, slug);
   const [openFilterModal, setOpenFilterModal] = useState(false);
   const [openSortModal, setOpenSortModal] = useState(false);
   const [visibleCount, setVisibleCount] = useState(12);
   const INITIAL_VISIBLE = 12;
-
-  const filteredCourses = useMemo(() => {
-    let courses = [...productData];
-
-    // CATEGORY
-    if (slug) {
-      courses = courses.filter((item) => item?.categories?.includes(slug));
-    }
-
-    // SEARCH
-    if (searchQuery.trim()) {
-      courses = courses.filter((p) =>
-        p.title
-          .toLocaleLowerCase()
-          .includes(searchQuery.trim().toLocaleLowerCase()),
-      );
-    }
-
-    // STATUS
-    if (courseStatus !== "all") {
-      courses = courses.filter((course) => course.status === courseStatus);
-    }
-
-    // ACCESS
-    if (accessFilter.free) {
-      courses = courses.filter((item) => item.price === 0);
-    }
-    if (accessFilter.installment) {
-      courses = courses.filter((item) => item.hasInstallment);
-    }
-    if (accessFilter.plus) {
-      courses = courses.filter((item) => item.tags.includes("plus"));
-    }
-
-    // SORT
-    switch (sortValue) {
-      case "latest":
-        courses = courses.sort(
-          (a, b) => new Date(b.created_at) - new Date(a.created_at),
-        );
-        break;
-      case "best-seller":
-        courses = courses.filter((item) => item.tags.includes("best-seller"));
-        break;
-      case "price-asc":
-        courses = courses
-          .filter((item) => item.price > 0)
-          .sort((a, b) => a.price - b.price);
-        break;
-      case "price-desc":
-        courses = courses.sort((a, b) => b.price - a.price);
-        break;
-      case "most-visited":
-        courses = courses.filter((item) => item.tags.includes("most-visited"));
-        break;
-
-      default:
-        break;
-    }
-
-    return courses;
-  }, [searchQuery, courseStatus, accessFilter, sortValue, slug]);
 
   function handleShowMore() {
     if (visibleCount < filteredCourses.length) {
@@ -111,11 +46,21 @@ function FilterMainbar({
 
   useEffect(() => {
     setVisibleCount(12);
-  }, [searchQuery, courseStatus, accessFilter, sortValue]);
+  }, [search.query, status, access, sort]);
 
   const hasMore = visibleCount < filteredCourses.length;
   const canShowLess =
     visibleCount > INITIAL_VISIBLE && visibleCount >= filteredCourses.length;
+
+  const activeFiltersCount = useMemo(() => {
+    let count = 0;
+    if (status !== "all") count++;
+    if (access.plus) count++;
+    if (access.free) count++;
+    if (access.installment) count++;
+    if (slug) count++;
+    return count;
+  }, [filters, slug]);
 
   return (
     <>
@@ -137,36 +82,44 @@ function FilterMainbar({
           >
             <Button
               sx={activeFilterBtn}
-              onClick={() => onSort("latest")}
-              variant={sortValue === "latest" ? "contained" : "outlined"}
+              onClick={() => dispatch({ type: "SET_SORT", payload: "latest" })}
+              variant={sort === "latest" ? "contained" : "outlined"}
             >
               جدیدترین
             </Button>
             <Button
               sx={activeFilterBtn}
-              onClick={() => onSort("best-seller")}
-              variant={sortValue === "best-seller" ? "contained" : "outlined"}
+              onClick={() =>
+                dispatch({ type: "SET_SORT", payload: "best-seller" })
+              }
+              variant={sort === "best-seller" ? "contained" : "outlined"}
             >
               پر فروش ترین
             </Button>
             <Button
               sx={activeFilterBtn}
-              onClick={() => onSort("price-asc")}
-              variant={sortValue === "price-asc" ? "contained" : "outlined"}
+              onClick={() =>
+                dispatch({ type: "SET_SORT", payload: "price-asc" })
+              }
+              variant={sort === "price-asc" ? "contained" : "outlined"}
             >
               ارزان ترین
             </Button>
             <Button
               sx={activeFilterBtn}
-              onClick={() => onSort("price-desc")}
-              variant={sortValue === "price-desc" ? "contained" : "outlined"}
+              onClick={() =>
+                dispatch({ type: "SET_SORT", payload: "price-desc" })
+              }
+              variant={sort === "price-desc" ? "contained" : "outlined"}
             >
               گران ترین
             </Button>
             <Button
               sx={activeFilterBtn}
-              onClick={() => onSort("most-visited")}
-              variant={sortValue === "most-visited" ? "contained" : "outlined"}
+              onClick={() =>
+                dispatch({ type: "SET_SORT", payload: "most-visited" })
+              }
+              variant={sort === "most-visited" ? "contained" : "outlined"}
             >
               پربازدید ترین
             </Button>
@@ -176,14 +129,26 @@ function FilterMainbar({
           <Button variant="outlined" onClick={() => setOpenFilterModal(true)}>
             <Tune />
             <Typography>فیلتر ها</Typography>
-            <Box sx={sortMobileBadge}>5</Box>
+            <Box sx={sortMobileBadge}>{activeFiltersCount}</Box>
           </Button>
-          <FilterModal isOpen={openFilterModal} onShow={setOpenFilterModal} />
+          {/* MOBILE FILTER MODAL */}
+          <FilterModal
+            filters={filters}
+            dispatch={dispatch}
+            isOpen={openFilterModal}
+            onShow={setOpenFilterModal}
+          />
           <Button variant="outlined" onClick={() => setOpenSortModal(true)}>
             <FilterList />
             <Typography>مرتب سازی</Typography>
           </Button>
-          <SortModal isOpen={openSortModal} onShow={setOpenSortModal} />
+          {/* MOBILE SORT MODAL */}
+          <SortModal
+            filters={filters}
+            dispatch={dispatch}
+            isOpen={openSortModal}
+            onShow={setOpenSortModal}
+          />
         </Box>
         {visibleProducts.length > 0 ? (
           <Box sx={coursesCardCotainer}>

@@ -19,7 +19,7 @@ import {
 import { flexCol } from "../../../../styles/globalStyles";
 import { useNavigate } from "react-router-dom";
 
-function CategoryFilterList({ itemData, currentSlug }) {
+function CategoryFilterList({ itemData, currentSlug, onClose }) {
   const id = useId();
   const navigate = useNavigate();
 
@@ -63,7 +63,10 @@ function CategoryFilterList({ itemData, currentSlug }) {
                   control={
                     <Checkbox
                       checked={child.slug === currentSlug}
-                      onChange={() => navigate(`/courses/${child.slug}`)}
+                      onChange={() => {
+                        navigate(`/courses/${child.slug}`);
+                        onClose?.(false);
+                      }}
                       sx={filterOptionCheckbox}
                     />
                   }

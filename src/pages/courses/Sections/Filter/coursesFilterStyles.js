@@ -169,7 +169,7 @@ export const sortContainer = {
   gap: "10px",
 };
 
-export const sortMobileContainer = {
+export const sortMobileContainer = (theme) => ({
   display: {
     xs: "flex",
     lg: "none",
@@ -181,7 +181,11 @@ export const sortMobileContainer = {
     width: "100%",
     py: "16px",
   },
-};
+  flexWrap: "nowrap",
+  [theme.breakpoints.down(480)]: {
+    flexWrap: "wrap",
+  },
+});
 
 export const coursesCardCotainer = {
   display: "grid",
@@ -247,7 +251,7 @@ export const sortModalList = {
     p: 0,
   },
   "& .MuiListItemButton-root": {
-    px: 0,
-    py: 2.5,
+    px: 1,
+    py: 2,
   },
 };

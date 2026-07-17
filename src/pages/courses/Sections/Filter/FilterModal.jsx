@@ -7,7 +7,7 @@ import {
   IconButton,
   InputBase,
 } from "@mui/material";
-import { flexBetween, flexCol } from "../../../../styles/globalStyles";
+import { flexBetween, flexBox, flexCol } from "../../../../styles/globalStyles";
 import { Close, Search, Tune } from "@mui/icons-material";
 import {
   filterModalStyle,
@@ -18,7 +18,7 @@ import CategoryAccordion from "./CategoryAccordion";
 import StatusAccordion from "./StatusAccordion";
 import SwitchboxFilter from "./SwitchboxFilter";
 
-function FilterModal({ isOpen, onShow }) {
+function FilterModal({ isOpen, onShow, filters, dispatch }) {
   return (
     <>
       <Dialog
@@ -35,9 +35,17 @@ function FilterModal({ isOpen, onShow }) {
                 <Tune />
                 فیلتر ها
               </DialogTitle>
-              <IconButton onClick={() => onShow(false)}>
-                <Close sx={{ fontSize: { xs: "20px", md: "24px" } }} />
-              </IconButton>
+              <Box sx={flexBox(1)}>
+                <Button
+                  onClick={() => dispatch({ type: "CLEAR_FILTERS" })}
+                  variant="text"
+                >
+                  حذف همه
+                </Button>
+                <IconButton onClick={() => onShow(false)}>
+                  <Close sx={{ fontSize: { xs: "20px", md: "24px" } }} />
+                </IconButton>
+              </Box>
             </Box>
             <Divider sx={{ my: 2, display: { xs: "none", md: "block" } }} />
           </Box>
@@ -50,8 +58,18 @@ function FilterModal({ isOpen, onShow }) {
               name="search"
               placeholder="جستجو از میان نتایج"
               sx={{ flex: 1 }}
+              value={filters.search.input}
+              onChange={(e) =>
+                dispatch({ type: "SEARCH_INPUT", payload: e.target.value })
+              }
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  dispatch({ type: "SEARCH_QUERY" });
+                }
+              }}
             />
             <Button
+              onClick={() => dispatch({ type: "SEARCH_QUERY" })}
               sx={{ fontSize: "10px", p: "6px 8px", borderRadius: "4px" }}
             >
               جستجو
@@ -59,11 +77,11 @@ function FilterModal({ isOpen, onShow }) {
           </Box>
         </Box>
         <Divider />
-        <CategoryAccordion />
+        <CategoryAccordion onClose={onShow} />
         <Divider />
-        <StatusAccordion />
+        <StatusAccordion statusValue={filters.status} dispatch={dispatch} />
         <Divider />
-        <SwitchboxFilter />
+        <SwitchboxFilter accessValue={filters.access} dispatch={dispatch} />
       </Dialog>
     </>
   );

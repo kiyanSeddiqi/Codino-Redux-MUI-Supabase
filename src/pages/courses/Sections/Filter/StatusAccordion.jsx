@@ -15,7 +15,7 @@ import {
 } from "./coursesFilterStyles";
 import { flexBox } from "../../../../styles/globalStyles";
 
-function StatusAccordion({ onFilterStatus, statusValue }) {
+function StatusAccordion({ statusValue, dispatch }) {
   const [expanded, setExpanded] = useState(true);
   const id = useId();
   return (
@@ -43,28 +43,32 @@ function StatusAccordion({ onFilterStatus, statusValue }) {
           >
             <Button
               sx={activeFilterBtn}
-              onClick={() => onFilterStatus("all")}
+              onClick={() => dispatch({ type: "SET_STATUS", payload: "all" })}
               variant={statusValue === "all" ? "contained" : "outlined"}
             >
               همه دوره ها
             </Button>
             <Button
               sx={activeFilterBtn}
-              onClick={() => onFilterStatus("updating")}
+              onClick={() =>
+                dispatch({ type: "SET_STATUS", payload: "updating" })
+              }
               variant={statusValue === "updating" ? "contained" : "outlined"}
             >
               درحال بروز رسانی
             </Button>
             <Button
               sx={activeFilterBtn}
-              onClick={() => onFilterStatus("completed")}
+              onClick={() =>
+                dispatch({ type: "SET_STATUS", payload: "completed" })
+              }
               variant={statusValue === "completed" ? "contained" : "outlined"}
             >
               به اتمام رسیده
             </Button>
             <Button
               sx={activeFilterBtn}
-              onClick={() => onFilterStatus("soon")}
+              onClick={() => dispatch({ type: "SET_STATUS", payload: "soon" })}
               variant={statusValue === "soon" ? "contained" : "outlined"}
             >
               به زودی
