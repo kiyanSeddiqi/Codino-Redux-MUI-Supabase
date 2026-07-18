@@ -68,7 +68,7 @@ function WhyChooseUs() {
               </Button>
               <Button
                 component={Link}
-                to="/free-courses"
+                to="/courses?filter=freeCourse"
                 color="secondary"
                 variant="contained"
               >

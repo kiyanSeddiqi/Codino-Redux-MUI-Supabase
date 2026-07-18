@@ -22,17 +22,20 @@ import ProductCard from "../../../../features/product/components/ProductCard";
 import FilterModal from "./FilterModal";
 import { useEffect, useMemo, useState } from "react";
 import SortModal from "./SortModal";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import useCourseFilters from "./hooks/useCourseFilters";
+
+const INITIAL_VISIBLE = 12;
 
 function FilterMainbar({ filters, dispatch }) {
   const { search, status, access, sort } = filters;
   const { slug } = useParams();
+
   const filteredCourses = useCourseFilters(filters, slug);
+
   const [openFilterModal, setOpenFilterModal] = useState(false);
   const [openSortModal, setOpenSortModal] = useState(false);
   const [visibleCount, setVisibleCount] = useState(12);
-  const INITIAL_VISIBLE = 12;
 
   function handleShowMore() {
     if (visibleCount < filteredCourses.length) {
@@ -40,13 +43,11 @@ function FilterMainbar({ filters, dispatch }) {
     } else setVisibleCount(12);
   }
 
-  const visibleProducts = useMemo(() => {
-    return filteredCourses.slice(0, visibleCount);
-  }, [filteredCourses, visibleCount]);
+  const visibleProducts = filteredCourses.slice(0, visibleCount);
 
   useEffect(() => {
     setVisibleCount(12);
-  }, [search.query, status, access, sort]);
+  }, [filteredCourses]);
 
   const hasMore = visibleCount < filteredCourses.length;
   const canShowLess =

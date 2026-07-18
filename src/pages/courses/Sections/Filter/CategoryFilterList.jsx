@@ -64,7 +64,11 @@ function CategoryFilterList({ itemData, currentSlug, onClose }) {
                     <Checkbox
                       checked={child.slug === currentSlug}
                       onChange={() => {
-                        navigate(`/courses/${child.slug}`);
+                        if (child.slug === currentSlug) {
+                          navigate("/courses");
+                        } else {
+                          navigate(`/courses/${child.slug}`);
+                        }
                         onClose?.(false);
                       }}
                       sx={filterOptionCheckbox}

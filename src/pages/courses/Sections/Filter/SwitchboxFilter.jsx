@@ -1,8 +1,22 @@
 import { Box, FormControlLabel, Switch } from "@mui/material";
 import { flexCol } from "../../../../styles/globalStyles";
 import { switchBoxlLabel, switchboxStyle } from "./coursesFilterStyles";
+import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
 
 function SwitchboxFilter({ accessValue, dispatch }) {
+  const [searchParams] = useSearchParams();
+  const filterQuery = searchParams.get("filter");
+
+  useEffect(() => {
+    if (filterQuery === "freeCourse") {
+      dispatch({ type: "SET_ACCESS", name: "free", checked: true });
+    }
+    if (filterQuery === "plusCourse") {
+      dispatch({ type: "SET_ACCESS", name: "plus", checked: true });
+    }
+  }, [filterQuery]);
+
   return (
     <>
       <Box sx={flexCol(2)}>

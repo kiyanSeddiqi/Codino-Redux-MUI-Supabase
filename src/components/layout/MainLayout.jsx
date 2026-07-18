@@ -6,14 +6,14 @@ import { useState } from "react";
 import SearchModal from "../../features/search/components/SearchModal";
 import Footer from "./Footer/Footer";
 import ScrollToTop from "./ScrollToTop";
+import { useSelector } from "react-redux";
 
 function MainLayout() {
-  const [openAuthModal, setOpenAuthModal] = useState(false);
-
+  const openAuthModal = useSelector((state) => state.auth.authModalOpen);
   return (
     <>
       <ScrollToTop />
-      <Navbar showAuthModal={setOpenAuthModal} />
+      <Navbar />
       <main>
         <Container>
           <Outlet />
@@ -22,7 +22,7 @@ function MainLayout() {
       <footer>
         <Footer />
       </footer>
-      <AuthModal isOpen={openAuthModal} onShow={setOpenAuthModal} />
+      <AuthModal isOpen={openAuthModal} />
     </>
   );
 }

@@ -16,6 +16,8 @@ import { addComma } from "../../../../utils/helpers";
 import { AccessTime, Person } from "@mui/icons-material";
 import { useState } from "react";
 import VideoDialog from "./VideoDialog/VideoDialog.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { openAuthModal } from "../../../../features/auth/redux/authSlice.js";
 
 const levelLabels = {
   beginner: "مقدماتی",
@@ -24,6 +26,18 @@ const levelLabels = {
 
 function CourseSidebar({ product }) {
   const [openVideo, setOpenVideo] = useState(false);
+
+  const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
+  function handleRegister() {
+    if (!isAuthenticated) {
+      dispatch(openAuthModal());
+      return;
+    }
+
+    console.log("کاربر لاگین است");
+  }
 
   return (
     <>
@@ -103,7 +117,7 @@ function CourseSidebar({ product }) {
               </Typography>
             )}
           </Box>
-          <Button>ثبت نام در دوره</Button>
+          <Button onClick={handleRegister}>ثبت نام در دوره</Button>
           {product.tags.includes("plus") && (
             <Box sx={flexCol(1)}>
               <Typography

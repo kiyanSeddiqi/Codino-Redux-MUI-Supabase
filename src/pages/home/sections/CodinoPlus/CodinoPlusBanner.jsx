@@ -26,7 +26,7 @@ function CodinoPlusBanner() {
             آموزش جهانی رو به زبان خودت تجربه کن.
           </Typography>
           <Box sx={bannerBtnWrapper}>
-            <Button component={Link} to="/courses?plus=true">
+            <Button component={Link} to="/courses?filter=plusCourse">
               مشاهده دوره ها
               <ArrowOutward sx={{ rotate: "-90deg", fontSize: "20px" }} />
             </Button>

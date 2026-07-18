@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { appBar, navWrapper, toolBar } from "../styles/navbarStyles.js";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleTheme } from "../../../../store/slices/themeSlice";
+import { toggleTheme } from "../../../../redux/store/slices/themeSlice.js";
 import { Link } from "react-router-dom";
 import Logo from "../../../ui/Logo/Logo.jsx";
 import ThemeSwitch from "../../../ui/ThemeSwitch/ThemeSwitch.jsx";
@@ -21,10 +21,13 @@ import DrawerMenu from "./DrawerMenu";
 import { flexCenter } from "../../../../styles/globalStyles.js";
 import SearchModal from "../../../../features/search/components/SearchModal.jsx";
 import CategoryMenu from "./CategoryMenu.jsx";
+import { openAuthModal } from "../../../../features/auth/redux/authSlice.js";
 
-function Navbar({ showAuthModal, showSearchModal }) {
+function Navbar({ showSearchModal }) {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openSearchModal, setOpenSearchModal] = useState(false);
+
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -40,11 +43,7 @@ function Navbar({ showAuthModal, showSearchModal }) {
               >
                 <Apps sx={{ fontSize: { xs: "20px", md: "24px" } }} />
               </Button>
-              <DrawerMenu
-                isOpen={openDrawer}
-                onShow={setOpenDrawer}
-                showAuthModal={showAuthModal}
-              />
+              <DrawerMenu isOpen={openDrawer} onShow={setOpenDrawer} />
             </Box>
             {/* Desktop Menu */}
             <ThemeSwitch sx={{ display: { xs: "none", lg: "flex" } }} />
@@ -65,7 +64,7 @@ function Navbar({ showAuthModal, showSearchModal }) {
             <Button
               variant="outlined"
               sx={{ minWidth: 0 }}
-              onClick={() => showAuthModal(true)}
+              onClick={() => dispatch(openAuthModal())}
             >
               <Login sx={{ fontSize: { xs: "20px", md: "24px" } }} />
               <Box

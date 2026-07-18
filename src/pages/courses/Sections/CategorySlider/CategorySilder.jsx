@@ -33,7 +33,7 @@ function CategorySilder() {
       );
 
       if (activeIndex !== -1) {
-        const targetIndex = Math.max(activeIndex - 2, 0);
+        const targetIndex = Math.max(activeIndex, 0);
         swiperRef.current.slideToLoop(targetIndex);
       }
     } else {

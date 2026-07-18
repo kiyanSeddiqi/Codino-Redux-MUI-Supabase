@@ -1,3 +1,4 @@
+import { red } from "@mui/material/colors";
 import { flexCol } from "../../../styles/globalStyles";
 
 export const authModalDialog = {
@@ -15,6 +16,7 @@ export const authModalDialog = {
       xs: 3,
       sm: 5,
     },
+    scrollbarWidth: "none",
   },
   "& .MuiBackdrop-root": {
     backdropFilter: "blur(6px)",
@@ -62,10 +64,10 @@ export const authModalForm = {
   width: "100%",
 };
 
-export const authModalInput = {
+export const authModalInput = (theme, hasError = false) => ({
   p: "8px 12px",
   borderRadius: "12px",
-  border: "2px solid transparent",
+  border: `2px solid ${hasError ? theme.palette.error.main : "transparent"}`,
   width: "100%",
   height: "44px",
   fontSize: "14px",
@@ -77,10 +79,35 @@ export const authModalInput = {
   "& input::placeholder": {
     color: "text.secondary",
     opacity: 1,
-    textAlign: "left",
   },
   "&:focus-within": {
     border: "2px solid ",
-    borderColor: "primary.main",
+    borderColor: hasError
+      ? theme.palette.error.main
+      : theme.palette.primary.main,
+  },
+});
+
+export const formLabel = {
+  marginBottom: "6px",
+  fontSize: "14px",
+  display: "block",
+};
+
+export const formErrorLabel = (theme) => ({
+  color: theme.palette.mode === "dark" ? red[500] : red[700],
+  mt: 1,
+  display: "block",
+});
+
+export const formPasswordIcon = {
+  position: "absolute",
+  top: "50%",
+  transform: "translateY(-50%)",
+  left: "15px",
+  zIndex: 50,
+  "& svg": {
+    fontSize: "18px",
+    color: "text.secondary",
   },
 };

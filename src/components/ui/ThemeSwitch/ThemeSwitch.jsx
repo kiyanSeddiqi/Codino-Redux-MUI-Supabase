@@ -1,7 +1,7 @@
 import { DarkMode, LightMode } from "@mui/icons-material";
 import { Box, Tooltip } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { toggleTheme } from "../../../store/slices/themeSlice";
+import { toggleTheme } from "../../../redux/store/slices/themeSlice";
 import {
   themeBtn,
   themeIndicator,

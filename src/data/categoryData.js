@@ -79,6 +79,10 @@ export const categoryData = [
         title: "مسیر های یادگیری برنامه نویسی",
         slug: "learn-programming-roadmaps",
       },
+      {
+        title: "دوره های مناسب شروع از صفر",
+        slug: "start-from-zero",
+      },
     ],
   },
   {

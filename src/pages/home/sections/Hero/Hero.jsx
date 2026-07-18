@@ -67,7 +67,11 @@ function Hero() {
                   مشاهده دوره ها
                   <ArrowOutward sx={{ rotate: "-90deg", fontSize: "20px" }} />
                 </Button>
-                <Button component={Link} to="/free-courses" color="secondary">
+                <Button
+                  component={Link}
+                  to="/courses/start-from-zero"
+                  color="secondary"
+                >
                   شروع سریع و رایگان
                 </Button>
               </Box>
