@@ -7,6 +7,7 @@ import SearchModal from "../../features/search/components/SearchModal";
 import Footer from "./Footer/Footer";
 import ScrollToTop from "./ScrollToTop";
 import { useSelector } from "react-redux";
+import AppSnackbar from "../ui/AppSnackbar/AppSnackbar";
 
 function MainLayout() {
   const openAuthModal = useSelector((state) => state.auth.authModalOpen);
@@ -23,6 +24,7 @@ function MainLayout() {
         <Footer />
       </footer>
       <AuthModal isOpen={openAuthModal} />
+      <AppSnackbar />
     </>
   );
 }

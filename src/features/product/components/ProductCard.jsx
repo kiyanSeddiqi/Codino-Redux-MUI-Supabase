@@ -64,7 +64,7 @@ function ProductCard({ itemData, layout = "default" }) {
             <Box sx={flexBetween(1)}>
               <Box sx={flexBox(1)}>
                 <Chip
-                  color="info"
+                  color="normal"
                   label={levelLabels[itemData.level]}
                   sx={{ height: "26px" }}
                 />
@@ -72,12 +72,12 @@ function ProductCard({ itemData, layout = "default" }) {
                   <Tooltip title="دوره به پایان رسیده">
                     <Box
                       aria-label="آیکون پایان دوره"
-                      sx={{ ...cardStatusBadge, bgcolor: "error.light" }}
+                      sx={{ ...cardStatusBadge, bgcolor: "badgeWarning.light" }}
                     >
                       <SvgIcon
                         name="doc"
                         size={18}
-                        color={theme.palette.error.main}
+                        color={theme.palette.badgeWarning.main}
                       />
                     </Box>
                   </Tooltip>

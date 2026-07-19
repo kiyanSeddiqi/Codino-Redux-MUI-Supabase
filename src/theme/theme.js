@@ -9,7 +9,6 @@ const getTheme = (mode) => {
         main: isDark ? "#BB86FC" : "#6700E5",
       },
       secondary: {
-        // main: isDark ? "#C6B3FF" : "#B388FF",
         main: "#D9CCFF",
         dark: "#B09AFF",
         contrastText: "#360077",
@@ -26,17 +25,23 @@ const getTheme = (mode) => {
       iconAccent: isDark ? "#ff4aff" : "#ff0eff",
       menuItemBg: isDark ? "#bb86fc24" : "#6700e512",
       accent: { main: "#ff4aff" },
-      success: {
-        main: isDark ? "#08e9d6" : "#007e04",
-        light: isDark ? "#00d0bf33" : "#CCF6F2",
-      },
-      warning: { main: "#FFB300" },
-      error: {
+      badgeWarning: {
         main: isDark ? "#ff9560" : "#b33b00",
         light: isDark ? "#54342B" : "#FFDECE",
       },
+      badgeSuccess: {
+        main: isDark ? "#08e9d6" : "#007e04",
+        light: isDark ? "#00d0bf33" : "#CCF6F2",
+      },
+      success: {
+        main: "#22C55E",
+      },
+      warning: { main: "#F59E0B" },
+      error: {
+        main: isDark ? "#ff5050" : "#ec0606",
+      },
+      info: { main: "#3B82F6" },
     },
-    // direction: "rtl",
     typography: {
       fontFamily: `"Vazirmatn","sans-serif"`,
     },
@@ -171,14 +176,14 @@ const getTheme = (mode) => {
             },
           },
           colorSuccess: ({ theme }) => ({
-            backgroundColor: theme.palette.success.light,
-            color: theme.palette.success.main,
+            backgroundColor: theme.palette.badgeSuccess.light,
+            color: theme.palette.badgeSuccess.main,
           }),
-          colorError: ({ theme }) => ({
-            backgroundColor: theme.palette.error.light,
-            color: theme.palette.error.main,
+          colorWarning: ({ theme }) => ({
+            backgroundColor: theme.palette.badgeWarning.light,
+            color: theme.palette.badgeWarning.main,
           }),
-          colorInfo: ({ theme }) => ({
+          colorNormal: ({ theme }) => ({
             backgroundColor: theme.palette.menuItemBg,
             color: theme.palette.primary.light,
           }),

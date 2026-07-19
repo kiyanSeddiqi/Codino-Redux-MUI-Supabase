@@ -20,11 +20,15 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "../schemas/registerSchema";
+import { register } from "../services/authServices";
+import { useDispatch } from "react-redux";
+import { useRegister } from "../hooks/useRegister";
 
 function RegisterForm({ setMode }) {
   const theme = useTheme();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
+  const { registerUser } = useRegister();
 
   const {
     register,
@@ -32,7 +36,9 @@ function RegisterForm({ setMode }) {
     formState: { errors },
   } = useForm({ resolver: zodResolver(registerSchema), mode: "onBlur" });
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (formData) => {
+    await registerUser(formData);
+  };
 
   return (
     <>

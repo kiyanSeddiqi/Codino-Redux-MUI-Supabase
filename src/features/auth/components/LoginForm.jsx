@@ -1,4 +1,11 @@
-import { Box, Button, DialogTitle, InputBase, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  DialogTitle,
+  InputBase,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import {
   authMethodSlider,
   authModalBox,
@@ -11,51 +18,32 @@ import {
 import SvgIcon from "../../../components/ui/SvgIcon/SvgIcon";
 import { useState } from "react";
 import { flexBox } from "../../../styles/globalStyles";
+import { useForm } from "react-hook-form";
+import { registerSchema } from "../schemas/registerSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useLogin } from "../hooks/useLogin";
 
-function LoginForm() {
-  const [loginType, setLoginType] = useState("email");
+function LoginForm({ loginType }) {
+  const theme = useTheme();
+  const { loginUser } = useLogin();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: zodResolver(registerSchema), mode: "onBlur" });
+
+  const onSubmit = async (formData) => {
+    await loginUser(formData);
+  };
+
   return (
     <>
-      <Box sx={authModalBox}>
-        <DialogTitle sx={{ fontSize: { xs: 14, sm: 16 }, p: 0 }}>
-          ورود یا ثبت نام
-        </DialogTitle>
-        <Box sx={authModalSwitchBox}>
-          <Box sx={{ position: "relative", display: "flex" }}>
-            <Button
-              onClick={() => setLoginType("email")}
-              variant="text"
-              sx={(theme) => ({
-                ...authModalSwitchBtn(theme),
-                color:
-                  loginType === "email" ? "primary.main" : "text.secondary",
-              })}
-            >
-              ایمیل و رمز عبور
-            </Button>
-            <Button
-              onClick={() => setLoginType("phone")}
-              variant="text"
-              sx={(theme) => ({
-                ...authModalSwitchBtn(theme),
-                color:
-                  loginType === "phone" ? "primary.main" : "text.secondary",
-              })}
-            >
-              شماره همراه
-            </Button>
-            <Box
-              component="span"
-              sx={{
-                ...authMethodSlider,
-                transform:
-                  loginType === "email" ? "translateX(100%)" : "translateX(0%)",
-              }}
-            ></Box>
-          </Box>
-        </Box>
-      </Box>
-      <Box component="form" sx={authModalForm}>
+      <Box
+        component="form"
+        sx={authModalForm}
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <Box>
           <label
             style={formLabel}
@@ -67,7 +55,7 @@ function LoginForm() {
             type="text"
             id={loginType === "email" ? "email" : "phone"}
             autoComplete="off"
-            name="search"
+            name={loginType === "email" ? "email" : "phone"}
             placeholder={
               loginType === "email" ? "example@gmail.com" : "09121234567"
             }
@@ -82,8 +70,12 @@ function LoginForm() {
           </Button>
         </Box>
         <Box sx={flexBox("10px")}>
-          <SvgIcon name="warning" size="24" />
-          <Typography component="p" variant="caption" sx={{ lineHeight: 2 }}>
+          <SvgIcon
+            name="warning"
+            size={24}
+            color={theme.palette.primary.main}
+          />
+          <Typography variant="caption" sx={{ lineHeight: 2 }}>
             ورود یا ثبت‌نام شما به منزله‌ی پذیرش تمامی قوانین و مقررات مجموعه‌ی
             کدیاد خواهد بود!
           </Typography>

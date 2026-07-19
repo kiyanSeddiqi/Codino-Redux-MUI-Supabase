@@ -70,8 +70,11 @@ export const authModalInput = (theme, hasError = false) => ({
   border: `2px solid ${hasError ? theme.palette.error.main : "transparent"}`,
   width: "100%",
   height: "44px",
-  fontSize: "14px",
-  bgcolor: "background.default",
+  fontSize: {
+    xs: "14px",
+    md: "16px",
+  },
+  bgcolor: "background.paper",
   transition: "border 0.3s ease",
   "& input": {
     padding: "0px",
@@ -95,9 +98,10 @@ export const formLabel = {
 };
 
 export const formErrorLabel = (theme) => ({
-  color: theme.palette.mode === "dark" ? red[500] : red[700],
+  color: "error.main",
   mt: 1,
   display: "block",
+  fontWeight: 500,
 });
 
 export const formPasswordIcon = {

@@ -16,13 +16,13 @@ function CourseHeader({ product }) {
           <Box sx={flexBox("10px")}>
             {product.status === "completed" ? (
               <Chip
-                color="error"
+                color="warning"
                 label="دوره به پایان رسیده"
                 icon={<SvgIcon name="doc" size={24} />}
               />
             ) : (
               <Chip
-                color="info"
+                color="normal"
                 label="دوره درحال برگزاری"
                 icon={<SvgIcon name="refresh" size={24} />}
               />

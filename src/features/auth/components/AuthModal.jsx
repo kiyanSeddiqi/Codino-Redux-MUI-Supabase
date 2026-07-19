@@ -16,9 +16,11 @@ import { useDispatch } from "react-redux";
 import { closeAuthModal } from "../redux/authSlice";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
+import LoginTypeSwitch from "./LoginTypeSwitch";
 
 function AuthModal({ isOpen }) {
-  const [mode, setMode] = useState("register");
+  const [mode, setMode] = useState("login");
+  const [loginType, setLoginType] = useState("email");
   const dispatch = useDispatch();
   return (
     <>
@@ -29,7 +31,12 @@ function AuthModal({ isOpen }) {
         disableScrollLock
       >
         <Logo />
-        {mode === "login" && <LoginForm />}
+        {mode === "login" && (
+          <>
+            <LoginTypeSwitch loginType={loginType} onChange={setLoginType} />
+            <LoginForm loginType={loginType} />
+          </>
+        )}
         {mode === "register" && <RegisterForm setMode={setMode} />}
       </Dialog>
     </>
