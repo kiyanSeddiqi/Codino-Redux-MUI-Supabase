@@ -34,7 +34,7 @@ export const authModalSwitchBox = {
   bgcolor: "divider",
 };
 
-export const authModalSwitchBtn = (theme) => ({
+export const authModalSwitchBtn = {
   px: 0,
   flex: 1,
   zIndex: 2,
@@ -45,7 +45,7 @@ export const authModalSwitchBtn = (theme) => ({
   "&:hover": {
     bgcolor: "transparent",
   },
-});
+};
 
 export const authMethodSlider = {
   position: "absolute",
@@ -74,7 +74,7 @@ export const authModalInput = (theme, hasError = false) => ({
     xs: "14px",
     md: "16px",
   },
-  bgcolor: "background.paper",
+  bgcolor: "background.default",
   transition: "border 0.3s ease",
   "& input": {
     padding: "0px",
