@@ -66,7 +66,7 @@ function CommentList({ courseTeacher }) {
                         </Typography>
                       </Box>
                       <Chip
-                        color="info"
+                        color="normal"
                         icon={<SvgIcon name="support" size={19} />}
                         label="مدرس دوره"
                       />

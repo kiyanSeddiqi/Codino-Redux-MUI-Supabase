@@ -29,23 +29,23 @@ import { useDispatch } from "react-redux";
 import { closeAuthModal } from "../redux/authSlice";
 import RegisterForm from "./RegisterForm";
 import { useLogin } from "../hooks/useLogin";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "../schemas/registerSchema";
 import { flexBox, flexCol } from "../../../styles/globalStyles";
 import { ChevronRight, Visibility, VisibilityOff } from "@mui/icons-material";
-import LoginIdentifier from "./LoginIdentifier";
+import LoginIdentifier from "./LoginForm";
 import LoginPasswordStep from "./LoginPasswordStep";
 import PasswordRecoveryStep from "./PasswordRecoveryStep";
 import OtpStep from "./OtpStep";
+import LoginForm from "./LoginForm";
 
 function AuthModal({ isOpen }) {
   const theme = useTheme();
   const dispatch = useDispatch();
   const [mode, setMode] = useState("login");
-  const [step, setStep] = useState("identifier");
-  const [showPassForm, setShowPassForm] = useState(false);
-  const [showPassRecovery, setShowPassRecovery] = useState(false);
+  const [step, setStep] = useState("login");
+  const [loginType, setLoginType] = useState("email");
 
   return (
     <>
@@ -56,11 +56,21 @@ function AuthModal({ isOpen }) {
         disableScrollLock
       >
         <Logo />
-        {step === "identifier" && <LoginIdentifier setStep={setStep} />}
-        {step === "password" && <LoginPasswordStep setStep={setStep} />}
-        {step === "recovery" && <PasswordRecoveryStep setStep={setStep} />}
-        {step === "otp" && <OtpStep setStep={setStep} />}
+        {mode === "login" && (
+          <>
+            {step === "login" && (
+              <LoginForm
+                key={loginType}
+                setStep={setStep}
+                loginType={loginType}
+                setLoginType={setLoginType}
+              />
+            )}
 
+            {step === "recovery" && <PasswordRecoveryStep setStep={setStep} />}
+            {step === "otp" && <OtpStep setStep={setStep} />}
+          </>
+        )}
         {mode === "register" && <RegisterForm setMode={setMode} />}
       </Dialog>
     </>

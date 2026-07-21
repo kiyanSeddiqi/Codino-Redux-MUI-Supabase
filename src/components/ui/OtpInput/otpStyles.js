@@ -11,7 +11,6 @@ export const otpTextfield = {
     borderRadius: 2,
     p: 0,
   },
-
   "& .MuiOutlinedInput-input": {
     height: "100%",
     p: 0,

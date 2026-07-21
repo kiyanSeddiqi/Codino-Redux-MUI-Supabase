@@ -14,7 +14,7 @@ export const authModalDialog = {
     },
     gap: {
       xs: 3,
-      sm: 5,
+      sm: 4,
     },
     scrollbarWidth: "none",
   },

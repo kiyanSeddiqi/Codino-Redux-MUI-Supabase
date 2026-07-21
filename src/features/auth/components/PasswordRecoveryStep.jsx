@@ -22,7 +22,7 @@ function PasswordRecoveryStep({ setStep }) {
       <Box sx={{ width: "100%" }}>
         <Box sx={flexBox("12px")}>
           <Button
-            onClick={() => setStep("identifier")}
+            onClick={() => setStep("login")}
             sx={{ minWidth: 0, p: "6px" }}
             variant="outlined"
           >

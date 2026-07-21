@@ -25,10 +25,10 @@ function CategoryMenu() {
   const buttonId = `${id}-button`;
   const menuId = `${id}-menu`;
   const [anchorEl, setAnchorEl] = useState(null);
-  const [activeCategory, setActiveCategory] = useState(categoryData[1] ?? null);
   const open = Boolean(anchorEl);
   const handleOpen = (e) => setAnchorEl(e.currentTarget);
   const handleClose = () => setAnchorEl(null);
+  const [activeCategory, setActiveCategory] = useState(categoryData[1] ?? null);
   return (
     <>
       <Box sx={{ display: { xs: "none", lg: "block" } }}>

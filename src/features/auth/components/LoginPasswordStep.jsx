@@ -16,19 +16,29 @@ import {
   formPasswordIcon,
 } from "../styles/authStyles";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useFormContext } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "../schemas/registerSchema";
+import { useLogin } from "../hooks/useLogin";
 
-function LoginPasswordStep({ setStep }) {
+function LoginPasswordStep({ setStep, identifier }) {
   const theme = useTheme();
-  const [showPassword, setShowPassword] = useState(false);
+
+  const { loginUser } = useLogin();
 
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
-  } = useForm({ resolver: zodResolver(registerSchema), mode: "onBlur" });
+  } = useFormContext();
+
+  const onSubmit = async ({ password }) => {
+    await loginUser({
+      email: getValues("email"),
+      password,
+    });
+  };
 
   return (
     <>
@@ -48,18 +58,19 @@ function LoginPasswordStep({ setStep }) {
             رمز عبور
           </Typography>
         </Box>
-        <Box component="form" sx={flexCol(3)}>
+        <Box component="form" sx={flexCol(3)} onSubmit={handleSubmit(onSubmit)}>
           <Box>
             <label style={formLabel} htmlFor={"password"}>
               رمز عبور
             </label>
             <Box sx={{ position: "relative" }}>
               <InputBase
+                {...register("password")}
                 type={showPassword ? "text" : "password"}
                 id={"password"}
                 autoComplete="off"
                 name="password"
-                sx={authModalInput(theme, !!errors.password)}
+                sx={authModalInput(theme, false)}
               />
               <IconButton
                 onClick={() => setShowPassword((flag) => !flag)}

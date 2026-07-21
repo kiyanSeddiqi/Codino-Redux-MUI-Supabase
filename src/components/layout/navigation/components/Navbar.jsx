@@ -22,12 +22,16 @@ import { flexCenter } from "../../../../styles/globalStyles.js";
 import SearchModal from "../../../../features/search/components/SearchModal.jsx";
 import CategoryMenu from "./CategoryMenu.jsx";
 import { openAuthModal } from "../../../../features/auth/redux/authSlice.js";
+import { useLogout } from "../../../../features/auth/hooks/useLogout.js";
+import Actionbar from "./Actionbar.jsx";
 
 function Navbar({ showSearchModal }) {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openSearchModal, setOpenSearchModal] = useState(false);
 
   const dispatch = useDispatch();
+  const { logoutUser } = useLogout();
+  const { isAuthenticated } = useSelector((state) => state.auth);
 
   return (
     <>
@@ -61,19 +65,24 @@ function Navbar({ showSearchModal }) {
               <Search sx={{ fontSize: { xs: "20px", md: "24px" } }} />
             </Button>
             <SearchModal isOpen={openSearchModal} onShow={setOpenSearchModal} />
-            <Button
-              variant="outlined"
-              sx={{ minWidth: 0 }}
-              onClick={() => dispatch(openAuthModal())}
-            >
-              <Login sx={{ fontSize: { xs: "20px", md: "24px" } }} />
-              <Box
-                component="span"
-                sx={{ display: { xs: "none", lg: "block" } }}
+
+            {isAuthenticated ? (
+              <Actionbar />
+            ) : (
+              <Button
+                variant="outlined"
+                sx={{ minWidth: 0 }}
+                onClick={() => dispatch(openAuthModal())}
               >
-                ورود یا ثبت نام
-              </Box>
-            </Button>
+                <Login sx={{ fontSize: { xs: "20px", md: "24px" } }} />
+                <Box
+                  component="span"
+                  sx={{ display: { xs: "none", lg: "block" } }}
+                >
+                  ورود یا ثبت نام
+                </Box>
+              </Button>
+            )}
           </Box>
         </Toolbar>
       </AppBar>
