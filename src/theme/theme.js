@@ -33,6 +33,7 @@ const getTheme = (mode) => {
         main: isDark ? "#08e9d6" : "#007e04",
         light: isDark ? "#00d0bf33" : "#CCF6F2",
       },
+      bgDanger: isDark ? "#4D2B32" : "#F8D5D5",
       success: {
         main: "#22C55E",
       },

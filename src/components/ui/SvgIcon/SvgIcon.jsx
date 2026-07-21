@@ -6,7 +6,7 @@ const icons = import.meta.glob("../../../assets/images/icons/*.svg", {
   eager: true,
 });
 
-function SvgIcon({ name, size = 30, color = "inherit" }) {
+function SvgIcon({ name, size = 30, color = "inherit", accentColor }) {
   const theme = useTheme();
   const Svg = icons[`../../../assets/images/icons/${name}.svg`];
 
@@ -17,8 +17,8 @@ function SvgIcon({ name, size = 30, color = "inherit" }) {
         height={size}
         style={{
           color,
-          "--accent-clr": theme.palette.iconAccent,
-          transition: "all 0.3s ease",
+          "--accent-clr": accentColor ?? theme.palette.iconAccent,
+          transition: "0.2s ease",
         }}
       />
     </>

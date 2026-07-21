@@ -1,3 +1,5 @@
+import { flexBetween } from "../../../../styles/globalStyles";
+
 export const appBar = {
   position: "sticky",
   top: 0,
@@ -142,4 +144,41 @@ export const mobileMenuListBtn = {
   transition: "0.2s ease",
 };
 
-export const actionbarlogin;
+export const actionbarMenu = {
+  padding: 2.5,
+  borderRadius: "10px",
+  border: 1,
+  borderColor: "divider",
+  mt: 0.5,
+  minWidth: "300px",
+  "& .MuiList-root": {
+    width: "100%",
+    flexDirection: "column",
+  },
+};
+
+export const actionbarMenuHeader = {
+  ...flexBetween(1, "row"),
+  width: "100%",
+};
+
+export const actionbarMenuItem = (isDanger = false) => ({
+  gap: 2,
+  borderRadius: "8px",
+  p: "10px",
+  transition: "0.2s ease",
+  color: isDanger ? "error.main" : "text.primary",
+  "& .MuiListItemIcon-root": {
+    minWidth: 0,
+    color: isDanger ? "error.main" : "text.primary",
+  },
+  "&:hover": {
+    bgcolor: isDanger ? "bgDanger" : "menuItemBg",
+    "& .MuiListItemIcon-root": {
+      color: isDanger ? "error.main" : "primary.main",
+    },
+    "& .MuiListItemText-primary": {
+      color: isDanger ? "error.main" : "primary.main",
+    },
+  },
+});
