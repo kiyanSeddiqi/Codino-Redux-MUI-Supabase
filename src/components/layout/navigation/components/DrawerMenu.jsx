@@ -9,22 +9,45 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import { Close, Login } from "@mui/icons-material";
+import { Close, Login, PermIdentity } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Logo from "../../../ui/Logo/Logo";
-import { mobileMenuBox, mobileMenuListBtn } from "../styles/navbarStyles";
+import {
+  mobileMenuBox,
+  mobileMenuListBtn,
+  mobileMenuLogoutBtn,
+} from "../styles/navbarStyles";
 import { flexBetween, flexCol } from "../../../../styles/globalStyles";
 import ThemeSwitch from "../../../ui/ThemeSwitch/ThemeSwitch";
 import { mobileMenuData } from "../../../../data/menuData";
+import { useDispatch, useSelector } from "react-redux";
+import SvgIcon from "../../../ui/SvgIcon/SvgIcon";
+import { openAuthModal } from "../../../../features/auth/redux/authSlice";
+import { useLogout } from "../../../../features/auth/hooks/useLogout";
 
-function DrawerMenu({ isOpen, onShow, showAuthModal }) {
+function DrawerMenu({ isOpen, onShow }) {
+  const { isAuthenticated } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const { logoutUser } = useLogout();
+
+  async function handleLogout() {
+    try {
+      await logoutUser();
+      onShow(false);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <>
       <Drawer
         anchor="right"
         open={isOpen}
         onClose={() => onShow(false)}
-        sx={{ display: { xs: "block", lg: "none" } }}
+        sx={{
+          display: { xs: "block", lg: "none" },
+        }}
       >
         <Box sx={mobileMenuBox}>
           {/* Header */}
@@ -66,10 +89,37 @@ function DrawerMenu({ isOpen, onShow, showAuthModal }) {
               </Typography>
             </Box>
             <Divider sx={{ my: 1 }} />
-            <Button onClick={() => showAuthModal(true)}>
-              <Login />
-              ورود به حساب
-            </Button>
+            {isAuthenticated ? (
+              <Box sx={flexCol(1)}>
+                <Button
+                  onClick={() => onShow(false)}
+                  component={Link}
+                  to="/account"
+                  variant="text"
+                  sx={{
+                    gap: 2,
+                    justifyContent: "flex-start",
+                    color: "text.primary",
+                  }}
+                >
+                  <PermIdentity sx={{ fontSize: "20px" }} />
+                  <Typography variant="subtitle2">حساب کاربری</Typography>
+                </Button>
+                <Button
+                  onClick={handleLogout}
+                  variant="text"
+                  sx={mobileMenuLogoutBtn}
+                >
+                  <SvgIcon name="power" size={20} />
+                  <Typography variant="subtitle2">خروج از حساب</Typography>
+                </Button>
+              </Box>
+            ) : (
+              <Button onClick={() => dispatch(openAuthModal())}>
+                <Login />
+                ورود به حساب
+              </Button>
+            )}
           </Box>
         </Box>
       </Drawer>

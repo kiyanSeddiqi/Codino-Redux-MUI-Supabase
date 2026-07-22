@@ -29,7 +29,7 @@ export const login = async ({ email, password }) => {
   return data;
 };
 
-export async function logout() {
+export async function signOut() {
   const { error } = await supabase.auth.signOut();
 
   if (error) {
@@ -45,4 +45,16 @@ export async function getSession() {
   }
 
   return data.session;
+}
+
+export async function checkUserExists(identifier) {
+  const { data, error } = await supabase.rpc("check_user_exists", {
+    p_identifier: identifier,
+  });
+
+  if (error) {
+    throw error;
+  }
+
+  return data;
 }

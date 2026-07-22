@@ -26,13 +26,27 @@ import { flexBox } from "../../../styles/globalStyles";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { emailLoginSchema, mobileLoginSchema } from "../schemas/loginSchema";
+import { useCheckUserExists } from "../hooks/useCheckUserExist";
+import {
+  emailIdentifierSchema,
+  mobileIdentifierSchema,
+} from "../schemas/identifierSchema";
 
-function LoginForm({ setStep, loginType, setLoginType }) {
+function LoginForm({ step, setStep, loginType, setLoginType }) {
   const theme = useTheme();
   const [showPassword, setShowPassword] = useState(false);
 
   const { loginUser } = useLogin();
-  const schema = loginType === "email" ? emailLoginSchema : mobileLoginSchema;
+  const { check } = useCheckUserExists();
+
+  const schema =
+    step === "identifier"
+      ? loginType === "email"
+        ? emailIdentifierSchema
+        : mobileIdentifierSchema
+      : loginType === "email"
+        ? emailLoginSchema
+        : mobileLoginSchema;
 
   const {
     register,
@@ -45,11 +59,24 @@ function LoginForm({ setStep, loginType, setLoginType }) {
   });
 
   const onSubmit = async (formData) => {
-    if (loginType === "email") {
-      await loginUser(formData);
-    } else {
-      setStep("otp");
+    if (step === "identifier") {
+      const identifier =
+        loginType === "email" ? formData.email : formData.mobile;
+
+      const exists = await check(identifier);
+
+      if (exists) {
+        if (loginType === "email") {
+          setStep("password");
+        } else {
+          setStep("otp");
+        }
+      } else {
+        setStep("register");
+      }
+      return;
     }
+    await loginUser(formData);
   };
 
   useEffect(() => {
@@ -135,7 +162,7 @@ function LoginForm({ setStep, loginType, setLoginType }) {
               </Typography>
             )}
           </Box>
-          {loginType === "email" && (
+          {loginType === "email" && step === "password" && (
             <Box>
               <label style={formLabel} htmlFor={"password"}>
                 رمز عبور
@@ -163,7 +190,7 @@ function LoginForm({ setStep, loginType, setLoginType }) {
                 </Typography>
               )}
               <Button
-                sx={{ width: "100%" }}
+                sx={{ width: "100%", mt: 1 }}
                 onClick={() => setStep("recovery")}
                 variant="text"
               >

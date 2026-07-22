@@ -4,6 +4,7 @@ import { flexCol } from "../../../styles/globalStyles";
 export const authModalDialog = {
   "& .MuiDialog-paper": {
     m: 0,
+    bgcolor: "background.default",
     borderRadius: "8px",
     width: "400px",
     maxHeight: "90svh",
@@ -24,14 +25,14 @@ export const authModalDialog = {
 };
 
 export const authModalBox = {
-  ...flexCol(3),
+  ...flexCol(2.5),
   width: "100%",
 };
 
 export const authModalSwitchBox = {
   borderRadius: "12px",
   p: "10px",
-  bgcolor: "divider",
+  bgcolor: "background.paper",
 };
 
 export const authModalSwitchBtn = {
@@ -51,16 +52,18 @@ export const authMethodSlider = {
   position: "absolute",
   left: 0,
   width: "50%",
-  bgcolor: "background.paper",
+  bgcolor: "background.default",
   display: "block",
   height: "100%",
   borderRadius: "8px",
   transition: "all 0.3s ease",
   boxShadow: 1,
+  border: 1,
+  borderColor: "primary.main",
 };
 
 export const authModalForm = {
-  ...flexCol(3),
+  ...flexCol(2.5),
   width: "100%",
 };
 
@@ -74,14 +77,14 @@ export const authModalInput = (theme, hasError = false) => ({
     xs: "14px",
     md: "16px",
   },
-  bgcolor: "background.default",
+  bgcolor: "background.paper",
   transition: "border 0.3s ease",
   "& input": {
     padding: "0px",
   },
   "& input::placeholder": {
     color: "text.secondary",
-    opacity: 1,
+    opacity: 0.8,
   },
   "&:focus-within": {
     border: "2px solid ",

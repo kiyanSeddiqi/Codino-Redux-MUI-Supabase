@@ -135,6 +135,7 @@ export const mobileMenuBox = {
   p: 2,
   display: "flex",
   flexDirection: "column",
+  bgcolor: "background.default",
 };
 
 export const mobileMenuListBtn = {
@@ -142,6 +143,18 @@ export const mobileMenuListBtn = {
   textAlign: "right",
   "&:hover, &:focus": { bgcolor: "menuItemBg", color: "primary.main" },
   transition: "0.2s ease",
+  p: "10px",
+};
+
+export const mobileMenuLogoutBtn = {
+  gap: 2,
+  color: "error.main",
+  "&:hover": { bgcolor: "bgDanger" },
+  "&:focus-visible": {
+    outline: "2px solid",
+    outlineColor: "error.main",
+  },
+  justifyContent: "flex-start",
 };
 
 export const actionbarMenu = {
@@ -151,9 +164,11 @@ export const actionbarMenu = {
   borderColor: "divider",
   mt: 0.5,
   minWidth: "300px",
+  bgcolor: "background.default",
   "& .MuiList-root": {
     width: "100%",
     flexDirection: "column",
+    py: 0,
   },
 };
 

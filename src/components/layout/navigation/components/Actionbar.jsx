@@ -19,6 +19,9 @@ import {
 } from "../styles/navbarStyles";
 import { Link } from "react-router-dom";
 import SvgIcon from "../../../ui/SvgIcon/SvgIcon";
+import { signOut } from "../../../../features/auth/services/authServices";
+import { logout } from "../../../../features/auth/redux/authSlice";
+import { useLogout } from "../../../../features/auth/hooks/useLogout";
 
 const actionbarMenuData = [
   { title: "دوره های من", iconName: "course", slug: "/account/my-courses" },
@@ -31,8 +34,9 @@ const actionbarMenuData = [
   },
   {
     title: "خروج از حساب کاربری",
-    iconName: "logout",
+    iconName: "power",
     slug: null,
+    action: "logout",
     danger: true,
   },
 ];
@@ -45,6 +49,18 @@ function Actionbar() {
   const open = Boolean(anchorEl);
   const handleOpen = (e) => setAnchorEl(e.currentTarget);
   const handleClose = () => setAnchorEl(null);
+
+  const { logoutUser } = useLogout();
+
+  async function handleLogout() {
+    try {
+      await logoutUser();
+      handleClose();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <>
       <Box sx={flexBox({ xs: 1, lg: 2 })}>
@@ -58,7 +74,7 @@ function Actionbar() {
           color="primary"
         >
           <Button variant="outlined" sx={{ minWidth: 0 }}>
-            <ShoppingCart sx={{ fontSize: { xs: "20px", lg: "24px" } }} />
+            <ShoppingCart sx={{ fontSize: { xs: "20px", md: "24px" } }} />
           </Button>
         </Badge>
         <Button
@@ -70,7 +86,7 @@ function Actionbar() {
           variant="outlined"
           sx={{ minWidth: 0 }}
         >
-          <PermIdentity sx={{ fontSize: { xs: "20px", lg: "24px" } }} />
+          <PermIdentity sx={{ fontSize: { xs: "20px", md: "24px" } }} />
           <Typography
             variant="subtitle2"
             sx={{ display: { xs: "none", lg: "block" } }}
@@ -95,11 +111,6 @@ function Actionbar() {
           slotProps={{
             list: {
               "aria-labelledby": buttonId,
-              sx: {
-                display: "flex",
-                width: "max-content",
-                padding: 0,
-              },
             },
             paper: {
               sx: actionbarMenu,
@@ -108,8 +119,13 @@ function Actionbar() {
         >
           <Box component={Link} to="account" sx={actionbarMenuHeader}>
             <Box sx={flexCol(0.5)}>
-              <Typography variant="subtitle2">کیان صدیقی</Typography>
-              <Typography variant="caption" sx={{ color: "text.secondary" }}>
+              <Typography variant="subtitle2" sx={{ lineHeight: "20px" }}>
+                کیان صدیقی
+              </Typography>
+              <Typography
+                variant="caption"
+                sx={{ color: "text.secondary", lineHeight: "16px" }}
+              >
                 09376242832
               </Typography>
             </Box>
@@ -123,7 +139,7 @@ function Actionbar() {
                 key={item.title}
                 component={Link}
                 to={item.slug}
-                onClick={handleClose}
+                onClick={item.action ? handleLogout : handleClose}
                 sx={actionbarMenuItem(item.danger)}
               >
                 <ListItemIcon>
