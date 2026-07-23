@@ -25,7 +25,6 @@ export const login = async ({ email, password }) => {
   });
 
   if (error) throw error;
-
   return data;
 };
 
@@ -43,7 +42,6 @@ export async function getSession() {
   if (error) {
     throw error;
   }
-
   return data.session;
 }
 
@@ -55,6 +53,15 @@ export async function checkUserExists(identifier) {
   if (error) {
     throw error;
   }
-
   return data;
+}
+
+export async function resetPassword(email) {
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${window.location.origin}/auth/reset-password`,
+  });
+
+  if (error) throw error;
+
+  return true;
 }

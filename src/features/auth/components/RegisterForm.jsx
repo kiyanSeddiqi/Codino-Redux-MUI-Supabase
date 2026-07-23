@@ -24,7 +24,7 @@ import { register } from "../services/authServices";
 import { useDispatch } from "react-redux";
 import { useRegister } from "../hooks/useRegister";
 
-function RegisterForm({ setMode }) {
+function RegisterForm({ setStep, identifyEmail }) {
   const theme = useTheme();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
@@ -34,10 +34,15 @@ function RegisterForm({ setMode }) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: zodResolver(registerSchema), mode: "onBlur" });
+  } = useForm({
+    resolver: zodResolver(registerSchema),
+    mode: "onBlur",
+    defaultValues: { email: identifyEmail },
+  });
 
   const onSubmit = async (formData) => {
     await registerUser(formData);
+    setStep("identifier");
   };
 
   return (
@@ -45,7 +50,7 @@ function RegisterForm({ setMode }) {
       <Box sx={flexCol(2.5)}>
         <Box sx={flexBox("12px")}>
           <Button
-            onClick={() => setMode("login")}
+            onClick={() => setStep("identifier")}
             sx={{ minWidth: 0, p: "6px" }}
             variant="outlined"
           >
@@ -131,7 +136,7 @@ function RegisterForm({ setMode }) {
                 sx={authModalInput(theme, !!errors.password)}
               />
               <IconButton
-                onClick={() => setShowPassword((flag) => !flag)}
+                onClick={() => setShowPassword((p) => !p)}
                 disableRipple
                 sx={formPasswordIcon}
               >

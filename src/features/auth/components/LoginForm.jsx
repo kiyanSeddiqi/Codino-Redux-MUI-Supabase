@@ -32,7 +32,13 @@ import {
   mobileIdentifierSchema,
 } from "../schemas/identifierSchema";
 
-function LoginForm({ step, setStep, loginType, setLoginType }) {
+function LoginForm({
+  step,
+  setStep,
+  loginType,
+  setLoginType,
+  setIdentifyEmail,
+}) {
   const theme = useTheme();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -62,21 +68,20 @@ function LoginForm({ step, setStep, loginType, setLoginType }) {
     if (step === "identifier") {
       const identifier =
         loginType === "email" ? formData.email : formData.mobile;
-
+      setIdentifyEmail(formData.email);
       const exists = await check(identifier);
 
       if (exists) {
         if (loginType === "email") {
           setStep("password");
-        } else {
-          setStep("otp");
-        }
+        } else setStep("otp");
       } else {
         setStep("register");
       }
       return;
     }
     await loginUser(formData);
+    setStep("identifier");
   };
 
   useEffect(() => {
@@ -200,7 +205,8 @@ function LoginForm({ step, setStep, loginType, setLoginType }) {
           )}
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
             <Button type="submit" sx={{ height: "46px" }}>
-              {loginType === "email" ? "وورد" : "ادامه"}
+              {/* {loginType === "email" ? "وورد" : "ادامه"} */}
+              {step === "identifier" ? "ادامه" : "وورد"}
             </Button>
             <Button variant="outlined">
               <SvgIcon name="google" size={24} />

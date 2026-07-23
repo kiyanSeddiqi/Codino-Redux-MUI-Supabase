@@ -1,7 +1,11 @@
-import { Alert, Slide, Snackbar, useTheme } from "@mui/material";
+import { Alert, Box, Slide, Snackbar, useTheme } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { hideSnackbar } from "../../../redux/store/slices/notificationSlice";
-import { appSnackAlert } from "./snackbarStyles";
+import {
+  appSnackAlert,
+  appSnackbarProgress,
+  appSnackbarRoot,
+} from "./snackbarStyles";
 import {
   Error,
   GppBad,
@@ -14,7 +18,7 @@ function AppSnackbar() {
   const theme = useTheme();
   const dispatch = useDispatch();
 
-  const { open, message, severity } = useSelector(
+  const { open, message, severity, duration } = useSelector(
     (state) => state.notification,
   );
 
@@ -28,7 +32,7 @@ function AppSnackbar() {
     <>
       <Snackbar
         open={open}
-        autoHideDuration={3000}
+        autoHideDuration={duration}
         onClose={handleClose}
         anchorOrigin={{
           vertical: "top",
@@ -46,6 +50,7 @@ function AppSnackbar() {
             },
           },
         }}
+        sx={appSnackbarRoot}
       >
         <Alert
           onClose={handleClose}
@@ -60,6 +65,7 @@ function AppSnackbar() {
           sx={appSnackAlert(theme, severity)}
         >
           {message}
+          <Box sx={appSnackbarProgress(theme, severity, duration)}></Box>
         </Alert>
       </Snackbar>
     </>

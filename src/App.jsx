@@ -8,6 +8,7 @@ import getTheme from "./theme/theme";
 import { useSelector } from "react-redux";
 import CourseDetails from "./pages/courseDetails/CourseDetails";
 import Courses from "./pages/courses/Courses";
+import ResetPasswordPage from "./pages/resetPassword/ResetPasswordPage";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/courses/:slug",
         element: <Courses />,
+      },
+      {
+        path: "/auth/reset-password",
+        element: <ResetPasswordPage />,
       },
       {
         path: "*",

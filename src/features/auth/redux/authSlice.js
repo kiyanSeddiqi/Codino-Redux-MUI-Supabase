@@ -19,11 +19,11 @@ const authSlice = createSlice({
     closeAuthModal: (state) => {
       state.authModalOpen = false;
     },
-    loginStart: (state) => {
+    authStart: (state) => {
       state.loading = true;
       state.error = null;
     },
-    loginSuccess: (state, action) => {
+    authSuccess: (state, action) => {
       state.loading = false;
       state.user = action.payload.user;
       state.accessToken = action.payload.accessToken;
@@ -31,7 +31,7 @@ const authSlice = createSlice({
       state.error = null;
       state.authModalOpen = false;
     },
-    loginFailure: (state, action) => {
+    authFailure: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
@@ -56,9 +56,9 @@ const authSlice = createSlice({
 export const {
   openAuthModal,
   closeAuthModal,
-  loginStart,
-  loginSuccess,
-  loginFailure,
+  authStart,
+  authSuccess,
+  authFailure,
   logout,
   clearAuthError,
   restoreSession,

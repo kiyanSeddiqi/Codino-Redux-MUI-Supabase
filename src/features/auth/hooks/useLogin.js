@@ -2,9 +2,9 @@ import { useDispatch } from "react-redux";
 import { useSnackbar } from "../../../hooks/useSnackbar";
 import {
   closeAuthModal,
-  loginFailure,
-  loginStart,
-  loginSuccess,
+  authFailure,
+  authStart,
+  authSuccess,
 } from "../redux/authSlice";
 import { login } from "../services/authServices";
 import { getAuthErrorMsg } from "../../../utils/authErrorMessages";
@@ -14,15 +14,15 @@ export function useLogin() {
   const { success, error } = useSnackbar();
 
   async function loginUser(userData) {
-    dispatch(loginStart());
+    dispatch(authStart());
     try {
       const data = await login(userData);
 
       dispatch(
-        loginSuccess({
+        authSuccess({
           user: data.user,
           accessToken: data.session.access_token,
-        })
+        }),
       );
 
       dispatch(closeAuthModal());
@@ -32,7 +32,7 @@ export function useLogin() {
       return data;
     } catch (err) {
       const message = getAuthErrorMsg(err.message);
-      dispatch(loginFailure(message));
+      dispatch(authFailure(message));
       error(message);
 
       throw err;

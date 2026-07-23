@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const DEFAULT_DURATION = 4000;
+
 const initialState = {
   open: false,
   message: "",
   severity: "success",
-  duration: 3000,
+  duration: DEFAULT_DURATION,
 };
 
 const notifSlice = createSlice({
@@ -15,7 +17,7 @@ const notifSlice = createSlice({
       state.open = true;
       state.message = action.payload.message;
       state.severity = action.payload.severity || "success";
-      state.duration = action.payload.duration;
+      state.duration = action.payload.duration ?? DEFAULT_DURATION;
     },
 
     hideSnackbar: (state) => {

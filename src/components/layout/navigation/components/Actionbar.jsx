@@ -117,7 +117,12 @@ function Actionbar() {
             },
           }}
         >
-          <Box component={Link} to="account" sx={actionbarMenuHeader}>
+          <Box
+            component={Link}
+            to="account"
+            sx={actionbarMenuHeader}
+            onClick={handleClose}
+          >
             <Box sx={flexCol(0.5)}>
               <Typography variant="subtitle2" sx={{ lineHeight: "20px" }}>
                 کیان صدیقی

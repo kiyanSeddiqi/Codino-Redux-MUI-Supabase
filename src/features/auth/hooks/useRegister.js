@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useSnackbar } from "../../../hooks/useSnackbar";
-import { loginFailure, loginStart, loginSuccess } from "../redux/authSlice";
+import { authFailure, authStart, authSuccess } from "../redux/authSlice";
 import { register } from "../services/authServices";
 import { getAuthErrorMsg } from "../../../utils/authErrorMessages";
 
@@ -10,12 +10,12 @@ export const useRegister = () => {
 
   async function registerUser(userData) {
     try {
-      dispatch(loginStart());
+      dispatch(authStart());
 
       const data = await register(userData);
 
       dispatch(
-        loginSuccess({
+        authSuccess({
           user: data.user,
           accessToken: data.session.access_token,
         }),
@@ -25,7 +25,7 @@ export const useRegister = () => {
       return data;
     } catch (err) {
       const message = getAuthErrorMsg(err.message);
-      dispatch(loginFailure(message));
+      dispatch(authFailure(message));
       error(message);
       throw err;
     }

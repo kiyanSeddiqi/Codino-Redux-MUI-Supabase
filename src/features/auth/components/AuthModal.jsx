@@ -37,15 +37,17 @@ import { flexBox, flexCol } from "../../../styles/globalStyles";
 import { ChevronRight, Visibility, VisibilityOff } from "@mui/icons-material";
 import LoginIdentifier from "./LoginForm";
 import LoginPasswordStep from "./LoginPasswordStep";
-import PasswordRecoveryStep from "./PasswordRecoveryStep";
 import OtpStep from "./OtpStep";
 import LoginForm from "./LoginForm";
+import PasswordRecovery from "./PasswordRecovery";
 
 function AuthModal({ isOpen }) {
   const theme = useTheme();
-  const dispatch = useDispatch();
   const [step, setStep] = useState("identifier");
   const [loginType, setLoginType] = useState("email");
+  const [identifyEmail, setIdentifyEmail] = useState("");
+
+  const dispatch = useDispatch();
 
   function handleClose() {
     setStep("identifier");
@@ -69,11 +71,14 @@ function AuthModal({ isOpen }) {
             setStep={setStep}
             loginType={loginType}
             setLoginType={setLoginType}
+            setIdentifyEmail={setIdentifyEmail}
           />
         )}
-        {step === "recovery" && <PasswordRecoveryStep setStep={setStep} />}
+        {step === "recovery" && <PasswordRecovery setStep={setStep} />}
         {step === "otp" && <OtpStep setStep={setStep} />}
-        {step === "register" && <RegisterForm setStep={setStep} />}
+        {step === "register" && (
+          <RegisterForm setStep={setStep} identifyEmail={identifyEmail} />
+        )}
       </Dialog>
     </>
   );
