@@ -1,30 +1,31 @@
 import { useDispatch } from "react-redux";
-import { authFailure, authStart, closeAuthModal } from "../redux/authSlice";
-import { resetPassword } from "../services/authServices";
 import { useSnackbar } from "../../../hooks/useSnackbar";
+import { authFailure, authStart } from "../redux/authSlice";
+import { getSession, updatePassword } from "../services/authServices";
 import { getAuthErrorMsg } from "../../../utils/authErrorMessages";
 
-export default function usePasswordRecovery() {
+export default function useResetPassword() {
   const dispatch = useDispatch();
   const { success, error } = useSnackbar();
 
-  async function handlePasswordRecovery(email) {
+  async function handleResetPassword(password) {
     try {
       dispatch(authStart());
-      await resetPassword(email);
+      await updatePassword(password);
 
-      dispatch(closeAuthModal());
+      const { user, accessToken } = await getSession();
 
-      success("لینک بازیابی رمز عبور به ایمیل شما ارسال شد");
+      success("رمز عبور جدید با موفقیت ثبت شد");
 
       return true;
     } catch (err) {
       const message = getAuthErrorMsg(err.message);
       dispatch(authFailure(message));
       error(message);
+
       return false;
     }
   }
 
-  return { handlePasswordRecovery };
+  return { handleResetPassword };
 }

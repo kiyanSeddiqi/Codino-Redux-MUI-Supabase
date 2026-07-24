@@ -65,3 +65,13 @@ export async function resetPassword(email) {
 
   return true;
 }
+
+export async function updatePassword(password) {
+  const { data, error } = await supabase.auth.updateUser({
+    password,
+  });
+
+  if (error) throw error;
+
+  return data;
+}

@@ -32,13 +32,7 @@ import {
   mobileIdentifierSchema,
 } from "../schemas/identifierSchema";
 
-function LoginForm({
-  step,
-  setStep,
-  loginType,
-  setLoginType,
-  setIdentifyEmail,
-}) {
+function LoginForm({ step, setStep, loginType, setLoginType, setIdentifier }) {
   const theme = useTheme();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -68,7 +62,7 @@ function LoginForm({
     if (step === "identifier") {
       const identifier =
         loginType === "email" ? formData.email : formData.mobile;
-      setIdentifyEmail(formData.email);
+      setIdentifier(identifier);
       const exists = await check(identifier);
 
       if (exists) {

@@ -11,14 +11,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { emailIdentifierSchema } from "../schemas/identifierSchema";
 import usePasswordRecovery from "../hooks/usePasswordRecovery";
 
-function PasswordRecovery({ setStep }) {
+function PasswordRecovery({ setStep, identifier }) {
   const theme = useTheme();
   const { handlePasswordRecovery } = usePasswordRecovery();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: zodResolver(emailIdentifierSchema), mode: "onBlur" });
+  } = useForm({
+    resolver: zodResolver(emailIdentifierSchema),
+    mode: "onBlur",
+    defaultValues: { email: identifier },
+  });
 
   async function onSubmit(data) {
     const success = await handlePasswordRecovery(data.email);

@@ -11,11 +11,24 @@ import {
 } from "@mui/icons-material";
 import SvgIcon from "../../../components/ui/SvgIcon/SvgIcon";
 import OtpInput from "../../../components/ui/OtpInput/OtpInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useOtp from "../hooks/useOtp";
+import { useDispatch } from "react-redux";
+import { closeAuthModal } from "../redux/authSlice";
 
-function OtpStep({ setStep }) {
+function OtpStep({ setStep, identifier, onClose }) {
   const theme = useTheme();
   const [code, setCode] = useState("");
+  const dispatch = useDispatch();
+
+  const { handleSendOtp, handleVerifyOtp } = useOtp();
+
+  useEffect(() => {
+    if (identifier) {
+      handleSendOtp(identifier);
+    }
+  }, [identifier]);
+
   return (
     <>
       <Box sx={{ ...flexCol(3), width: "100%" }}>
@@ -28,7 +41,7 @@ function OtpStep({ setStep }) {
             <ChevronRight sx={{ fontSize: "20px" }} />
           </Button>
           <Typography component="h6" sx={{ fontWeight: "700" }}>
-            تایید رمز عبور
+            تایید کد فعالسازی
           </Typography>
         </Box>
         <Box sx={flexCol(3)}>
@@ -46,8 +59,12 @@ function OtpStep({ setStep }) {
             <Box sx={flexBetween("row")}>
               <Typography component="span">کد فعالسازی</Typography>
               <Box sx={flexBox("10px")}>
-                <Typography>09121234567</Typography>
-                <Button variant="text" sx={{ p: "6px", minWidth: 0 }}>
+                <Typography>{identifier}</Typography>
+                <Button
+                  onClick={() => setStep("identifier")}
+                  variant="text"
+                  sx={{ p: "6px", minWidth: 0 }}
+                >
                   <DriveFileRenameOutlineOutlined
                     sx={{ color: "success.main", fontSize: "26px" }}
                   />
@@ -71,7 +88,15 @@ function OtpStep({ setStep }) {
                 </Typography>
               </Box>
               <Button variant="text">ارسال مجدد رمز یکبار مصرف</Button>
-              <Button>ورود</Button>
+              <Button
+                onClick={async () => {
+                  const success = await handleVerifyOtp(identifier, code);
+
+                  if (success) onClose();
+                }}
+              >
+                ورود
+              </Button>
             </Box>
           </Box>
         </Box>

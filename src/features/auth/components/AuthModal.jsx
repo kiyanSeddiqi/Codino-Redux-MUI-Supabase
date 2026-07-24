@@ -45,7 +45,7 @@ function AuthModal({ isOpen }) {
   const theme = useTheme();
   const [step, setStep] = useState("identifier");
   const [loginType, setLoginType] = useState("email");
-  const [identifyEmail, setIdentifyEmail] = useState("");
+  const [identifier, setIdentifier] = useState("");
 
   const dispatch = useDispatch();
 
@@ -71,13 +71,21 @@ function AuthModal({ isOpen }) {
             setStep={setStep}
             loginType={loginType}
             setLoginType={setLoginType}
-            setIdentifyEmail={setIdentifyEmail}
+            setIdentifier={setIdentifier}
           />
         )}
-        {step === "recovery" && <PasswordRecovery setStep={setStep} />}
-        {step === "otp" && <OtpStep setStep={setStep} />}
+        {step === "recovery" && (
+          <PasswordRecovery setStep={setStep} identifier={identifier} />
+        )}
+        {step === "otp" && (
+          <OtpStep
+            setStep={setStep}
+            identifier={identifier}
+            onClose={handleClose}
+          />
+        )}
         {step === "register" && (
-          <RegisterForm setStep={setStep} identifyEmail={identifyEmail} />
+          <RegisterForm setStep={setStep} identifier={identifier} />
         )}
       </Dialog>
     </>

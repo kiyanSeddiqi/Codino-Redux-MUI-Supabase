@@ -1,6 +1,6 @@
 export const resetForm = {
   width: {
-    xs: "90%",
+    xs: "100%",
     md: "50%",
   },
   my: 6,

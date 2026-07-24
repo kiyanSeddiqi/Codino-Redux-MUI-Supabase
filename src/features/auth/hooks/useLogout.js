@@ -11,7 +11,7 @@ export function useLogout() {
     try {
       await signOut();
       dispatch(logout());
-      success("با موفقیت خارج شدید");
+      success("از حساب کاربری خارج شدید");
     } catch (err) {
       const message = getAuthErrorMsg(err.message);
       error(message);

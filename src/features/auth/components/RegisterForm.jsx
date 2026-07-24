@@ -24,7 +24,7 @@ import { register } from "../services/authServices";
 import { useDispatch } from "react-redux";
 import { useRegister } from "../hooks/useRegister";
 
-function RegisterForm({ setStep, identifyEmail }) {
+function RegisterForm({ setStep, identifier }) {
   const theme = useTheme();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
@@ -37,7 +37,7 @@ function RegisterForm({ setStep, identifyEmail }) {
   } = useForm({
     resolver: zodResolver(registerSchema),
     mode: "onBlur",
-    defaultValues: { email: identifyEmail },
+    defaultValues: { email: identifier },
   });
 
   const onSubmit = async (formData) => {

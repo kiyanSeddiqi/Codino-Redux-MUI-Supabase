@@ -8,7 +8,14 @@ export const emailField = z
 
 export const passwordField = z
   .string()
+  .trim()
+  .min(1, "رمز عبور الزامی است")
   .min(6, "رمز عبور باید حداقل ۶ کاراکتر باشد");
+
+export const confirmPasswordField = z
+  .string()
+  .trim()
+  .min(1, "تکرار کلمه عبور الزامی است");
 
 export const mobileField = z
   .string()
