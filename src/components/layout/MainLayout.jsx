@@ -9,10 +9,12 @@ import ScrollToTop from "./ScrollToTop";
 import { useSelector } from "react-redux";
 import AppSnackbar from "../ui/AppSnackbar/AppSnackbar";
 import { useRestoreSession } from "../../features/auth/hooks/useRestoreSession";
+import useAuthListener from "../../features/auth/hooks/useAuthListener";
 
 function MainLayout() {
   const openAuthModal = useSelector((state) => state.auth.authModalOpen);
   useRestoreSession();
+  useAuthListener();
   return (
     <>
       <ScrollToTop />

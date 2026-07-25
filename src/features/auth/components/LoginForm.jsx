@@ -32,6 +32,7 @@ import {
   mobileIdentifierSchema,
 } from "../schemas/identifierSchema";
 import useOtp from "../hooks/useOtp";
+import useGoogleLogin from "../hooks/useGoogleLogin";
 
 function LoginForm({
   step,
@@ -48,6 +49,7 @@ function LoginForm({
   const { loginUser } = useLogin();
   const { check } = useCheckUserExists();
   const { handleSendOtp } = useOtp();
+  const { googleLogin } = useGoogleLogin();
 
   const schema =
     step === "identifier"
@@ -76,16 +78,16 @@ function LoginForm({
       setIdentifier(identifier);
       setIdentifierType(loginType);
 
-      const exists = await check(identifier);
+      const result = await check(identifier);
 
-      if (exists) {
+      if (result.exists) {
         if (loginType === "email") {
           setStep("password");
         } else {
-          const result = await handleSendOtp(identifier);
+          const otpResult = await handleSendOtp(identifier);
 
-          if (result?.success) {
-            setDemoOtp(result.demoOtp);
+          if (otpResult?.success) {
+            setDemoOtp(otpResult.demoOtp);
             setStep("otp");
           }
         }
@@ -222,7 +224,7 @@ function LoginForm({
               {/* {loginType === "email" ? "وورد" : "ادامه"} */}
               {step === "identifier" ? "ادامه" : "وورد"}
             </Button>
-            <Button variant="outlined">
+            <Button onClick={googleLogin} variant="outlined">
               <SvgIcon name="google" size={24} />
               ورود با حساب گوگل
             </Button>

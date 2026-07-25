@@ -5,7 +5,9 @@ export const getAuthErrorMsg = (message) => {
 
   switch (message) {
     case "User already registered":
-      return "این ایمیل قبلاً ثبت شده است";
+
+    case "Mobile already registered":
+      return "این شماره قبلاً ثبت شده است";
 
     case "Invalid login credentials":
       return "ایمیل یا رمز عبور اشتباه است.";
