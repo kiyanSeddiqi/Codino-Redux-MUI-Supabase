@@ -13,10 +13,7 @@ export const authModalDialog = {
       xs: 2.5,
       sm: 4,
     },
-    gap: {
-      xs: 3,
-      sm: 4,
-    },
+    gap: 3,
     scrollbarWidth: "none",
   },
   "& .MuiBackdrop-root": {
@@ -116,5 +113,26 @@ export const formPasswordIcon = {
   "& svg": {
     fontSize: "18px",
     color: "text.secondary",
+  },
+};
+
+export const otpAlert = {
+  borderRadius: 2,
+  gap: 1,
+  p: "6px 12px",
+
+  "& .MuiAlert-icon": {
+    mr: 0,
+    p: 0,
+  },
+
+  "& .MuiAlert-message": {
+    py: 0,
+  },
+
+  "& h6": {
+    mt: 1,
+    fontWeight: 700,
+    letterSpacing: 2,
   },
 };

@@ -2,27 +2,31 @@ import { Box, TextField } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import { otpTextfield } from "./otpStyles";
 
-function OtpInput({ length = 4, onChange }) {
-  const [otp, setOtp] = useState(Array(length).fill(""));
+function OtpInput({ length = 4, onChange, value = "" }) {
+  const otp = Array.from({ length }, (_, i) => value[i] ?? "");
   const inputRefs = useRef([]);
 
   useEffect(() => {
     inputRefs.current[0]?.focus();
   }, []);
 
-  const handleChange = (e, index) => {
-    const value = e.target.value.replace(/\D/g, "");
+  useEffect(() => {
+    if (value === "") {
+      inputRefs.current[0]?.focus();
+    }
+  }, [value]);
 
-    if (value.length > 1) return;
+  const handleChange = (e, index) => {
+    const digit = e.target.value.replace(/\D/g, "");
+
+    if (digit.length > 1) return;
 
     const newOtp = [...otp];
-    newOtp[index] = value;
-
-    setOtp(newOtp);
+    newOtp[index] = digit;
 
     onChange?.(newOtp.join(""));
 
-    if (value && index < length - 1) {
+    if (digit && index < length - 1) {
       inputRefs.current[index + 1]?.focus();
     }
   };
@@ -33,7 +37,6 @@ function OtpInput({ length = 4, onChange }) {
     if (otp[index]) {
       const newOtp = [...otp];
       newOtp[index] = "";
-      setOtp(newOtp);
       onChange?.(newOtp.join(""));
       return;
     }
@@ -41,7 +44,6 @@ function OtpInput({ length = 4, onChange }) {
     if (index > 0) {
       const newOtp = [...otp];
       newOtp[index - 1] = "";
-      setOtp(newOtp);
       onChange?.(newOtp.join(""));
 
       inputRefs.current[index - 1]?.focus();
@@ -63,8 +65,6 @@ function OtpInput({ length = 4, onChange }) {
     pasted.split("").forEach((char, i) => {
       values[i] = char;
     });
-
-    setOtp(values);
 
     onChange?.(values.join(""));
 

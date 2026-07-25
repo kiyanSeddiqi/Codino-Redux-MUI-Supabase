@@ -46,12 +46,18 @@ function AuthModal({ isOpen }) {
   const [step, setStep] = useState("identifier");
   const [loginType, setLoginType] = useState("email");
   const [identifier, setIdentifier] = useState("");
+  const [identifierType, setIdentifierType] = useState("email");
+  const [demoOtp, setDemoOtp] = useState("");
 
   const dispatch = useDispatch();
 
   function handleClose() {
     setStep("identifier");
     setLoginType("email");
+    setIdentifier("");
+    setIdentifierType("email");
+    setDemoOtp("");
+
     dispatch(closeAuthModal());
   }
 
@@ -72,20 +78,33 @@ function AuthModal({ isOpen }) {
             loginType={loginType}
             setLoginType={setLoginType}
             setIdentifier={setIdentifier}
+            setIdentifierType={setIdentifierType}
+            setDemoOtp={setDemoOtp}
           />
         )}
         {step === "recovery" && (
-          <PasswordRecovery setStep={setStep} identifier={identifier} />
+          <PasswordRecovery
+            setStep={setStep}
+            identifier={identifier}
+            onClose={handleClose}
+          />
         )}
         {step === "otp" && (
           <OtpStep
             setStep={setStep}
             identifier={identifier}
             onClose={handleClose}
+            demoOtp={demoOtp}
+            setDemoOtp={setDemoOtp}
           />
         )}
         {step === "register" && (
-          <RegisterForm setStep={setStep} identifier={identifier} />
+          <RegisterForm
+            setStep={setStep}
+            identifier={identifier}
+            identifierType={identifierType}
+            onClose={handleClose}
+          />
         )}
       </Dialog>
     </>

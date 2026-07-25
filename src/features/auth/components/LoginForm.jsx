@@ -31,13 +31,23 @@ import {
   emailIdentifierSchema,
   mobileIdentifierSchema,
 } from "../schemas/identifierSchema";
+import useOtp from "../hooks/useOtp";
 
-function LoginForm({ step, setStep, loginType, setLoginType, setIdentifier }) {
+function LoginForm({
+  step,
+  setStep,
+  loginType,
+  setLoginType,
+  setIdentifier,
+  setIdentifierType,
+  setDemoOtp,
+}) {
   const theme = useTheme();
   const [showPassword, setShowPassword] = useState(false);
 
   const { loginUser } = useLogin();
   const { check } = useCheckUserExists();
+  const { handleSendOtp } = useOtp();
 
   const schema =
     step === "identifier"
@@ -62,13 +72,23 @@ function LoginForm({ step, setStep, loginType, setLoginType, setIdentifier }) {
     if (step === "identifier") {
       const identifier =
         loginType === "email" ? formData.email : formData.mobile;
+
       setIdentifier(identifier);
+      setIdentifierType(loginType);
+
       const exists = await check(identifier);
 
       if (exists) {
         if (loginType === "email") {
           setStep("password");
-        } else setStep("otp");
+        } else {
+          const result = await handleSendOtp(identifier);
+
+          if (result?.success) {
+            setDemoOtp(result.demoOtp);
+            setStep("otp");
+          }
+        }
       } else {
         setStep("register");
       }

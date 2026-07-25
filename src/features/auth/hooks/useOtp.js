@@ -2,23 +2,29 @@ import { useDispatch } from "react-redux";
 import { useSnackbar } from "../../../hooks/useSnackbar";
 import { sendOtp, verifyOtp } from "../services/otpService";
 import { authFailure, authStart, authSuccess } from "../redux/authSlice";
-import { getAuthErrorMsg } from "../../../utils/authErrorMessages";
 
 export default function useOtp() {
   const dispatch = useDispatch();
 
-  const { success, error } = useSnackbar();
+  const { success, error, warning } = useSnackbar();
 
   async function handleSendOtp(identifier) {
     try {
-      await sendOtp(identifier);
+      const data = await sendOtp(identifier);
+
+      if (!data.success) {
+        warning(
+          `کد قبلاً ارسال شده است. ${data.remaining} ثانیه دیگر تلاش کنید.`,
+        );
+        return data;
+      }
 
       success("کد تایید ارسال شد");
-      return true;
+
+      return data;
     } catch (err) {
       error(err.message);
-
-      return false;
+      return null;
     }
   }
 
@@ -38,9 +44,8 @@ export default function useOtp() {
       success("ورود با موفقیت انجام شد");
       return true;
     } catch (err) {
-      const message = getAuthErrorMsg(err.message);
-      dispatch(authFailure(message));
-      error(message);
+      dispatch(authFailure(err.message));
+      error(err.message);
       return false;
     }
   }

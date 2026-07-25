@@ -1,4 +1,8 @@
 export const getAuthErrorMsg = (message) => {
+  if (message.startsWith('Email address "')) {
+    return "ایمیل وارد شده معتبر نیست یا در سیستم وجود ندارد.";
+  }
+
   switch (message) {
     case "User already registered":
       return "این ایمیل قبلاً ثبت شده است";

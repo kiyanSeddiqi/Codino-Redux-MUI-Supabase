@@ -1,4 +1,11 @@
-import { Box, Button, InputBase, Typography, useTheme } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Button,
+  InputBase,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import {
   flexBetween,
   flexBox,
@@ -13,25 +20,47 @@ import SvgIcon from "../../../components/ui/SvgIcon/SvgIcon";
 import OtpInput from "../../../components/ui/OtpInput/OtpInput";
 import { useEffect, useState } from "react";
 import useOtp from "../hooks/useOtp";
-import { useDispatch } from "react-redux";
 import { closeAuthModal } from "../redux/authSlice";
+import { otpAlert } from "../styles/authStyles";
 
-function OtpStep({ setStep, identifier, onClose }) {
+function OtpStep({ setStep, identifier, onClose, demoOtp, setDemoOtp }) {
   const theme = useTheme();
   const [code, setCode] = useState("");
-  const dispatch = useDispatch();
+  const [seconds, setSeconds] = useState(120);
 
   const { handleSendOtp, handleVerifyOtp } = useOtp();
 
-  useEffect(() => {
-    if (identifier) {
-      handleSendOtp(identifier);
+  async function sendOtpCode() {
+    if (!identifier) return;
+    const result = await handleSendOtp(identifier);
+
+    if (!result) return;
+    if (!result.success) {
+      setSeconds(result.remaining);
+      return;
     }
-  }, [identifier]);
+
+    setDemoOtp(result.demoOtp);
+    setSeconds(result.remaining);
+    setCode("");
+  }
+
+  useEffect(() => {
+    if (seconds <= 0) return;
+
+    const timer = setInterval(() => {
+      setSeconds((prev) => prev - 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [seconds]);
+
+  const minutes = String(Math.floor(seconds / 60)).padStart(2, "0");
+  const remainSeconds = String(seconds % 60).padStart(2, "0");
 
   return (
     <>
-      <Box sx={{ ...flexCol(3), width: "100%" }}>
+      <Box sx={{ ...flexCol(2.5), width: "100%" }}>
         <Box sx={flexBox("12px")}>
           <Button
             onClick={() => setStep("identifier")}
@@ -44,7 +73,7 @@ function OtpStep({ setStep, identifier, onClose }) {
             تایید کد فعالسازی
           </Typography>
         </Box>
-        <Box sx={flexCol(3)}>
+        <Box sx={flexCol(2.5)}>
           <Box sx={flexBox("10px")}>
             <SvgIcon
               name="warning"
@@ -57,7 +86,7 @@ function OtpStep({ setStep, identifier, onClose }) {
           </Box>
           <Box sx={flexCol("12px")}>
             <Box sx={flexBetween("row")}>
-              <Typography component="span">کد فعالسازی</Typography>
+              <Typography component="span">ویرایش شماره:</Typography>
               <Box sx={flexBox("10px")}>
                 <Typography>{identifier}</Typography>
                 <Button
@@ -71,23 +100,40 @@ function OtpStep({ setStep, identifier, onClose }) {
                 </Button>
               </Box>
             </Box>
+            <Alert severity="info" variant="outlined" sx={otpAlert}>
+              <Typography variant="body2">
+                این پروژه از پیامک واقعی استفاده نمی‌کند.
+              </Typography>
+
+              <Typography variant="subtitle2">کد دمو: {demoOtp}</Typography>
+            </Alert>
             <Box>
-              <OtpInput length={4} onChange={setCode} />
+              <OtpInput length={4} onChange={setCode} value={code} />
             </Box>
             <Box sx={flexCol("12px")}>
               <Box sx={{ ...flexCenter(1, "row"), py: 1.5 }}>
                 <Typography
                   variant="subtitle2"
                   component="span"
-                  sx={{ color: "primary.main" }}
+                  sx={{
+                    color: "primary.main",
+                    display: "block",
+                    minWidth: "35px",
+                  }}
                 >
-                  00:00
+                  {minutes}:{remainSeconds}
                 </Typography>
                 <Typography variant="subtitle2" component="span">
                   تا ارسال مجدد رمز یکبار مصرف
                 </Typography>
               </Box>
-              <Button variant="text">ارسال مجدد رمز یکبار مصرف</Button>
+              <Button
+                onClick={sendOtpCode}
+                variant="outlined"
+                disabled={seconds > 0}
+              >
+                ارسال مجدد رمز یکبار مصرف
+              </Button>
               <Button
                 onClick={async () => {
                   const success = await handleVerifyOtp(identifier, code);

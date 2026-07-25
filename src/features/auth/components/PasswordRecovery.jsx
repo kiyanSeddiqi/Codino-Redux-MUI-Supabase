@@ -11,9 +11,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { emailIdentifierSchema } from "../schemas/identifierSchema";
 import usePasswordRecovery from "../hooks/usePasswordRecovery";
 
-function PasswordRecovery({ setStep, identifier }) {
+function PasswordRecovery({ setStep, identifier, onClose }) {
   const theme = useTheme();
   const { handlePasswordRecovery } = usePasswordRecovery();
+
   const {
     register,
     handleSubmit,
@@ -26,6 +27,7 @@ function PasswordRecovery({ setStep, identifier }) {
 
   async function onSubmit(data) {
     const success = await handlePasswordRecovery(data.email);
+    if (success) onClose();
   }
 
   return (

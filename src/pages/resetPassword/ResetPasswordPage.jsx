@@ -69,7 +69,7 @@ function ResetPasswordPage() {
             <Typography component="h3">تغییر کلمه عبور</Typography>
             <Typography sx={{ fontSize: { xs: "14px", md: "16px" } }}>
               برای تغییر کلمه عبور حساب کاربری با ایمیل
-              <strong>{email}</strong> اطلاعات زیر را پر کنید
+              <strong> {email} </strong> اطلاعات زیر را پر کنید
             </Typography>
           </Box>
           <Divider sx={{ my: 2.5 }} />
