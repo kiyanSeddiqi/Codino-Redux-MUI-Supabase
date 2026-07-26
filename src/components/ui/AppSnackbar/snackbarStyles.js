@@ -1,7 +1,7 @@
 export const appSnackbarRoot = (theme) => ({
   [theme.breakpoints.down("sm")]: {
     left: "auto",
-    right: 8,
+    right: 1,
     justifyContent: "flex-start",
   },
 });

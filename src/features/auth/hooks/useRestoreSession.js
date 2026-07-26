@@ -15,11 +15,28 @@ export const useRestoreSession = () => {
           restoreSession({
             user: session.user,
             accessToken: session.access_token,
-          })
+          }),
         );
-      } else {
-        dispatch(logout());
+
+        return;
       }
+
+      const mockSession = localStorage.getItem("mock-session");
+
+      if (mockSession) {
+        const parsedSession = JSON.parse(mockSession);
+
+        dispatch(
+          restoreSession({
+            user: parsedSession.user,
+            accessToken: parsedSession.accessToken,
+          }),
+        );
+
+        return;
+      }
+
+      dispatch(logout());
     });
 
     return () => subscription.unsubscribe();

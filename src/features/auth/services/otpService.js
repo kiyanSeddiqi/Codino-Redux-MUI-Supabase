@@ -29,11 +29,15 @@ export async function verifyOtp(identifier, otp) {
     throw new Error("کد وارد شده اشتباه است");
   }
 
-  return {
+  const mockSession = {
     user: {
-      id: "mock-user-id",
+      id: crypto.randomUUID(),
       phone: identifier,
     },
     accessToken: "mock-access-token",
   };
+
+  localStorage.setItem("mock-session", JSON.stringify(mockSession));
+
+  return mockSession;
 }

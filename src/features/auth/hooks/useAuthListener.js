@@ -11,18 +11,24 @@ export default function useAuthListener() {
   useEffect(() => {
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (event, session) => {
-      if (session?.user) {
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === "SIGNED_IN" && session?.user) {
         dispatch(
           authSuccess({
             user: session.user,
             accessToken: session.access_token,
           }),
         );
-        if (event === "SIGNED_IN") {
+
+        const googleLogin = sessionStorage.getItem("google_login");
+
+        if (googleLogin) {
           success("با موفقیت وارد حساب کاربری شدید");
+          sessionStorage.removeItem("google_login");
         }
-      } else if (event === "SIGNED_OUT") {
+      }
+
+      if (event === "SIGNED_OUT") {
         dispatch(authFailure("کاربر خارج شد"));
       }
     });
@@ -30,5 +36,5 @@ export default function useAuthListener() {
     return () => {
       subscription.unsubscribe();
     };
-  }, [dispatch]);
+  }, [dispatch, success]);
 }

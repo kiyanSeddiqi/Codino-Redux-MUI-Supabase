@@ -53,7 +53,7 @@ export const authMethodSlider = {
   display: "block",
   height: "100%",
   borderRadius: "8px",
-  transition: "all 0.3s ease",
+  transition: "transform 0.3s ease",
   boxShadow: 1,
   border: 1,
   borderColor: "primary.main",

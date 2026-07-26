@@ -40,6 +40,8 @@ export async function signOut() {
   if (error) {
     throw error;
   }
+
+  localStorage.removeItem("mock-session");
 }
 
 export async function getSession() {
@@ -85,11 +87,14 @@ export async function signInWithGoogle() {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
+      skipBrowserRedirect: true,
       redirectTo: window.location.origin,
     },
   });
 
   if (error) throw error;
 
-  return data;
+  const popup = window.open(data.url, "google-login", "width=500,height=600");
+
+  return popup;
 }

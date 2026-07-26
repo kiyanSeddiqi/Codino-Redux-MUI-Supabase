@@ -72,7 +72,6 @@ function AuthModal({ isOpen }) {
         <Logo />
         {(step === "identifier" || step === "password") && (
           <LoginForm
-            key={loginType}
             step={step}
             setStep={setStep}
             loginType={loginType}

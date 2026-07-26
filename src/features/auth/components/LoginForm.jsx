@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  CircularProgress,
   DialogTitle,
   IconButton,
   InputBase,
@@ -22,7 +23,7 @@ import SvgIcon from "../../../components/ui/SvgIcon/SvgIcon";
 import { useLogin } from "../hooks/useLogin";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { flexBox } from "../../../styles/globalStyles";
+import { flexBox, flexCol } from "../../../styles/globalStyles";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { emailLoginSchema, mobileLoginSchema } from "../schemas/loginSchema";
@@ -33,6 +34,9 @@ import {
 } from "../schemas/identifierSchema";
 import useOtp from "../hooks/useOtp";
 import useGoogleLogin from "../hooks/useGoogleLogin";
+import { useSnackbar } from "../../../hooks/useSnackbar";
+import { useSelector } from "react-redux";
+import { selectAuthLoading } from "../redux/authSelector";
 
 function LoginForm({
   step,
@@ -44,12 +48,14 @@ function LoginForm({
   setDemoOtp,
 }) {
   const theme = useTheme();
+  const loading = useSelector(selectAuthLoading);
   const [showPassword, setShowPassword] = useState(false);
 
   const { loginUser } = useLogin();
   const { check } = useCheckUserExists();
   const { handleSendOtp } = useOtp();
   const { googleLogin } = useGoogleLogin();
+  const { error } = useSnackbar();
 
   const schema =
     step === "identifier"
@@ -67,7 +73,6 @@ function LoginForm({
     formState: { errors },
   } = useForm({
     resolver: zodResolver(schema),
-    mode: "onBlur",
   });
 
   const onSubmit = async (formData) => {
@@ -80,20 +85,30 @@ function LoginForm({
 
       const result = await check(identifier);
 
-      if (result.exists) {
-        if (loginType === "email") {
-          setStep("password");
-        } else {
-          const otpResult = await handleSendOtp(identifier);
+      if (!result.exists) {
+        setStep("register");
+        return;
+      }
 
-          if (otpResult?.success) {
-            setDemoOtp(otpResult.demoOtp);
-            setStep("otp");
-          }
+      if (loginType === "email") {
+        if (result.hasPassword) {
+          setStep("password");
+          return;
+        }
+
+        if (result.provider === "google") {
+          error("این حساب با گوگل ساخته شده است. لطفاً با گوگل وارد شوید.");
+          return;
         }
       } else {
-        setStep("register");
+        const otpResult = await handleSendOtp(identifier);
+
+        if (otpResult?.success) {
+          setDemoOtp(otpResult.demoOtp);
+          setStep("otp");
+        }
       }
+
       return;
     }
     await loginUser(formData);
@@ -111,7 +126,12 @@ function LoginForm({
           ورود با {loginType === "email" ? "ایمیل" : "شماره همراه"}
         </DialogTitle>
         <Box sx={authModalSwitchBox}>
-          <Box sx={{ position: "relative", display: "flex" }}>
+          <Box
+            sx={{
+              position: "relative",
+              display: "flex",
+            }}
+          >
             <Button
               onClick={() => setLoginType("email")}
               variant="text"
@@ -219,14 +239,25 @@ function LoginForm({
               </Button>
             </Box>
           )}
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            <Button type="submit" sx={{ height: "46px" }}>
-              {/* {loginType === "email" ? "وورد" : "ادامه"} */}
-              {step === "identifier" ? "ادامه" : "وورد"}
+          <Box sx={flexCol(2)}>
+            <Button disabled={loading} type="submit" sx={{ height: "46px" }}>
+              {loading ? (
+                <CircularProgress size={22} color="inherit" />
+              ) : step === "identifier" ? (
+                "ادامه"
+              ) : (
+                "وورد"
+              )}
             </Button>
-            <Button onClick={googleLogin} variant="outlined">
-              <SvgIcon name="google" size={24} />
-              ورود با حساب گوگل
+            <Button disabled={loading} onClick={googleLogin} variant="outlined">
+              {loading ? (
+                <CircularProgress size={22} color="inherit" />
+              ) : (
+                <>
+                  <SvgIcon name="google" size={24} />
+                  ورود با حساب گوگل
+                </>
+              )}
             </Button>
           </Box>
           <Box sx={flexBox("10px")}>
@@ -237,7 +268,7 @@ function LoginForm({
             />
             <Typography variant="caption" sx={{ lineHeight: 2 }}>
               ورود یا ثبت‌نام شما به منزله‌ی پذیرش تمامی قوانین و مقررات
-              مجموعه‌ی کدیاد خواهد بود!
+              مجموعه‌ی کدینو خواهد بود!
             </Typography>
           </Box>
         </Box>

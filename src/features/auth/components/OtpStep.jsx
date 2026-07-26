@@ -27,6 +27,7 @@ function OtpStep({ setStep, identifier, onClose, demoOtp, setDemoOtp }) {
   const theme = useTheme();
   const [code, setCode] = useState("");
   const [seconds, setSeconds] = useState(120);
+  const [isVerifying, setIsVerifying] = useState(false);
 
   const { handleSendOtp, handleVerifyOtp } = useOtp();
 
@@ -55,8 +56,28 @@ function OtpStep({ setStep, identifier, onClose, demoOtp, setDemoOtp }) {
     return () => clearInterval(timer);
   }, [seconds]);
 
+  useEffect(() => {
+    if (code.length === 4) {
+      verifyCode();
+    }
+  }, [code]);
+
   const minutes = String(Math.floor(seconds / 60)).padStart(2, "0");
   const remainSeconds = String(seconds % 60).padStart(2, "0");
+
+  async function verifyCode() {
+    if (isVerifying || code.length !== 4) return;
+
+    setIsVerifying(true);
+
+    const success = await handleVerifyOtp(identifier, code);
+
+    if (success) {
+      onClose();
+    }
+
+    setIsVerifying(false);
+  }
 
   return (
     <>
@@ -134,13 +155,7 @@ function OtpStep({ setStep, identifier, onClose, demoOtp, setDemoOtp }) {
               >
                 ارسال مجدد رمز یکبار مصرف
               </Button>
-              <Button
-                onClick={async () => {
-                  const success = await handleVerifyOtp(identifier, code);
-
-                  if (success) onClose();
-                }}
-              >
+              <Button onClick={verifyCode} disabled={isVerifying}>
                 ورود
               </Button>
             </Box>

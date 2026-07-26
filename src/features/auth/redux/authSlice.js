@@ -46,9 +46,11 @@ const authSlice = createSlice({
       state.error = null;
     },
     restoreSession: (state, action) => {
+      state.loading = false;
       state.user = action.payload.user;
       state.accessToken = action.payload.accessToken;
       state.isAuthenticated = true;
+      state.error = null;
     },
   },
 });
