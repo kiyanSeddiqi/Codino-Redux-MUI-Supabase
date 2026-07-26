@@ -240,7 +240,7 @@ function LoginForm({
             </Box>
           )}
           <Box sx={flexCol(2)}>
-            <Button disabled={loading} type="submit" sx={{ height: "46px" }}>
+            <Button type="submit" sx={{ height: "46px" }}>
               {loading ? (
                 <CircularProgress size={22} color="inherit" />
               ) : step === "identifier" ? (
@@ -249,7 +249,7 @@ function LoginForm({
                 "وورد"
               )}
             </Button>
-            <Button disabled={loading} onClick={googleLogin} variant="outlined">
+            <Button onClick={googleLogin} variant="outlined">
               {loading ? (
                 <CircularProgress size={22} color="inherit" />
               ) : (

@@ -23,6 +23,11 @@ export default function useAuthListener() {
         const googleLogin = sessionStorage.getItem("google_login");
 
         if (googleLogin) {
+          if (window.opener) {
+            window.close();
+            return;
+          }
+
           success("با موفقیت وارد حساب کاربری شدید");
           sessionStorage.removeItem("google_login");
         }

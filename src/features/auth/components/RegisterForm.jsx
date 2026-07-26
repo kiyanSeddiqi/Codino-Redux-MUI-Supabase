@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  CircularProgress,
   IconButton,
   InputBase,
   Typography,
@@ -21,14 +22,19 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "../schemas/registerSchema";
 import { register } from "../services/authServices";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRegister } from "../hooks/useRegister";
+import { selectAuthLoading } from "../redux/authSelector";
+import useGoogleLogin from "../hooks/useGoogleLogin";
 
 function RegisterForm({ setStep, identifier, identifierType, onClose }) {
   const theme = useTheme();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
+
   const { registerUser } = useRegister();
+  const { googleLogin } = useGoogleLogin();
+  const loading = useSelector(selectAuthLoading);
 
   const {
     register,
@@ -180,11 +186,21 @@ function RegisterForm({ setStep, identifier, identifierType, onClose }) {
             )}
           </Box>
           <Button type="submit" sx={{ minHeight: "44px" }}>
-            ثبت نام و ورود
+            {loading ? (
+              <CircularProgress size={22} color="inherit" />
+            ) : (
+              "ثبت نام و ورود"
+            )}
           </Button>
-          <Button variant="outlined">
-            <SvgIcon name="google" size={24} />
-            ادامه با حساب گوگل
+          <Button onClick={googleLogin} variant="outlined">
+            {loading ? (
+              <CircularProgress size={22} color="inherit" />
+            ) : (
+              <>
+                <SvgIcon name="google" size={24} />
+                ادامه با حساب گوگل
+              </>
+            )}
           </Button>
         </Box>
       </Box>

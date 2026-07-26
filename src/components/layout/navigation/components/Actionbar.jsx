@@ -53,9 +53,10 @@ function Actionbar() {
   const { logoutUser } = useLogout();
 
   async function handleLogout() {
+    handleClose();
+
     try {
       await logoutUser();
-      handleClose();
     } catch (error) {
       console.error(error);
     }

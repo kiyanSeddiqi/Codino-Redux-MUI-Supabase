@@ -14,7 +14,16 @@ export default function useGoogleLogin() {
 
       sessionStorage.setItem("google_login", "true");
 
-      await signInWithGoogle();
+      const popup = await signInWithGoogle();
+
+      const timer = setInterval(() => {
+        if (popup.closed) {
+          clearInterval(timer);
+
+          dispatch(authFailure(null));
+          sessionStorage.removeItem("google_login");
+        }
+      }, 500);
     } catch (err) {
       const message = getAuthErrorMsg(err.message);
       dispatch(authFailure(message));
