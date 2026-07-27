@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { authFailure, authStart, closeAuthModal } from "../redux/authSlice";
 import { resetPassword } from "../services/authServices";
 import { useSnackbar } from "../../../hooks/useSnackbar";
-import { getAuthErrorMsg } from "../../../utils/authErrorMessages";
+import { getErrorMessage } from "../../../utils/getErrorMessage";
 
 export default function usePasswordRecovery() {
   const dispatch = useDispatch();
@@ -11,6 +11,7 @@ export default function usePasswordRecovery() {
   async function handlePasswordRecovery(email) {
     try {
       dispatch(authStart());
+
       await resetPassword(email);
 
       dispatch(closeAuthModal());
@@ -19,7 +20,7 @@ export default function usePasswordRecovery() {
 
       return true;
     } catch (err) {
-      const message = getAuthErrorMsg(err.message);
+      const message = getErrorMessage(err.message);
       dispatch(authFailure(message));
       error(message);
       return false;

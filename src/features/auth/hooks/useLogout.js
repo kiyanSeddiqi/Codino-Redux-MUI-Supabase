@@ -1,8 +1,8 @@
 import { useSnackbar } from "../../../hooks/useSnackbar";
 import { signOut } from "../services/authServices";
-import { getAuthErrorMsg } from "../../../utils/authErrorMessages";
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/authSlice";
+import { getErrorMessage } from "../../../utils/getErrorMessage";
 
 export function useLogout() {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ export function useLogout() {
       dispatch(logout());
       success("از حساب کاربری خارج شدید");
     } catch (err) {
-      const message = getAuthErrorMsg(err.message);
+      const message = getErrorMessage(err.message);
       error(message);
       throw err;
     }

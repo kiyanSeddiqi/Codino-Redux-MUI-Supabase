@@ -22,6 +22,7 @@ import SvgIcon from "../../../ui/SvgIcon/SvgIcon";
 import { signOut } from "../../../../features/auth/services/authServices";
 import { logout } from "../../../../features/auth/redux/authSlice";
 import { useLogout } from "../../../../features/auth/hooks/useLogout";
+import { useSelector } from "react-redux";
 
 const actionbarMenuData = [
   { title: "دوره های من", iconName: "course", slug: "/account/my-courses" },
@@ -50,16 +51,15 @@ function Actionbar() {
   const handleOpen = (e) => setAnchorEl(e.currentTarget);
   const handleClose = () => setAnchorEl(null);
 
+  const user = useSelector((state) => state.auth.user);
+  const { mobile, first_name, last_name } = user;
+  const fullName = [first_name, last_name].filter(Boolean).join(" ");
+
   const { logoutUser } = useLogout();
 
   async function handleLogout() {
     handleClose();
-
-    try {
-      await logoutUser();
-    } catch (error) {
-      console.error(error);
-    }
+    await logoutUser();
   }
 
   return (
@@ -88,12 +88,14 @@ function Actionbar() {
           sx={{ minWidth: 0 }}
         >
           <PermIdentity sx={{ fontSize: { xs: "20px", md: "24px" } }} />
-          <Typography
-            variant="subtitle2"
-            sx={{ display: { xs: "none", lg: "block" } }}
-          >
-            کیان صدیقی
-          </Typography>
+          {fullName && (
+            <Typography
+              variant="subtitle2"
+              sx={{ display: { xs: "none", lg: "block" } }}
+            >
+              {fullName}
+            </Typography>
+          )}
         </Button>
         <Menu
           id={menuId}
@@ -125,21 +127,23 @@ function Actionbar() {
             onClick={handleClose}
           >
             <Box sx={flexCol(0.5)}>
-              <Typography variant="subtitle2" sx={{ lineHeight: "20px" }}>
-                کیان صدیقی
-              </Typography>
+              {fullName && (
+                <Typography variant="subtitle2" sx={{ lineHeight: "20px" }}>
+                  {fullName}
+                </Typography>
+              )}
               <Typography
                 variant="caption"
                 sx={{ color: "text.secondary", lineHeight: "16px" }}
               >
-                09376242832
+                {mobile}
               </Typography>
             </Box>
             <ArrowOutward sx={{ rotate: "-90deg", color: "primary.main" }} />
           </Box>
           <Divider sx={{ my: "12px", width: "100%" }} />
           <Box sx={flexCol("10px")}>
-            {actionbarMenuData.map((item, index) => (
+            {actionbarMenuData.map((item) => (
               <MenuItem
                 disableRipple
                 key={item.title}

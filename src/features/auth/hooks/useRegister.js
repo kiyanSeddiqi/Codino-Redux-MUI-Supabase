@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { useSnackbar } from "../../../hooks/useSnackbar";
 import { authFailure, authStart, authSuccess } from "../redux/authSlice";
 import { register } from "../services/authServices";
-import { getAuthErrorMsg } from "../../../utils/authErrorMessages";
+import { getErrorMessage } from "../../../utils/getErrorMessage";
 
 export const useRegister = () => {
   const dispatch = useDispatch();
@@ -22,9 +22,10 @@ export const useRegister = () => {
       );
 
       success("ثبت نام با موفقیت انجام شد");
+
       return data;
     } catch (err) {
-      const message = getAuthErrorMsg(err.message);
+      const message = getErrorMessage(err.message);
       dispatch(authFailure(message));
       error(message);
       throw err;

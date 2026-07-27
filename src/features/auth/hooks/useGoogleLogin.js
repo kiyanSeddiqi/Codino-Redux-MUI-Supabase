@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { signInWithGoogle } from "../services/authServices";
 import { useSnackbar } from "../../../hooks/useSnackbar";
 import { authFailure, authStart } from "../redux/authSlice";
-import { getAuthErrorMsg } from "../../../utils/authErrorMessages";
+import { getErrorMessage } from "../../../utils/getErrorMessage";
 
 export default function useGoogleLogin() {
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ export default function useGoogleLogin() {
         }
       }, 500);
     } catch (err) {
-      const message = getAuthErrorMsg(err.message);
+      const message = getErrorMessage(err.message);
       dispatch(authFailure(message));
       error(message);
     }

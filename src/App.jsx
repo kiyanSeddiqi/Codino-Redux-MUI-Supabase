@@ -9,6 +9,8 @@ import { useSelector } from "react-redux";
 import CourseDetails from "./pages/courseDetails/CourseDetails";
 import Courses from "./pages/courses/Courses";
 import ResetPasswordPage from "./pages/resetPassword/ResetPasswordPage";
+import AccountPage from "./pages/account/AccountPage";
+import FullWidthLayout from "./components/layout/FullWidthLayout";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +39,21 @@ const router = createBrowserRouter([
       {
         path: "*",
         element: <PageNotFound />,
+      },
+    ],
+  },
+  {
+    element: <FullWidthLayout />,
+    children: [
+      {
+        path: "/account",
+        element: <AccountPage />,
+        children: [
+          {
+            index: true,
+            // element:
+          },
+        ],
       },
     ],
   },

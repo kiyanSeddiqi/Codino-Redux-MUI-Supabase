@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { useSnackbar } from "../../../hooks/useSnackbar";
 import { authFailure, authStart } from "../redux/authSlice";
 import { getSession, updatePassword } from "../services/authServices";
-import { getAuthErrorMsg } from "../../../utils/authErrorMessages";
+import { getErrorMessage } from "../../../utils/getErrorMessage";
 
 export default function useResetPassword() {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ export default function useResetPassword() {
 
       return true;
     } catch (err) {
-      const message = getAuthErrorMsg(err.message);
+      const message = getErrorMessage(err.message);
       dispatch(authFailure(message));
       error(message);
 

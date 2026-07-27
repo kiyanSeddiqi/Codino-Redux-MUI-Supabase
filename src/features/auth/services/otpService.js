@@ -12,6 +12,7 @@ export async function sendOtp(identifier) {
       remaining: Math.ceil((expireAt - now) / 1000),
     };
   }
+
   currentOtp = Math.floor(1000 + Math.random() * 9000).toString();
 
   lastIdentifier = identifier;

@@ -7,7 +7,8 @@ import {
   authSuccess,
 } from "../redux/authSlice";
 import { login } from "../services/authServices";
-import { getAuthErrorMsg } from "../../../utils/authErrorMessages";
+import { getErrorMessage } from "../../../utils/getErrorMessage";
+import { getCompleteUser } from "../services/profileService";
 
 export function useLogin() {
   const dispatch = useDispatch();
@@ -15,12 +16,15 @@ export function useLogin() {
 
   async function loginUser(userData) {
     dispatch(authStart());
+
     try {
       const data = await login(userData);
 
+      const userData = await getCompleteUser(data.user);
+
       dispatch(
         authSuccess({
-          user: data.user,
+          user: userData,
           accessToken: data.session.access_token,
         }),
       );
@@ -31,7 +35,7 @@ export function useLogin() {
 
       return data;
     } catch (err) {
-      const message = getAuthErrorMsg(err.message);
+      const message = getErrorMessage(err.message);
       dispatch(authFailure(message));
       error(message);
 

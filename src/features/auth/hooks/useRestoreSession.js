@@ -2,43 +2,52 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { restoreSession, logout } from "../redux/authSlice";
 import { supabase } from "../../../lib/supabase";
+import { getCompleteUser } from "../services/profileService";
 
 export const useRestoreSession = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((event, session) => {
-      if (session) {
-        dispatch(
-          restoreSession({
-            user: session.user,
-            accessToken: session.access_token,
-          }),
-        );
+    const authListener = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        if (session) {
+          try {
+            const userData = await getCompleteUser(session.user);
 
-        return;
-      }
+            dispatch(
+              restoreSession({
+                user: userData,
+                accessToken: session.access_token,
+              }),
+            );
+          } catch {
+            dispatch(logout());
+          }
 
-      const mockSession = localStorage.getItem("mock-session");
+          return;
+        }
 
-      if (mockSession) {
-        const parsedSession = JSON.parse(mockSession);
+        const mockSession = localStorage.getItem("mock-session");
 
-        dispatch(
-          restoreSession({
-            user: parsedSession.user,
-            accessToken: parsedSession.accessToken,
-          }),
-        );
+        if (mockSession) {
+          const parsedSession = JSON.parse(mockSession);
 
-        return;
-      }
+          dispatch(
+            restoreSession({
+              user: parsedSession.user,
+              accessToken: parsedSession.accessToken,
+            }),
+          );
 
-      dispatch(logout());
-    });
+          return;
+        }
 
-    return () => subscription.unsubscribe();
+        dispatch(logout());
+      },
+    );
+
+    return () => {
+      authListener.data.subscription.unsubscribe();
+    };
   }, [dispatch]);
 };

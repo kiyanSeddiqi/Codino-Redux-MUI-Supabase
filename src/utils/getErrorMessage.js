@@ -1,4 +1,4 @@
-export const getAuthErrorMsg = (message) => {
+export const getErrorMessage = (message) => {
   if (message.startsWith('Email address "')) {
     return "ایمیل وارد شده معتبر نیست یا در سیستم وجود ندارد.";
   }
@@ -32,6 +32,9 @@ export const getAuthErrorMsg = (message) => {
 
     case "Database error saving new user":
       return "خطایی هنگام ایجاد حساب کاربری رخ داد.";
+
+    case "JSON object requested, multiple (or no) rows returned":
+      return "اطلاعات پروفایل یافت نشد.";
 
     default:
       return "خطایی رخ داده است. لطفاً دوباره تلاش کنید.";
