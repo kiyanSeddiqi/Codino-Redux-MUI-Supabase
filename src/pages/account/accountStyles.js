@@ -11,7 +11,6 @@ export const accountSidebar = {
   bgcolor: "background.default",
   p: 2.5,
   gap: 2,
-  border: 1,
 };
 
 export const accountMainbar = {
@@ -20,5 +19,4 @@ export const accountMainbar = {
     xs: 2.5,
     lg: 5,
   },
-  border: 1,
 };

@@ -9,6 +9,15 @@ import FullWidthLayout from "../components/layout/FullWidthLayout";
 import AccountPage from "../pages/account/AccountPage";
 import MyCourses from "../pages/account/sections/accountMainbar/myCourses/MyCourses";
 import Dashboard from "../pages/account/sections/accountMainbar/dashboard/Dashboard";
+import Installments from "../pages/account/sections/accountMainbar/installments/Installments";
+import Wallet from "../pages/account/sections/accountMainbar/wallet/Wallet";
+import EditProfile from "../pages/account/sections/accountMainbar/editProfile/EditProfile";
+import ChangePassword from "../pages/account/sections/accountMainbar/changePassword/ChangePassword";
+import Consultations from "../pages/account/sections/accountMainbar/consultations/Consultations";
+import Ticket from "../pages/account/sections/accountMainbar/ticket/Ticket";
+import MyFactors from "../pages/account/sections/accountMainbar/myFactors/MyFactors";
+import FavoriteCourses from "../pages/account/sections/accountMainbar/favoriteCourses/FavoriteCourses";
+import Referral from "../pages/account/sections/accountMainbar/referral/Referral";
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +63,42 @@ export const router = createBrowserRouter([
           {
             path: "my-courses",
             element: <MyCourses />,
+          },
+          {
+            path: "installments",
+            element: <Installments />,
+          },
+          {
+            path: "wallet",
+            element: <Wallet />,
+          },
+          {
+            path: "edit-profile",
+            element: <EditProfile />,
+          },
+          {
+            path: "change-password",
+            element: <ChangePassword />,
+          },
+          {
+            path: "consultations",
+            element: <Consultations />,
+          },
+          {
+            path: "tickets",
+            element: <Ticket />,
+          },
+          {
+            path: "my-factors",
+            element: <MyFactors />,
+          },
+          {
+            path: "favorite-courses",
+            element: <FavoriteCourses />,
+          },
+          {
+            path: "referral",
+            element: <Referral />,
           },
         ],
       },

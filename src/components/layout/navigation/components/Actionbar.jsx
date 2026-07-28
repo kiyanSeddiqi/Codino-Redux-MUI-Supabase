@@ -23,24 +23,7 @@ import { signOut } from "../../../../features/auth/services/authServices";
 import { logout } from "../../../../features/auth/redux/authSlice";
 import { useLogout } from "../../../../features/auth/hooks/useLogout";
 import { useSelector } from "react-redux";
-
-const actionbarMenuData = [
-  { title: "دوره های من", iconName: "course", slug: "/account/my-courses" },
-  { title: "ویرایش حساب", iconName: "editAccount", slug: "/account/edit" },
-  { title: "تیکت ها", iconName: "ticket", slug: "/account/tickets" },
-  {
-    title: "اعلان ها",
-    iconName: "notifications",
-    slug: "/account/notifications",
-  },
-  {
-    title: "خروج از حساب کاربری",
-    iconName: "power",
-    slug: null,
-    action: "logout",
-    danger: true,
-  },
-];
+import { accountMenuData } from "../../../../data/accountMenuData";
 
 function Actionbar() {
   const id = useId();
@@ -143,34 +126,37 @@ function Actionbar() {
           </Box>
           <Divider sx={{ my: "12px", width: "100%" }} />
           <Box sx={flexCol("10px")}>
-            {actionbarMenuData.map((item) => (
-              <MenuItem
-                disableRipple
-                key={item.title}
-                component={Link}
-                to={item.slug}
-                onClick={item.action ? handleLogout : handleClose}
-                sx={actionbarMenuItem(item.danger)}
-              >
-                <ListItemIcon>
-                  <SvgIcon
-                    name={item.iconName}
-                    size={24}
-                    accentColor="currentColor"
-                  />
-                </ListItemIcon>
-                <ListItemText
-                  slotProps={{
-                    primary: {
-                      sx: {
-                        fontSize: 14,
+            {accountMenuData.map((item) => {
+              if (!item.inActionbar) return;
+              return (
+                <MenuItem
+                  disableRipple
+                  key={item.id}
+                  component={item.action ? "li" : Link}
+                  to={item.action ? undefined : `account/${item.slug}`}
+                  onClick={item.action ? handleLogout : handleClose}
+                  sx={actionbarMenuItem(item.danger)}
+                >
+                  <ListItemIcon>
+                    <SvgIcon
+                      name={item.iconName}
+                      size={24}
+                      accentColor="currentColor"
+                    />
+                  </ListItemIcon>
+                  <ListItemText
+                    slotProps={{
+                      primary: {
+                        sx: {
+                          fontSize: 14,
+                        },
                       },
-                    },
-                  }}
-                  primary={item.title}
-                />
-              </MenuItem>
-            ))}
+                    }}
+                    primary={item.title}
+                  />
+                </MenuItem>
+              );
+            })}
           </Box>
         </Menu>
       </Box>

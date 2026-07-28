@@ -1,11 +1,14 @@
 import { Box } from "@mui/material";
 import { accountSidebar } from "../../accountStyles";
+import GemSubscribe from "./GemSubscribe";
+import AccountSidebarMenu from "./AccountSidebarMenu";
 
 function AccountSidebar() {
   return (
     <>
       <Box component="aside" sx={accountSidebar}>
-        aside
+        <GemSubscribe />
+        <AccountSidebarMenu />
       </Box>
     </>
   );

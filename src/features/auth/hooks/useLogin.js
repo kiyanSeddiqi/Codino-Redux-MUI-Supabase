@@ -20,11 +20,11 @@ export function useLogin() {
     try {
       const data = await login(userData);
 
-      const userData = await getCompleteUser(data.user);
+      const user = await getCompleteUser(data.user);
 
       dispatch(
         authSuccess({
-          user: userData,
+          user: user,
           accessToken: data.session.access_token,
         }),
       );
