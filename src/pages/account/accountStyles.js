@@ -19,4 +19,5 @@ export const accountMainbar = {
     xs: 2.5,
     lg: 5,
   },
+  bgcolor: "background.paper",
 };

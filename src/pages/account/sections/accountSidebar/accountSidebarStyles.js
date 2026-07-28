@@ -10,6 +10,14 @@ export const accountListBtn = (theme) => ({
   borderRadius: "12px",
   textAlign: "right",
   gap: 2,
+  "&:hover": {
+    bgcolor: "menuItemBg",
+    color: theme.palette.mode === "dark" ? "primary.light" : "primary.main",
+  },
+
+  "&:hover .MuiListItemIcon-root": {
+    color: "primary.main",
+  },
 
   "&.active": {
     bgcolor: "primary.main",
@@ -20,7 +28,7 @@ export const accountListBtn = (theme) => ({
     color: theme.palette.mode === "dark" ? "secondary.contrastText" : "#fff",
   },
 
-  "&.active .MuiTypography-root": {
+  "& .MuiTypography-root": {
     fontWeight: 600,
   },
 
