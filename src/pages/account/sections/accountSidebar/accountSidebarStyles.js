@@ -1,3 +1,5 @@
+import { red } from "@mui/material/colors";
+
 export const gemSubscribeBox = {
   p: 2,
   borderRadius: "12px",
@@ -33,4 +35,23 @@ export const accountListBtn = (theme) => ({
   },
 
   transition: "all 0.3s ease",
+});
+
+export const accountLogoutBtn = (theme) => ({
+  p: "10px",
+  borderRadius: "12px",
+  textAlign: "right",
+  gap: 2,
+  transition: "all 0.3s ease",
+  bgcolor: "background.paper",
+  "&:hover": {
+    bgcolor: "bgDanger",
+    "& .MuiListItemText-primary": {
+      color: theme.palette.mode === "dark" ? "error.light" : "error.dark",
+    },
+  },
+
+  "& .MuiListItemText-primary": {
+    color: "error.main",
+  },
 });

@@ -4,7 +4,10 @@ export const dashboardCardContainer = {
   display: "flex",
   alignItems: "flex-start",
   gap: { xs: 2, lg: 4 },
-  flexDirection: { xs: "column", md: "row" },
+  flexDirection: {
+    xs: "column",
+    md: "row",
+  },
 };
 
 export const dashboardCard = {

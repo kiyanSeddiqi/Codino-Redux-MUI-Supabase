@@ -14,17 +14,21 @@ import {
 } from "./dashboardStyle";
 import { useSelector } from "react-redux";
 import SvgIcon from "../../../../../components/ui/SvgIcon/SvgIcon";
-import { Swiper } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import { productData } from "../../../../../data/productData";
+import ProductCard from "../../../../../features/product/components/ProductCard";
+import SliderNavBtn from "../../../../../components/ui/SliderNavBtn/SliderNavBtn";
+
+import "swiper/css";
+import "swiper/css/navigation";
 
 function Dashboard() {
   const user = useSelector((state) => state.auth.user) || {};
-  console.log(user);
+  // console.log(user);
 
   const { first_name, last_name, mobile, avatar_url } = user;
   const fullName = [first_name, last_name].filter(Boolean).join(" ");
-
-  import "swiper/css";
-  import "swiper/css/navigation";
 
   return (
     <>
@@ -100,8 +104,39 @@ function Dashboard() {
             </Box>
           </Box>
         </Box>
-        <Box sx={mySuggestedCourses}>
-          <Swiper></Swiper>
+        <Box sx={mySuggestedCourses} className="suggested-courses">
+          <Box sx={{ ...flexBetween("row") }}>
+            <Typography component="h4" sx={sectionTitle}>
+              دوره های پیشنهادی
+            </Typography>
+            <SliderNavBtn />
+          </Box>
+          <Box sx={{ width: "100%", overflow: "hidden" }}>
+            <Swiper
+              modules={[Navigation]}
+              spaceBetween={20}
+              slidesPerView={4.5}
+              speed={500}
+              navigation={{
+                prevEl: ".suggested-courses .swiper-btn-prev",
+                nextEl: ".suggested-courses .swiper-btn-next",
+              }}
+              loop={true}
+              breakpoints={{
+                300: { slidesPerView: 1, spaceBetween: 20 },
+                420: { slidesPerView: 2, spaceBetween: 20 },
+                780: { slidesPerView: 3, spaceBetween: 20 },
+                1024: { slidesPerView: 4, spaceBetween: 20 },
+                1280: { slidesPerView: 3.5, spaceBetween: 20 },
+              }}
+            >
+              {productData.slice(10, 20).map((item) => (
+                <SwiperSlide key={item.id}>
+                  <ProductCard itemData={item} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </Box>
         </Box>
       </Box>
     </>

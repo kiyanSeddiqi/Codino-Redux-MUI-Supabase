@@ -63,13 +63,4 @@ export const accountMenuData = [
     iconName: "favorite",
     slug: "favorite-courses",
   },
-  {
-    id: 11,
-    title: "خروج از حساب کاربری",
-    iconName: "power",
-    slug: null,
-    inActionbar: true,
-    action: "logout",
-    danger: true,
-  },
 ];

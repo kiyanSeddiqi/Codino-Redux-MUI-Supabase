@@ -9,15 +9,17 @@ export const accountSidebar = {
   },
   flexDirection: "column",
   bgcolor: "background.default",
-  p: 2.5,
+  p: 2,
   gap: 2,
 };
 
 export const accountMainbar = {
   flex: 1,
+  minWidth: 0,
   p: {
     xs: 2.5,
-    lg: 5,
+    lg: 4,
   },
+
   bgcolor: "background.paper",
 };

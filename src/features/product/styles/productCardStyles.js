@@ -5,7 +5,7 @@ export const cardContainer = (theme) => ({
   bgcolor: "transparent",
   boxShadow: "none",
   width: "100%",
-  maxWidth: "fit-contet",
+  maxWidth: "fit-content",
   [theme.breakpoints.down(480)]: {
     maxWidth: "100%",
   },

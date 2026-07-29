@@ -177,23 +177,44 @@ export const actionbarMenuHeader = {
   width: "100%",
 };
 
-export const actionbarMenuItem = (isDanger = false) => ({
+export const actionbarMenuItem = {
   gap: 2,
   borderRadius: "8px",
   p: "10px",
   transition: "0.2s ease",
-  color: isDanger ? "error.main" : "text.primary",
+  color: "text.primary",
   "& .MuiListItemIcon-root": {
     minWidth: 0,
-    color: isDanger ? "error.main" : "text.primary",
+    color: "text.primary",
   },
   "&:hover": {
-    bgcolor: isDanger ? "bgDanger" : "menuItemBg",
+    bgcolor: "menuItemBg",
     "& .MuiListItemIcon-root": {
-      color: isDanger ? "error.main" : "primary.main",
+      color: "primary.main",
     },
     "& .MuiListItemText-primary": {
-      color: isDanger ? "error.main" : "primary.main",
+      color: "primary.main",
     },
+  },
+};
+
+export const actionbarLogoutBtn = (theme) => ({
+  gap: 2,
+  borderRadius: "8px",
+  p: "10px",
+  transition: "0.2s ease",
+  bgcolor: "background.paper",
+  "& .MuiListItemIcon-root": {
+    minWidth: 0,
+  },
+  "&:hover": {
+    bgcolor: "bgDanger",
+    "& .MuiListItemText-primary": {
+      color: theme.palette.mode === "dark" ? "error.light" : "error.dark",
+    },
+  },
+
+  "& .MuiListItemText-primary": {
+    color: "error.main",
   },
 });

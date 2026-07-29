@@ -1,47 +1,84 @@
 import {
+  Box,
+  Divider,
   List,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  useTheme,
 } from "@mui/material";
 import { accountMenuData } from "../../../../data/accountMenuData";
 import SvgIcon from "../../../../components/ui/SvgIcon/SvgIcon";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { flexCol } from "../../../../styles/globalStyles";
-import { accountListBtn } from "./accountSidebarStyles";
+import { accountListBtn, accountLogoutBtn } from "./accountSidebarStyles";
+import { useLogout } from "../../../../features/auth/hooks/useLogout";
 
 function AccountSidebarMenu() {
+  const theme = useTheme();
+  const { logoutUser } = useLogout();
+  const navigate = useNavigate();
+
+  async function handleLogout() {
+    navigate("/");
+    await logoutUser();
+  }
+
   return (
     <>
-      <List disablePadding sx={flexCol("10px")}>
-        {accountMenuData.map((item) => (
-          <ListItem key={item.id} disablePadding>
-            <ListItemButton
-              disableRipple
-              component={NavLink}
-              to={`${item.slug}`}
-              end={item.id === 1}
-              sx={accountListBtn}
-            >
-              <ListItemIcon sx={{ minWidth: 0 }}>
-                <SvgIcon
-                  name={item.iconName}
-                  size={24}
-                  accentColor="currentColor"
+      <Box sx={flexCol(2.5)}>
+        <List disablePadding sx={flexCol("10px")}>
+          {accountMenuData.map((item) => (
+            <ListItem key={item.id} disablePadding>
+              <ListItemButton
+                disableRipple
+                component={NavLink}
+                to={`${item.slug}`}
+                end={item.id === 1}
+                sx={accountListBtn}
+              >
+                <ListItemIcon sx={{ minWidth: 0 }}>
+                  <SvgIcon
+                    name={item.iconName}
+                    size={24}
+                    accentColor="currentColor"
+                  />
+                </ListItemIcon>
+                <ListItemText
+                  primary={item.title}
+                  sx={{
+                    my: 0,
+                    "& .MuiTypography-root": { fontSize: "14px" },
+                  }}
                 />
-              </ListItemIcon>
-              <ListItemText
-                primary={item.title}
-                sx={{
-                  my: 0,
-                  "& .MuiTypography-root": { fontSize: "14px" },
-                }}
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <ListItem disablePadding>
+          <ListItemButton
+            disableRipple
+            sx={accountLogoutBtn}
+            onClick={handleLogout}
+          >
+            <ListItemIcon sx={{ minWidth: 0 }}>
+              <SvgIcon
+                name="power"
+                size={24}
+                color={theme.palette.error.main}
               />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+            </ListItemIcon>
+            <ListItemText
+              primary="خروج از حساب کاربری"
+              sx={{
+                my: 0,
+              }}
+            />
+          </ListItemButton>
+        </ListItem>
+      </Box>
     </>
   );
 }

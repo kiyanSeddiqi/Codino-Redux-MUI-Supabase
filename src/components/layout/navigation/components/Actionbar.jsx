@@ -8,16 +8,18 @@ import {
   Menu,
   MenuItem,
   Typography,
+  useTheme,
 } from "@mui/material";
 import { flexBetween, flexBox, flexCol } from "../../../../styles/globalStyles";
 import { ArrowOutward, PermIdentity, ShoppingCart } from "@mui/icons-material";
 import { useId, useState } from "react";
 import {
+  actionbarLogoutBtn,
   actionbarMenu,
   actionbarMenuHeader,
   actionbarMenuItem,
 } from "../styles/navbarStyles";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SvgIcon from "../../../ui/SvgIcon/SvgIcon";
 import { signOut } from "../../../../features/auth/services/authServices";
 import { logout } from "../../../../features/auth/redux/authSlice";
@@ -39,9 +41,12 @@ function Actionbar() {
   const fullName = [first_name, last_name].filter(Boolean).join(" ");
 
   const { logoutUser } = useLogout();
+  const theme = useTheme();
+  const navigate = useNavigate();
 
   async function handleLogout() {
     handleClose();
+    navigate("/");
     await logoutUser();
   }
 
@@ -132,10 +137,10 @@ function Actionbar() {
                 <MenuItem
                   disableRipple
                   key={item.id}
-                  component={item.action ? "li" : Link}
-                  to={item.action ? undefined : `account/${item.slug}`}
-                  onClick={item.action ? handleLogout : handleClose}
-                  sx={actionbarMenuItem(item.danger)}
+                  component={Link}
+                  to={`account/${item.slug}`}
+                  onClick={handleClose}
+                  sx={actionbarMenuItem}
                 >
                   <ListItemIcon>
                     <SvgIcon
@@ -157,6 +162,29 @@ function Actionbar() {
                 </MenuItem>
               );
             })}
+            <MenuItem
+              disableRipple
+              onClick={handleLogout}
+              sx={actionbarLogoutBtn}
+            >
+              <ListItemIcon>
+                <SvgIcon
+                  name="power"
+                  size={24}
+                  color={theme.palette.error.main}
+                />
+              </ListItemIcon>
+              <ListItemText
+                slotProps={{
+                  primary: {
+                    sx: {
+                      fontSize: 14,
+                    },
+                  },
+                }}
+                primary="خروج از حساب کاربری"
+              />
+            </MenuItem>
           </Box>
         </Menu>
       </Box>

@@ -11,7 +11,7 @@ import AppSnackbar from "../ui/AppSnackbar/AppSnackbar";
 import { useRestoreSession } from "../../features/auth/hooks/useRestoreSession";
 import useAuthListener from "../../features/auth/hooks/useAuthListener";
 
-function BaseLayout({ withContainer = true }) {
+function BaseLayout({ withContainer = true, showFooter = true }) {
   const openAuthModal = useSelector((state) => state.auth.authModalOpen);
   useRestoreSession();
   useAuthListener();
@@ -29,9 +29,12 @@ function BaseLayout({ withContainer = true }) {
           <Outlet />
         )}
       </main>
-      <footer>
-        <Footer />
-      </footer>
+      {showFooter && (
+        <footer>
+          <Footer />
+        </footer>
+      )}
+
       <AuthModal isOpen={openAuthModal} />
       <AppSnackbar />
     </>
