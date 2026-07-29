@@ -10,22 +10,18 @@ import {
   dashboardCard,
   dashboardCardContainer,
   dashboardUserImg,
-  mySuggestedCourses,
 } from "./dashboardStyle";
 import { useSelector } from "react-redux";
 import SvgIcon from "../../../../../components/ui/SvgIcon/SvgIcon";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import { productData } from "../../../../../data/productData";
-import ProductCard from "../../../../../features/product/components/ProductCard";
-import SliderNavBtn from "../../../../../components/ui/SliderNavBtn/SliderNavBtn";
 
-import "swiper/css";
-import "swiper/css/navigation";
+import { productData } from "../../../../../data/productData";
+import MySuggestedCourses from "./MySuggestedCourses";
+import { useState } from "react";
+import FavoriteCategories from "./FavoriteCategories";
 
 function Dashboard() {
+  const [showFavoriteList, setShowFavoriteList] = useState(false);
   const user = useSelector((state) => state.auth.user) || {};
-  // console.log(user);
 
   const { first_name, last_name, mobile, avatar_url } = user;
   const fullName = [first_name, last_name].filter(Boolean).join(" ");
@@ -81,7 +77,16 @@ function Dashboard() {
           <Box sx={dashboardCard}>
             <Box sx={flexBetween("row")}>
               <Typography component="h5">علاقه مندی های شما</Typography>
-              <Button sx={{ fontSize: "12px" }}>ویرایش</Button>
+              <Button
+                onClick={() => setShowFavoriteList(true)}
+                sx={{ fontSize: "12px" }}
+              >
+                ویرایش
+              </Button>
+              <FavoriteCategories
+                open={showFavoriteList}
+                onShow={setShowFavoriteList}
+              />
             </Box>
             <Divider sx={{ my: 1 }} />
             <Box sx={flexCol(1)}>
@@ -104,40 +109,7 @@ function Dashboard() {
             </Box>
           </Box>
         </Box>
-        <Box sx={mySuggestedCourses} className="suggested-courses">
-          <Box sx={{ ...flexBetween("row") }}>
-            <Typography component="h4" sx={sectionTitle}>
-              دوره های پیشنهادی
-            </Typography>
-            <SliderNavBtn />
-          </Box>
-          <Box sx={{ width: "100%", overflow: "hidden" }}>
-            <Swiper
-              modules={[Navigation]}
-              spaceBetween={20}
-              slidesPerView={4.5}
-              speed={500}
-              navigation={{
-                prevEl: ".suggested-courses .swiper-btn-prev",
-                nextEl: ".suggested-courses .swiper-btn-next",
-              }}
-              loop={true}
-              breakpoints={{
-                300: { slidesPerView: 1, spaceBetween: 20 },
-                420: { slidesPerView: 2, spaceBetween: 20 },
-                780: { slidesPerView: 3, spaceBetween: 20 },
-                1024: { slidesPerView: 4, spaceBetween: 20 },
-                1280: { slidesPerView: 3.5, spaceBetween: 20 },
-              }}
-            >
-              {productData.slice(10, 20).map((item) => (
-                <SwiperSlide key={item.id}>
-                  <ProductCard itemData={item} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </Box>
-        </Box>
+        <MySuggestedCourses />
       </Box>
     </>
   );

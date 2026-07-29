@@ -66,8 +66,8 @@ function AuthModal({ isOpen }) {
       <Dialog
         open={isOpen}
         onClose={handleClose}
-        sx={authModalDialog}
         disableScrollLock
+        sx={authModalDialog}
       >
         <Logo />
         {(step === "identifier" || step === "password") && (

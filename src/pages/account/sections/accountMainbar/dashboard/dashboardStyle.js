@@ -31,3 +31,25 @@ export const mySuggestedCourses = {
   ...flexCol(2.5),
   mt: 2.5,
 };
+
+export const favoriteListDialog = {
+  "& .MuiDialog-paper": {
+    ...flexCol(2),
+    p: 2,
+    borderRadius: "8px",
+    bgcolor: "background.default",
+    m: 0,
+    width: "400px",
+    maxHeight: "90svh",
+  },
+
+  "& .MuiBackdrop-root": {
+    backdropFilter: "blur(6px)",
+  },
+};
+
+export const favoriteListTitle = {
+  fontSize: "18px",
+  fontWeight: 600,
+  p: 0,
+};
