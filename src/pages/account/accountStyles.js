@@ -1,3 +1,5 @@
+import { position } from "stylis";
+
 export const accountSidebar = {
   width: {
     xs: "25%",
@@ -11,6 +13,9 @@ export const accountSidebar = {
   bgcolor: "background.default",
   p: 2,
   gap: 2,
+  position: "sticky",
+  top: "94px",
+  height: "100%",
 };
 
 export const accountMainbar = {

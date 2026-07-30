@@ -13,14 +13,16 @@ import {
 } from "./dashboardStyle";
 import { useSelector } from "react-redux";
 import SvgIcon from "../../../../../components/ui/SvgIcon/SvgIcon";
-
 import { productData } from "../../../../../data/productData";
 import MySuggestedCourses from "./MySuggestedCourses";
 import { useState } from "react";
 import FavoriteCategories from "./FavoriteCategories";
+import { Link } from "react-router-dom";
 
 function Dashboard() {
   const [showFavoriteList, setShowFavoriteList] = useState(false);
+  const [favoriteList, setFavoriteList] = useState([]);
+
   const user = useSelector((state) => state.auth.user) || {};
 
   const { first_name, last_name, mobile, avatar_url } = user;
@@ -86,26 +88,26 @@ function Dashboard() {
               <FavoriteCategories
                 open={showFavoriteList}
                 onShow={setShowFavoriteList}
+                setFavoriteList={setFavoriteList}
               />
             </Box>
             <Divider sx={{ my: 1 }} />
             <Box sx={flexCol(1)}>
-              <Box sx={flexBetween(1, "row")}>
-                <Typography sx={{ lineHeight: "32px" }}>
-                  برنامه نویسی موبایل
-                </Typography>
-                <Button variant="text" sx={{ bgcolor: "menuItemBg" }}>
-                  دوره ها
-                </Button>
-              </Box>
-              <Box sx={flexBetween(1, "row")}>
-                <Typography sx={{ lineHeight: "32px" }}>
-                  توسعه وب و طراحی سایت
-                </Typography>
-                <Button variant="text" sx={{ bgcolor: "menuItemBg" }}>
-                  دوره ها
-                </Button>
-              </Box>
+              {favoriteList?.map((item) => (
+                <Box key={item.id} sx={flexBetween(1, "row")}>
+                  <Typography sx={{ lineHeight: "32px" }}>
+                    {item.title}
+                  </Typography>
+                  <Button
+                    component={Link}
+                    to={`/courses/${item.slug}`}
+                    variant="text"
+                    sx={{ bgcolor: "menuItemBg" }}
+                  >
+                    دوره ها
+                  </Button>
+                </Box>
+              ))}
             </Box>
           </Box>
         </Box>

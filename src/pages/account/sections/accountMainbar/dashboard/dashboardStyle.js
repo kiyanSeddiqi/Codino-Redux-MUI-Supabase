@@ -39,7 +39,8 @@ export const favoriteListDialog = {
     borderRadius: "8px",
     bgcolor: "background.default",
     m: 0,
-    width: "400px",
+    width: "fit-content",
+    minWidth: "400px",
     maxHeight: "90svh",
   },
 
@@ -52,4 +53,10 @@ export const favoriteListTitle = {
   fontSize: "18px",
   fontWeight: 600,
   p: 0,
+};
+
+export const favoriteListGrid = {
+  display: "grid",
+  gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+  gap: "10px",
 };
