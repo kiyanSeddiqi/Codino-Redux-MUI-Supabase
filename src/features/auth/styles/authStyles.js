@@ -97,12 +97,12 @@ export const formLabel = {
   display: "block",
 };
 
-export const formErrorLabel = (theme) => ({
+export const formErrorLabel = {
   color: "error.main",
   mt: 1,
   display: "block",
   fontWeight: 500,
-});
+};
 
 export const formPasswordIcon = {
   position: "absolute",

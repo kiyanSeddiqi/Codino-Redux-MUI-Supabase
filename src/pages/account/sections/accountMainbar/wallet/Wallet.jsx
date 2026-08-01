@@ -1,4 +1,15 @@
-import { Box, Button, Divider, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Divider,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+} from "@mui/material";
 import {
   flexBetween,
   flexBox,
@@ -81,6 +92,27 @@ function Wallet() {
               onShow={setShowChargeDialog}
             />
           </Box>
+          <TableContainer>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>مبلغ</TableCell>
+                  <TableCell>مبلغ ارزی</TableCell>
+                  <TableCell>نوع</TableCell>
+                  <TableCell>تاریخ پرداخت</TableCell>
+                  <TableCell>توضیحات</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {walletData.map((item) => (
+                  <TableRow key={item.id}>
+                    <TableCell>{item.amount}</TableCell>
+                    <TableCell>{item.amount}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </Box>
       </Box>
     </>

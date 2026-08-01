@@ -33,3 +33,40 @@ export const chargeDialogTitle = {
   fontWeight: 600,
   p: 0,
 };
+
+export const chargeDialogLabel = {
+  marginBottom: "6px",
+  fontSize: "12px",
+  display: "block",
+};
+
+export const chargeDialogInput = (theme, hasError = false) => ({
+  p: "8px 12px",
+  borderRadius: "12px",
+  border: `2px solid ${hasError ? theme.palette.error.main : theme.palette.divider}`,
+  width: "100%",
+  height: "44px",
+  fontSize: "14px",
+  bgcolor: "background.default",
+  transition: "border 0.3s ease",
+  "& input": {
+    padding: "0px",
+  },
+  "& input::placeholder": {
+    color: "text.secondary",
+    opacity: 0.8,
+  },
+  "&:focus-within": {
+    border: "2px solid ",
+    borderColor: hasError
+      ? theme.palette.error.main
+      : theme.palette.primary.main,
+  },
+});
+
+export const chargeErrorLabel = (theme) => ({
+  color: theme.palette.mode === "dark" ? "error.light" : "error.main",
+  mt: 1,
+  display: "block",
+  fontWeight: 500,
+});
