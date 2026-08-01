@@ -18,6 +18,7 @@ export const productData = [
     hasCertificate: false,
     hasInstallment: false,
     created_at: "2026-06-15T11:00:00Z",
+    progress: 100,
   },
   {
     id: 2,
@@ -36,6 +37,7 @@ export const productData = [
     hasCertificate: true,
     hasInstallment: true,
     created_at: "2026-06-11T11:00:00Z",
+    progress: 45,
   },
   {
     id: 3,
@@ -60,6 +62,7 @@ export const productData = [
     hasCertificate: false,
     hasInstallment: false,
     created_at: "2026-07-01T11:00:00Z",
+    progress: 0,
   },
   {
     id: 4,

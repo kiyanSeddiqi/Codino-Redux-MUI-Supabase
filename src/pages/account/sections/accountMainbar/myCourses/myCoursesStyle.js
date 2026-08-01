@@ -12,8 +12,6 @@ export const tabConainer = {
 export const myCoursesTabBtn = {
   borderRadius: "6px",
   p: "8px 10px",
-  color: "text.primary",
-  borderColor: "divider",
 };
 
 export const cardContainer = {

@@ -72,7 +72,7 @@ function MyCoursesCard({ itemData }) {
                 <PermIdentity sx={{ fontSize: "20px" }} />
                 <Typography component="span">{itemData.teacher}</Typography>
               </Box>
-              <Divider orientation="vertical" flexItem s />
+              <Divider orientation="vertical" flexItem />
               <Box sx={flexBox(1)}>
                 <Schedule sx={{ fontSize: "20px" }} />
                 <Typography component="span" dir="ltr">
@@ -93,12 +93,12 @@ function MyCoursesCard({ itemData }) {
                 }}
                 dir="ltr"
               >
-                0 %
+                {itemData.progress} %
               </Typography>
               <Box sx={{ flex: 1 }}>
                 <LinearProgress
                   variant="determinate"
-                  value={0}
+                  value={itemData.progress}
                   aria-label="course progress"
                   sx={{ height: "6px", borderRadius: "10px" }}
                 />
@@ -112,6 +112,7 @@ function MyCoursesCard({ itemData }) {
                 fontSize: "12px",
               }}
               variant="outlined"
+              disabled={itemData.progress === 100}
             >
               شروع یادگیری
               <ChevronLeft sx={{ fontSize: "20px" }} />
