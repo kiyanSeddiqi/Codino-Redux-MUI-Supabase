@@ -55,6 +55,14 @@ export const formTextField = {
     "&.Mui-focused fieldset": {
       borderColor: "primary.main",
     },
+
+    "&.Mui-error:hover fieldset": {
+      borderColor: "error.main",
+    },
+
+    "&.Mui-error.Mui-focused fieldset": {
+      borderColor: "error.main",
+    },
   },
 
   "& .MuiOutlinedInput-input": {
