@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Chip,
   Divider,
   Table,
   TableBody,
@@ -20,6 +21,8 @@ import SvgIcon from "../../../../../components/ui/SvgIcon/SvgIcon";
 import { Add } from "@mui/icons-material";
 import { useState } from "react";
 import ChargeWalletDialog from "./ChargeWalletDialog";
+import { walletTable, walletTableContainer } from "./walletStyles";
+import { addComma } from "../../../../../utils/helpers";
 
 const walletData = [
   {
@@ -48,6 +51,8 @@ const walletData = [
 function Wallet() {
   const [showChargeDialog, setShowChargeDialog] = useState(false);
 
+  const totalAmount = walletData.reduce((acc, curr) => acc + curr.amount, 0);
+
   return (
     <>
       <Box sx={flexCol(8)}>
@@ -63,7 +68,7 @@ function Wallet() {
                   component="span"
                   sx={{ color: "error.main", fontWeight: 600 }}
                 >
-                  1,500 تومان{" "}
+                  {addComma(totalAmount)} تومان
                 </Typography>
               </Box>
               <Divider orientation="vertical" flexItem />
@@ -92,8 +97,8 @@ function Wallet() {
               onShow={setShowChargeDialog}
             />
           </Box>
-          <TableContainer>
-            <Table>
+          <TableContainer sx={walletTableContainer}>
+            <Table sx={walletTable}>
               <TableHead>
                 <TableRow>
                   <TableCell>مبلغ</TableCell>
@@ -106,8 +111,20 @@ function Wallet() {
               <TableBody>
                 {walletData.map((item) => (
                   <TableRow key={item.id}>
-                    <TableCell>{item.amount}</TableCell>
-                    <TableCell>{item.amount}</TableCell>
+                    <TableCell sx={{ color: "primary.main" }}>
+                      {addComma(Math.abs(item.amount))} تومان
+                    </TableCell>
+                    <TableCell sx={{ color: "primary.main" }} dir="ltr">
+                      {item.currencyAmount} USDT
+                    </TableCell>
+                    <TableCell>
+                      <Chip
+                        label={item.amount > 0 ? "واریز" : "برداشت"}
+                        color={item.amount > 0 ? "success" : "warning"}
+                      />
+                    </TableCell>
+                    <TableCell>{item.date}</TableCell>
+                    <TableCell>{item.description}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

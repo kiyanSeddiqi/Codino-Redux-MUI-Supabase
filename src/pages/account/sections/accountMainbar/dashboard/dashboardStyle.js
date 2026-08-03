@@ -20,13 +20,6 @@ export const dashboardCard = {
   minHeight: "227px",
 };
 
-export const dashboardUserImg = {
-  width: "100%",
-  height: "100%",
-  borderRadius: "100%",
-  objectFit: "cover",
-};
-
 export const mySuggestedCourses = {
   ...flexCol(2.5),
   mt: 2.5,

@@ -6,11 +6,7 @@ import {
   flexCol,
   sectionTitle,
 } from "../../../../../styles/globalStyles";
-import {
-  dashboardCard,
-  dashboardCardContainer,
-  dashboardUserImg,
-} from "./dashboardStyle";
+import { dashboardCard, dashboardCardContainer } from "./dashboardStyle";
 import { useSelector } from "react-redux";
 import SvgIcon from "../../../../../components/ui/SvgIcon/SvgIcon";
 import { productData } from "../../../../../data/productData";
@@ -18,6 +14,7 @@ import MySuggestedCourses from "./MySuggestedCourses";
 import { useState } from "react";
 import FavoriteCategories from "./FavoriteCategories";
 import { Link } from "react-router-dom";
+import { userImg } from "../../../accountStyles";
 
 function Dashboard() {
   const [showFavoriteList, setShowFavoriteList] = useState(false);
@@ -53,7 +50,7 @@ function Dashboard() {
                   component="img"
                   alt="پروفایل کاربر"
                   src={avatar_url || default_avatar}
-                  sx={dashboardUserImg}
+                  sx={userImg}
                 ></Box>
               </Box>
             </Box>

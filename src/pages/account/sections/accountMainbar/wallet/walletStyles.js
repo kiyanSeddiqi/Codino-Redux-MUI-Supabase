@@ -49,15 +49,18 @@ export const chargeDialogInput = (theme, hasError = false) => ({
   fontSize: "14px",
   bgcolor: "background.default",
   transition: "border 0.3s ease",
+
   "& input": {
     padding: "0px",
   },
+
   "& input::placeholder": {
     color: "text.secondary",
     opacity: 0.8,
   },
+
   "&:focus-within": {
-    border: "2px solid ",
+    border: "2px solid",
     borderColor: hasError
       ? theme.palette.error.main
       : theme.palette.primary.main,
@@ -70,3 +73,33 @@ export const chargeErrorLabel = (theme) => ({
   display: "block",
   fontWeight: 500,
 });
+
+export const walletTableContainer = {
+  borderRadius: "16px",
+  overflow: "hidden",
+  border: 1,
+  borderColor: "divider",
+};
+
+export const walletTable = {
+  "& .MuiTableHead-root": {
+    bgcolor: "background.default",
+  },
+
+  "& .MuiTableHead-root .MuiTableCell-root": {
+    p: "10px 20px",
+    textAlign: "center",
+    fontSize: "16px",
+  },
+
+  "& .MuiTableBody-root .MuiTableCell-root": {
+    p: "16px 20px",
+    textAlign: "center",
+    fontSize: "16px",
+    borderColor: "divider",
+  },
+
+  "& .MuiTableBody-root .MuiTableRow-root:last-child .MuiTableCell-root": {
+    borderBottom: 0,
+  },
+};

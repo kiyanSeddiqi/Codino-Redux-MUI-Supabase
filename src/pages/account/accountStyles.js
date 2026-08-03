@@ -28,3 +28,45 @@ export const accountMainbar = {
 
   bgcolor: "background.paper",
 };
+
+export const userImg = {
+  width: "100%",
+  height: "100%",
+  borderRadius: "100%",
+  objectFit: "cover",
+};
+
+export const accountFormLabel = {
+  mb: "6px",
+  fontSize: "12px",
+  color: "text.primary",
+};
+
+export const formTextField = {
+  "& .MuiOutlinedInput-root": {
+    borderRadius: "6px",
+    "& fieldset": {
+      borderColor: "divider",
+      px: 0,
+    },
+    "&:hover fieldset": {
+      borderColor: "divider",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "primary.main",
+    },
+  },
+
+  "& .MuiOutlinedInput-input": {
+    px: "12px",
+    py: 1,
+  },
+
+  "& .MuiOutlinedInput-input::placeholder": {
+    fontSize: "12px",
+  },
+
+  "& .MuiFormHelperText-root": {
+    textAlign: "right",
+  },
+};
