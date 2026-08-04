@@ -28,12 +28,14 @@ function EditProfile() {
     formState: { errors, isValid },
   } = useForm({
     resolver: zodResolver(profileSchema),
-    mode: "onChange",
+    mode: "all",
   });
 
   function onSubmit(data) {
     console.log(data);
   }
+
+  const mobileRegister = register("mobile");
 
   useEffect(() => {
     if (user) {
@@ -74,18 +76,11 @@ function EditProfile() {
               ></Box>
             </Box>
 
-            <label htmlFor="profile-upload">
-              <Button variant="outlined">
-                آپلود تصویر پروفایل
-                <SvgIcon name="upload" size={24} />
-                <input
-                  type="file"
-                  hidden
-                  accept="image/*"
-                  id="profile-upload"
-                />
-              </Button>
-            </label>
+            <Button variant="outlined" component="label">
+              آپلود تصویر پروفایل
+              <SvgIcon name="upload" size={24} />
+              <input type="file" hidden accept="image/*" id="profile-upload" />
+            </Button>
 
             <Typography
               variant="caption"
@@ -131,7 +126,7 @@ function EditProfile() {
           <Box>
             <InputLabel sx={accountFormLabel}>شماره همراه</InputLabel>
             <TextField
-              {...register("mobile")}
+              {...mobileRegister}
               type="text"
               fullWidth
               sx={editProfileTextField}
@@ -139,7 +134,7 @@ function EditProfile() {
               error={!!errors.mobile}
               onChange={(e) => {
                 e.target.value = e.target.value.replace(/\D/g, "");
-                register("mobile").onChange(e);
+                mobileRegister.onChange(e);
               }}
             />
           </Box>

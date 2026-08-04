@@ -78,3 +78,21 @@ export const formTextField = {
     textAlign: "right",
   },
 };
+
+export const tableContainer = {
+  borderRadius: "16px",
+  overflow: "hidden",
+  border: 1,
+  borderColor: "divider",
+};
+
+export const tableStyle = {
+  "& .MuiTableHead-root": {
+    bgcolor: "background.default",
+  },
+  "& .MuiTableHead-root .MuiTableCell-root": {
+    p: "10px 20px",
+    textAlign: "center",
+    fontSize: "16px",
+  },
+};
