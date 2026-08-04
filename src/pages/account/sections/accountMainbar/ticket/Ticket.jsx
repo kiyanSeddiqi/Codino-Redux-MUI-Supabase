@@ -21,7 +21,7 @@ import NewTicketDialog from "./NewTicketDialog";
 import { useState } from "react";
 
 function Ticket() {
-  const [openTicketDialog, setOpenTicketDialog] = useState("false");
+  const [openTicketDialog, setOpenTicketDialog] = useState(false);
 
   return (
     <>

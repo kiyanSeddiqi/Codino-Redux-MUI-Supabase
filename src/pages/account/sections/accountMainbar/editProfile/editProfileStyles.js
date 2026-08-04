@@ -64,9 +64,11 @@ export const textarea = {
       borderColor: "transparent",
       px: 0,
     },
+
     "&:hover fieldset": {
       borderColor: "transparent",
     },
+
     "&.Mui-focused fieldset": {
       border: 2,
       borderColor: "primary.main",
@@ -77,10 +79,5 @@ export const textarea = {
       boxSizing: "border-box",
       p: 0,
     },
-  },
-
-  "& .MuiOutlinedInput-input": {
-    px: "12px",
-    py: 1,
   },
 };

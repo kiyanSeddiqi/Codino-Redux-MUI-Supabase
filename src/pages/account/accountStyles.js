@@ -77,6 +77,16 @@ export const formTextField = {
   "& .MuiFormHelperText-root": {
     textAlign: "right",
   },
+
+  "& .MuiSelect-icon": {
+    left: 8,
+    right: "auto",
+    fontSize: "18px",
+  },
+  "& .MuiSelect-select": {
+    fontSize: "14px",
+    padding: "8px 12px !important",
+  },
 };
 
 export const tableContainer = {

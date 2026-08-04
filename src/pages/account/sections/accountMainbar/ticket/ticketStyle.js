@@ -16,7 +16,7 @@ export const ticketDialog = {
     },
     maxWidth: {
       xs: "100%",
-      md: "400px",
+      md: "432px",
     },
   },
 
@@ -38,4 +38,32 @@ export const ticketDialogLabel = {
   marginBottom: "6px",
   fontSize: "12px",
   display: "block",
+};
+
+export const ticketTextarea = {
+  "& .MuiOutlinedInput-root": {
+    borderRadius: "6px",
+    bgcolor: "background.paper",
+    p: "8px 12px",
+    "& fieldset": {
+      borderColor: "divider",
+      px: 0,
+    },
+
+    "&:hover fieldset": {
+      borderColor: "divider",
+    },
+
+    "&.Mui-focused fieldset": {
+      border: 2,
+      borderColor: "primary.main",
+    },
+
+    "& .MuiOutlinedInput-input": {
+      height: "100%",
+      boxSizing: "border-box",
+      p: 0,
+      fontSize: "14px",
+    },
+  },
 };

@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Dialog,
   DialogTitle,
   Divider,
@@ -8,18 +9,20 @@ import {
   MenuItem,
   TextField,
   Typography,
+  useTheme,
 } from "@mui/material";
 import {
   ticketDialog,
   ticketDialogLabel,
   ticketDialogTitle,
+  ticketTextarea,
 } from "./ticketStyle";
-import { Close, Label } from "@mui/icons-material";
+import { Close, ExpandMore, Label } from "@mui/icons-material";
 import { flexBetween, flexCol } from "../../../../../styles/globalStyles";
 import { formTextField } from "../../../accountStyles";
 import { useForm } from "react-hook-form";
 
-const tickeCategories = [
+const ticketCategories = [
   { value: "general", label: "عمومی" },
   { value: "finance", label: "امور مالی و پرداخت" },
   { value: "feedback", label: "شکایات و پیشنهادات" },
@@ -28,8 +31,18 @@ const tickeCategories = [
   { value: "support", label: "پشتیبانی فنی سایت" },
 ];
 
+const ticketpPriorities = [
+  { value: "low", label: "کم" },
+  { value: "medium", label: "متوسط" },
+  { value: "high", label: "بالا" },
+];
+
 function NewTicketDialog({ open, onShow }) {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      category: "general",
+    },
+  });
 
   function onSubmit(data) {
     console.log(data);
@@ -37,9 +50,8 @@ function NewTicketDialog({ open, onShow }) {
 
   const handleClose = () => {
     onShow(false);
-    // reset();
   };
-
+  const theme = useTheme();
   return (
     <>
       <Dialog
@@ -91,9 +103,26 @@ function NewTicketDialog({ open, onShow }) {
                   </Typography>{" "}
                   بخش:
                 </InputLabel>
-                <TextField type="text" fullWidth sx={formTextField} select>
-                  {tickeCategories.map((item, i) => (
-                    <MenuItem value={item.value} key={i}>
+                <TextField
+                  {...register("category")}
+                  defaultValue={ticketCategories[0].value}
+                  type="text"
+                  fullWidth
+                  sx={formTextField}
+                  select
+                  slotProps={{
+                    select: {
+                      IconComponent: ExpandMore,
+                    },
+                  }}
+                >
+                  {ticketCategories?.map((item) => (
+                    <MenuItem
+                      disableRipple
+                      value={item.value}
+                      key={item.value}
+                      sx={{ fontSize: "14px" }}
+                    >
                       {item.label}
                     </MenuItem>
                   ))}
@@ -111,13 +140,65 @@ function NewTicketDialog({ open, onShow }) {
                   اولویت:
                 </InputLabel>
                 <TextField
+                  {...register("priority")}
                   type="text"
                   fullWidth
                   sx={formTextField}
-                  placeholder="عنوان تیکت"
-                />
+                  defaultValue={ticketpPriorities[0].value}
+                  select
+                  slotProps={{
+                    select: {
+                      IconComponent: ExpandMore,
+                    },
+                  }}
+                >
+                  {ticketpPriorities?.map((item) => (
+                    <MenuItem
+                      disableRipple
+                      value={item.value}
+                      key={item.value}
+                      sx={{ fontSize: "14px" }}
+                    >
+                      {item.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
               </Box>
             </Box>
+            <Box>
+              <InputLabel sx={ticketDialogLabel}>
+                <Typography
+                  component="span"
+                  variant="caption"
+                  sx={{ color: "red" }}
+                >
+                  *
+                </Typography>{" "}
+                متن:
+              </InputLabel>
+              <TextField
+                type="text"
+                fullWidth
+                sx={ticketTextarea}
+                multiline
+                rows={3}
+              />
+            </Box>
+            <Box>
+              <InputLabel sx={ticketDialogLabel}>
+                <Typography
+                  component="span"
+                  variant="caption"
+                  sx={{ color: "red" }}
+                >
+                  *
+                </Typography>{" "}
+                تصویر ضمیمه
+              </InputLabel>
+              <TextField type="file" fullWidth sx={formTextField} />
+            </Box>
+
+            <Button sx={{ alignSelf: "flex-end" }}>ثبت تیکت جدید</Button>
           </Box>
         </Box>
       </Dialog>
