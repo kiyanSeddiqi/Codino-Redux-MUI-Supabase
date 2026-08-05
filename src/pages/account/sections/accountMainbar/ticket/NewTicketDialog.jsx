@@ -20,7 +20,10 @@ import {
 import { Close, ExpandMore, Label } from "@mui/icons-material";
 import { flexBetween, flexCol } from "../../../../../styles/globalStyles";
 import { formTextField } from "../../../accountStyles";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { profileTicket } from "../../../../../features/auth/schemas/profileSchema";
+import { useSnackbar } from "../../../../../hooks/useSnackbar";
 
 const ticketCategories = [
   { value: "general", label: "عمومی" },
@@ -38,18 +41,32 @@ const ticketpPriorities = [
 ];
 
 function NewTicketDialog({ open, onShow }) {
-  const { register, handleSubmit } = useForm({
+  const { success } = useSnackbar();
+
+  const {
+    register,
+    control,
+    reset,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm({
     defaultValues: {
       category: "general",
+      priority: "low",
     },
+    resolver: zodResolver(profileTicket),
+    mode: "all",
   });
 
   function onSubmit(data) {
     console.log(data);
+    success("تیکت شما با موفقیت ثبت شد");
+    handleClose();
   }
 
   const handleClose = () => {
     onShow(false);
+    reset();
   };
   const theme = useTheme();
   return (
@@ -85,10 +102,13 @@ function NewTicketDialog({ open, onShow }) {
                 عنوان:
               </InputLabel>
               <TextField
+                {...register("title")}
                 type="text"
                 fullWidth
                 sx={formTextField}
                 placeholder="عنوان تیکت"
+                helperText={errors.title?.message}
+                error={!!errors.title}
               />
             </Box>
             <Box sx={flexBetween("4px", "row")}>
@@ -141,10 +161,10 @@ function NewTicketDialog({ open, onShow }) {
                 </InputLabel>
                 <TextField
                   {...register("priority")}
+                  defaultValue={ticketpPriorities[0].value}
                   type="text"
                   fullWidth
                   sx={formTextField}
-                  defaultValue={ticketpPriorities[0].value}
                   select
                   slotProps={{
                     select: {
@@ -177,11 +197,14 @@ function NewTicketDialog({ open, onShow }) {
                 متن:
               </InputLabel>
               <TextField
+                {...register("description")}
                 type="text"
                 fullWidth
                 sx={ticketTextarea}
                 multiline
                 rows={3}
+                helperText={errors.description?.message}
+                error={!!errors.description}
               />
             </Box>
             <Box>
@@ -195,10 +218,21 @@ function NewTicketDialog({ open, onShow }) {
                 </Typography>{" "}
                 تصویر ضمیمه
               </InputLabel>
-              <TextField type="file" fullWidth sx={formTextField} />
+              <TextField
+                {...register("image")}
+                type="file"
+                fullWidth
+                sx={formTextField}
+              />
             </Box>
 
-            <Button sx={{ alignSelf: "flex-end" }}>ثبت تیکت جدید</Button>
+            <Button
+              type="submit"
+              disabled={!isValid}
+              sx={{ alignSelf: "flex-end" }}
+            >
+              ثبت تیکت جدید
+            </Button>
           </Box>
         </Box>
       </Dialog>

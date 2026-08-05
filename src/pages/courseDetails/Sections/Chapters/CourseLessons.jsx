@@ -25,7 +25,7 @@ function CourseLessons({ lessonData }) {
             {lessonData.isFree ? (
               <Chip
                 label="رایگان"
-                color="error"
+                color="warning"
                 sx={{
                   lineHeight: "16px",
                   display: { xs: "none", md: "block" },
@@ -34,7 +34,7 @@ function CourseLessons({ lessonData }) {
             ) : (
               <Chip
                 label="نقدی"
-                color="info"
+                color="normal"
                 sx={{
                   lineHeight: "16px",
                   display: { xs: "none", md: "block" },

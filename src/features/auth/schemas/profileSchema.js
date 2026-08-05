@@ -43,3 +43,19 @@ export const profileResetPassword = z
     message: "رمز عبور جدید نباید با رمز عبور فعلی یکسان باشد",
     path: ["newPassword"],
   });
+
+export const profileTicket = z.object({
+  title: z.string().trim().min(3, "عنوان حداقل ۳ کاراکتر باشد"),
+  description: z.string().trim().min(10, "متن تیکت حداقل ۱۰ کاراکتر باشد"),
+
+  category: z.enum([
+    "general",
+    "finance",
+    "feedback",
+    "sales",
+    "mentors",
+    "support",
+  ]),
+
+  priority: z.enum(["low", "medium", "high"]),
+});

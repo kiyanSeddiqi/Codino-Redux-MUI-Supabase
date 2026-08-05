@@ -37,6 +37,7 @@ import useGoogleLogin from "../hooks/useGoogleLogin";
 import { useSnackbar } from "../../../hooks/useSnackbar";
 import { useSelector } from "react-redux";
 import { selectAuthLoading } from "../redux/authSelector";
+import { getErrorMessage } from "../../../utils/getErrorMessage";
 
 function LoginForm({
   step,
@@ -76,43 +77,47 @@ function LoginForm({
   });
 
   const onSubmit = async (formData) => {
-    if (step === "identifier") {
-      const identifier =
-        loginType === "email" ? formData.email : formData.mobile;
+    try {
+      if (step === "identifier") {
+        const identifier =
+          loginType === "email" ? formData.email : formData.mobile;
 
-      setIdentifier(identifier);
-      setIdentifierType(loginType);
+        setIdentifier(identifier);
+        setIdentifierType(loginType);
 
-      const result = await check(identifier);
+        const result = await check(identifier);
 
-      if (!result.exists) {
-        setStep("register");
+        if (!result.exists) {
+          setStep("register");
+          return;
+        }
+
+        if (loginType === "email") {
+          if (result.hasPassword) {
+            setStep("password");
+            return;
+          }
+
+          if (result.provider === "google") {
+            error("این حساب با گوگل ساخته شده است. لطفاً با گوگل وارد شوید.");
+            return;
+          }
+        } else {
+          const otpResult = await handleSendOtp(identifier);
+
+          if (otpResult?.success) {
+            setDemoOtp(otpResult.demoOtp);
+            setStep("otp");
+          }
+        }
+
         return;
       }
-
-      if (loginType === "email") {
-        if (result.hasPassword) {
-          setStep("password");
-          return;
-        }
-
-        if (result.provider === "google") {
-          error("این حساب با گوگل ساخته شده است. لطفاً با گوگل وارد شوید.");
-          return;
-        }
-      } else {
-        const otpResult = await handleSendOtp(identifier);
-
-        if (otpResult?.success) {
-          setDemoOtp(otpResult.demoOtp);
-          setStep("otp");
-        }
-      }
-
-      return;
+      await loginUser(formData);
+      setStep("identifier");
+    } catch (err) {
+      error(getErrorMessage(err.message));
     }
-    await loginUser(formData);
-    setStep("identifier");
   };
 
   useEffect(() => {

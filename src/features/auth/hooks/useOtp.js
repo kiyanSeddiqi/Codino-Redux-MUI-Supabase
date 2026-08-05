@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { useSnackbar } from "../../../hooks/useSnackbar";
 import { sendOtp, verifyOtp } from "../services/otpService";
 import { authFailure, authStart, authSuccess } from "../redux/authSlice";
+import { getErrorMessage } from "../../../utils/getErrorMessage";
 
 export default function useOtp() {
   const dispatch = useDispatch();
@@ -23,7 +24,9 @@ export default function useOtp() {
 
       return data;
     } catch (err) {
-      error(err.message);
+      const message = getErrorMessage(err.message);
+      dispatch(authFailure(message));
+      error(message);
       return null;
     }
   }

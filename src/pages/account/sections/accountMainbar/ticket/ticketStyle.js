@@ -45,6 +45,7 @@ export const ticketTextarea = {
     borderRadius: "6px",
     bgcolor: "background.paper",
     p: "8px 12px",
+
     "& fieldset": {
       borderColor: "divider",
       px: 0,
@@ -65,5 +66,9 @@ export const ticketTextarea = {
       p: 0,
       fontSize: "14px",
     },
+  },
+
+  "& .MuiFormHelperText-root": {
+    textAlign: "right",
   },
 };

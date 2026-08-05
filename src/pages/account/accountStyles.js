@@ -105,4 +105,10 @@ export const tableStyle = {
     textAlign: "center",
     fontSize: "16px",
   },
+
+  "& .MuiTableBody-root .MuiTableCell-root": {
+    p: "16px 20px",
+    textAlign: "center",
+    fontSize: "16px",
+  },
 };

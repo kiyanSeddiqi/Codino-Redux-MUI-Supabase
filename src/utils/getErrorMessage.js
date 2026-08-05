@@ -3,6 +3,10 @@ export const getErrorMessage = (message) => {
     return "ایمیل وارد شده معتبر نیست یا در سیستم وجود ندارد.";
   }
 
+  if (message.includes("Failed to fetch")) {
+    return "ارتباط با اینترنت برقرار نیست";
+  }
+
   switch (message) {
     case "User already registered":
 
@@ -26,9 +30,6 @@ export const getErrorMessage = (message) => {
 
     case "Network request failed":
       return "ارتباط با سرور برقرار نشد.";
-
-    case "Failed to fetch":
-      return "ارتباط با اینترنت برقرار نیست.";
 
     case "Database error saving new user":
       return "خطایی هنگام ایجاد حساب کاربری رخ داد.";

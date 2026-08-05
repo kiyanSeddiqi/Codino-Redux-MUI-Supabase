@@ -103,7 +103,7 @@ export const featuredCardContainer = (theme) => ({
   width: "100%",
   maxWidth: {
     xs: "100%",
-    md: "294px",
+    // md: "294px",
   },
   transition: "transform 0.3s ease",
   "&:hover .MuiCardMedia-root": {
@@ -115,7 +115,7 @@ export const featuredCardImgBox = (theme) => ({
   width: "100%",
   maxWidth: {
     xs: "200px",
-    md: "300px",
+    md: "100%",
   },
   maxHeight: {
     xs: "200px",
@@ -125,7 +125,6 @@ export const featuredCardImgBox = (theme) => ({
     maxWidth: "100%",
     maxHeight: "100%",
   },
-
   aspectRatio: "1 / 1",
   overflow: "hidden",
   borderRadius: "20px",

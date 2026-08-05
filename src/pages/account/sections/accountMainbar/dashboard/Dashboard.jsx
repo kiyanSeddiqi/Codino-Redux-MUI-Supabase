@@ -34,8 +34,10 @@ function Dashboard() {
         <Box sx={dashboardCardContainer}>
           <Box sx={dashboardCard}>
             <Box sx={flexBetween("row")}>
-              <Box sx={flexCol("")}>
-                <Typography sx={{ fontSize: "18px" }}>{fullName}</Typography>
+              <Box sx={flexCol("4px")}>
+                {fullName && (
+                  <Typography sx={{ fontSize: "18px" }}>{fullName} </Typography>
+                )}
                 <Typography
                   variant="subtitle2"
                   component="span"
