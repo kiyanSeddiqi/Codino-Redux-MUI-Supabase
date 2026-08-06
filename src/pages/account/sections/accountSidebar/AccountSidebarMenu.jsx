@@ -15,7 +15,7 @@ import { flexCol } from "../../../../styles/globalStyles";
 import { accountListBtn, accountLogoutBtn } from "./accountSidebarStyles";
 import { useLogout } from "../../../../features/auth/hooks/useLogout";
 
-function AccountSidebarMenu() {
+function AccountSidebarMenu({ basePath = "", onShow }) {
   const theme = useTheme();
   const { logoutUser } = useLogout();
   const navigate = useNavigate();
@@ -34,7 +34,14 @@ function AccountSidebarMenu() {
               <ListItemButton
                 disableRipple
                 component={NavLink}
-                to={`${item.slug}`}
+                to={
+                  basePath
+                    ? item.slug
+                      ? `${basePath}/${item.slug}`
+                      : basePath
+                    : item.slug
+                }
+                onClick={() => (basePath ? onShow(false) : null)}
                 end={item.id === 1}
                 sx={accountListBtn}
               >

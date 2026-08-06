@@ -37,7 +37,8 @@ export const sectionStyle = {
 export const sectionTitle = {
   fontSize: {
     lg: "24px",
-    xs: "20px",
+    md: "20px",
+    xs: "18px",
   },
   fontWeight: "600",
 };

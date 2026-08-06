@@ -20,7 +20,8 @@ export const toolBar = {
   minHeight: "0 !important",
   justifyContent: "space-between",
   px: {
-    xs: 2,
+    xs: 1.5,
+    md: 2,
     lg: 4,
   },
 };
@@ -136,6 +137,15 @@ export const mobileMenuBox = {
   display: "flex",
   flexDirection: "column",
   bgcolor: "background.default",
+};
+
+export const accountMobileMenu = {
+  width: 300,
+  display: "flex",
+  flexDirection: "column",
+  bgcolor: "background.default",
+  p: 2,
+  gap: 2,
 };
 
 export const mobileMenuListBtn = {

@@ -59,7 +59,7 @@ function Wallet() {
         <Box sx={flexCol(2.5)}>
           <Typography sx={sectionTitle}>کیف پول</Typography>
           <Box sx={flexBetween(2, { xs: "column", lg: "row" })}>
-            <Box sx={flexBox(2.5)}>
+            <Box sx={{ ...flexBox(2.5), alignSelf: "flex-start" }}>
               <Box sx={flexBox("10px")}>
                 <SvgIcon name="wallet" size={24} />
                 <Typography variant="subtitle2">موجودی کیف پول : </Typography>

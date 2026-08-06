@@ -4,7 +4,7 @@ import {
   flexCol,
   sectionTitle,
 } from "../../../../../styles/globalStyles";
-import { myCoursesTabBtn } from "../myCourses/myCoursesStyle";
+import { myCoursesTabBtn, tabContainer } from "../myCourses/myCoursesStyle";
 import { useState } from "react";
 import SvgIcon from "../../../../../components/ui/SvgIcon/SvgIcon";
 
@@ -16,9 +16,9 @@ function Installments() {
   return (
     <>
       <Box sx={{ ...flexCol("32px"), pb: "56px" }}>
-        <Box sx={flexBox({ xs: 2, lg: 4 })}>
+        <Box sx={{ ...flexBox({ xs: 2, lg: 4 }), flexWrap: "wrap" }}>
           <Typography sx={sectionTitle}>دوره های قسطی</Typography>
-          <Box sx={flexBox("12px")}>
+          <Box sx={tabContainer}>
             {installmentTabs.map((tab) => (
               <Button
                 key={tab}

@@ -10,7 +10,7 @@ import {
 import { appBar, navWrapper, toolBar } from "../styles/navbarStyles.js";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTheme } from "../../../../redux/store/slices/themeSlice.js";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Logo from "../../../ui/Logo/Logo.jsx";
 import ThemeSwitch from "../../../ui/ThemeSwitch/ThemeSwitch.jsx";
 import Searchbar from "../../../../features/search/components/Searchbar";
@@ -24,14 +24,19 @@ import CategoryMenu from "./CategoryMenu.jsx";
 import { openAuthModal } from "../../../../features/auth/redux/authSlice.js";
 import { useLogout } from "../../../../features/auth/hooks/useLogout.js";
 import Actionbar from "./Actionbar.jsx";
+import AccountDrawer from "./AccountDrawer.jsx";
 
 function Navbar({ showSearchModal }) {
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [openAccountDrawer, setOpenAccountDrawer] = useState(false);
   const [openSearchModal, setOpenSearchModal] = useState(false);
 
   const dispatch = useDispatch();
   const { logoutUser } = useLogout();
   const { isAuthenticated } = useSelector((state) => state.auth);
+  const location = useLocation();
+
+  const isAccountPage = location.pathname.includes("/account");
 
   return (
     <>
@@ -41,13 +46,21 @@ function Navbar({ showSearchModal }) {
             {/* Mobile Menu */}
             <Box sx={{ display: { xs: "flex", lg: "none" } }}>
               <Button
-                onClick={() => setOpenDrawer(true)}
+                onClick={() =>
+                  isAccountPage
+                    ? setOpenAccountDrawer(true)
+                    : setOpenDrawer(true)
+                }
                 variant="outlined"
                 sx={{ minWidth: 0 }}
               >
                 <Apps sx={{ fontSize: { xs: "20px", md: "24px" } }} />
               </Button>
               <DrawerMenu isOpen={openDrawer} onShow={setOpenDrawer} />
+              <AccountDrawer
+                isOpen={openAccountDrawer}
+                onShow={setOpenAccountDrawer}
+              />
             </Box>
             {/* Desktop Menu */}
             <ThemeSwitch sx={{ display: { xs: "none", lg: "flex" } }} />

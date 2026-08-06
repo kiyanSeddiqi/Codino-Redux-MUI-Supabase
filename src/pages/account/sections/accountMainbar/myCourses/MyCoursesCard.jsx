@@ -66,6 +66,9 @@ function MyCoursesCard({ itemData }) {
                 borderTop: 1,
                 borderColor: "divider",
                 ...flexBox(2.5),
+                "& span": {
+                  fontSize: { xs: "14px", md: "16px" },
+                },
               }}
             >
               <Box sx={flexBox(1)}>

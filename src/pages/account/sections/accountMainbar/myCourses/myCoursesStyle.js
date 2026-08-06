@@ -5,13 +5,17 @@ export const myCoursesContainer = {
   pb: "56px",
 };
 
-export const tabConainer = {
-  ...flexBox({ xs: 2, lg: 4 }),
+export const tabContainer = {
+  ...flexBox("12px"),
+  overflowX: "auto",
+  flexWrap: "nowrap",
+  whiteSpace: "nowrap",
 };
 
 export const myCoursesTabBtn = {
   borderRadius: "6px",
   p: "8px 10px",
+  flexShrink: 0,
 };
 
 export const cardContainer = {
@@ -25,12 +29,12 @@ export const cardContainer = {
 
 export const myCourseCardBox = {
   display: "flex",
+  alignItems: "start",
   gap: 2,
   flexDirection: {
     xs: "column",
     md: "row",
   },
-  alignItems: "start",
 };
 
 export const cardImgBox = {
@@ -52,6 +56,6 @@ export const cardImg = {
 
 export const cardTextContainer = {
   ...flexCol(2),
-  flex: 1,
+  width: "100%",
   justifyContent: "space-between",
 };

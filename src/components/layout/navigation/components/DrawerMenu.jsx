@@ -53,7 +53,7 @@ function DrawerMenu({ isOpen, onShow }) {
           {/* Header */}
           <Box sx={flexBetween(0, "row")}>
             <Logo />
-            <IconButton onClick={() => onShow(false)}>
+            <IconButton disableRipple onClick={() => onShow(false)}>
               <Close />
             </IconButton>
           </Box>
