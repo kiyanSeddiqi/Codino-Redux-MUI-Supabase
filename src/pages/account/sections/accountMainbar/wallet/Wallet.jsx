@@ -59,7 +59,13 @@ function Wallet() {
         <Box sx={flexCol(2.5)}>
           <Typography sx={sectionTitle}>کیف پول</Typography>
           <Box sx={flexBetween(2, { xs: "column", lg: "row" })}>
-            <Box sx={{ ...flexBox(2.5), alignSelf: "flex-start" }}>
+            <Box
+              sx={{
+                ...flexBox(2.5),
+                alignSelf: { xs: "flex-start", lg: "center" },
+                flexWrap: "wrap",
+              }}
+            >
               <Box sx={flexBox("10px")}>
                 <SvgIcon name="wallet" size={24} />
                 <Typography variant="subtitle2">موجودی کیف پول : </Typography>
@@ -71,7 +77,11 @@ function Wallet() {
                   {addComma(totalAmount)} تومان
                 </Typography>
               </Box>
-              <Divider orientation="vertical" flexItem />
+              <Divider
+                orientation="vertical"
+                flexItem
+                sx={{ display: { xs: "none", sm: "flex" } }}
+              />
               <Box sx={flexBox("10px")}>
                 <Typography variant="subtitle2">
                   موجودی کیف پول ارزی:{" "}
@@ -88,6 +98,7 @@ function Wallet() {
             <Button
               onClick={() => setShowChargeDialog(true)}
               variant="outlined"
+              sx={{ width: { xs: "100%", sm: "auto" } }}
             >
               شارژ کیف پول
               <Add sx={{ fontSize: "20px" }} />

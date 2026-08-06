@@ -94,9 +94,11 @@ export const tableContainer = {
   overflow: "hidden",
   border: 1,
   borderColor: "divider",
+  overflowX: "auto",
 };
 
 export const tableStyle = {
+  minWidth: 760,
   "& .MuiTableHead-root": {
     bgcolor: "background.default",
   },

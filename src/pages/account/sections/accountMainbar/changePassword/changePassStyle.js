@@ -1,7 +1,7 @@
 export const changePassForm = {
   width: {
     xs: "100%",
-    lg: "66%",
+    md: "66%",
   },
   display: "flex",
   mx: "auto",

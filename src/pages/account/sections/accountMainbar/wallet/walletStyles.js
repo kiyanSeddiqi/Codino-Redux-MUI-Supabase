@@ -79,9 +79,11 @@ export const walletTableContainer = {
   overflow: "hidden",
   border: 1,
   borderColor: "divider",
+  overflowX: "auto",
 };
 
 export const walletTable = {
+  minWidth: 760,
   "& .MuiTableHead-root": {
     bgcolor: "background.default",
   },

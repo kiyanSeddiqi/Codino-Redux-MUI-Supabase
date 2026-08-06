@@ -21,11 +21,11 @@ function GemSubscribe() {
             <Typography component="strong" variant="body1">
               0
             </Typography>
-            <SvgIcon name="gem" size={24} />
+            <SvgIcon name="gem" size={24} color={"#fff"} />
             <ChevronLeft sx={{ fontSize: "20px", mr: "-6px" }} />
           </Box>
         </Box>
-        <Divider sx={{ my: 2, borderColor: "#fff" }} />
+        <Divider sx={{ my: 2 }} />
         <Box sx={flexBetween("row")}>
           <Typography
             variant="caption"

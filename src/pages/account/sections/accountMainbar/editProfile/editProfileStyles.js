@@ -1,7 +1,7 @@
 export const editProfileForm = {
   width: {
     xs: "100%",
-    lg: "66%",
+    md: "66%",
   },
   display: {
     xs: "flex",

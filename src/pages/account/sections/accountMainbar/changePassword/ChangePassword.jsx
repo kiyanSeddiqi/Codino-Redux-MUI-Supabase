@@ -80,7 +80,13 @@ function ChangePassword() {
               error={!!errors.currPassword}
             />
           </Box>
-          <Box sx={{ width: "50%", p: 1, "& .MuiInputBase-root": { pr: 0 } }}>
+          <Box
+            sx={{
+              width: { xs: "100%", sm: "50%" },
+              p: 1,
+              "& .MuiInputBase-root": { pr: 0 },
+            }}
+          >
             <InputLabel sx={accountFormLabel}>رمز عبور جدید</InputLabel>
             <TextField
               {...register("newPassword")}
@@ -117,7 +123,13 @@ function ChangePassword() {
               error={!!errors.newPassword}
             />
           </Box>
-          <Box sx={{ width: "50%", p: 1, "& .MuiInputBase-root": { pr: 0 } }}>
+          <Box
+            sx={{
+              width: { xs: "100%", sm: "50%" },
+              p: 1,
+              "& .MuiInputBase-root": { pr: 0 },
+            }}
+          >
             <InputLabel sx={accountFormLabel}>تکرار رمز عبور جدید</InputLabel>
             <TextField
               {...register("confirmPassword")}
