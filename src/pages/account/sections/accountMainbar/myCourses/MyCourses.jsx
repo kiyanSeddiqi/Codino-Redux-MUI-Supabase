@@ -46,7 +46,7 @@ function MyCourses() {
   return (
     <>
       <Box sx={myCoursesContainer}>
-        <Box sx={flexBox({ xs: 2, lg: 4 })}>
+        <Box sx={{ ...flexBox({ xs: 2, lg: 4 }), flexWrap: "wrap" }}>
           <Typography sx={{ ...sectionTitle, flexShrink: 0 }}>
             دوره های من
           </Typography>

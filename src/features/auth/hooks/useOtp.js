@@ -3,6 +3,7 @@ import { useSnackbar } from "../../../hooks/useSnackbar";
 import { sendOtp, verifyOtp } from "../services/otpService";
 import { authFailure, authStart, authSuccess } from "../redux/authSlice";
 import { getErrorMessage } from "../../../utils/getErrorMessage";
+import { getCompleteUser } from "../services/profileService";
 
 export default function useOtp() {
   const dispatch = useDispatch();
@@ -31,15 +32,17 @@ export default function useOtp() {
     }
   }
 
-  async function handleVerifyOtp(identifier, otp) {
+  async function handleVerifyOtp(identifier, otp, userId) {
     try {
       dispatch(authStart());
 
-      const data = await verifyOtp(identifier, otp);
+      const data = await verifyOtp(identifier, otp, userId);
+
+      const user = await getCompleteUser(data.user);
 
       dispatch(
         authSuccess({
-          user: data.user,
+          user: user,
           accessToken: data.accessToken,
         }),
       );

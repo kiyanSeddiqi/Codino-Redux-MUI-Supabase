@@ -25,15 +25,15 @@ export async function sendOtp(identifier) {
   };
 }
 
-export async function verifyOtp(identifier, otp) {
+export async function verifyOtp(identifier, otp, userId) {
   if (otp !== currentOtp) {
     throw new Error("کد وارد شده اشتباه است");
   }
 
   const mockSession = {
     user: {
-      id: crypto.randomUUID(),
-      phone: identifier,
+      id: userId,
+      mobile: identifier,
     },
     accessToken: "mock-access-token",
   };

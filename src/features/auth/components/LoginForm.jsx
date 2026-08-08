@@ -47,6 +47,7 @@ function LoginForm({
   setIdentifier,
   setIdentifierType,
   setDemoOtp,
+  setUserId,
 }) {
   const theme = useTheme();
   const loading = useSelector(selectAuthLoading);
@@ -86,6 +87,7 @@ function LoginForm({
         setIdentifierType(loginType);
 
         const result = await check(identifier);
+        // console.log("checkUserExists result:", result);
 
         if (!result.exists) {
           setStep("register");
@@ -103,6 +105,7 @@ function LoginForm({
             return;
           }
         } else {
+          setUserId(result.userId);
           const otpResult = await handleSendOtp(identifier);
 
           if (otpResult?.success) {

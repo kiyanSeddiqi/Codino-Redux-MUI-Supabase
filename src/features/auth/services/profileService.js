@@ -17,7 +17,7 @@ export async function getCompleteUser(authUser) {
 
 export async function updateSupabaseProfile(userId, profileData) {
   const { data, error } = await supabase
-    .from("profile")
+    .from("profiles")
     .update(profileData)
     .eq("id", userId)
     .select()
@@ -26,4 +26,23 @@ export async function updateSupabaseProfile(userId, profileData) {
   if (error) throw error;
 
   return data;
+}
+
+export async function uploadAvatar(userId, file) {
+  const fileExt = file.name.split(".").pop();
+  const filePath = `${userId}/avatar.${fileExt}`;
+
+  const { data, error } = await supabase.storage
+    .from("avatars")
+    .upload(filePath, file, {
+      upsert: true,
+    });
+
+  if (error) throw error;
+
+  const { data: publicUrlData } = supabase.storage
+    .from("avatars")
+    .getPublicUrl(filePath);
+
+  return `${publicUrlData.publicUrl}?t=${Date.now()}`;
 }

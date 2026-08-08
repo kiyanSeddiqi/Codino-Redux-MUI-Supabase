@@ -23,6 +23,10 @@ export const profileSchema = z.object({
     .trim()
     .min(1, "ایمیل را وارد کنید")
     .email("ایمیل نامعتبر است"),
+  bio: z
+    .string()
+    .max(300, "متن درباره من نمی‌تواند بیشتر از 300 کاراکتر باشد")
+    .optional(),
 });
 
 export const profileResetPassword = z

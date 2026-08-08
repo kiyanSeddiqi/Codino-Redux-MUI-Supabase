@@ -47,6 +47,7 @@ function AuthModal({ isOpen }) {
   const [loginType, setLoginType] = useState("email");
   const [identifier, setIdentifier] = useState("");
   const [identifierType, setIdentifierType] = useState("email");
+  const [userId, setUserId] = useState(null);
   const [demoOtp, setDemoOtp] = useState("");
 
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ function AuthModal({ isOpen }) {
     setLoginType("email");
     setIdentifier("");
     setIdentifierType("email");
+    setUserId(null);
     setDemoOtp("");
 
     dispatch(closeAuthModal());
@@ -79,6 +81,7 @@ function AuthModal({ isOpen }) {
             setIdentifier={setIdentifier}
             setIdentifierType={setIdentifierType}
             setDemoOtp={setDemoOtp}
+            setUserId={setUserId}
           />
         )}
         {step === "recovery" && (
@@ -95,6 +98,7 @@ function AuthModal({ isOpen }) {
             onClose={handleClose}
             demoOtp={demoOtp}
             setDemoOtp={setDemoOtp}
+            userId={userId}
           />
         )}
         {step === "register" && (

@@ -80,4 +80,7 @@ export const textarea = {
       p: 0,
     },
   },
+  "& .MuiFormHelperText-root": {
+    textAlign: "right",
+  },
 };

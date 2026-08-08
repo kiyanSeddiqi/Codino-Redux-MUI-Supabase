@@ -31,10 +31,11 @@ export const useRestoreSession = () => {
 
         if (mockSession) {
           const parsedSession = JSON.parse(mockSession);
+          const userData = await getCompleteUser(parsedSession.user);
 
           dispatch(
             restoreSession({
-              user: parsedSession.user,
+              user: userData,
               accessToken: parsedSession.accessToken,
             }),
           );

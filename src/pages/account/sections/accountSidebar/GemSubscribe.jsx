@@ -21,7 +21,7 @@ function GemSubscribe() {
             <Typography component="strong" variant="body1">
               0
             </Typography>
-            <SvgIcon name="gem" size={24} color={"#fff"} />
+            <SvgIcon name="gem" size={24} />
             <ChevronLeft sx={{ fontSize: "20px", mr: "-6px" }} />
           </Box>
         </Box>

@@ -23,7 +23,14 @@ import useOtp from "../hooks/useOtp";
 import { closeAuthModal } from "../redux/authSlice";
 import { otpAlert } from "../styles/authStyles";
 
-function OtpStep({ setStep, identifier, onClose, demoOtp, setDemoOtp }) {
+function OtpStep({
+  setStep,
+  identifier,
+  onClose,
+  demoOtp,
+  setDemoOtp,
+  userId,
+}) {
   const theme = useTheme();
   const [code, setCode] = useState("");
   const [seconds, setSeconds] = useState(120);
@@ -70,7 +77,7 @@ function OtpStep({ setStep, identifier, onClose, demoOtp, setDemoOtp }) {
 
     setIsVerifying(true);
 
-    const success = await handleVerifyOtp(identifier, code);
+    const success = await handleVerifyOtp(identifier, code, userId);
 
     if (success) {
       onClose();
