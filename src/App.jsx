@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import getTheme from "./theme/theme";
 import { useSelector } from "react-redux";
 import { router } from "./routes/router";
+import AppSnackbar from "./components/ui/AppSnackbar/AppSnackbar";
 
 function App() {
   const mode = useSelector((state) => state.theme.mode);
@@ -18,6 +19,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <RouterProvider router={router} />
+        <AppSnackbar />
       </ThemeProvider>
     </>
   );

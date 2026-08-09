@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { supabase } from "../../../lib/supabase";
-import { authFailure, authSuccess } from "../redux/authSlice";
+import { authFailure, authSuccess, logout } from "../redux/authSlice";
 import { useSnackbar } from "../../../hooks/useSnackbar";
+import { getErrorMessage } from "../../../utils/getErrorMessage";
+import { getCompleteUser } from "../services/profileService";
 
 export default function useAuthListener() {
   const dispatch = useDispatch();
@@ -11,15 +13,8 @@ export default function useAuthListener() {
   useEffect(() => {
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((event, session) => {
+    } = supabase.auth.onAuthStateChange(async (event, session) => {
       if (event === "SIGNED_IN" && session?.user) {
-        dispatch(
-          authSuccess({
-            user: session.user,
-            accessToken: session.access_token,
-          }),
-        );
-
         const googleLogin = sessionStorage.getItem("google_login");
 
         if (googleLogin) {
@@ -28,13 +23,22 @@ export default function useAuthListener() {
             return;
           }
 
+          const userData = await getCompleteUser(session.user);
+
+          dispatch(
+            authSuccess({
+              user: userData,
+              accessToken: session.access_token,
+            }),
+          );
+
           success("با موفقیت وارد حساب کاربری شدید");
           sessionStorage.removeItem("google_login");
         }
       }
 
       if (event === "SIGNED_OUT") {
-        dispatch(authFailure("کاربر خارج شد"));
+        dispatch(logout());
       }
     });
 

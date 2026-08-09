@@ -7,7 +7,6 @@ import SearchModal from "../../features/search/components/SearchModal";
 import Footer from "./Footer/Footer";
 import ScrollToTop from "./ScrollToTop";
 import { useSelector } from "react-redux";
-import AppSnackbar from "../ui/AppSnackbar/AppSnackbar";
 import { useRestoreSession } from "../../features/auth/hooks/useRestoreSession";
 import useAuthListener from "../../features/auth/hooks/useAuthListener";
 
@@ -36,7 +35,6 @@ function BaseLayout({ withContainer = true, showFooter = true }) {
       )}
 
       <AuthModal isOpen={openAuthModal} />
-      <AppSnackbar />
     </>
   );
 }

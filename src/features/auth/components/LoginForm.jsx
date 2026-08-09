@@ -87,7 +87,6 @@ function LoginForm({
         setIdentifierType(loginType);
 
         const result = await check(identifier);
-        // console.log("checkUserExists result:", result);
 
         if (!result.exists) {
           setStep("register");

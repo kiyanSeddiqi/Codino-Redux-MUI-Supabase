@@ -8,21 +8,21 @@ export const useRestoreSession = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const authListener = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        if (session) {
-          try {
-            const userData = await getCompleteUser(session.user);
+    const restore = async () => {
+      try {
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
 
-            dispatch(
-              restoreSession({
-                user: userData,
-                accessToken: session.access_token,
-              }),
-            );
-          } catch {
-            dispatch(logout());
-          }
+        if (session?.user) {
+          const userData = await getCompleteUser(session.user);
+
+          dispatch(
+            restoreSession({
+              user: userData,
+              accessToken: session.access_token,
+            }),
+          );
 
           return;
         }
@@ -44,11 +44,11 @@ export const useRestoreSession = () => {
         }
 
         dispatch(logout());
-      },
-    );
-
-    return () => {
-      authListener.data.subscription.unsubscribe();
+      } catch {
+        dispatch(logout());
+      }
     };
+
+    restore();
   }, [dispatch]);
 };

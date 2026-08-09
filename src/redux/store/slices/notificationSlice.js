@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const DEFAULT_DURATION = 4000;
+const DEFAULT_DURATION = 3000;
 
 const initialState = {
   open: false,

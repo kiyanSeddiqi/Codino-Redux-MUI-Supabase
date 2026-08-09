@@ -36,7 +36,7 @@ function Actionbar() {
   const handleOpen = (e) => setAnchorEl(e.currentTarget);
   const handleClose = () => setAnchorEl(null);
 
-  const user = useSelector((state) => state.auth.user);
+  const user = useSelector((state) => state.auth.user) || {};
   const { mobile, first_name, last_name } = user;
   const fullName = [first_name, last_name].filter(Boolean).join(" ");
 
@@ -46,8 +46,8 @@ function Actionbar() {
 
   async function handleLogout() {
     handleClose();
-    navigate("/");
     await logoutUser();
+    navigate("/");
   }
 
   return (

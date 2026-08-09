@@ -21,8 +21,8 @@ function AccountSidebarMenu({ basePath = "", onShow }) {
   const navigate = useNavigate();
 
   async function handleLogout() {
-    navigate("/");
     await logoutUser();
+    navigate("/");
   }
 
   return (

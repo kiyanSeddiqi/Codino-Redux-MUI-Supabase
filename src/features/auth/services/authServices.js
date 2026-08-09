@@ -88,7 +88,7 @@ export async function signInWithGoogle() {
     provider: "google",
     options: {
       skipBrowserRedirect: true,
-      redirectTo: window.location.origin,
+      redirectTo: `${window.location.origin}/auth/google-callback`,
     },
   });
 

@@ -18,6 +18,7 @@ import Ticket from "../pages/account/sections/accountMainbar/ticket/Ticket";
 import MyFactors from "../pages/account/sections/accountMainbar/myFactors/MyFactors";
 import FavoriteCourses from "../pages/account/sections/accountMainbar/favoriteCourses/FavoriteCourses";
 import Referral from "../pages/account/sections/accountMainbar/referral/Referral";
+import GoogleCallback from "../pages/googleCallback/GoogelCallback";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
         element: <PageNotFound />,
       },
     ],
+  },
+  {
+    path: "/auth/google-callback",
+    element: <GoogleCallback />,
   },
   {
     element: <FullWidthLayout />,

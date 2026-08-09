@@ -24,7 +24,7 @@ export function useLogin() {
 
       dispatch(
         authSuccess({
-          user: user,
+          user,
           accessToken: data.session.access_token,
         }),
       );
