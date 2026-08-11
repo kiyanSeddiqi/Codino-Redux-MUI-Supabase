@@ -118,11 +118,9 @@ function Dashboard() {
             </Box>
             <Divider sx={{ my: 1 }} />
             <Box sx={flexCol(1)}>
-              {favoriteList?.map((item) => {
-                console.log(favoriteList);
-
+              {favoriteList?.map((item, i) => {
                 return (
-                  <Box key={item.id} sx={flexBetween(1, "row")}>
+                  <Box key={item.id || i} sx={flexBetween(1, "row")}>
                     <Typography sx={{ lineHeight: "32px" }}>
                       {item?.title}
                     </Typography>
@@ -140,7 +138,9 @@ function Dashboard() {
             </Box>
           </Box>
         </Box>
-        <MySuggestedCourses favoriteList={favoriteList} />
+        {favoriteList.length > 0 && (
+          <MySuggestedCourses favoriteList={favoriteList} />
+        )}
       </Box>
     </>
   );

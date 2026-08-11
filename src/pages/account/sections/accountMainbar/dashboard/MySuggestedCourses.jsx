@@ -9,8 +9,24 @@ import ProductCard from "../../../../../features/product/components/ProductCard"
 import "swiper/css";
 import "swiper/css/navigation";
 import { productData } from "../../../../../data/productData";
+import { productsImgs } from "../../../../../data/productsImages";
 
 function MySuggestedCourses({ favoriteList }) {
+  const coursesByFavoriteCat = favoriteList.map((item) => {
+    const courses = productData.filter((p) =>
+      p.categories?.includes(item.slug),
+    );
+    return courses.slice(0, 3);
+  });
+
+  const relatedCourses = [
+    ...new Map(
+      coursesByFavoriteCat.flat().map((course) => [course.id, course]),
+    ).values(),
+  ];
+
+  const canLoop = relatedCourses.length > 4;
+
   return (
     <>
       <Box sx={mySuggestedCourses} className="suggested-courses">
@@ -30,7 +46,7 @@ function MySuggestedCourses({ favoriteList }) {
               prevEl: ".suggested-courses .swiper-btn-prev",
               nextEl: ".suggested-courses .swiper-btn-next",
             }}
-            loop={true}
+            loop={canLoop}
             breakpoints={{
               0: { slidesPerView: 1, spaceBetween: 20 },
               350: { slidesPerView: 1.5, spaceBetween: 20 },
@@ -39,7 +55,7 @@ function MySuggestedCourses({ favoriteList }) {
               1024: { slidesPerView: 3.5, spaceBetween: 20 },
             }}
           >
-            {productData.slice(10, 20).map((item) => (
+            {relatedCourses.map((item) => (
               <SwiperSlide key={item.id}>
                 <ProductCard itemData={item} />
               </SwiperSlide>

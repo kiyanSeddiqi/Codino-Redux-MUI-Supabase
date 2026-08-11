@@ -2,6 +2,7 @@ import { Close } from "@mui/icons-material";
 import {
   Box,
   Button,
+  CircularProgress,
   Dialog,
   DialogTitle,
   Divider,
@@ -26,6 +27,8 @@ import { getErrorMessage } from "../../../../../utils/getErrorMessage";
 
 function FavoriteCategories({ open, onShow, favoriteList, setFavoriteList }) {
   const [selectedCat, setSelectedCat] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const { error, success } = useSnackbar();
 
   const user = useSelector((state) => state.auth.user);
@@ -39,7 +42,13 @@ function FavoriteCategories({ open, onShow, favoriteList, setFavoriteList }) {
   }
 
   async function handleSaveList() {
+    if (selectedCat.length === 0) {
+      error("حداقل یک دسته بندی را انتخاب کنید");
+      return;
+    }
+
     try {
+      setLoading(true);
       const existingSlugs = favoriteList.map((item) => item.slug);
 
       const newSlugs = selectedCat.filter(
@@ -71,6 +80,8 @@ function FavoriteCategories({ open, onShow, favoriteList, setFavoriteList }) {
       success("فهرست علاقه مندی بروز رسانی شد");
     } catch (err) {
       error(getErrorMessage(err.message));
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -131,7 +142,9 @@ function FavoriteCategories({ open, onShow, favoriteList, setFavoriteList }) {
               );
             })}
           </Box>
-          <Button onClick={handleSaveList}>ثبت علاقه مندی ها</Button>
+          <Button onClick={handleSaveList}>
+            {loading ? <CircularProgress size={20} /> : "ثبت علاقه مندی ها"}
+          </Button>
         </Box>
       </Dialog>
     </>
