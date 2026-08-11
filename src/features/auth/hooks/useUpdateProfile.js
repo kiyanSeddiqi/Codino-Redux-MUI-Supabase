@@ -8,12 +8,14 @@ import { updateUser } from "../redux/authSlice";
 import { getErrorMessage } from "../../../utils/getErrorMessage";
 
 export function useUpdateProfile() {
+  console.log("REAL SUPABASE PROFILE FUNCTION");
   const dispatch = useDispatch();
   const { success, error } = useSnackbar();
 
   const user = useSelector((state) => state.auth.user);
 
   async function updateUserProfile(profileData) {
+    console.log("update");
     try {
       // 1. آپدیت دیتابیس
       await updateSupabaseProfile(user.id, profileData);

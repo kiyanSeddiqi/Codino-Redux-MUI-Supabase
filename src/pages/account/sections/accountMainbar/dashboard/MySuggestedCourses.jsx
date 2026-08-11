@@ -10,7 +10,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { productData } from "../../../../../data/productData";
 
-function MySuggestedCourses() {
+function MySuggestedCourses({ favoriteList }) {
   return (
     <>
       <Box sx={mySuggestedCourses} className="suggested-courses">

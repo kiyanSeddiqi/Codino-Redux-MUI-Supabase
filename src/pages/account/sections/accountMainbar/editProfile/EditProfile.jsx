@@ -24,6 +24,7 @@ import {
 } from "../../../../../features/auth/services/profileService";
 import { updateUser } from "../../../../../features/auth/redux/authSlice";
 import { getErrorMessage } from "../../../../../utils/getErrorMessage";
+import { supabase } from "../../../../../lib/supabase";
 
 function EditProfile() {
   const [avatarFile, setAvatarFile] = useState(null);
@@ -46,6 +47,7 @@ function EditProfile() {
   async function onSubmit(data) {
     try {
       let avatarUrl = user.avatar_url;
+
       if (avatarFile) {
         avatarUrl = await uploadAvatar(user.id, avatarFile);
       }
@@ -60,10 +62,13 @@ function EditProfile() {
       };
 
       const updatedProfile = await updateSupabaseProfile(user.id, profileData);
+
       dispatch(updateUser({ ...user, ...updatedProfile }));
 
       success("اطلاعات با موفقیت ویرایش شد");
     } catch (err) {
+      console.log(err.message);
+
       error(getErrorMessage(err.message));
     }
   }

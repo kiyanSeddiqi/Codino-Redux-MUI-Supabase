@@ -11,19 +11,44 @@ import { useSelector } from "react-redux";
 import SvgIcon from "../../../../../components/ui/SvgIcon/SvgIcon";
 import { productData } from "../../../../../data/productData";
 import MySuggestedCourses from "./MySuggestedCourses";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FavoriteCategories from "./FavoriteCategories";
 import { Link } from "react-router-dom";
 import { userImg } from "../../../accountStyles";
+import { getUserFavoriteCategories } from "../../../../../features/dashboard/services/favoriteCatService";
+import { getErrorMessage } from "../../../../../utils/getErrorMessage";
+import { useSnackbar } from "../../../../../hooks/useSnackbar";
+import { categoryData } from "../../../../../data/categoryData";
 
 function Dashboard() {
   const [showFavoriteList, setShowFavoriteList] = useState(false);
   const [favoriteList, setFavoriteList] = useState([]);
 
   const user = useSelector((state) => state.auth.user) || {};
+  const { error } = useSnackbar();
 
   const { first_name, last_name, mobile, avatar_url } = user;
   const fullName = [first_name, last_name].filter(Boolean).join(" ");
+
+  useEffect(() => {
+    if (!user.id) return;
+
+    async function fetchFavoriteCategories() {
+      try {
+        const data = await getUserFavoriteCategories(user.id);
+
+        const favoriteCategories = categoryData.filter((category) =>
+          data.some((item) => item.category_slug === category.slug),
+        );
+
+        setFavoriteList(favoriteCategories);
+      } catch (err) {
+        error(getErrorMessage(err.message));
+      }
+    }
+
+    fetchFavoriteCategories();
+  }, [user?.id]);
 
   return (
     <>
@@ -87,30 +112,35 @@ function Dashboard() {
               <FavoriteCategories
                 open={showFavoriteList}
                 onShow={setShowFavoriteList}
+                favoriteList={favoriteList}
                 setFavoriteList={setFavoriteList}
               />
             </Box>
             <Divider sx={{ my: 1 }} />
             <Box sx={flexCol(1)}>
-              {favoriteList?.map((item) => (
-                <Box key={item.id} sx={flexBetween(1, "row")}>
-                  <Typography sx={{ lineHeight: "32px" }}>
-                    {item.title}
-                  </Typography>
-                  <Button
-                    component={Link}
-                    to={`/courses/${item.slug}`}
-                    variant="text"
-                    sx={{ bgcolor: "menuItemBg" }}
-                  >
-                    دوره ها
-                  </Button>
-                </Box>
-              ))}
+              {favoriteList?.map((item) => {
+                console.log(favoriteList);
+
+                return (
+                  <Box key={item.id} sx={flexBetween(1, "row")}>
+                    <Typography sx={{ lineHeight: "32px" }}>
+                      {item?.title}
+                    </Typography>
+                    <Button
+                      component={Link}
+                      to={`/courses/${item?.slug}`}
+                      variant="text"
+                      sx={{ bgcolor: "menuItemBg" }}
+                    >
+                      دوره ها
+                    </Button>
+                  </Box>
+                );
+              })}
             </Box>
           </Box>
         </Box>
-        <MySuggestedCourses />
+        <MySuggestedCourses favoriteList={favoriteList} />
       </Box>
     </>
   );

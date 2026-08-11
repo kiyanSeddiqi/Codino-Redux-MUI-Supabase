@@ -15,12 +15,20 @@ import {
 } from "./dashboardStyle";
 import { flexBetween, flexCol } from "../../../../../styles/globalStyles";
 import { categoryData } from "../../../../../data/categoryData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSnackbar } from "../../../../../hooks/useSnackbar";
+import { useSelector } from "react-redux";
+import {
+  addFavoriteCategory,
+  removeFavoriteCategory,
+} from "../../../../../features/dashboard/services/favoriteCatService";
+import { getErrorMessage } from "../../../../../utils/getErrorMessage";
 
-function FavoriteCategories({ open, onShow, setFavoriteList }) {
+function FavoriteCategories({ open, onShow, favoriteList, setFavoriteList }) {
   const [selectedCat, setSelectedCat] = useState([]);
-  const { success } = useSnackbar();
+  const { error, success } = useSnackbar();
+
+  const user = useSelector((state) => state.auth.user);
 
   function toggleCategory(slug) {
     setSelectedCat((prev) =>
@@ -30,14 +38,49 @@ function FavoriteCategories({ open, onShow, setFavoriteList }) {
     );
   }
 
-  function handleSaveList() {
-    const favoriteCategories = categoryData.filter((item) =>
-      selectedCat.includes(item.slug),
-    );
-    setFavoriteList(favoriteCategories);
-    onShow(false);
-    success("فهرست علاقه مندی بروز رسانی شد");
+  async function handleSaveList() {
+    try {
+      const existingSlugs = favoriteList.map((item) => item.slug);
+
+      const newSlugs = selectedCat.filter(
+        (slug) => !existingSlugs.includes(slug),
+      );
+
+      const removedSlugs = existingSlugs.filter(
+        (slug) => !selectedCat.includes(slug),
+      );
+
+      // INSERT
+      for (const slug of newSlugs) {
+        await addFavoriteCategory(user.id, slug);
+      }
+
+      // DELETE
+      for (const slug of removedSlugs) {
+        await removeFavoriteCategory(user.id, slug);
+      }
+
+      // UPDATE UI
+      const updatedFavoriteList = categoryData.filter((category) =>
+        selectedCat.includes(category.slug),
+      );
+
+      setFavoriteList(updatedFavoriteList);
+
+      onShow(false);
+      success("فهرست علاقه مندی بروز رسانی شد");
+    } catch (err) {
+      error(getErrorMessage(err.message));
+    }
   }
+
+  useEffect(() => {
+    if (!open) return;
+
+    const selectedSlugs = favoriteList.map((item) => item.slug);
+
+    setSelectedCat(selectedSlugs);
+  }, [open, favoriteList]);
 
   return (
     <>
