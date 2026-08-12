@@ -29,6 +29,7 @@ function CourseDetails() {
         .flatMap((category) => category.children)
         .find((child) => child.slug === product.categories[0])
     : null;
+  console.log(subCategory);
 
   const items = [{ title: "دوره ها", link: "/courses" }];
   if (subCategory) {

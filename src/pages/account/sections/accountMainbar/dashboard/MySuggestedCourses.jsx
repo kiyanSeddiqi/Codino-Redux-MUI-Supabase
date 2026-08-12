@@ -55,11 +55,17 @@ function MySuggestedCourses({ favoriteList }) {
               1024: { slidesPerView: 3.5, spaceBetween: 20 },
             }}
           >
-            {relatedCourses.map((item) => (
-              <SwiperSlide key={item.id}>
-                <ProductCard itemData={item} />
-              </SwiperSlide>
-            ))}
+            {relatedCourses.length > 0
+              ? relatedCourses.map((item) => (
+                  <SwiperSlide key={item.id}>
+                    <ProductCard itemData={item} />
+                  </SwiperSlide>
+                ))
+              : productData.slice(4, 12).map((item) => (
+                  <SwiperSlide key={item.id}>
+                    <ProductCard itemData={item} />
+                  </SwiperSlide>
+                ))}
           </Swiper>
         </Box>
       </Box>

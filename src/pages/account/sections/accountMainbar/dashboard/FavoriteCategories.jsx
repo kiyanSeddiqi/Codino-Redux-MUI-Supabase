@@ -18,20 +18,24 @@ import { flexBetween, flexCol } from "../../../../../styles/globalStyles";
 import { categoryData } from "../../../../../data/categoryData";
 import { useEffect, useState } from "react";
 import { useSnackbar } from "../../../../../hooks/useSnackbar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addFavoriteCategory,
   removeFavoriteCategory,
 } from "../../../../../features/dashboard/services/favoriteCatService";
 import { getErrorMessage } from "../../../../../utils/getErrorMessage";
+import { closeFavoriteCatModal } from "../../../../../features/dashboard/redux/favoriteCatSlice";
 
-function FavoriteCategories({ open, onShow, favoriteList, setFavoriteList }) {
+function FavoriteCategories({ favoriteList, setFavoriteList }) {
   const [selectedCat, setSelectedCat] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const { error, success } = useSnackbar();
+  const { error, success, warning } = useSnackbar();
 
   const user = useSelector((state) => state.auth.user);
+  const modalOpen = useSelector((state) => state.favoriteCategory.modalOpen);
+
+  const dispatch = useDispatch();
 
   function toggleCategory(slug) {
     setSelectedCat((prev) =>
@@ -43,7 +47,7 @@ function FavoriteCategories({ open, onShow, favoriteList, setFavoriteList }) {
 
   async function handleSaveList() {
     if (selectedCat.length === 0) {
-      error("حداقل یک دسته بندی را انتخاب کنید");
+      warning("حداقل یک دسته بندی را انتخاب کنید");
       return;
     }
 
@@ -76,7 +80,7 @@ function FavoriteCategories({ open, onShow, favoriteList, setFavoriteList }) {
 
       setFavoriteList(updatedFavoriteList);
 
-      onShow(false);
+      dispatch(closeFavoriteCatModal());
       success("فهرست علاقه مندی بروز رسانی شد");
     } catch (err) {
       error(getErrorMessage(err.message));
@@ -86,18 +90,18 @@ function FavoriteCategories({ open, onShow, favoriteList, setFavoriteList }) {
   }
 
   useEffect(() => {
-    if (!open) return;
+    if (!modalOpen) return;
 
     const selectedSlugs = favoriteList.map((item) => item.slug);
 
     setSelectedCat(selectedSlugs);
-  }, [open, favoriteList]);
+  }, [modalOpen, favoriteList]);
 
   return (
     <>
       <Dialog
-        open={open}
-        onClose={() => onShow(false)}
+        open={modalOpen}
+        onClose={() => dispatch(closeFavoriteCatModal())}
         disableScrollLock
         sx={favoriteListDialog}
       >
@@ -106,7 +110,10 @@ function FavoriteCategories({ open, onShow, favoriteList, setFavoriteList }) {
             <DialogTitle sx={favoriteListTitle}>
               انتخاب علاقه مندی ها
             </DialogTitle>
-            <IconButton aria-label="close" onClick={() => onShow(false)}>
+            <IconButton
+              aria-label="close"
+              onClick={() => dispatch(closeFavoriteCatModal())}
+            >
               <Close />
             </IconButton>
           </Box>

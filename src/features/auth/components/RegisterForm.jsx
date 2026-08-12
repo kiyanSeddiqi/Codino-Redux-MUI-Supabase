@@ -26,11 +26,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRegister } from "../hooks/useRegister";
 import { selectAuthLoading } from "../redux/authSelector";
 import useGoogleLogin from "../hooks/useGoogleLogin";
+import { openFavoriteCatModal } from "../../dashboard/redux/favoriteCatSlice";
 
 function RegisterForm({ setStep, identifier, identifierType, onClose }) {
   const theme = useTheme();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
+
+  const dispatch = useDispatch();
 
   const { registerUser } = useRegister();
   const { googleLogin } = useGoogleLogin();
@@ -51,7 +54,10 @@ function RegisterForm({ setStep, identifier, identifierType, onClose }) {
 
   const onSubmit = async (formData) => {
     const success = await registerUser(formData);
-    if (success) onClose();
+    if (success) {
+      onClose();
+      dispatch(openFavoriteCatModal());
+    }
   };
 
   return (

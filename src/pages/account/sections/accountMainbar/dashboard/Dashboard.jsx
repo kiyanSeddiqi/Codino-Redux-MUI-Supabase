@@ -7,7 +7,7 @@ import {
   sectionTitle,
 } from "../../../../../styles/globalStyles";
 import { dashboardCard, dashboardCardContainer } from "./dashboardStyle";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SvgIcon from "../../../../../components/ui/SvgIcon/SvgIcon";
 import { productData } from "../../../../../data/productData";
 import MySuggestedCourses from "./MySuggestedCourses";
@@ -19,10 +19,14 @@ import { getUserFavoriteCategories } from "../../../../../features/dashboard/ser
 import { getErrorMessage } from "../../../../../utils/getErrorMessage";
 import { useSnackbar } from "../../../../../hooks/useSnackbar";
 import { categoryData } from "../../../../../data/categoryData";
+import { ArrowOutward } from "@mui/icons-material";
+import { openFavoriteCatModal } from "../../../../../features/dashboard/redux/favoriteCatSlice";
+import { minLength } from "zod";
 
 function Dashboard() {
-  const [showFavoriteList, setShowFavoriteList] = useState(false);
   const [favoriteList, setFavoriteList] = useState([]);
+
+  const dispatch = useDispatch();
 
   const user = useSelector((state) => state.auth.user) || {};
   const { error } = useSnackbar();
@@ -53,9 +57,22 @@ function Dashboard() {
   return (
     <>
       <Box sx={flexCol({ xs: 2.5, lg: 4 })}>
-        <Typography component="h4" sx={sectionTitle}>
-          داشبورد
-        </Typography>
+        <Box sx={flexBetween(2.5, "row")}>
+          <Typography component="h4" sx={sectionTitle}>
+            داشبورد
+          </Typography>
+          {!fullName && (
+            <Button
+              component={Link}
+              to="edit-profile"
+              sx={{ minHeight: "46px" }}
+            >
+              تکمیل اطلاعات کاربری
+              <ArrowOutward sx={{ rotate: "-90deg", fontSize: "20px" }} />
+            </Button>
+          )}
+        </Box>
+
         <Box sx={dashboardCardContainer}>
           <Box sx={dashboardCard}>
             <Box sx={flexBetween("row")}>
@@ -104,43 +121,46 @@ function Dashboard() {
             <Box sx={flexBetween("row")}>
               <Typography component="h5">علاقه مندی های شما</Typography>
               <Button
-                onClick={() => setShowFavoriteList(true)}
+                onClick={() => dispatch(openFavoriteCatModal())}
                 sx={{ fontSize: "12px" }}
               >
                 ویرایش
               </Button>
               <FavoriteCategories
-                open={showFavoriteList}
-                onShow={setShowFavoriteList}
                 favoriteList={favoriteList}
                 setFavoriteList={setFavoriteList}
               />
             </Box>
             <Divider sx={{ my: 1 }} />
             <Box sx={flexCol(1)}>
-              {favoriteList?.map((item, i) => {
-                return (
-                  <Box key={item.id || i} sx={flexBetween(1, "row")}>
-                    <Typography sx={{ lineHeight: "32px" }}>
-                      {item?.title}
-                    </Typography>
-                    <Button
-                      component={Link}
-                      to={`/courses/${item?.slug}`}
-                      variant="text"
-                      sx={{ bgcolor: "menuItemBg" }}
-                    >
-                      دوره ها
-                    </Button>
-                  </Box>
-                );
-              })}
+              {favoriteList.length > 0 ? (
+                favoriteList?.map((item, i) => {
+                  return (
+                    <Box key={item.id || i} sx={flexBetween(1, "row")}>
+                      <Typography sx={{ lineHeight: "32px" }}>
+                        {item?.title}
+                      </Typography>
+                      <Button
+                        component={Link}
+                        to={`/courses/${item?.slug}`}
+                        variant="text"
+                        sx={{ bgcolor: "menuItemBg" }}
+                      >
+                        دوره ها
+                      </Button>
+                    </Box>
+                  );
+                })
+              ) : (
+                <Typography>
+                  هنوز علاقه مندی های خود را اضافه نکرده اید
+                </Typography>
+              )}
             </Box>
           </Box>
         </Box>
-        {favoriteList.length > 0 && (
-          <MySuggestedCourses favoriteList={favoriteList} />
-        )}
+
+        <MySuggestedCourses favoriteList={favoriteList} />
       </Box>
     </>
   );

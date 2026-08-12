@@ -73,13 +73,19 @@ function Actionbar() {
           aria-expanded={open}
           onClick={handleOpen}
           variant="outlined"
-          sx={{ minWidth: 0 }}
+          sx={{ minWidth: 0, maxWidth: "125px" }}
         >
           <PermIdentity sx={{ fontSize: { xs: "20px", md: "24px" } }} />
           {fullName && (
             <Typography
               variant="subtitle2"
-              sx={{ display: { xs: "none", lg: "block" } }}
+              sx={{
+                overflow: "hidden",
+                display: { xs: "none", sm: "-webkit-box" },
+                WebkitBoxOrient: "vertical",
+                WebkitLineClamp: 1,
+                textAlign: "right",
+              }}
             >
               {fullName}
             </Typography>

@@ -24,6 +24,7 @@ export const toolBar = {
     md: 2,
     lg: 4,
   },
+  gap: 1,
 };
 
 export const navWrapper = {

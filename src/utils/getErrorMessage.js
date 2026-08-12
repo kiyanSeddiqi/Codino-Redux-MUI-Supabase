@@ -38,6 +38,6 @@ export const getErrorMessage = (message) => {
       return "اطلاعات پروفایل یافت نشد.";
 
     default:
-      return "خطایی رخ داده است. لطفاً دوباره تلاش کنید.";
+      return "خطایی رخ داده است. لطفاً دوباره تلاش کنید";
   }
 };

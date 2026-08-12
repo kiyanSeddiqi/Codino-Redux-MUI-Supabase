@@ -3,6 +3,7 @@ import { useSnackbar } from "../../../hooks/useSnackbar";
 import { authFailure, authStart, authSuccess } from "../redux/authSlice";
 import { register } from "../services/authServices";
 import { getErrorMessage } from "../../../utils/getErrorMessage";
+import { getCompleteUser } from "../services/profileService";
 
 export const useRegister = () => {
   const dispatch = useDispatch();
@@ -14,9 +15,11 @@ export const useRegister = () => {
 
       const data = await register(userData);
 
+      const completeUser = await getCompleteUser(data.user);
+
       dispatch(
         authSuccess({
-          user: data.user,
+          user: completeUser,
           accessToken: data.session.access_token,
         }),
       );
