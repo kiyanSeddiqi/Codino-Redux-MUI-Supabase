@@ -192,9 +192,10 @@ export const coursesCardCotainer = {
   gridTemplateColumns: {
     xs: "repeat(1, minmax(0, 1fr))",
     md: "repeat(3, minmax(0, 1fr))",
-    lg: "repeat(4, minmax(0, 1fr))",
+    xl: "repeat(4, minmax(0, 1fr))",
   },
   gap: 2.5,
+  width: "100%",
 };
 
 export const sortMobileBadge = (theme) => ({

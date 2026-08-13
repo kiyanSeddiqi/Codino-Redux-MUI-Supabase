@@ -7,19 +7,20 @@ import {
 import SliderNavBtn from "../../../../components/ui/SliderNavBtn/SliderNavBtn";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import { productData } from "../../../../data/productData";
 import ProductCard from "../../../../features/product/components/ProductCard";
+import ProductCardSkeleton from "../../../../features/product/components/ProductCardSkeleton";
 
-function RelatedCourses({ sameCategory, currentProductId }) {
-  const relatedCourses = productData.filter(
+function RelatedCourses({ sameCategory, currentProductId, products, loading }) {
+  const relatedCourses = products.filter(
     (item) =>
       item.id !== currentProductId &&
       sameCategory.some((cat) => item?.categories.includes(cat)),
   );
 
   const canLoop = relatedCourses.length > 4;
+  console.log(sameCategory);
 
-  if (relatedCourses.length == 0) return;
+  if (relatedCourses.length === 0) return;
   return (
     <>
       <Box
@@ -52,11 +53,17 @@ function RelatedCourses({ sameCategory, currentProductId }) {
               1280: { slidesPerView: 4.5, spaceBetween: 20 },
             }}
           >
-            {relatedCourses.map((item, i) => (
-              <SwiperSlide key={item.id}>
-                <ProductCard itemData={item} />
-              </SwiperSlide>
-            ))}
+            {loading
+              ? Array.from({ length: 5 }).map((_, index) => (
+                  <SwiperSlide key={index}>
+                    <ProductCardSkeleton />
+                  </SwiperSlide>
+                ))
+              : relatedCourses.map((item, i) => (
+                  <SwiperSlide key={item.id}>
+                    <ProductCard co itemData={item} />
+                  </SwiperSlide>
+                ))}
           </Swiper>
         </Box>
       </Box>

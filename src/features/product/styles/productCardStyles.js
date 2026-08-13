@@ -5,10 +5,6 @@ export const cardContainer = (theme) => ({
   bgcolor: "transparent",
   boxShadow: "none",
   width: "100%",
-  // maxWidth: "fit-content",
-  [theme.breakpoints.down(480)]: {
-    maxWidth: "100%",
-  },
   transition: "transform 0.3s ease",
   "&:hover .MuiCardMedia-root": {
     transform: "scale(1.1) rotate(-1deg)",
@@ -62,6 +58,7 @@ export const cardStatusBadge = {
 
 export const cardTitle = {
   fontSize: "14px",
+  fontWeight: 500,
   overflow: "hidden",
   display: "-webkit-box",
   WebkitBoxOrient: "vertical",
@@ -72,7 +69,7 @@ export const cardTitle = {
 
 export const featuredContainer = {
   display: "flex",
-  flexWrap: "wrap",
+  // flexWrap: "wrap",
   alignItems: "center",
   width: "100%",
   flexDirection: {
@@ -80,6 +77,7 @@ export const featuredContainer = {
     md: "row",
   },
   gap: 2.5,
+  overflowX: "auto",
 };
 
 export const featuredCardContainer = (theme) => ({
@@ -101,10 +99,6 @@ export const featuredCardContainer = (theme) => ({
   bgcolor: "transparent",
   boxShadow: "none",
   width: "100%",
-  maxWidth: {
-    xs: "100%",
-    // md: "294px",
-  },
   transition: "transform 0.3s ease",
   "&:hover .MuiCardMedia-root": {
     transform: "scale(1.1) rotate(-1deg)",

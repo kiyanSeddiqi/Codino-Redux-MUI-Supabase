@@ -1,15 +1,18 @@
 import { Box, Typography } from "@mui/material";
 import { sectionStyle, sectionTitle } from "../../../../styles/globalStyles";
 import { dailySuggestImg, dailySuggestImgBox } from "./dailySuggestStyles";
-import { productData } from "../../../../data/productData";
+import { daily_suggest } from "../../../../data/imgSource";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ProductCard from "../../../../features/product/components/ProductCard";
+import useProducts from "../../../../features/product/hooks/useProducts";
+import ProductCardSkeleton from "../../../../features/product/components/ProductCardSkeleton";
 
 import "swiper/css";
-import { daily_suggest } from "../../../../data/imgSource";
 
 function DailySuggest() {
-  const dailyProducts = productData.filter((item) =>
+  const { products, loading } = useProducts();
+
+  const dailySuggestCourses = products.filter((item) =>
     item.tags.includes("suggest"),
   );
   return (
@@ -39,11 +42,17 @@ function DailySuggest() {
               1280: { slidesPerView: 3.5, spaceBetween: 20 },
             }}
           >
-            {dailyProducts.map((item, i) => (
-              <SwiperSlide key={i}>
-                <ProductCard itemData={item} />
-              </SwiperSlide>
-            ))}
+            {loading
+              ? Array.from({ length: 5 }).map((_, index) => (
+                  <SwiperSlide key={index}>
+                    <ProductCardSkeleton />
+                  </SwiperSlide>
+                ))
+              : dailySuggestCourses.map((item, i) => (
+                  <SwiperSlide key={item.id}>
+                    <ProductCard co itemData={item} />
+                  </SwiperSlide>
+                ))}
           </Swiper>
         </Box>
       </Box>

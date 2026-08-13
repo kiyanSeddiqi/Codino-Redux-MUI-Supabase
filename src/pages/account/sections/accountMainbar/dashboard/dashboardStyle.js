@@ -15,9 +15,9 @@ export const dashboardCard = {
   border: 1,
   borderColor: "divider",
   borderRadius: 2,
-  ...flexCol(2.5),
+  ...flexCol(1.5),
   width: "100%",
-  minHeight: "227px",
+  minHeight: "215px",
 };
 
 export const mySuggestedCourses = {

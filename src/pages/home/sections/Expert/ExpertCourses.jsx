@@ -4,14 +4,16 @@ import {
   sectionStyle,
   sectionTitle,
 } from "../../../../styles/globalStyles";
-import { productData } from "../../../../data/productData";
 import ProductCard from "../../../../features/product/components/ProductCard";
 import { featuredContainer } from "../../../../features/product/styles/productCardStyles";
+import { coursesCardCotainer } from "../../../courses/Sections/Filter/coursesFilterStyles";
+import useProducts from "../../../../features/product/hooks/useProducts";
+import ProductCardSkeleton from "../../../../features/product/components/ProductCardSkeleton";
 
 function ExpertCourses() {
-  const expertCourses = productData.filter((item) =>
-    item.tags.includes("expert"),
-  );
+  const { products, loading } = useProducts();
+
+  const expertCourses = products.filter((item) => item.tags.includes("expert"));
 
   return (
     <>
@@ -19,10 +21,15 @@ function ExpertCourses() {
         <Typography component="h4" sx={sectionTitle}>
           دوره های متخصص
         </Typography>
-        <Box sx={featuredContainer}>
-          {expertCourses.map((item) => (
-            <ProductCard key={item.id} itemData={item} layout="featured" />
-          ))}
+        <Box sx={coursesCardCotainer}>
+          {loading
+            ? Array.from({ length: 5 }).map((_, index) => (
+                <ProductCardSkeleton key={index} />
+              ))
+            : expertCourses.map((item) => (
+                <ProductCard key={item.id} itemData={item} layout="featured" />
+              ))}
+          {}
         </Box>
       </Box>
     </>

@@ -16,20 +16,27 @@ import CourseTeacherSection from "./Sections/Teacher/CourseTeacherSection";
 import CourseSidebar from "./Sections/Sidebar/CourseSidebar";
 import RelatedCourses from "./Sections/RelatedCourses/RelatedCourses";
 import { useParams } from "react-router-dom";
-import { productData } from "../../data/productData";
 import BreadCrumb from "../../components/ui/Breadcrumb/BreadCrumb";
 import { categoryData } from "../../data/categoryData";
+import useProducts from "../../features/product/hooks/useProducts";
+import ProductCardSkeleton from "../../features/product/components/ProductCardSkeleton";
+import CourseDetailsSkeleton from "./CourseDetailsSkeleton";
 
 function CourseDetails() {
+  const { products, loading } = useProducts();
   const { slug } = useParams();
-  const product = productData.find((item) => item?.slug === slug);
+
+  if (loading) {
+    return <CourseDetailsSkeleton />;
+  }
+
+  const product = products.find((item) => item?.slug === slug);
 
   const subCategory = product?.categories[0]
     ? categoryData
         .flatMap((category) => category.children)
         .find((child) => child.slug === product.categories[0])
     : null;
-  console.log(subCategory);
 
   const items = [{ title: "دوره ها", link: "/courses" }];
   if (subCategory) {
@@ -66,6 +73,8 @@ function CourseDetails() {
           </Box>
         </Box>
         <RelatedCourses
+          products={products}
+          loading={loading}
           sameCategory={product.categories}
           currentProductId={product.id}
         />

@@ -132,7 +132,26 @@ function Dashboard() {
               />
             </Box>
             <Divider sx={{ my: 1 }} />
-            <Box sx={flexCol(1)}>
+            <Box
+              sx={{
+                ...flexCol(1),
+                maxHeight: "82px",
+                overflowY: "auto",
+                pl: 1,
+                scrollbarWidth: "auto",
+                "&::-webkit-scrollbar": {
+                  width: "6px",
+                  mr: 1,
+                },
+                "&::-webkit-scrollbar-track": {
+                  bgcolor: "menuItemBg",
+                },
+                "&::-webkit-scrollbar-thumb": {
+                  bgcolor: "primary.main",
+                  borderRadius: "10px",
+                },
+              }}
+            >
               {favoriteList.length > 0 ? (
                 favoriteList?.map((item, i) => {
                   return (
@@ -144,7 +163,7 @@ function Dashboard() {
                         component={Link}
                         to={`/courses/${item?.slug}`}
                         variant="text"
-                        sx={{ bgcolor: "menuItemBg" }}
+                        sx={{ bgcolor: "menuItemBg", p: 1 }}
                       >
                         دوره ها
                       </Button>

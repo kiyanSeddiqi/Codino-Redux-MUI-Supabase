@@ -53,10 +53,10 @@ function ProductCard({ itemData, layout = "default" }) {
         >
           <CardMedia
             sx={cardImg}
-            image={itemData.img}
+            image={itemData.imageUrl}
             alt={`تصویر ${itemData.title}`}
             component="img"
-            loading="lazy"
+            // loading="lazy"
           />
         </Box>
         <CardContent sx={cardContent}>
@@ -96,7 +96,7 @@ function ProductCard({ itemData, layout = "default" }) {
                   </Tooltip>
                 )}
               </Box>
-              {itemData.hasCertificate && (
+              {itemData.has_certificate && (
                 <SvgIcon name="certificate" size={24} />
               )}
             </Box>

@@ -17,13 +17,14 @@ import {
   FilterList,
   Tune,
 } from "@mui/icons-material";
-import { productData } from "../../../../data/productData";
 import ProductCard from "../../../../features/product/components/ProductCard";
 import FilterModal from "./FilterModal";
 import { useEffect, useMemo, useState } from "react";
 import SortModal from "./SortModal";
 import { useParams, useSearchParams } from "react-router-dom";
 import useCourseFilters from "./hooks/useCourseFilters";
+import ProductCardSkeleton from "../../../../features/product/components/ProductCardSkeleton";
+import useProducts from "../../../../features/product/hooks/useProducts";
 
 const INITIAL_VISIBLE = 12;
 
@@ -31,7 +32,9 @@ function FilterMainbar({ filters, dispatch }) {
   const { search, status, access, sort } = filters;
   const { slug } = useParams();
 
-  const filteredCourses = useCourseFilters(filters, slug);
+  const { products, loading } = useProducts();
+
+  const filteredCourses = useCourseFilters(filters, slug, products);
 
   const [openFilterModal, setOpenFilterModal] = useState(false);
   const [openSortModal, setOpenSortModal] = useState(false);
@@ -63,6 +66,10 @@ function FilterMainbar({ filters, dispatch }) {
     return count;
   }, [filters, slug]);
 
+  console.log({
+    loading,
+    visibleProductsLength: visibleProducts.length,
+  });
   return (
     <>
       <Box sx={filterMainbar} component="main">
@@ -151,27 +158,25 @@ function FilterMainbar({ filters, dispatch }) {
             onShow={setOpenSortModal}
           />
         </Box>
-        {visibleProducts.length > 0 ? (
+        {loading ? (
+          <Box sx={coursesCardCotainer}>
+            {Array.from({ length: 8 }).map((_, index) => (
+              <ProductCardSkeleton key={index} />
+            ))}
+          </Box>
+        ) : visibleProducts.length > 0 ? (
           <Box sx={coursesCardCotainer}>
             {visibleProducts.map((item) => (
               <ProductCard layout="featured" key={item.id} itemData={item} />
             ))}
           </Box>
         ) : (
-          <Box
-            sx={{
-              height: "150px",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: 2.5,
-            }}
-          >
+          <Box sx={{ ...flexCenter(2.5, "column"), height: "300px" }}>
             <Typography sx={notFoundMsg}>نتیجه ای یافت نشد !</Typography>
             <Typography> لطفا نگارش کلمات یا فیلتر را تغییر دهید</Typography>
           </Box>
         )}
+
         {(hasMore || canShowLess) && (
           <Box sx={{ textAlign: "center" }}>
             <Button onClick={handleShowMore} color="secondary">

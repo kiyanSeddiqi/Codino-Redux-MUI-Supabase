@@ -150,7 +150,11 @@ function FavoriteCategories({ favoriteList, setFavoriteList }) {
             })}
           </Box>
           <Button onClick={handleSaveList}>
-            {loading ? <CircularProgress size={20} /> : "ثبت علاقه مندی ها"}
+            {loading ? (
+              <CircularProgress size={20} color="#fff" />
+            ) : (
+              "ثبت علاقه مندی ها"
+            )}
           </Button>
         </Box>
       </Dialog>

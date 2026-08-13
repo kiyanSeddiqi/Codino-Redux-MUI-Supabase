@@ -9,14 +9,19 @@ import SliderNavBtn from "../../../../components/ui/SliderNavBtn/SliderNavBtn";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import ProductCard from "../../../../features/product/components/ProductCard";
-import { productData } from "../../../../data/productData";
+import useProducts from "../../../../features/product/hooks/useProducts";
+import ProductCardSkeleton from "../../../../features/product/components/ProductCardSkeleton";
 
 import "swiper/css";
 
 function BestSellers() {
-  const bestSellerProducts = productData.filter((item) =>
+  const { products, loading } = useProducts();
+
+  const bestSellerCourses = products.filter((item) =>
     item.tags.includes("best-seller"),
   );
+
+  const canLoop = bestSellerCourses.length > 4;
   return (
     <>
       <Box
@@ -40,7 +45,7 @@ function BestSellers() {
               prevEl: ".bestSellers-section .swiper-btn-prev",
               nextEl: ".bestSellers-section .swiper-btn-next",
             }}
-            loop={true}
+            loop={canLoop}
             breakpoints={{
               300: { slidesPerView: 1, spaceBetween: 20 },
               420: { slidesPerView: 2, spaceBetween: 20 },
@@ -49,11 +54,17 @@ function BestSellers() {
               1280: { slidesPerView: 4.5, spaceBetween: 20 },
             }}
           >
-            {bestSellerProducts.map((item, i) => (
-              <SwiperSlide key={item.id}>
-                <ProductCard itemData={item} />
-              </SwiperSlide>
-            ))}
+            {loading
+              ? Array.from({ length: 5 }).map((_, index) => (
+                  <SwiperSlide key={index}>
+                    <ProductCardSkeleton />
+                  </SwiperSlide>
+                ))
+              : bestSellerCourses.map((item, i) => (
+                  <SwiperSlide key={item.id}>
+                    <ProductCard co itemData={item} />
+                  </SwiperSlide>
+                ))}
           </Swiper>
         </Box>
       </Box>

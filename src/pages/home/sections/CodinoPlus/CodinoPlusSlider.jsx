@@ -8,14 +8,18 @@ import SliderNavBtn from "../../../../components/ui/SliderNavBtn/SliderNavBtn";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import ProductCard from "../../../../features/product/components/ProductCard";
-import { productData } from "../../../../data/productData";
+import useProducts from "../../../../features/product/hooks/useProducts";
+import ProductCardSkeleton from "../../../../features/product/components/ProductCardSkeleton";
 
 import "swiper/css";
 import "swiper/css/navigation";
 
 function CodinoPlusSlider() {
-  const plusProducts = productData.filter((item) => item.tags.includes("plus"));
+  const { products, loading } = useProducts();
 
+  const plusCourses = products.filter((item) => item.tags.includes("plus"));
+
+  const canLoop = plusCourses.length > 4;
   return (
     <>
       <Box
@@ -38,7 +42,7 @@ function CodinoPlusSlider() {
             prevEl: ".codino-plus__slider .swiper-btn-prev",
             nextEl: ".codino-plus__slider .swiper-btn-next",
           }}
-          loop={true}
+          loop={canLoop}
           breakpoints={{
             300: { slidesPerView: 1, spaceBetween: 20 },
             420: { slidesPerView: 2, spaceBetween: 20 },
@@ -48,11 +52,17 @@ function CodinoPlusSlider() {
           }}
           style={{ width: "100%" }}
         >
-          {plusProducts.map((item, i) => (
-            <SwiperSlide key={item.id}>
-              <ProductCard itemData={item} />
-            </SwiperSlide>
-          ))}
+          {loading
+            ? Array.from({ length: 5 }).map((_, index) => (
+                <SwiperSlide key={index}>
+                  <ProductCardSkeleton />
+                </SwiperSlide>
+              ))
+            : plusCourses.map((item, i) => (
+                <SwiperSlide key={item.id}>
+                  <ProductCard co itemData={item} />
+                </SwiperSlide>
+              ))}
         </Swiper>
       </Box>
     </>

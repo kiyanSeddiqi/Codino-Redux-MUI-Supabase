@@ -1,11 +1,10 @@
 import { useMemo } from "react";
-import { productData } from "../../../../../data/productData";
 
-function useCourseFilters(filters, slug) {
+function useCourseFilters(filters, slug, products) {
   const { search, status, access, sort } = filters;
 
   const filteredCourses = useMemo(() => {
-    let courses = [...productData];
+    let courses = [...products];
 
     // CATEGORY
     if (slug) {
@@ -31,7 +30,7 @@ function useCourseFilters(filters, slug) {
       courses = courses.filter((item) => item.price === 0);
     }
     if (access.installment) {
-      courses = courses.filter((item) => item.hasInstallment);
+      courses = courses.filter((item) => item.has_installment);
     }
     if (access.plus) {
       courses = courses.filter((item) => item.tags.includes("plus"));
@@ -64,7 +63,7 @@ function useCourseFilters(filters, slug) {
     }
 
     return courses;
-  }, [search.query, status, access, sort, slug]);
+  }, [products, search.query, status, access, sort, slug]);
 
   return filteredCourses;
 }

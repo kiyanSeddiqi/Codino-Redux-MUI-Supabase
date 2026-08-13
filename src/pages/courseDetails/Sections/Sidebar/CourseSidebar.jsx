@@ -93,7 +93,7 @@ function CourseSidebar({ product }) {
         <Box sx={sidebarImgBox}>
           <Box
             component="img"
-            src={product.img}
+            src={product.imageUrl}
             alt={`تصویر ${product.title}`}
             sx={sidebarImg}
             fetchPriority="high"

@@ -5,17 +5,17 @@ import SliderNavBtn from "../../../../../components/ui/SliderNavBtn/SliderNavBtn
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import ProductCard from "../../../../../features/product/components/ProductCard";
+import useProducts from "../../../../../features/product/hooks/useProducts";
+import ProductCardSkeleton from "../../../../../features/product/components/ProductCardSkeleton";
 
 import "swiper/css";
 import "swiper/css/navigation";
-import { productData } from "../../../../../data/productData";
-import { productsImgs } from "../../../../../data/productsImages";
 
 function MySuggestedCourses({ favoriteList }) {
+  const { products, loading } = useProducts();
+
   const coursesByFavoriteCat = favoriteList.map((item) => {
-    const courses = productData.filter((p) =>
-      p.categories?.includes(item.slug),
-    );
+    const courses = products.filter((p) => p.categories?.includes(item.slug));
     return courses.slice(0, 3);
   });
 
@@ -55,17 +55,23 @@ function MySuggestedCourses({ favoriteList }) {
               1024: { slidesPerView: 3.5, spaceBetween: 20 },
             }}
           >
-            {relatedCourses.length > 0
-              ? relatedCourses.map((item) => (
-                  <SwiperSlide key={item.id}>
-                    <ProductCard itemData={item} />
+            {loading
+              ? Array.from({ length: 5 }).map((_, index) => (
+                  <SwiperSlide key={index}>
+                    <ProductCardSkeleton />
                   </SwiperSlide>
                 ))
-              : productData.slice(4, 12).map((item) => (
-                  <SwiperSlide key={item.id}>
-                    <ProductCard itemData={item} />
-                  </SwiperSlide>
-                ))}
+              : relatedCourses.length > 0
+                ? relatedCourses.map((item) => (
+                    <SwiperSlide key={item.id}>
+                      <ProductCard itemData={item} />
+                    </SwiperSlide>
+                  ))
+                : products.slice(4, 12).map((item) => (
+                    <SwiperSlide key={item.id}>
+                      <ProductCard itemData={item} />
+                    </SwiperSlide>
+                  ))}
           </Swiper>
         </Box>
       </Box>
