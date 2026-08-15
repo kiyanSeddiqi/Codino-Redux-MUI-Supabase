@@ -23,11 +23,13 @@ import SvgIcon from "../../../../components/ui/SvgIcon/SvgIcon";
 import { flexBetween, flexBox, flexCol } from "../../../../styles/globalStyles";
 import { addComma } from "../../../../utils/helpers";
 import { AccessTime, BookmarkBorder, Person } from "@mui/icons-material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import VideoDialog from "./VideoDialog/VideoDialog.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { openAuthModal } from "../../../../features/auth/redux/authSlice.js";
 import useEnrollCourse from "../../../../features/product/hooks/useEnrollCourse.js";
+import useGetUserCourse from "../../../../features/product/hooks/useGetUserCourse.js";
+import { useNavigate } from "react-router-dom";
 
 const levelLabels = {
   beginner: "مقدماتی",
@@ -40,6 +42,13 @@ function CourseSidebar({ product }) {
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.auth);
   const { enrollCourse, loading } = useEnrollCourse();
+  const {
+    userCoursesHandler,
+    isLoading: coursesLoading,
+    isEnrolled,
+  } = useGetUserCourse();
+
+  const navigation = useNavigate();
 
   async function handleRegister() {
     if (!isAuthenticated) {
@@ -47,10 +56,17 @@ function CourseSidebar({ product }) {
       return;
     }
 
+    if (isEnrolled) {
+      navigation("/account/my-courses");
+      return;
+    }
     await enrollCourse(product.id);
+    await userCoursesHandler(product.id);
   }
 
-  // async function handleGetUserCourse(params) {}
+  useEffect(() => {
+    if (isAuthenticated) userCoursesHandler(product.id);
+  }, [isAuthenticated, product.id]);
 
   return (
     <>
@@ -135,9 +151,12 @@ function CourseSidebar({ product }) {
             <Button
               onClick={handleRegister}
               sx={{ flex: 1, minHeight: "44px" }}
+              disabled={loading || coursesLoading}
             >
               {loading ? (
                 <CircularProgress size={20} color="#fff" />
+              ) : isEnrolled ? (
+                "مشاهده دوره"
               ) : (
                 "ثبت نام در دوره"
               )}

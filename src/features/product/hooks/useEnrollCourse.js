@@ -20,7 +20,7 @@ export default function useEnrollCourse() {
     } catch (err) {
       const message =
         err.code === "23505"
-          ? "شما قبلا این دوره را ثبت  نام کرده اید"
+          ? " قبلا این دوره را ثبت  نام کرده اید"
           : getErrorMessage(err.message);
 
       error(message);

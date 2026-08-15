@@ -6,23 +6,29 @@ import { getErrorMessage } from "../../../utils/getErrorMessage";
 
 export default function useGetUserCourse() {
   const user = useSelector((state) => state.auth.user);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isEnrolled, setIsEnrolled] = useState(false);
 
   const { success, error } = useSnackbar();
 
-  async function userCoursesHandler() {
-    setLoading(true);
+  async function userCoursesHandler(productId) {
+    setIsLoading(true);
     try {
-      const data = await getUserCourses(user.id);
+      const { data } = await getUserCourses(user.id);
+
+      const enrolled = data.some((course) => course.product_id === productId);
+
+      setIsEnrolled(enrolled);
+
       return data;
     } catch (err) {
       const message = getErrorMessage(err.message);
       error(message);
-      throw error;
+      throw err;
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   }
 
-  return { userCoursesHandler, loading };
+  return { userCoursesHandler, isLoading, isEnrolled };
 }

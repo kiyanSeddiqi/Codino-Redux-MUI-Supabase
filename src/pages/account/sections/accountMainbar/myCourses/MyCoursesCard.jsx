@@ -96,12 +96,12 @@ function MyCoursesCard({ itemData }) {
                 }}
                 dir="ltr"
               >
-                {itemData.progress} %
+                100 %
               </Typography>
               <Box sx={{ flex: 1 }}>
                 <LinearProgress
                   variant="determinate"
-                  value={itemData.progress}
+                  value="100"
                   aria-label="course progress"
                   sx={{ height: "6px", borderRadius: "10px" }}
                 />
