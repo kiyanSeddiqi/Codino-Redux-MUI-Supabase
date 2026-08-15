@@ -38,7 +38,12 @@ function CourseDetailsSkeleton() {
                 <Skeleton variant="text" width={"100%"} height={20} />
               </Box>
             </Box>
-            <Skeleton variant="rectangular" width={"100%"} height={"100%"} />
+            <Skeleton
+              animation="wave"
+              variant="rounded"
+              width={"100%"}
+              height={"100%"}
+            />
           </Box>
           <Box sx={courseSidbarBox}>
             <Box sx={{ ...flexCol(2.5) }}>

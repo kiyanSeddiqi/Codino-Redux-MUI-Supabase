@@ -1,4 +1,13 @@
-import { Box, Button, Chip, Divider, Tooltip, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Chip,
+  CircularProgress,
+  Divider,
+  IconButton,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import {
   imgBackdrop,
   sidebarContainer,
@@ -13,11 +22,12 @@ import { productsImgs } from "../../../../data/productsImages";
 import SvgIcon from "../../../../components/ui/SvgIcon/SvgIcon";
 import { flexBetween, flexBox, flexCol } from "../../../../styles/globalStyles";
 import { addComma } from "../../../../utils/helpers";
-import { AccessTime, Person } from "@mui/icons-material";
+import { AccessTime, BookmarkBorder, Person } from "@mui/icons-material";
 import { useState } from "react";
 import VideoDialog from "./VideoDialog/VideoDialog.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { openAuthModal } from "../../../../features/auth/redux/authSlice.js";
+import useEnrollCourse from "../../../../features/product/hooks/useEnrollCourse.js";
 
 const levelLabels = {
   beginner: "مقدماتی",
@@ -29,15 +39,18 @@ function CourseSidebar({ product }) {
 
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.auth);
+  const { enrollCourse, loading } = useEnrollCourse();
 
-  function handleRegister() {
+  async function handleRegister() {
     if (!isAuthenticated) {
       dispatch(openAuthModal());
       return;
     }
 
-    console.log("کاربر لاگین است");
+    await enrollCourse(product.id);
   }
+
+  // async function handleGetUserCourse(params) {}
 
   return (
     <>
@@ -117,7 +130,28 @@ function CourseSidebar({ product }) {
               </Typography>
             )}
           </Box>
-          <Button onClick={handleRegister}>ثبت نام در دوره</Button>
+
+          <Box sx={flexBox(2)}>
+            <Button
+              onClick={handleRegister}
+              sx={{ flex: 1, minHeight: "44px" }}
+            >
+              {loading ? (
+                <CircularProgress size={20} color="#fff" />
+              ) : (
+                "ثبت نام در دوره"
+              )}
+            </Button>
+            {isAuthenticated && (
+              <Button
+                variant="text"
+                sx={{ bgcolor: "menuItemBg", minWidth: 0 }}
+              >
+                <BookmarkBorder />
+              </Button>
+            )}
+          </Box>
+
           {product.tags.includes("plus") && (
             <Box sx={flexCol(1)}>
               <Typography

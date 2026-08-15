@@ -21,7 +21,6 @@ import { useSnackbar } from "../../../../../hooks/useSnackbar";
 import { categoryData } from "../../../../../data/categoryData";
 import { ArrowOutward } from "@mui/icons-material";
 import { openFavoriteCatModal } from "../../../../../features/dashboard/redux/favoriteCatSlice";
-import { minLength } from "zod";
 
 function Dashboard() {
   const [favoriteList, setFavoriteList] = useState([]);
@@ -29,6 +28,7 @@ function Dashboard() {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.auth.user) || {};
+
   const { error } = useSnackbar();
 
   const { first_name, last_name, mobile, avatar_url } = user;

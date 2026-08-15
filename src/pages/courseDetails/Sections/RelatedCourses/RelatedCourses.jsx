@@ -18,7 +18,6 @@ function RelatedCourses({ sameCategory, currentProductId, products, loading }) {
   );
 
   const canLoop = relatedCourses.length > 4;
-  console.log(sameCategory);
 
   if (relatedCourses.length === 0) return;
   return (
