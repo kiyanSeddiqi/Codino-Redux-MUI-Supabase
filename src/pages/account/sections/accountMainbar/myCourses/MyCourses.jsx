@@ -12,8 +12,10 @@ import {
 } from "../../../../../styles/globalStyles";
 import { productData } from "../../../../../data/productData";
 import MyCoursesCard from "./MyCoursesCard";
-import { useMemo, useState } from "react";
+import { use, useMemo, useState } from "react";
 import SvgIcon from "../../../../../components/ui/SvgIcon/SvgIcon";
+import useMyCourses from "../../../../../features/product/hooks/useMyCourses";
+import MyCoursesCardSkeleton from "./MyCoursesCardSkeleton";
 
 const myCoursesTab = [
   "همه دوره ها",
@@ -24,24 +26,25 @@ const myCoursesTab = [
 ];
 
 function MyCourses() {
-  const [activeTab, setActiveTab] = useState("همه دوره ها");
+  const { courses, loading, updateCardProgress } = useMyCourses();
 
+  const [activeTab, setActiveTab] = useState("همه دوره ها");
   const filteredCourses = useMemo(() => {
     switch (activeTab) {
       case "تکمیل شده":
-        return productData.slice(0, 3).filter((item) => item?.progress === 100);
+        return courses.filter((item) => item?.progress === 100);
       case "درحال یادگیری":
-        return productData
-          .slice(0, 3)
-          .filter((item) => item.progress > 0 && item.progress < 100);
+        return courses.filter(
+          (item) => item.progress > 0 && item.progress < 100,
+        );
       case "فقط دوره های پولی":
-        return productData.slice(0, 3).filter((item) => item.price > 0);
+        return courses.filter((item) => item.price > 0);
       case "فقط دوره های رایگان":
-        return productData.slice(0, 3).filter((item) => item.price === 0);
+        return courses.filter((item) => item.price === 0);
       case "همه دوره ها":
-        return productData.slice(0, 3);
+        return courses;
     }
-  }, [activeTab]);
+  }, [activeTab, courses]);
 
   return (
     <>
@@ -63,10 +66,20 @@ function MyCourses() {
             ))}
           </Box>
         </Box>
-        {filteredCourses.length > 0 ? (
+        {loading ? (
+          <Box sx={cardContainer}>
+            {Array.from({ length: 3 }).map((_, index) => (
+              <MyCoursesCardSkeleton key={index} />
+            ))}
+          </Box>
+        ) : filteredCourses.length > 0 ? (
           <Box sx={cardContainer}>
             {filteredCourses?.map((item) => (
-              <MyCoursesCard key={item.id} itemData={item} />
+              <MyCoursesCard
+                key={item.id}
+                itemData={item}
+                onProgressUpdate={updateCardProgress}
+              />
             ))}
           </Box>
         ) : (

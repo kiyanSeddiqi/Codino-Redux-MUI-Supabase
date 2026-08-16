@@ -45,6 +45,7 @@ function CourseDetails() {
       link: `/courses/${subCategory.slug}`,
     });
   }
+
   items.push({ title: product.title });
 
   return (

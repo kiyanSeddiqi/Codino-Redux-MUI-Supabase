@@ -1,3 +1,4 @@
+import { he } from "zod/v4/locales";
 import { flexBox, flexCol } from "../../../../../styles/globalStyles";
 
 export const myCoursesContainer = {
@@ -38,12 +39,10 @@ export const myCourseCardBox = {
 };
 
 export const cardImgBox = {
-  width: {
-    xs: "100%",
-    md: "226px",
-  },
-  aspectRatio: "1",
+  width: "215px",
+  height: "100%",
   borderRadius: "12px",
+  flexShrink: 0,
 };
 
 export const cardImg = {

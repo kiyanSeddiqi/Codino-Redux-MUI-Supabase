@@ -32,3 +32,19 @@ export async function getUserCourses(userId) {
 
   return { data };
 }
+
+export async function updateCourseProgress(userCourseId, progress) {
+  const { data, error } = await supabase
+    .from("user_courses")
+    .update({ progress })
+    .eq("id", userCourseId)
+    .select()
+    .single();
+
+  if (error) {
+    console.error("UPDATE COURSE PROGRESS ERROR:", error);
+    throw error;
+  }
+
+  return data;
+}

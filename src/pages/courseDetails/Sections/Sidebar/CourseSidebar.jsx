@@ -79,7 +79,7 @@ function CourseSidebar({ product }) {
             <Box sx={{ ...flexBox("10px"), flexWrap: "wrap" }}>
               {product.status === "completed" ? (
                 <Chip
-                  color="error"
+                  color="warning"
                   label="دوره به پایان رسیده"
                   icon={<SvgIcon name="doc" size={24} />}
                 />
@@ -151,7 +151,7 @@ function CourseSidebar({ product }) {
             <Button
               onClick={handleRegister}
               sx={{ flex: 1, minHeight: "44px" }}
-              disabled={loading || coursesLoading}
+              disabled={loading}
             >
               {loading ? (
                 <CircularProgress size={20} color="#fff" />

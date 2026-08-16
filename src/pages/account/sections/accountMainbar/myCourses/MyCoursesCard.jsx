@@ -20,13 +20,23 @@ import {
   Schedule,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import { useUpdateCourseProgress } from "../../../../../features/product/hooks/useUpdateCourseProgress";
 
 const levelLabels = {
   beginner: "مقدماتی",
   advanced: "مقدماتی تا پیشرفته",
 };
 
-function MyCoursesCard({ itemData }) {
+function MyCoursesCard({ itemData, onProgressUpdate }) {
+  const { updateProgressHandler } = useUpdateCourseProgress();
+
+  async function progressHandler() {
+    let newProgressValue = Math.min(itemData.progress + 10, 100);
+    await updateProgressHandler(itemData.userCourseId, newProgressValue);
+
+    onProgressUpdate(itemData.userCourseId, newProgressValue);
+  }
+
   return (
     <>
       <Box sx={myCourseCardBox}>
@@ -34,13 +44,13 @@ function MyCoursesCard({ itemData }) {
           <Box
             component="img"
             alt="تصویر دوره آموزشی"
-            src={itemData.img}
+            src={itemData.imageUrl}
             loading="lazy"
             sx={cardImg}
           />
         </Box>
         <Box sx={cardTextContainer}>
-          <Box sx={flexCol(2.5)}>
+          <Box sx={flexCol(2)}>
             <Box sx={flexCol("12px")}>
               <Chip
                 label={levelLabels[itemData.level]}
@@ -96,18 +106,19 @@ function MyCoursesCard({ itemData }) {
                 }}
                 dir="ltr"
               >
-                100 %
+                {itemData.progress ?? 0} %
               </Typography>
               <Box sx={{ flex: 1 }}>
                 <LinearProgress
                   variant="determinate"
-                  value="100"
+                  value={itemData.progress ?? 0}
                   aria-label="course progress"
                   sx={{ height: "6px", borderRadius: "10px" }}
                 />
               </Box>
             </Box>
             <Button
+              onClick={progressHandler}
               sx={{
                 width: "fit-content",
                 alignSelf: "flex-end",
@@ -117,7 +128,12 @@ function MyCoursesCard({ itemData }) {
               variant="outlined"
               disabled={itemData.progress === 100}
             >
-              شروع یادگیری
+              {itemData.progress === 0
+                ? "شروع یادگیری"
+                : itemData.progress === 100
+                  ? "تکمیل شده"
+                  : "ادامه یادگیری"}
+
               <ChevronLeft sx={{ fontSize: "20px" }} />
             </Button>
           </Box>
