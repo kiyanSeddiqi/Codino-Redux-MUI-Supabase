@@ -2,7 +2,7 @@ import { supabase } from "../../../lib/supabase";
 
 export async function register({ email, password, mobile }) {
   const mobileResult = await checkUserExists(mobile);
-
+  console.log(mobileResult);
   if (mobileResult.exists) {
     throw new Error("Mobile already registered");
   }
@@ -75,6 +75,17 @@ export async function resetPassword(email) {
 
 export async function updatePassword(password) {
   const { data, error } = await supabase.auth.updateUser({
+    password,
+  });
+
+  if (error) throw error;
+
+  return data;
+}
+
+export async function verifyCurrentPassword(email, password) {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
     password,
   });
 

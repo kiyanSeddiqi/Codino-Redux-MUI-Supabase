@@ -9,18 +9,19 @@ export const getErrorMessage = (message) => {
 
   switch (message) {
     case "User already registered":
+      return "این ایمیل قبلاً ثبت شده است. لطفاً وارد حساب کاربری خود شوید";
 
     case "Mobile already registered":
       return "این شماره قبلاً ثبت شده است";
 
     case "Invalid login credentials":
-      return "ایمیل یا رمز عبور اشتباه است.";
+      return "ایمیل یا رمز عبور اشتباه است";
 
     case "Email not confirmed":
-      return "ایمیل شما هنوز تأیید نشده است.";
+      return "ایمیل شما هنوز تأیید نشده است";
 
     case "Signup is disabled":
-      return "ثبت‌نام در حال حاضر غیرفعال است.";
+      return "ثبت‌ نام در حال حاضر غیرفعال است";
 
     case "Email rate limit exceeded":
       return "تعداد درخواست‌ها بیش از حد مجاز است. چند دقیقه دیگر دوباره تلاش کنید.";

@@ -43,7 +43,7 @@ export const profileResetPassword = z
     message: "تکرار رمز عبور صحیح نیست",
     path: ["confirmPassword"],
   })
-  .refine((data) => data.currentPassword !== data.newPassword, {
+  .refine((data) => data.currPassword !== data.newPassword, {
     message: "رمز عبور جدید نباید با رمز عبور فعلی یکسان باشد",
     path: ["newPassword"],
   });

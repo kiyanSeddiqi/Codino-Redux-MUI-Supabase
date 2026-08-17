@@ -16,6 +16,8 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { profileResetPassword } from "../../../../../features/auth/schemas/profileSchema";
+import useChangePassword from "../../../../../features/auth/hooks/useChangePassword";
+import { useSelector } from "react-redux";
 
 function ChangePassword() {
   const [showCurrPassword, setShowCurrPassword] = useState(false);
@@ -32,14 +34,34 @@ function ChangePassword() {
     setShowConfirmPass((prev) => !prev);
   };
 
+  const { handleChangePassword } = useChangePassword();
+  const user = useSelector((state) => state.auth.user);
+
   const {
     register,
     handleSubmit,
+    setError,
+    reset,
     formState: { errors, isValid },
   } = useForm({ resolver: zodResolver(profileResetPassword), mode: "all" });
 
-  function onSubmit(data) {
-    console.log(data);
+  async function onSubmit(data) {
+    const result = await handleChangePassword(
+      user.email,
+      data.currPassword,
+      data.newPassword,
+    );
+
+    if (!result.success) {
+      setError("currPassword", {
+        type: "server",
+        message: result.error,
+      });
+
+      return;
+    }
+
+    reset();
   }
 
   return (
@@ -167,7 +189,7 @@ function ChangePassword() {
             />
           </Box>
           <Box sx={{ width: "100%", p: 1 }}>
-            <Button disabled={!isValid} sx={{ width: "100%" }}>
+            <Button type="submit" disabled={!isValid} sx={{ width: "100%" }}>
               ثبت تغییرات
             </Button>
           </Box>

@@ -15,14 +15,7 @@ export default function useAuthListener() {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (event, session) => {
       if (event === "SIGNED_IN" && session?.user) {
-        const googleLogin = sessionStorage.getItem("google_login");
-
-        if (googleLogin) {
-          if (window.opener) {
-            window.close();
-            return;
-          }
-
+        try {
           const userData = await getCompleteUser(session.user);
 
           dispatch(
@@ -33,7 +26,10 @@ export default function useAuthListener() {
           );
 
           success("با موفقیت وارد حساب کاربری شدید");
+
           sessionStorage.removeItem("google_login");
+        } catch (err) {
+          dispatch(authFailure(err.message));
         }
       }
 

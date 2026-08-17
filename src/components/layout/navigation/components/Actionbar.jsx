@@ -39,6 +39,7 @@ function Actionbar() {
   const user = useSelector((state) => state.auth.user) || {};
   const { mobile, first_name, last_name } = user;
   const fullName = [first_name, last_name].filter(Boolean).join(" ");
+  const isPersianName = /[\u0600-\u06FF]/.test(fullName);
 
   const { logoutUser } = useLogout();
   const theme = useTheme();
@@ -73,7 +74,7 @@ function Actionbar() {
           aria-expanded={open}
           onClick={handleOpen}
           variant="outlined"
-          sx={{ minWidth: 0, maxWidth: "125px" }}
+          sx={{ minWidth: 0, maxWidth: "120px" }}
         >
           <PermIdentity sx={{ fontSize: { xs: "20px", md: "24px" } }} />
           {fullName && (
@@ -84,7 +85,10 @@ function Actionbar() {
                 display: { xs: "none", sm: "-webkit-box" },
                 WebkitBoxOrient: "vertical",
                 WebkitLineClamp: 1,
-                textAlign: "right",
+                textAlign: isPersianName ? "right" : "left",
+                direction: isPersianName ? "rtl" : "ltr",
+                fontFamily: isPersianName ? "inherit" : "sans-serif",
+                textTransform: isPersianName ? "none" : "lowercase",
               }}
             >
               {fullName}
