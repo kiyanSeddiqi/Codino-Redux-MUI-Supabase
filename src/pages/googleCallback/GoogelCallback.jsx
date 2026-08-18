@@ -23,6 +23,7 @@ export default function GoogleCallback() {
           { type: "GOOGLE_LOGIN_SUCCESS" },
           window.location.origin,
         );
+
         window.close();
       }
     });

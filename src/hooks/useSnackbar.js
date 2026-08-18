@@ -8,8 +8,8 @@ export const useSnackbar = () => {
     dispatch(showSnackbar({ message, severity: "success" }));
   };
 
-  const error = (message) => {
-    dispatch(showSnackbar({ message, severity: "error" }));
+  const error = (message, duration) => {
+    dispatch(showSnackbar({ message, severity: "error", duration }));
   };
 
   const warning = (message) => {

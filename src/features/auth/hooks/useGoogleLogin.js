@@ -10,6 +10,7 @@ export default function useGoogleLogin() {
   const { error } = useSnackbar();
 
   const googleLoginSuccess = useRef(false);
+  const popupTimer = useRef(null);
 
   useEffect(() => {
     const handleGoogleMessage = (event) => {
@@ -18,11 +19,24 @@ export default function useGoogleLogin() {
       if (event.data?.type === "GOOGLE_LOGIN_SUCCESS") {
         googleLoginSuccess.current = true;
         sessionStorage.removeItem("google_login");
+
+        if (popupTimer.current) {
+          clearInterval(popupTimer.current);
+          popupTimer.current = null;
+        }
+        return;
       }
 
       if (event.data?.type === "GOOGLE_LOGIN_CANCEL") {
-        dispatch(authFailure(null));
+        googleLoginSuccess.current = false;
         sessionStorage.removeItem("google_login");
+
+        if (popupTimer.current) {
+          clearInterval(popupTimer.current);
+          popupTimer.current = null;
+        }
+
+        dispatch(authFailure(null));
       }
     };
 
@@ -30,6 +44,11 @@ export default function useGoogleLogin() {
 
     return () => {
       window.removeEventListener("message", handleGoogleMessage);
+
+      if (popupTimer.current) {
+        clearInterval(popupTimer.current);
+        popupTimer.current = null;
+      }
     };
   }, [dispatch]);
 
@@ -42,14 +61,23 @@ export default function useGoogleLogin() {
 
       const popup = await signInWithGoogle();
 
-      const timer = setInterval(() => {
-        if (!popup || popup.closed) {
-          clearInterval(timer);
+      if (!popup) {
+        dispatch(authFailure(null));
+        sessionStorage.removeItem("google_login");
+        return;
+      }
 
-          if (!googleLoginSuccess.current) {
-            dispatch(authFailure(null));
-            sessionStorage.removeItem("google_login");
-          }
+      popupTimer.current = setInterval(() => {
+        if (popup.closed) {
+          clearInterval(popupTimer.current);
+          popupTimer.current = null;
+
+          setTimeout(() => {
+            if (!googleLoginSuccess.current) {
+              dispatch(authFailure(null));
+              sessionStorage.removeItem("google_login");
+            }
+          }, 300);
         }
       }, 500);
     } catch (err) {

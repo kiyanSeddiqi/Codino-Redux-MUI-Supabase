@@ -20,6 +20,25 @@ export const dashboardCard = {
   minHeight: "215px",
 };
 
+export const userFavoriteListContainer = {
+  ...flexCol(1),
+  maxHeight: "82px",
+  overflowY: "auto",
+  pl: 1,
+  scrollbarWidth: "auto",
+  "&::-webkit-scrollbar": {
+    width: "6px",
+    mr: 1,
+  },
+  "&::-webkit-scrollbar-track": {
+    bgcolor: "menuItemBg",
+  },
+  "&::-webkit-scrollbar-thumb": {
+    bgcolor: "primary.main",
+    borderRadius: "10px",
+  },
+};
+
 export const mySuggestedCourses = {
   ...flexCol(2.5),
   mt: 2.5,

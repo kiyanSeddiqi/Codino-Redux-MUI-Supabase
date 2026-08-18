@@ -61,6 +61,6 @@ export const accountMenuData = [
     id: 10,
     title: "دوره های پسندیده شده",
     iconName: "favorite",
-    slug: "favorite-courses",
+    slug: "wish-list",
   },
 ];

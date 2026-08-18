@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { supabase } from "../../../lib/supabase";
 import { authFailure, authSuccess, logout } from "../redux/authSlice";
@@ -9,6 +9,7 @@ import { getCompleteUser } from "../services/profileService";
 export default function useAuthListener() {
   const dispatch = useDispatch();
   const { success } = useSnackbar();
+  const hasShownLoginMessage = useRef(false);
 
   useEffect(() => {
     const {
@@ -25,8 +26,10 @@ export default function useAuthListener() {
             }),
           );
 
-          success("با موفقیت وارد حساب کاربری شدید");
-
+          if (!hasShownLoginMessage.current) {
+            success("با موفقیت وارد حساب کاربری شدید");
+            hasShownLoginMessage.current = true;
+          }
           sessionStorage.removeItem("google_login");
         } catch (err) {
           dispatch(authFailure(err.message));
@@ -34,6 +37,7 @@ export default function useAuthListener() {
       }
 
       if (event === "SIGNED_OUT") {
+        hasShownLoginMessage.current = false;
         dispatch(logout());
       }
     });

@@ -16,9 +16,9 @@ import ChangePassword from "../pages/account/sections/accountMainbar/changePassw
 import Consultations from "../pages/account/sections/accountMainbar/consultations/Consultations";
 import Ticket from "../pages/account/sections/accountMainbar/ticket/Ticket";
 import MyFactors from "../pages/account/sections/accountMainbar/myFactors/MyFactors";
-import FavoriteCourses from "../pages/account/sections/accountMainbar/favoriteCourses/FavoriteCourses";
 import Referral from "../pages/account/sections/accountMainbar/referral/Referral";
 import GoogleCallback from "../pages/googleCallback/GoogelCallback";
+import WishList from "../pages/account/sections/accountMainbar/wishList/WishList";
 
 export const router = createBrowserRouter([
   {
@@ -98,8 +98,8 @@ export const router = createBrowserRouter([
             element: <MyFactors />,
           },
           {
-            path: "favorite-courses",
-            element: <FavoriteCourses />,
+            path: "wish-list",
+            element: <WishList />,
           },
           {
             path: "referral",

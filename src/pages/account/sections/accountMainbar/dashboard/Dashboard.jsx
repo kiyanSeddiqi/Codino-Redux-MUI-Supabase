@@ -6,7 +6,11 @@ import {
   flexCol,
   sectionTitle,
 } from "../../../../../styles/globalStyles";
-import { dashboardCard, dashboardCardContainer } from "./dashboardStyle";
+import {
+  dashboardCard,
+  dashboardCardContainer,
+  userFavoriteListContainer,
+} from "./dashboardStyle";
 import { useDispatch, useSelector } from "react-redux";
 import SvgIcon from "../../../../../components/ui/SvgIcon/SvgIcon";
 import { productData } from "../../../../../data/productData";
@@ -21,9 +25,12 @@ import { useSnackbar } from "../../../../../hooks/useSnackbar";
 import { categoryData } from "../../../../../data/categoryData";
 import { ArrowOutward } from "@mui/icons-material";
 import { openFavoriteCatModal } from "../../../../../features/dashboard/redux/favoriteCatSlice";
+import FavoriteListSkeleton from "./FavoriteListSkeleton";
 
 function Dashboard() {
   const [favoriteList, setFavoriteList] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [favoritesLoaded, setFavoritesLoaded] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -38,6 +45,9 @@ function Dashboard() {
     if (!user.id) return;
 
     async function fetchFavoriteCategories() {
+      setLoading(true);
+      setFavoritesLoaded(false);
+
       try {
         const data = await getUserFavoriteCategories(user.id);
 
@@ -48,11 +58,19 @@ function Dashboard() {
         setFavoriteList(favoriteCategories);
       } catch (err) {
         error(getErrorMessage(err.message));
+      } finally {
+        setLoading(false);
+        setFavoritesLoaded(true);
       }
     }
 
     fetchFavoriteCategories();
   }, [user?.id]);
+
+  useEffect(() => {
+    if (favoritesLoaded && favoriteList.length === 0)
+      dispatch(openFavoriteCatModal());
+  }, [favoriteList.length, favoritesLoaded, dispatch]);
 
   return (
     <>
@@ -132,50 +150,39 @@ function Dashboard() {
               />
             </Box>
             <Divider sx={{ my: 1 }} />
-            <Box
-              sx={{
-                ...flexCol(1),
-                maxHeight: "82px",
-                overflowY: "auto",
-                pl: 1,
-                scrollbarWidth: "auto",
-                "&::-webkit-scrollbar": {
-                  width: "6px",
-                  mr: 1,
-                },
-                "&::-webkit-scrollbar-track": {
-                  bgcolor: "menuItemBg",
-                },
-                "&::-webkit-scrollbar-thumb": {
-                  bgcolor: "primary.main",
-                  borderRadius: "10px",
-                },
-              }}
-            >
-              {favoriteList.length > 0 ? (
-                favoriteList?.map((item, i) => {
-                  return (
-                    <Box key={item.id || i} sx={flexBetween(1, "row")}>
-                      <Typography sx={{ lineHeight: "32px" }}>
-                        {item?.title}
-                      </Typography>
-                      <Button
-                        component={Link}
-                        to={`/courses/${item?.slug}`}
-                        variant="text"
-                        sx={{ bgcolor: "menuItemBg", p: 1 }}
-                      >
-                        دوره ها
-                      </Button>
-                    </Box>
-                  );
-                })
-              ) : (
-                <Typography>
-                  هنوز علاقه مندی های خود را اضافه نکرده اید
-                </Typography>
-              )}
-            </Box>
+            {loading ? (
+              <Box sx={userFavoriteListContainer}>
+                {Array.from({ length: 2 }).map((_, index) => (
+                  <FavoriteListSkeleton key={index} />
+                ))}
+              </Box>
+            ) : (
+              <Box sx={userFavoriteListContainer}>
+                {favoriteList.length > 0 ? (
+                  favoriteList?.map((item, i) => {
+                    return (
+                      <Box key={item.id || i} sx={flexBetween(1, "row")}>
+                        <Typography sx={{ lineHeight: "32px" }}>
+                          {item?.title}
+                        </Typography>
+                        <Button
+                          component={Link}
+                          to={`/courses/${item?.slug}`}
+                          variant="text"
+                          sx={{ bgcolor: "menuItemBg", p: 1 }}
+                        >
+                          دوره ها
+                        </Button>
+                      </Box>
+                    );
+                  })
+                ) : (
+                  <Typography>
+                    هنوز علاقه مندی های خود را اضافه نکرده اید
+                  </Typography>
+                )}
+              </Box>
+            )}
           </Box>
         </Box>
 

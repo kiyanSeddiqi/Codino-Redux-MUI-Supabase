@@ -74,7 +74,7 @@ function Actionbar() {
           aria-expanded={open}
           onClick={handleOpen}
           variant="outlined"
-          sx={{ minWidth: 0, maxWidth: "120px" }}
+          sx={{ minWidth: 0, maxWidth: "125px" }}
         >
           <PermIdentity sx={{ fontSize: { xs: "20px", md: "24px" } }} />
           {fullName && (

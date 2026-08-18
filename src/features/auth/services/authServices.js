@@ -2,7 +2,7 @@ import { supabase } from "../../../lib/supabase";
 
 export async function register({ email, password, mobile }) {
   const mobileResult = await checkUserExists(mobile);
-  console.log(mobileResult);
+
   if (mobileResult.exists) {
     throw new Error("Mobile already registered");
   }
