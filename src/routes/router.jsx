@@ -19,6 +19,7 @@ import MyFactors from "../pages/account/sections/accountMainbar/myFactors/MyFact
 import Referral from "../pages/account/sections/accountMainbar/referral/Referral";
 import GoogleCallback from "../pages/googleCallback/GoogelCallback";
 import WishList from "../pages/account/sections/accountMainbar/wishList/WishList";
+import Cart from "../features/cart/components/Cart";
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ export const router = createBrowserRouter([
       {
         path: "/auth/reset-password",
         element: <ResetPasswordPage />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
       {
         path: "*",

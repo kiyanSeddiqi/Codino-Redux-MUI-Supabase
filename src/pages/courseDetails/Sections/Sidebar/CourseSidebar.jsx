@@ -22,7 +22,12 @@ import { productsImgs } from "../../../../data/productsImages";
 import SvgIcon from "../../../../components/ui/SvgIcon/SvgIcon";
 import { flexBetween, flexBox, flexCol } from "../../../../styles/globalStyles";
 import { addComma } from "../../../../utils/helpers";
-import { AccessTime, BookmarkBorder, Person } from "@mui/icons-material";
+import {
+  AccessTime,
+  Bookmark,
+  BookmarkBorder,
+  Person,
+} from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import VideoDialog from "./VideoDialog/VideoDialog.jsx";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,6 +35,7 @@ import { openAuthModal } from "../../../../features/auth/redux/authSlice.js";
 import useEnrollCourse from "../../../../features/product/hooks/useEnrollCourse.js";
 import useGetUserCourse from "../../../../features/product/hooks/useGetUserCourse.js";
 import { useNavigate } from "react-router-dom";
+import useWishlist from "../../../../features/product/hooks/useWishlist.js";
 
 const levelLabels = {
   beginner: "مقدماتی",
@@ -47,6 +53,12 @@ function CourseSidebar({ product }) {
     isLoading: coursesLoading,
     isEnrolled,
   } = useGetUserCourse();
+
+  const {
+    isWishlisted,
+    loading: wishlistLoading,
+    toggleWishlist,
+  } = useWishlist();
 
   const navigation = useNavigate();
 
@@ -164,9 +176,20 @@ function CourseSidebar({ product }) {
             {isAuthenticated && (
               <Button
                 variant="text"
-                sx={{ bgcolor: "menuItemBg", minWidth: 0 }}
+                sx={{
+                  bgcolor: "menuItemBg",
+                  minWidth: "44px",
+                  minHeight: "44px",
+                }}
+                onClick={() => toggleWishlist(product.id)}
               >
-                <BookmarkBorder />
+                {wishlistLoading ? (
+                  <CircularProgress size={20} />
+                ) : isWishlisted(product.id) ? (
+                  <Bookmark />
+                ) : (
+                  <BookmarkBorder />
+                )}
               </Button>
             )}
           </Box>

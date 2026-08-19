@@ -34,12 +34,15 @@ export const myCourseCardBox = {
   gap: 2,
   flexDirection: {
     xs: "column",
-    md: "row",
+    sm: "row",
   },
 };
 
 export const cardImgBox = {
-  width: "215px",
+  width: {
+    xs: "100%",
+    sm: "215px",
+  },
   height: "100%",
   borderRadius: "12px",
   flexShrink: 0,

@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { productData } from "../../../../../data/productData";
 import ProductCard from "../../../../../features/product/components/ProductCard";
 import { useSelector } from "react-redux";
@@ -8,42 +8,45 @@ import {
   getUserWishlist,
   removeFromWishlist,
 } from "../../../../../features/auth/services/wishlistService";
+import useWishlist from "../../../../../features/product/hooks/useWishlist";
+import { wishListContainer, wishListPlaceholder } from "./WishListStyle";
+import SvgIcon from "../../../../../components/ui/SvgIcon/SvgIcon";
+import useProducts from "../../../../../features/product/hooks/useProducts";
+import ProductCardSkeleton from "../../../../../features/product/components/ProductCardSkeleton";
 
 function WishList() {
-  const user = useSelector((state) => state.auth.user);
+  const { wishlist, loading } = useWishlist();
+  const { products } = useProducts();
 
-  useEffect(() => {
-    if (!user?.id) return;
-
-    async function removeWishlistHandler() {
-      try {
-        const data = await removeFromWishlist(user.id, 2);
-        console.log("REMOVED:", data);
-      } catch (err) {
-        console.error("REMOVE WISHLIST ERROR:", err);
-      }
-    }
-
-    removeWishlistHandler();
-  }, [user?.id]);
+  const wishListProducts = products.filter((product) =>
+    wishlist.some((item) => item.product_id === product.id),
+  );
 
   return (
     <>
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: {
-            xs: "repeat(1, minmax(0 ,1fr))",
-            md: "repeat(2, minmax(0 ,1fr))",
-            lg: "repeat(3, minmax(0 ,1fr))",
-          },
-          gap: 2.5,
-        }}
-      >
-        {productData.slice(15, 17).map((item) => (
-          <ProductCard key={item.id} itemData={item} layout="featured" />
-        ))}
-      </Box>
+      {loading ? (
+        <Box sx={wishListContainer}>
+          {Array.from({ length: 3 }).map((_, index) => (
+            <ProductCardSkeleton key={index} />
+          ))}
+        </Box>
+      ) : wishlist.length > 0 ? (
+        <Box sx={wishListContainer}>
+          {wishListProducts.map((item) => (
+            <ProductCard key={item.id} itemData={item} layout="featured" />
+          ))}
+        </Box>
+      ) : (
+        <Box sx={wishListPlaceholder}>
+          <SvgIcon name="noData" size={350} />
+          <Typography sx={{ fontWeight: "500" }}>
+            موردی برای نمایش وجود ندارد!
+          </Typography>
+          <Typography component="span" variant="subtitle2">
+            در حال حاضر هیچ محتوایی برای نمایش وجود نداره...
+          </Typography>
+        </Box>
+      )}
     </>
   );
 }

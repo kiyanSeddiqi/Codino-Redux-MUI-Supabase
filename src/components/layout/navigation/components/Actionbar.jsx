@@ -63,7 +63,12 @@ function Actionbar() {
           badgeContent={4}
           color="primary"
         >
-          <Button variant="outlined" sx={{ minWidth: 0 }}>
+          <Button
+            component={Link}
+            to="/cart"
+            variant="outlined"
+            sx={{ minWidth: 0 }}
+          >
             <ShoppingCart sx={{ fontSize: { xs: "20px", md: "24px" } }} />
           </Button>
         </Badge>

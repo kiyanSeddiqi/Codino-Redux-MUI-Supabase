@@ -56,7 +56,6 @@ function ProductCard({ itemData, layout = "default" }) {
             image={itemData.imageUrl}
             alt={`تصویر ${itemData.title}`}
             component="img"
-            // loading="lazy"
           />
         </Box>
         <CardContent sx={cardContent}>
