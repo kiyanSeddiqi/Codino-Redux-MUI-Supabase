@@ -36,6 +36,7 @@ import default_avatar from "../assets/images/Users/default_user.webp";
 import userAvatar_1 from "../assets/images/Users/user_1.webp";
 import userAvatar_2 from "../assets/images/Users/user_2.webp";
 import userAvatar_3 from "../assets/images/Users/user_3.webp";
+import QRcode from "../assets/images/Others/QRcode.webp";
 
 export {
   darkLogo,
@@ -76,4 +77,5 @@ export {
   userAvatar_1,
   userAvatar_2,
   userAvatar_3,
+  QRcode,
 };

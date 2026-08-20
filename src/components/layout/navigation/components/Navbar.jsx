@@ -23,7 +23,7 @@ import SearchModal from "../../../../features/search/components/SearchModal.jsx"
 import CategoryMenu from "./CategoryMenu.jsx";
 import { openAuthModal } from "../../../../features/auth/redux/authSlice.js";
 import { useLogout } from "../../../../features/auth/hooks/useLogout.js";
-import Actionbar from "./Actionbar.jsx";
+import Actionbar from "./actionbar/Actionbar.jsx";
 import AccountDrawer from "./AccountDrawer.jsx";
 
 function Navbar({ showSearchModal }) {

@@ -1,4 +1,4 @@
-import { flexBetween } from "../../../../styles/globalStyles";
+import { flexBetween, flexCol } from "../../../../styles/globalStyles";
 
 export const appBar = {
   position: "sticky",
@@ -168,7 +168,7 @@ export const mobileMenuLogoutBtn = {
   justifyContent: "flex-start",
 };
 
-export const actionbarMenu = {
+export const actionMenuStyle = {
   padding: 2.5,
   borderRadius: "10px",
   border: 1,
@@ -183,12 +183,7 @@ export const actionbarMenu = {
   },
 };
 
-export const actionbarMenuHeader = {
-  ...flexBetween(1, "row"),
-  width: "100%",
-};
-
-export const actionbarMenuItem = {
+export const authActionMenuItem = {
   gap: 2,
   borderRadius: "8px",
   p: "10px",
@@ -209,7 +204,29 @@ export const actionbarMenuItem = {
   },
 };
 
-export const actionbarLogoutBtn = (theme) => ({
+export const cartActionMenuItem = {
+  ...flexCol(2),
+  p: 0,
+  "&:not(:last-child)": {
+    pb: 2,
+    borderBottom: 1,
+    borderColor: "divider",
+  },
+  "&:hover": {
+    bgcolor: "transparent",
+  },
+};
+
+export const cartActionImgBox = {
+  width: {
+    xs: "48px",
+    md: "64px",
+  },
+  aspectRatio: 1,
+  borderRadius: "6px",
+};
+
+export const authActionLogoutBtn = (theme) => ({
   gap: 2,
   borderRadius: "8px",
   p: "10px",

@@ -66,10 +66,6 @@ function FilterMainbar({ filters, dispatch }) {
     return count;
   }, [filters, slug]);
 
-  console.log({
-    loading,
-    visibleProductsLength: visibleProducts.length,
-  });
   return (
     <>
       <Box sx={filterMainbar} component="main">

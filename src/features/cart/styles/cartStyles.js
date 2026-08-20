@@ -88,10 +88,96 @@ export const discountInput = {
 };
 
 export const cartSidebar = {
-  // flex flex-col p-5 border rounded-2xl gap-6
   ...flexCol(3),
   border: 1,
   borderColor: "divider",
   borderRadius: "16px",
   p: 2.5,
+};
+
+export const paymentMethodToggle = {
+  borderRadius: "12px",
+  p: "10px",
+  bgcolor: "background.paper",
+};
+
+export const paymentToggleBtn = {
+  px: 0,
+  flex: 1,
+  zIndex: 2,
+  fontSize: {
+    xs: "12px",
+    sm: "14px",
+  },
+  "&:hover": {
+    bgcolor: "transparent",
+  },
+};
+
+export const paymentSlider = {
+  position: "absolute",
+  left: 0,
+  width: "50%",
+  bgcolor: "background.default",
+  display: "block",
+  height: "100%",
+  borderRadius: "8px",
+  transition: "transform 0.3s ease",
+  boxShadow: 1,
+  border: 1,
+  borderColor: "primary.main",
+};
+
+export const filterOption = {
+  "& .MuiFormControlLabel-label": {
+    fontSize: "14px",
+  },
+  gap: "10px",
+  mr: 0,
+};
+
+export const filterOptionCheckbox = {
+  "&.Mui-checked": {
+    color: "primary.main",
+  },
+  color: "primary.main",
+  p: 0,
+};
+
+export const walletAddressBox = {
+  display: "flex",
+  alignItems: "center",
+  p: "4px 8px",
+  borderRadius: "6px",
+  border: 1,
+  borderColor: "divider",
+};
+
+export const trackingCodeInput = {
+  "& .MuiOutlinedInput-root": {
+    fontSize: "14px",
+    borderRadius: "6px",
+    "& fieldset": {
+      borderColor: "divider",
+      px: 0,
+    },
+    "&:hover fieldset": {
+      borderColor: "divider",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "primary.main",
+    },
+  },
+
+  "& .MuiOutlinedInput-input": {
+    p: "10px",
+  },
+
+  "& .MuiOutlinedInput-input::placeholder": {
+    fontSize: "14px",
+  },
+
+  "& .MuiFormHelperText-root": {
+    textAlign: "right",
+  },
 };
