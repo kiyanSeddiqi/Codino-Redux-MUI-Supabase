@@ -20,9 +20,9 @@ export default function useWishlist() {
     if (!user?.id) return;
 
     async function fetchWishlist() {
-      setLoading(true);
-
       try {
+        setLoading(true);
+
         const data = await getUserWishlist(user.id);
 
         setWishlist(data);

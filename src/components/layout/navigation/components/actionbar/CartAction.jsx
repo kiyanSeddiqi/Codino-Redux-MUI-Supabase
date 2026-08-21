@@ -6,6 +6,7 @@ import {
   actionMenuStyle,
   cartActionImgBox,
   cartActionMenuItem,
+  cartActionTitle,
 } from "../../styles/navbarStyles";
 import { flexBox, flexCol } from "../../../../../styles/globalStyles";
 import { productData } from "../../../../../data/productData";
@@ -64,31 +65,43 @@ function CartAction() {
             },
           }}
         >
-          <Typography component="strong">سبد خرید</Typography>
-          <Box sx={flexCol(2)}>
-            {productData.slice(0, 2).map((item) => (
-              <MenuItem
-                disableRipple
-                key={item.id}
-                onClick={handleClose}
-                sx={cartActionMenuItem}
-              >
-                <Box
-                  component={Link}
-                  to={`course/${item.slug}`}
-                  sx={flexBox(2)}
+          <Box sx={{ ...flexCol(2), width: "100%" }}>
+            <Typography component="strong">سبد خرید</Typography>
+            <Box sx={{ ...flexCol(2), maxHeight: "210px", overflowY: "auto" }}>
+              {productData.slice(5, 8).map((item) => (
+                <MenuItem
+                  disableRipple
+                  key={item.id}
+                  onClick={handleClose}
+                  sx={cartActionMenuItem}
                 >
-                  <Box sx={cartActionImgBox}>
-                    <Box
-                      component="img"
-                      alt="تصویر محصول"
-                      src={item.img}
-                      sx={{ width: "100%", height: "100%", display: "block" }}
-                    />
+                  <Box
+                    component={Link}
+                    to={`course/${item.slug}`}
+                    sx={{ ...flexBox(2), width: "100%" }}
+                  >
+                    <Box sx={cartActionImgBox}>
+                      <Box
+                        component="img"
+                        alt="تصویر محصول"
+                        src={item.img}
+                        sx={{
+                          width: "100%",
+                          height: "100%",
+                          display: "block",
+                          objectFit: "cover",
+                          borderRadius: "6px",
+                        }}
+                      />
+                    </Box>
+                    <Typography sx={cartActionTitle}>{item.title}</Typography>
                   </Box>
-                </Box>
-              </MenuItem>
-            ))}
+                </MenuItem>
+              ))}
+            </Box>
+            <Button onClick={handleClose} component={Link} to="/cart">
+              مشاهده سبد خرید
+            </Button>
           </Box>
         </Menu>
       </Badge>

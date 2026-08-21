@@ -169,12 +169,12 @@ export const mobileMenuLogoutBtn = {
 };
 
 export const actionMenuStyle = {
-  padding: 2.5,
+  p: 2.5,
   borderRadius: "10px",
   border: 1,
   borderColor: "divider",
   mt: 0.5,
-  minWidth: "300px",
+  width: "300px",
   bgcolor: "background.default",
   "& .MuiList-root": {
     width: "100%",
@@ -224,6 +224,7 @@ export const cartActionImgBox = {
   },
   aspectRatio: 1,
   borderRadius: "6px",
+  flexShrink: 0,
 };
 
 export const authActionLogoutBtn = (theme) => ({
@@ -246,3 +247,11 @@ export const authActionLogoutBtn = (theme) => ({
     color: "error.main",
   },
 });
+
+export const cartActionTitle = {
+  fontSize: "14px",
+  minWidth: 0,
+  overflow: "hidden",
+  whiteSpace: "nowrap",
+  textOverflow: "ellipsis",
+};

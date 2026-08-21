@@ -72,8 +72,9 @@ function CourseSidebar({ product }) {
       navigation("/account/my-courses");
       return;
     }
-    await enrollCourse(product.id);
-    await userCoursesHandler(product.id);
+
+    // await enrollCourse(product.id);
+    // await userCoursesHandler(product.id);
   }
 
   useEffect(() => {
