@@ -174,7 +174,6 @@ export const actionMenuStyle = {
   border: 1,
   borderColor: "divider",
   mt: 0.5,
-  width: "300px",
   bgcolor: "background.default",
   "& .MuiList-root": {
     width: "100%",

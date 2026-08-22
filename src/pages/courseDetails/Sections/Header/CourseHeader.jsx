@@ -27,7 +27,7 @@ function CourseHeader({ product }) {
                 icon={<SvgIcon name="refresh" size={24} />}
               />
             )}
-            {product.hasInstallment && (
+            {product.has_installment && (
               <Chip
                 color="success"
                 label="امکان پرداخت قسطی"

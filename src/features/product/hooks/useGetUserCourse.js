@@ -9,7 +9,7 @@ export default function useGetUserCourse() {
   const [isLoading, setIsLoading] = useState(false);
   const [isEnrolled, setIsEnrolled] = useState(false);
 
-  const { success, error } = useSnackbar();
+  const { error } = useSnackbar();
 
   async function userCoursesHandler(productId) {
     setIsLoading(true);

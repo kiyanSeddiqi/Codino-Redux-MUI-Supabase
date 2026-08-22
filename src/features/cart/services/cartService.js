@@ -19,7 +19,8 @@ export async function addToCart(userId, productId) {
       user_id: userId,
       product_id: productId,
     })
-    .select().single;
+    .select()
+    .single();
 
   if (error) throw error;
 

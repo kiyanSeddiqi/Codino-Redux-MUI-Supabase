@@ -32,10 +32,10 @@ import { useEffect, useState } from "react";
 import VideoDialog from "./VideoDialog/VideoDialog.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { openAuthModal } from "../../../../features/auth/redux/authSlice.js";
-import useEnrollCourse from "../../../../features/product/hooks/useEnrollCourse.js";
 import useGetUserCourse from "../../../../features/product/hooks/useGetUserCourse.js";
 import { useNavigate } from "react-router-dom";
 import useWishlist from "../../../../features/product/hooks/useWishlist.js";
+import useCart from "../../../../features/cart/hooks/useCart";
 
 const levelLabels = {
   beginner: "مقدماتی",
@@ -47,7 +47,6 @@ function CourseSidebar({ product }) {
 
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.auth);
-  const { enrollCourse, loading } = useEnrollCourse();
   const {
     userCoursesHandler,
     isLoading: coursesLoading,
@@ -59,6 +58,10 @@ function CourseSidebar({ product }) {
     loading: wishlistLoading,
     toggleWishlist,
   } = useWishlist();
+
+  const { addCartItemHandler, isLoading: cartLoading, cartItems } = useCart();
+
+  const isInCart = cartItems.some((item) => item?.product_id === product.id);
 
   const navigation = useNavigate();
 
@@ -73,8 +76,18 @@ function CourseSidebar({ product }) {
       return;
     }
 
-    // await enrollCourse(product.id);
-    // await userCoursesHandler(product.id);
+    if (isInCart) {
+      navigation("/cart");
+      return;
+    }
+
+    try {
+      await addCartItemHandler(product.id);
+
+      navigation("/cart");
+    } catch (error) {
+      console.error("Add to cart error:", error);
+    }
   }
 
   useEffect(() => {
@@ -103,7 +116,7 @@ function CourseSidebar({ product }) {
                   icon={<SvgIcon name="refresh" size={24} />}
                 />
               )}
-              {product.hasInstallment && (
+              {product.has_installment && (
                 <Chip
                   color="success"
                   label="امکان پرداخت قسطی"
@@ -164,12 +177,14 @@ function CourseSidebar({ product }) {
             <Button
               onClick={handleRegister}
               sx={{ flex: 1, minHeight: "44px" }}
-              disabled={loading}
+              disabled={cartLoading}
             >
-              {loading ? (
+              {cartLoading ? (
                 <CircularProgress size={20} color="#fff" />
               ) : isEnrolled ? (
                 "مشاهده دوره"
+              ) : isInCart ? (
+                "مشاهده سبد خرید"
               ) : (
                 "ثبت نام در دوره"
               )}
@@ -214,7 +229,7 @@ function CourseSidebar({ product }) {
               </Button>
             </Box>
           )}
-          {product.hasInstallment && (
+          {product.has_installment && (
             <Button color="secondary">
               <SvgIcon name="credit" size={20} />
               خرید اقساطی دوره

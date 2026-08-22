@@ -108,7 +108,7 @@ export const productData = [
     status: "completed",
     duration: "06 : 12 : 03",
     teacher: "میلاد ده یامی",
-    price: 0,
+    price: 700_000,
     slug: "learn-csharp",
     categories: ["c-sharp", "programming-languages"],
     tags: ["suggest", "most-visited"],

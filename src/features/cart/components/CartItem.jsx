@@ -1,4 +1,4 @@
-import { Box, Chip, IconButton, Typography } from "@mui/material";
+import { Box, Chip, darken, IconButton, Typography } from "@mui/material";
 import {
   cartItemBox,
   cartItemImg,
@@ -15,7 +15,11 @@ const levelLabels = {
   advanced: "مقدماتی تا پیشرفته",
 };
 
-function CartItem({ itemData }) {
+function CartItem({ itemData, onRemove }) {
+  function removeItem() {
+    onRemove(itemData.id);
+  }
+
   return (
     <>
       <Box sx={cartItemBox}>
@@ -23,7 +27,7 @@ function CartItem({ itemData }) {
           <Box
             component="img"
             alt="تصویر دوره آموزشی"
-            src={itemData.img}
+            src={itemData.imageUrl}
             loading="lazy"
             sx={cartItemImg}
           />
@@ -40,9 +44,9 @@ function CartItem({ itemData }) {
                 <Box component={Link} to={`/course/${itemData.slug}`}>
                   <Typography
                     sx={{
+                      transition: "color 0.3s ease",
                       "&:hover": {
                         color: "primary.main",
-                        transition: "color 0.3s ease",
                       },
                     }}
                   >
@@ -51,7 +55,12 @@ function CartItem({ itemData }) {
                 </Box>
               </Box>
               <IconButton
-                sx={{ borderRadius: "10px", bgcolor: "badgeWarning.light" }}
+                onClick={removeItem}
+                sx={{
+                  borderRadius: "10px",
+                  bgcolor: "badgeWarning.light",
+                  "&:hover": { bgcolor: "badgeWarning.light" },
+                }}
               >
                 <Delete sx={{ color: "error.main" }} />
               </IconButton>

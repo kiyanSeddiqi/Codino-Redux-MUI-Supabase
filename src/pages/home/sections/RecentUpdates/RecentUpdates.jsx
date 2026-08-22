@@ -1,7 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import {
   flexBetween,
-  flexCol,
   sectionStyle,
   sectionTitle,
 } from "../../../../styles/globalStyles";

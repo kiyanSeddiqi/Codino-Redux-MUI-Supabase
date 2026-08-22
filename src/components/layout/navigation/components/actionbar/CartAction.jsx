@@ -1,5 +1,13 @@
-import { ShoppingCart } from "@mui/icons-material";
-import { Badge, Box, Button, Menu, MenuItem, Typography } from "@mui/material";
+import { Delete, ShoppingCart } from "@mui/icons-material";
+import {
+  Badge,
+  Box,
+  Button,
+  IconButton,
+  Menu,
+  MenuItem,
+  Typography,
+} from "@mui/material";
 import { useId, useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -8,8 +16,15 @@ import {
   cartActionMenuItem,
   cartActionTitle,
 } from "../../styles/navbarStyles";
-import { flexBox, flexCol } from "../../../../../styles/globalStyles";
+import {
+  flexBetween,
+  flexBox,
+  flexCol,
+} from "../../../../../styles/globalStyles";
 import { productData } from "../../../../../data/productData";
+import { addComma } from "../../../../../utils/helpers";
+import useCart from "../../../../../features/cart/hooks/useCart";
+import useProducts from "../../../../../features/product/hooks/useProducts";
 
 function CartAction() {
   const id = useId();
@@ -20,6 +35,17 @@ function CartAction() {
   const handleOpen = (e) => setAnchorEl(e.currentTarget);
   const handleClose = () => setAnchorEl(null);
 
+  const { cartItems, removeCartItemHandler } = useCart();
+  const { products } = useProducts();
+
+  const cartProducts = cartItems
+    .map((cartItem) =>
+      products.find((product) => product.id === cartItem.product_id),
+    )
+    .filter(Boolean);
+
+  const hasCartItems = cartItems.length > 0;
+
   return (
     <>
       <Badge
@@ -28,7 +54,8 @@ function CartAction() {
             borderRadius: "6px",
           },
         }}
-        badgeContent={4}
+        showZero
+        badgeContent={cartItems.length}
         color="primary"
       >
         <Button
@@ -61,14 +88,37 @@ function CartAction() {
               "aria-labelledby": buttonId,
             },
             paper: {
-              sx: actionMenuStyle,
+              sx: { ...actionMenuStyle, p: "10px" },
             },
           }}
         >
-          <Box sx={{ ...flexCol(2), width: "100%" }}>
+          <Box
+            sx={{
+              ...flexCol(2),
+              width: hasCartItems ? "300px" : "200px",
+            }}
+          >
             <Typography component="strong">سبد خرید</Typography>
-            <Box sx={{ ...flexCol(2), maxHeight: "210px", overflowY: "auto" }}>
-              {productData.slice(5, 8).map((item) => (
+            <Box
+              sx={{
+                ...flexCol(2),
+                maxHeight: "350px",
+                overflowY: "auto",
+                scrollbarWidth: "auto",
+                "&::-webkit-scrollbar": {
+                  width: "6px",
+                  mr: 1,
+                },
+                "&::-webkit-scrollbar-track": {
+                  bgcolor: "menuItemBg",
+                },
+                "&::-webkit-scrollbar-thumb": {
+                  bgcolor: "primary.main",
+                  borderRadius: "10px",
+                },
+              }}
+            >
+              {cartProducts?.map((item) => (
                 <MenuItem
                   disableRipple
                   key={item.id}
@@ -84,7 +134,7 @@ function CartAction() {
                       <Box
                         component="img"
                         alt="تصویر محصول"
-                        src={item.img}
+                        src={item.imageUrl}
                         sx={{
                           width: "100%",
                           height: "100%",
@@ -95,6 +145,31 @@ function CartAction() {
                       />
                     </Box>
                     <Typography sx={cartActionTitle}>{item.title}</Typography>
+                  </Box>
+                  <Box sx={{ ...flexBetween(1, "row"), width: "100%" }}>
+                    <Box sx={{ ...flexBox(1), color: "primary.main" }}>
+                      <Typography
+                        component="strong"
+                        sx={{
+                          fontSize: { xs: "16px", md: "18px", fontWeight: 700 },
+                        }}
+                      >
+                        {addComma(item.price)}
+                      </Typography>
+                      <Typography variant="caption">تومان</Typography>
+                    </Box>
+                    <IconButton
+                      onClick={() => removeCartItemHandler(item.id)}
+                      sx={{
+                        borderRadius: "6px",
+                        color: "error.main",
+                        bgcolor: "badgeWarning.light",
+                        "&:hover": { bgcolor: "badgeWarning.light" },
+                        ml: 1,
+                      }}
+                    >
+                      <Delete sx={{ fontSize: "20px" }} />
+                    </IconButton>
                   </Box>
                 </MenuItem>
               ))}

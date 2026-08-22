@@ -1,70 +1,90 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useSnackbar } from "../../../hooks/useSnackbar";
 import { addToCart, getCart, removeFromCart } from "../services/cartService";
+import {
+  addCartItem,
+  cartFailure,
+  cartStart,
+  cartSuccess,
+  removeCartItem,
+  resetCart,
+} from "../redux/cartSlice";
 
 export default function useCart() {
-  const [cartItems, setCartItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const userId = useSelector((state) => state.auth.user?.id);
+
+  const {
+    cartItems,
+    loading,
+    error: cartError,
+  } = useSelector((state) => state.cart);
+
   const { success, error } = useSnackbar();
 
   useEffect(() => {
     if (!userId) {
-      setCartItems([]);
+      dispatch(resetCart());
       return;
     }
 
     async function fetchCart() {
       try {
-        setIsLoading(true);
+        dispatch(cartStart());
 
         const data = await getCart(userId);
-        setCartItems(data);
+
+        dispatch(cartSuccess(data));
       } catch (error) {
         console.error(error);
-      } finally {
-        setIsLoading(false);
+        dispatch(cartFailure(error.message));
       }
     }
 
     fetchCart();
-  }, [userId]);
+  }, [userId, dispatch]);
 
   async function addCartItemHandler(productId) {
     try {
-      setIsLoading(true);
+      dispatch(cartStart());
 
       const data = await addToCart(userId, productId);
 
-      setCartItems((prev) => [...prev, data]);
+      dispatch(addCartItem(data));
+
+      success("دوره با موفقیت به سبد خرید اضافه شد");
 
       return data;
     } catch (error) {
       console.error(error);
+      dispatch(cartFailure(error.message));
       throw error;
-    } finally {
-      setIsLoading(false);
     }
   }
 
   async function removeCartItemHandler(productId) {
     try {
-      setIsLoading(true);
+      dispatch(cartStart());
 
       await removeFromCart(userId, productId);
 
-      setCartItems((perv) =>
-        prev.filter((item) => item.product_id !== productId),
-      );
+      dispatch(removeCartItem(productId));
+
+      success("از سبد خرید حذف شد");
     } catch (error) {
       console.error(error);
+      dispatch(cartFailure(error.message));
       throw error;
-    } finally {
-      setIsLoading(false);
     }
   }
 
-  return { addCartItemHandler, removeCartItemHandler, cartItems, isLoading };
+  return {
+    cartItems,
+    isLoading: loading,
+    error,
+    addCartItemHandler,
+    removeCartItemHandler,
+  };
 }

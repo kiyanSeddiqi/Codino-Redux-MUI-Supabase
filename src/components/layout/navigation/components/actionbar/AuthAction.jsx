@@ -97,7 +97,7 @@ function AuthAction() {
             "aria-labelledby": buttonId,
           },
           paper: {
-            sx: actionMenuStyle,
+            sx: { ...actionMenuStyle, width: "300px" },
           },
         }}
       >
