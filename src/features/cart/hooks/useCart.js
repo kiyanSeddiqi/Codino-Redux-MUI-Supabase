@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSnackbar } from "../../../hooks/useSnackbar";
-import { addToCart, getCart, removeFromCart } from "../services/cartService";
+import {
+  addToCart,
+  clearCart,
+  getCart,
+  removeFromCart,
+} from "../services/cartService";
 import {
   addCartItem,
   cartFailure,
   cartStart,
   cartSuccess,
+  clearCartAction,
   removeCartItem,
   resetCart,
 } from "../redux/cartSlice";
@@ -80,11 +86,26 @@ export default function useCart() {
     }
   }
 
+  async function clearCartHandler() {
+    try {
+      dispatch(cartStart());
+
+      await clearCart(userId);
+
+      dispatch(clearCartAction());
+    } catch (error) {
+      console.error(error);
+      dispatch(cartFailure(error.message));
+      throw error;
+    }
+  }
+
   return {
     cartItems,
     isLoading: loading,
     error: cartError,
     addCartItemHandler,
     removeCartItemHandler,
+    clearCartHandler,
   };
 }

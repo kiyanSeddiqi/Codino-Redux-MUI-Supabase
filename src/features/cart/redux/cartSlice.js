@@ -38,8 +38,10 @@ const cartSlice = createSlice({
       state.loading = false;
     },
 
-    clearCart(state) {
+    clearCartAction(state) {
       state.cartItems = [];
+      state.loading = false;
+      state.error = null;
     },
 
     resetCart(state) {
@@ -56,7 +58,7 @@ export const {
   cartFailure,
   addCartItem,
   removeCartItem,
-  clearCart,
+  clearCartAction,
   resetCart,
 } = cartSlice.actions;
 

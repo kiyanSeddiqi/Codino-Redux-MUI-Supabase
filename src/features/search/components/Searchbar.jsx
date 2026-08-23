@@ -8,11 +8,21 @@ import {
 } from "@mui/material";
 
 import SearchDropdown from "./SearchDropdown";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { navbarSearchInput, searchIcon } from "../styles/searchStyles";
+import useProducts from "../../product/hooks/useProducts";
 
 function Searchbar() {
   const [searchValue, setSearchValue] = useState("");
+
+  const { products, loading } = useProducts();
+
+  const filteredProducts = useMemo(() => {
+    if (!searchValue.trim()) return [];
+    return products.filter((p) =>
+      p.title.toLowerCase().includes(searchValue.trim().toLowerCase()),
+    );
+  }, [searchValue, products]);
 
   return (
     <>
@@ -32,7 +42,11 @@ function Searchbar() {
               onChange={(e) => setSearchValue(e.target.value)}
             />
           </form>
-          <SearchDropdown searchValue={searchValue} onSearch={setSearchValue} />
+          <SearchDropdown
+            searchValue={searchValue}
+            filteredData={filteredProducts}
+            loading={loading}
+          />
         </Box>
       </ClickAwayListener>
     </>

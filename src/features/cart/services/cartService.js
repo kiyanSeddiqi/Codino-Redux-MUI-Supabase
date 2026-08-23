@@ -40,3 +40,12 @@ export async function removeFromCart(userId, productId) {
 
   return data;
 }
+
+export async function clearCart(userId) {
+  const { error } = await supabase
+    .from("user_cart")
+    .delete()
+    .eq("user_id", userId);
+
+  if (error) throw error;
+}

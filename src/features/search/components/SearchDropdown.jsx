@@ -21,34 +21,7 @@ import {
   searchDropDownListBtn,
 } from "../styles/searchStyles";
 
-const searchData = [
-  {
-    id: 1,
-    title: "آموزش پایتون (python) - از مقدماتی تا پیشرفته ",
-    imgSrc: "../../src/assets/images/Products/python.webp",
-    path: "/",
-  },
-  {
-    id: 2,
-    title: "آموزش جامع جاوا اسکریپت (JavaScript) - پروژه محور",
-    imgSrc: "../../src/assets/images/Products/javaScript.webp",
-    path: "/",
-  },
-  {
-    id: 3,
-    title: "آموزش فریمورک جنگو (django) - پروژه محور از مقدماتی تا پیشرفته",
-    imgSrc: "../../src/assets/images/Products/django.webp",
-    path: "/",
-  },
-  {
-    id: 4,
-    title: "آموزش 0 تا 100 فلاتر (Flutter) + پروژه عملی و ورود به بازار کار",
-    imgSrc: "../../src/assets/images/Products/flutter.webp",
-    path: "/",
-  },
-];
-
-function SearchDropdown({ searchValue, onSearch }) {
+function SearchDropdown({ searchValue, filteredData, loading }) {
   return (
     <>
       <Grow in={Boolean(searchValue)} unmountOnExit>
@@ -60,31 +33,21 @@ function SearchDropdown({ searchValue, onSearch }) {
               </Typography>
               <Typography>{searchValue}</Typography>
             </Box>
-            <Button
-              component={Link}
-              to={`/search/${searchValue}`}
-              variant="text"
-            >
+            <Button variant="text">
               مشاهده تمام نتایج
               <ArrowOutward sx={{ rotate: "-90deg" }} />
             </Button>
-            {/* <CircularProgress
-                enableTrackSlot
-                size="20px"
-                aria-label="Loading…"
-                sx={{ p: "10px", boxSizing: "content-box" }}
-              /> */}
           </Box>
           {/* Result */}
           <Box sx={flexCol("20px")}>
             <Divider />
-            {searchData.length > 0 ? (
+            {filteredData.length > 0 ? (
               <Box sx={flexCol("16px")}>
                 <Typography sx={{ color: "text.secondary" }}>
                   دوره ها
                 </Typography>
                 <List disablePadding>
-                  {searchData?.map((item) => (
+                  {filteredData?.slice(0, 5).map((item) => (
                     <ListItem key={item.id} disablePadding>
                       <ListItemButton
                         disableRipple
@@ -95,7 +58,7 @@ function SearchDropdown({ searchValue, onSearch }) {
                         <ListItemAvatar>
                           <Avatar
                             variant="square"
-                            src={item.imgSrc}
+                            src={item.imageUrl}
                             sx={{
                               width: 44,
                               height: 44,

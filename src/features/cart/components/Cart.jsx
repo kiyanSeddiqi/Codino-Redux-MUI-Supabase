@@ -49,15 +49,18 @@ import SvgIcon from "../../../components/ui/SvgIcon/SvgIcon";
 
 import "swiper/css";
 import "swiper/css/navigation";
+import usePurchase from "../hooks/usePurchase";
 
 function Cart() {
   const [payMethod, setPayMethod] = useState("rial");
   const [paymentOption, setPaymentOption] = useState("gateway");
 
-  const { cartItems, removeCartItemHandler, isLoading } = useCart();
+  const { cartItems, removeCartItemHandler, isLoading, clearCartHandler } =
+    useCart();
   const { products, loading: productsLoading } = useProducts();
+  const { purchaseHandler } = usePurchase();
 
-  const { success } = useSnackbar();
+  const { success, error } = useSnackbar();
 
   const items = [{ title: "سبد خرید" }];
 
@@ -86,6 +89,21 @@ function Cart() {
   const totalPrice = cartProducts.reduce((acc, curr) => acc + curr.price, 0);
 
   const canLoop = uniqueRelatedCourses.length >= 6;
+
+  async function handlePayment() {
+    if (!cartItems.length) return;
+
+    try {
+      await purchaseHandler(cartItems);
+
+      await clearCartHandler();
+
+      success("خرید شما با موفقیت انجام شد");
+    } catch (err) {
+      console.error(err);
+      error("پرداخت با خطا مواجه شد");
+    }
+  }
 
   return (
     <>
@@ -154,7 +172,7 @@ function Cart() {
             </Box>
             <Box sx={{ width: { xs: "100%", xl: "30%", lg: "35%" } }}>
               <Box sx={cartSidebar}>
-                {isLoading || productsLoading ? (
+                {isLoading ? (
                   <Skeleton
                     variant="rounded"
                     animation="wave"
@@ -269,7 +287,7 @@ function Cart() {
                             />
                           </FormGroup>
                         </Box>
-                        <Button>پرداخت</Button>
+                        <Button onClick={handlePayment}>پرداخت</Button>
                       </Box>
                     ) : (
                       <Box sx={flexCol(3)}>

@@ -26,6 +26,7 @@ import { categoryData } from "../../../../../data/categoryData";
 import { ArrowOutward } from "@mui/icons-material";
 import { openFavoriteCatModal } from "../../../../../features/dashboard/redux/favoriteCatSlice";
 import FavoriteListSkeleton from "./FavoriteListSkeleton";
+import useMyCourses from "../../../../../features/product/hooks/useMyCourses";
 
 function Dashboard() {
   const [favoriteList, setFavoriteList] = useState([]);
@@ -35,6 +36,7 @@ function Dashboard() {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.auth.user) || {};
+  const { courses } = useMyCourses();
 
   const { error } = useSnackbar();
 
@@ -127,7 +129,7 @@ function Dashboard() {
                     fontWeight: 700,
                   }}
                 >
-                  1
+                  {courses.length}
                 </Typography>
                 <Typography component="span" variant="caption">
                   دوره تهیه شده
