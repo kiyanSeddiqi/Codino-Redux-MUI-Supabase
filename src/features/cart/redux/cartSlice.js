@@ -28,12 +28,14 @@ const cartSlice = createSlice({
 
     addCartItem(state, action) {
       state.cartItems.push(action.payload);
+      state.loading = false;
     },
 
     removeCartItem(state, action) {
       state.cartItems = state.cartItems.filter(
         (item) => item.product_id !== action.payload,
       );
+      state.loading = false;
     },
 
     clearCart(state) {

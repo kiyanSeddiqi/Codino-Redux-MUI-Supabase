@@ -9,6 +9,8 @@ import { flexBetween, flexBox, flexCol } from "../../../styles/globalStyles";
 import { Link } from "react-router-dom";
 import { Delete, PermIdentity } from "@mui/icons-material";
 import { addComma } from "../../../utils/helpers";
+import { useState } from "react";
+import CartRemoveDialog from "./CartRemoveDialog";
 
 const levelLabels = {
   beginner: "مقدماتی",
@@ -16,9 +18,7 @@ const levelLabels = {
 };
 
 function CartItem({ itemData, onRemove }) {
-  function removeItem() {
-    onRemove(itemData.id);
-  }
+  const [showRemoveDialog, setShowRemoveDialog] = useState(false);
 
   return (
     <>
@@ -55,7 +55,8 @@ function CartItem({ itemData, onRemove }) {
                 </Box>
               </Box>
               <IconButton
-                onClick={removeItem}
+                onClick={() => setShowRemoveDialog(true)}
+                disableRipple
                 sx={{
                   borderRadius: "10px",
                   bgcolor: "badgeWarning.light",
@@ -64,6 +65,11 @@ function CartItem({ itemData, onRemove }) {
               >
                 <Delete sx={{ color: "error.main" }} />
               </IconButton>
+              <CartRemoveDialog
+                open={showRemoveDialog}
+                onShow={setShowRemoveDialog}
+                onRemoveItem={() => onRemove(itemData.id)}
+              />
             </Box>
             <Box sx={flexCol("12px")}>
               <Box sx={flexBox(1)}>

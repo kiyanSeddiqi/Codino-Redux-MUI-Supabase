@@ -1,4 +1,6 @@
-import { flexCol } from "../../../styles/globalStyles";
+import { whitespace } from "stylis";
+import { flexBox, flexCenter, flexCol } from "../../../styles/globalStyles";
+import { minLength } from "zod";
 
 export const cartContainer = {
   ...flexCol(5),
@@ -33,6 +35,11 @@ export const cartItemImgBox = {
   height: "100%",
   borderRadius: "12px",
   flexShrink: 0,
+  aspectRatio: 1,
+  display: {
+    xs: "none",
+    md: "block",
+  },
 };
 
 export const cartItemImg = {
@@ -102,7 +109,7 @@ export const paymentMethodToggle = {
 };
 
 export const paymentToggleBtn = {
-  px: 0,
+  px: 1,
   flex: 1,
   zIndex: 2,
   fontSize: {
@@ -179,5 +186,25 @@ export const trackingCodeInput = {
 
   "& .MuiFormHelperText-root": {
     textAlign: "right",
+  },
+};
+
+export const removeDialogStyle = {
+  "& .MuiDialog-paper": {
+    display: "flex",
+    flexDirection: "row",
+    gap: 2.5,
+    bgcolor: "background.default",
+    p: "8px 16px",
+    borderRadius: "6px",
+    m: 0,
+    width: {
+      xs: "90%",
+      sm: "60%",
+      md: "40%",
+      lg: "40%",
+      xl: "30%",
+    },
+    minHeight: "150px",
   },
 };

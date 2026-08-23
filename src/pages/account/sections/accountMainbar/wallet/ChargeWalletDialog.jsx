@@ -56,7 +56,7 @@ function ChargeWalletDialog({ open, onShow }) {
   const amountRegister = register("amount");
   const amount = watch("amount");
 
-  function onSubmit(data) {
+  function onSubmit() {
     success("کیف پول شما با موفقیت شارژ شد");
     reset();
     onShow(false);

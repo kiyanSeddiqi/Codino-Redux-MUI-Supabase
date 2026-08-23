@@ -83,7 +83,7 @@ export default function useCart() {
   return {
     cartItems,
     isLoading: loading,
-    error,
+    error: cartError,
     addCartItemHandler,
     removeCartItemHandler,
   };
