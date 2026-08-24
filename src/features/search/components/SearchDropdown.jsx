@@ -21,10 +21,11 @@ import {
   searchDropDownListBtn,
 } from "../styles/searchStyles";
 
-function SearchDropdown({ searchValue, filteredData, loading }) {
+function SearchDropdown({ searchValue, filteredData, onClose, open }) {
+  if (searchValue === "") return;
   return (
     <>
-      <Grow in={Boolean(searchValue)} unmountOnExit>
+      <Grow in={open} unmountOnExit>
         <Box sx={searchDropdownBox}>
           <Box sx={flexBetween(0, "row")}>
             <Box sx={flexCenter("12px")}>
@@ -52,8 +53,9 @@ function SearchDropdown({ searchValue, filteredData, loading }) {
                       <ListItemButton
                         disableRipple
                         component={Link}
-                        to={item.path}
+                        to={`course/${item.slug}`}
                         sx={searchDropDownListBtn}
+                        onClick={onClose}
                       >
                         <ListItemAvatar>
                           <Avatar

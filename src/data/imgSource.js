@@ -37,6 +37,16 @@ import userAvatar_1 from "../assets/images/Users/user_1.webp";
 import userAvatar_2 from "../assets/images/Users/user_2.webp";
 import userAvatar_3 from "../assets/images/Users/user_3.webp";
 import QRcode from "../assets/images/Others/QRcode.webp";
+import about_1 from "../assets/images/About_us/about_us_1.webp";
+import about_2 from "../assets/images/About_us/about_2.webp";
+import about_3 from "../assets/images/About_us/about_3.webp";
+import about_4 from "../assets/images/About_us/about_4.webp";
+import about_5 from "../assets/images/About_us/about_5.webp";
+import blog_1 from "../assets/images/Blog/blog_1.webp";
+import blog_2 from "../assets/images/Blog/blog_2.webp";
+import blog_3 from "../assets/images/Blog/blog_3.webp";
+import blog_4 from "../assets/images/Blog/blog_4.webp";
+import blog_5 from "../assets/images/Blog/blog_5.webp";
 
 export {
   darkLogo,
@@ -78,4 +88,14 @@ export {
   userAvatar_2,
   userAvatar_3,
   QRcode,
+  about_1,
+  about_2,
+  about_3,
+  about_4,
+  about_5,
+  blog_1,
+  blog_2,
+  blog_3,
+  blog_4,
+  blog_5,
 };

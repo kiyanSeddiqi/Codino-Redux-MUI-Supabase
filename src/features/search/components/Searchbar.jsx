@@ -14,6 +14,7 @@ import useProducts from "../../product/hooks/useProducts";
 
 function Searchbar() {
   const [searchValue, setSearchValue] = useState("");
+  const [searchOpen, setSearchOpen] = useState(false);
 
   const { products, loading } = useProducts();
 
@@ -26,7 +27,7 @@ function Searchbar() {
 
   return (
     <>
-      <ClickAwayListener onClickAway={() => setSearchValue("")}>
+      <ClickAwayListener onClickAway={() => setSearchOpen(false)}>
         <Box
           sx={{ display: { xs: "none", xl: "block" }, position: "relative" }}
         >
@@ -39,13 +40,23 @@ function Searchbar() {
               placeholder="جستجو ..."
               sx={navbarSearchInput}
               value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
+              onFocus={() => {
+                if (searchValue) {
+                  setSearchOpen(true);
+                }
+              }}
+              onChange={(e) => {
+                setSearchValue(e.target.value);
+                setSearchOpen(true);
+              }}
             />
           </form>
           <SearchDropdown
             searchValue={searchValue}
             filteredData={filteredProducts}
             loading={loading}
+            open={searchOpen}
+            onClose={() => setSearchOpen(false)}
           />
         </Box>
       </ClickAwayListener>
