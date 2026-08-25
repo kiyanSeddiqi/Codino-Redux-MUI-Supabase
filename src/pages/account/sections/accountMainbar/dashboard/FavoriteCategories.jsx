@@ -112,6 +112,7 @@ function FavoriteCategories({ favoriteList, setFavoriteList }) {
             </DialogTitle>
             <IconButton
               aria-label="close"
+              disableRipple
               onClick={() => dispatch(closeFavoriteCatModal())}
             >
               <Close />
@@ -125,7 +126,7 @@ function FavoriteCategories({ favoriteList, setFavoriteList }) {
           </Typography>
           <Box sx={favoriteListGrid}>
             {categoryData.map((item, index) => {
-              if (item.children.length === 0) return;
+              if (item.children.length === 0) return null;
               return (
                 <Button
                   key={item.id}

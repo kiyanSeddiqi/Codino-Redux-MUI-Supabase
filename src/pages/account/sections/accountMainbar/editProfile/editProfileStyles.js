@@ -59,7 +59,6 @@ export const textarea = {
   "& .MuiOutlinedInput-root": {
     borderRadius: "10px",
     bgcolor: "background.default",
-
     "& fieldset": {
       borderColor: "transparent",
       px: 0,

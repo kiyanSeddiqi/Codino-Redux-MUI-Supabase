@@ -28,10 +28,16 @@ import mentor_1 from "../assets/images/Mentors/mentor_1.webp";
 import mentor_2 from "../assets/images/Mentors/mentor_2.webp";
 import mentor_3 from "../assets/images/Mentors/mentor_3.webp";
 import platforms from "../assets/images/Banner/platforms.webp";
-import unreal_blog from "../assets/images/Blog/unreal-engine.webp";
+import unreal_blog from "../assets/images/Blog/unreal.webp";
 import kpi_blog from "../assets/images/Blog/kpi.webp";
 import time_blog from "../assets/images/Blog/time.webp";
-import focus_blog from "../assets/images/Blog/focus.webp";
+import python_blog from "../assets/images/Blog/python.webp";
+import net_blog from "../assets/images/Blog/net.webp";
+import modular_blog from "../assets/images/Blog/modular.webp";
+import ui_blog from "../assets/images/Blog/ui.webp";
+import framework_blog from "../assets/images/Blog/framework.webp";
+import ai_blog from "../assets/images/Blog/ai.webp";
+import game_blog from "../assets/images/Blog/game.webp";
 import default_avatar from "../assets/images/Users/default_user.webp";
 import userAvatar_1 from "../assets/images/Users/user_1.webp";
 import userAvatar_2 from "../assets/images/Users/user_2.webp";
@@ -79,10 +85,16 @@ export {
   mentor_2,
   mentor_3,
   platforms,
+  python_blog,
   unreal_blog,
   kpi_blog,
   time_blog,
-  focus_blog,
+  net_blog,
+  modular_blog,
+  ui_blog,
+  framework_blog,
+  ai_blog,
+  game_blog,
   default_avatar,
   userAvatar_1,
   userAvatar_2,

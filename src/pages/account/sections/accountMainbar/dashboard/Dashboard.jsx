@@ -141,7 +141,10 @@ function Dashboard() {
             <Box sx={flexBetween("row")}>
               <Typography component="h5">علاقه مندی های شما</Typography>
               <Button
-                onClick={() => dispatch(openFavoriteCatModal())}
+                onClick={(event) => {
+                  event.currentTarget.blur();
+                  dispatch(openFavoriteCatModal());
+                }}
                 sx={{ fontSize: "12px" }}
               >
                 ویرایش

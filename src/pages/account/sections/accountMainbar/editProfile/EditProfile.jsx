@@ -137,44 +137,58 @@ function EditProfile() {
             </Typography>
           </Box>
           <Box>
-            <InputLabel sx={accountFormLabel}>نام</InputLabel>
+            <InputLabel sx={accountFormLabel} htmlFor="name">
+              نام
+            </InputLabel>
             <TextField
               {...register("name")}
               type="text"
               fullWidth
+              id="name"
+              autoComplete="off"
               sx={editProfileTextField}
               helperText={errors.name?.message}
               error={!!errors.name}
             />
           </Box>
           <Box>
-            <InputLabel sx={accountFormLabel}>نام خانوادگی</InputLabel>
+            <InputLabel sx={accountFormLabel} htmlFor="family">
+              نام خانوادگی
+            </InputLabel>
             <TextField
               {...register("family")}
               type="text"
               fullWidth
+              id="family"
               sx={editProfileTextField}
               helperText={errors.family?.message}
               error={!!errors.family}
             />
           </Box>
           <Box>
-            <InputLabel sx={accountFormLabel}>ایمیل</InputLabel>
+            <InputLabel sx={accountFormLabel} htmlFor="email">
+              ایمیل
+            </InputLabel>
             <TextField
               {...register("email")}
               type="email"
+              autoComplete="off"
               fullWidth
+              id="email"
               sx={editProfileTextField}
               helperText={errors.email?.message}
               error={!!errors.email}
             />
           </Box>
           <Box>
-            <InputLabel sx={accountFormLabel}>شماره همراه</InputLabel>
+            <InputLabel sx={accountFormLabel} htmlFor="mobile">
+              شماره همراه
+            </InputLabel>
             <TextField
               {...mobileRegister}
               type="text"
               fullWidth
+              id="mobile"
               sx={editProfileTextField}
               helperText={errors.mobile?.message}
               error={!!errors.mobile}
@@ -185,9 +199,13 @@ function EditProfile() {
             />
           </Box>
           <Box sx={{ gridColumn: "span 2" }}>
-            <InputLabel sx={accountFormLabel}>درباره من</InputLabel>
+            <InputLabel htmlFor="bio" sx={accountFormLabel}>
+              درباره من
+            </InputLabel>
             <TextField
               {...register("bio")}
+              id="bio"
+              name="bio"
               type="text"
               fullWidth
               sx={textarea}

@@ -21,6 +21,7 @@ import GoogleCallback from "../pages/googleCallback/GoogelCallback";
 import WishList from "../pages/account/sections/accountMainbar/wishList/WishList";
 import Cart from "../features/cart/components/Cart";
 import Aboutus from "../pages/aboutUs/Aboutus";
+import BlogPage from "../pages/blog/BlogPage";
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/blog",
+        element: <BlogPage />,
       },
       {
         path: "/about-us",

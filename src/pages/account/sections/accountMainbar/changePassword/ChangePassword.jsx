@@ -57,10 +57,8 @@ function ChangePassword() {
         type: "server",
         message: result.error,
       });
-
       return;
     }
-
     reset();
   }
 
@@ -76,11 +74,14 @@ function ChangePassword() {
           onSubmit={handleSubmit(onSubmit)}
         >
           <Box sx={{ width: "100%", p: 1, "& .MuiInputBase-root": { pr: 0 } }}>
-            <InputLabel sx={accountFormLabel}>رمز عبور فعلی</InputLabel>
+            <InputLabel sx={accountFormLabel} htmlFor="currpassword">
+              رمز عبور فعلی
+            </InputLabel>
             <TextField
               {...register("currPassword")}
               type={showCurrPassword ? "text" : "password"}
               fullWidth
+              id="currpassword"
               sx={editProfileTextField}
               slotProps={{
                 input: {
@@ -109,11 +110,14 @@ function ChangePassword() {
               "& .MuiInputBase-root": { pr: 0 },
             }}
           >
-            <InputLabel sx={accountFormLabel}>رمز عبور جدید</InputLabel>
+            <InputLabel sx={accountFormLabel} htmlFor="newpassword">
+              رمز عبور جدید
+            </InputLabel>
             <TextField
               {...register("newPassword")}
               type={showNewPassword ? "text" : "password"}
               fullWidth
+              id="newpassword"
               sx={editProfileTextField}
               slotProps={{
                 input: {
@@ -152,11 +156,14 @@ function ChangePassword() {
               "& .MuiInputBase-root": { pr: 0 },
             }}
           >
-            <InputLabel sx={accountFormLabel}>تکرار رمز عبور جدید</InputLabel>
+            <InputLabel sx={accountFormLabel} htmlFor="repeatpassword">
+              تکرار رمز عبور جدید
+            </InputLabel>
             <TextField
               {...register("confirmPassword")}
               type={showConfirmPass ? "text" : "password"}
               fullWidth
+              id="repeatpassword"
               sx={editProfileTextField}
               slotProps={{
                 input: {

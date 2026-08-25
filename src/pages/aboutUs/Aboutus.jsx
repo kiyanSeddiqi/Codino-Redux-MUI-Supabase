@@ -1,11 +1,6 @@
 import { Box, Divider, Typography } from "@mui/material";
-import { flexBetween, flexBox, flexCol } from "../../styles/globalStyles";
-import {
-  aboutusContainer,
-  aboutusImg,
-  aboutusSlider,
-  aboutusText,
-} from "./aboutusStyle";
+import { flexCol } from "../../styles/globalStyles";
+import { aboutusContainer, aboutusImg, aboutusText } from "./aboutusStyle";
 import {
   about_1,
   about_2,
@@ -13,13 +8,7 @@ import {
   about_4,
   about_5,
 } from "../../data/imgSource";
-import { blogSliderData } from "../../data/blogSliderData";
-import SliderNavBtn from "../../components/ui/SliderNavBtn/SliderNavBtn";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-
-import "swiper/css";
-import "swiper/css/navigation";
+import BlogSlider from "../home/Sections/Blog/BlogSlider";
 
 function Aboutus() {
   return (
@@ -217,90 +206,7 @@ function Aboutus() {
             height: "100%",
           }}
         >
-          <Box sx={flexCol(2.5)} className="blog-slider">
-            <Box sx={flexBetween(1, "row")}>
-              <Typography sx={{ fontWeight: 600 }}>مقاله های محبوب</Typography>
-              <SliderNavBtn />
-            </Box>
-            <Box
-              sx={{
-                width: "100%",
-                height: {
-                  xs: "560px",
-                  lg: "360px",
-                },
-              }}
-            >
-              <Swiper
-                modules={[Navigation]}
-                direction="vertical"
-                spaceBetween={20}
-                slidesPerView={2}
-                navigation={{
-                  prevEl: ".blog-slider .swiper-btn-prev",
-                  nextEl: ".blog-slider .swiper-btn-next",
-                }}
-                loop={true}
-                breakpoints={{
-                  300: { slidesPerView: 2.5, spaceBetween: 16 },
-                  // 420: { slidesPerView: 2, spaceBetween: 20 },
-                  // 780: { slidesPerView: 3, spaceBetween: 20 },
-                  // 1024: { slidesPerView: 4, spaceBetween: 20 },
-                  // 1280: { slidesPerView: 3, spaceBetween: 20 },
-                }}
-                style={{ width: "100%", height: "100%" }}
-              >
-                {blogSliderData.map((item) => (
-                  <SwiperSlide key={item.id} style={aboutusSlider}>
-                    <Box
-                      sx={{
-                        ...flexCol("10px"),
-                        width: {
-                          xs: "65%",
-                          lg: "50%",
-                        },
-                      }}
-                    >
-                      <Typography variant="subtitle2">{item.title}</Typography>
-                      <Typography
-                        variant="caption"
-                        sx={{
-                          overflow: "hidden",
-                          whiteSpace: "nowrap",
-                          textOverflow: "ellipsis",
-                        }}
-                      >
-                        {item.description}
-                      </Typography>
-                    </Box>
-                    <Box
-                      sx={{
-                        aspectRatio: "16/9",
-                        borderRadius: "8px",
-                        width: {
-                          xs: "35%",
-                          lg: "50%",
-                        },
-                      }}
-                    >
-                      <Box
-                        component="img"
-                        alt="بنر بلاگ"
-                        src={item.imgUrl}
-                        sx={{
-                          width: "100%",
-                          height: "100%",
-                          display: "block",
-                          objectFit: "cover",
-                          borderRadius: "8px",
-                        }}
-                      />
-                    </Box>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </Box>
-          </Box>
+          <BlogSlider />
         </Box>
       </Box>
     </>

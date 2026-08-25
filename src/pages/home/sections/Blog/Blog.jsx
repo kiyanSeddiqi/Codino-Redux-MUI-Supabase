@@ -68,7 +68,7 @@ function Blog() {
             </Box>
           </Box>
           <Box sx={blogLeftContainer}>
-            {otherBlogs.map((item) => (
+            {otherBlogs.slice(0, 3).map((item) => (
               <Box
                 component={Link}
                 to={item.slug}
@@ -82,7 +82,7 @@ function Blog() {
                   <Typography variant="subtitle2" sx={blogLeftText}>
                     {item.text}
                   </Typography>
-                  <Box sx={flexBox("8px")}>
+                  <Box sx={flexBox(1)}>
                     <CalendarMonth sx={{ color: "primary.main" }} />
                     <Typography variant="caption">
                       {getRelativeTime(item.created_at)}

@@ -19,8 +19,3 @@ export const aboutusText = {
   lineHeight: "32px",
   textAlign: "justify",
 };
-
-export const aboutusSlider = {
-  display: "flex",
-  flexDirection: { xs: "column", lg: "row" },
-};

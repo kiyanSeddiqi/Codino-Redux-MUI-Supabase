@@ -29,6 +29,7 @@ function CategoryMenu() {
   const handleOpen = (e) => setAnchorEl(e.currentTarget);
   const handleClose = () => setAnchorEl(null);
   const [activeCategory, setActiveCategory] = useState(categoryData[1] ?? null);
+
   return (
     <>
       <Box sx={{ display: { xs: "none", lg: "block" } }}>
@@ -128,6 +129,7 @@ function CategoryMenu() {
                   borderRadius: "6px",
                   py: "8px",
                   transition: "0.2s ease",
+                  whiteSpace: "wrap",
                 }}
               >
                 <ListItemText

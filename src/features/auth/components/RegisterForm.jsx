@@ -172,7 +172,7 @@ function RegisterForm({ setStep, identifier, identifierType, onClose }) {
               <InputBase
                 {...register("confirmPassword")}
                 type={showConfirmPass ? "text" : "password"}
-                id={"confirm-password"}
+                id={"confirmPassword"}
                 autoComplete="off"
                 name="confirmPassword"
                 sx={authModalInput(theme, !!errors.confirmPassword)}
