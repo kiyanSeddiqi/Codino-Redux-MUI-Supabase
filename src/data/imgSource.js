@@ -24,6 +24,10 @@ import roadmap_back from "../assets/images/Roadmap/back.webp";
 import roadmap_seo from "../assets/images/Roadmap/seo.webp";
 import roadmap_mobile from "../assets/images/Roadmap/mobile.webp";
 import roadmap_web from "../assets/images/Roadmap/web.webp";
+import roadmap_js from "../assets/images/Roadmap/javaScript.webp";
+import roadmap_python from "../assets/images/Roadmap/python.webp";
+import roadmap_block from "../assets/images/Roadmap/block.webp";
+import roadmap_react from "../assets/images/Roadmap/react.webp";
 import mentor_1 from "../assets/images/Mentors/mentor_1.webp";
 import mentor_2 from "../assets/images/Mentors/mentor_2.webp";
 import mentor_3 from "../assets/images/Mentors/mentor_3.webp";
@@ -42,7 +46,6 @@ import default_avatar from "../assets/images/Users/default_user.webp";
 import userAvatar_1 from "../assets/images/Users/user_1.webp";
 import userAvatar_2 from "../assets/images/Users/user_2.webp";
 import userAvatar_3 from "../assets/images/Users/user_3.webp";
-import QRcode from "../assets/images/Others/QRcode.webp";
 import about_1 from "../assets/images/About_us/about_us_1.webp";
 import about_2 from "../assets/images/About_us/about_2.webp";
 import about_3 from "../assets/images/About_us/about_3.webp";
@@ -53,6 +56,11 @@ import blog_2 from "../assets/images/Blog/blog_2.webp";
 import blog_3 from "../assets/images/Blog/blog_3.webp";
 import blog_4 from "../assets/images/Blog/blog_4.webp";
 import blog_5 from "../assets/images/Blog/blog_5.webp";
+import QRcode from "../assets/images/Others/QRcode.webp";
+import pic_1 from "../assets/images/Others/pic_1.webp";
+import pic_2 from "../assets/images/Others/pic_2.webp";
+import pic_3 from "../assets/images/Others/pic_3.webp";
+import pic_4 from "../assets/images/Others/pic_4.webp";
 
 export {
   darkLogo,
@@ -81,6 +89,10 @@ export {
   roadmap_seo,
   roadmap_mobile,
   roadmap_web,
+  roadmap_js,
+  roadmap_python,
+  roadmap_block,
+  roadmap_react,
   mentor_1,
   mentor_2,
   mentor_3,
@@ -110,4 +122,8 @@ export {
   blog_3,
   blog_4,
   blog_5,
+  pic_1,
+  pic_2,
+  pic_3,
+  pic_4,
 };

@@ -22,6 +22,8 @@ import WishList from "../pages/account/sections/accountMainbar/wishList/WishList
 import Cart from "../features/cart/components/Cart";
 import Aboutus from "../pages/aboutUs/Aboutus";
 import BlogPage from "../pages/blog/BlogPage";
+import RoadmapPage from "../pages/roadmap/RoadMapPage";
+import RoadmapDetail from "../pages/roadmap/RoadmapDetail";
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +56,14 @@ export const router = createBrowserRouter([
       {
         path: "/blog",
         element: <BlogPage />,
+      },
+      {
+        path: "/roadmap",
+        element: <RoadmapPage />,
+      },
+      {
+        path: "/roadmap/roadmap-detail",
+        element: <RoadmapDetail />,
       },
       {
         path: "/about-us",

@@ -1,6 +1,8 @@
 import { Checkbox, Menu, MenuItem, Typography } from "@mui/material";
-import { useState } from "react";
-import { videoSpeedBox, videoSpeedItem } from "./videoDialogStyles";
+import {
+  videoSpeedBox,
+  videoSpeedItem,
+} from "../../../../../components/ui/Videoplayer/videoPlayerStyle";
 
 function VideoSpeed({
   videoRef,

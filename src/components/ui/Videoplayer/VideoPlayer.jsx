@@ -1,14 +1,13 @@
 import {
   Box,
   Button,
-  Dialog,
   IconButton,
   Slider,
   Stack,
   Tooltip,
   Typography,
 } from "@mui/material";
-import { videoContainer } from "./videoDialogStyles";
+import { useEffect, useRef, useState } from "react";
 import {
   videoBackdrop,
   videoControlBox,
@@ -22,11 +21,9 @@ import {
   videoWatchFrame,
   volumeBox,
   volumeSlider,
-} from "../../../../../components/ui/Videoplayer/videoPlayerStyle";
-import SvgIcon from "../../../../../components/ui/SvgIcon/SvgIcon";
-import courseVideo from "../../../../../../src/assets/video/course_video.mp4";
-import { useEffect, useRef, useState } from "react";
-import { flexBetween, flexBox } from "../../../../../styles/globalStyles";
+} from "./videoPlayerStyle";
+import SvgIcon from "../SvgIcon/SvgIcon";
+import { flexBetween, flexBox, flexCol } from "../../../styles/globalStyles";
 import {
   Forward10,
   Fullscreen,
@@ -39,10 +36,10 @@ import {
   VolumeOff,
   VolumeUp,
 } from "@mui/icons-material";
-import { formatTime } from "../../../../../utils/formatTime";
-import VideoSpeed from "./VideoSpeed";
+import VideoSpeed from "../../../pages/courseDetails/Sections/Sidebar/VideoDialog/VideoSpeed";
+import { formatTime } from "../../../utils/formatTime";
 
-function VideoDialog({ isOpen, onShow, videoTitle }) {
+function VideoPlayer({ videoSrc, videoTitle = "" }) {
   const videoRef = useRef(null);
   const playerRef = useRef(null);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -156,12 +153,7 @@ function VideoDialog({ isOpen, onShow, videoTitle }) {
 
   return (
     <>
-      <Dialog
-        sx={videoContainer}
-        open={isOpen}
-        onClose={() => onShow(false)}
-        disableScrollLock
-      >
+      <Box sx={flexCol("14px")}>
         <Box
           sx={videoWatchFrame}
           ref={playerRef}
@@ -180,7 +172,7 @@ function VideoDialog({ isOpen, onShow, videoTitle }) {
             ref={videoRef}
             onPlay={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}
-            src={courseVideo}
+            src={videoSrc}
             onLoadedMetadata={() => setDuration(videoRef.current.duration)}
             onTimeUpdate={() => setCurrentTime(videoRef.current.currentTime)}
             style={videoTag}
@@ -504,9 +496,9 @@ function VideoDialog({ isOpen, onShow, videoTitle }) {
             </Box>
           </Box>
         </Box>
-      </Dialog>
+      </Box>
     </>
   );
 }
 
-export default VideoDialog;
+export default VideoPlayer;
