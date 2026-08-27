@@ -15,6 +15,8 @@ function BlogCard({ itemData }) {
             alt={`تصویر ${itemData.title}`}
             src={itemData.imgSrc}
             sx={blogCardImg}
+            loading={itemData.id === 1 ? "eager" : "lazy"}
+            fetchPriority={itemData.id === 1 ? "high" : "low"}
           />
         </Box>
         <Box sx={{ ...flexCol("10px"), px: 2.5 }}>

@@ -14,6 +14,8 @@ export const roadmapGridContainer = {
 
 export const roadmapCardImgBox = {
   borderRadius: "16px",
+  width: "100%",
+  aspectRatio: "16 / 9",
 };
 
 export const roadmapCardImg = {

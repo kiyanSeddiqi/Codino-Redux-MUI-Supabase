@@ -345,15 +345,17 @@ function VideoPlayer({ videoSrc, videoTitle = "" }) {
         </Box>
         <Box className="video-controlbox" sx={videoControlBox(isFullscreen)}>
           <Box sx={videoTitleBox}>
-            <Typography sx={{ fontSize: { xs: "14px", md: "16px" } }}>
-              {videoTitle}
-            </Typography>
+            {videoTitle && (
+              <Typography sx={{ fontSize: { xs: "14px", md: "16px" } }}>
+                {videoTitle}
+              </Typography>
+            )}
             <Stack
               direction="row"
               spacing={0}
               sx={{
                 ...videoTimeSliderBox,
-                display: { xs: "flex", lg: "none" },
+                display: { xs: "flex", sm: "none" },
               }}
             >
               <Typography component="span" sx={videoTimeSliderNum}>
@@ -371,7 +373,7 @@ function VideoPlayer({ videoSrc, videoTitle = "" }) {
             </Stack>
           </Box>
           <Box sx={flexBetween(1)}>
-            <Box sx={flexBox(1)}>
+            <Box sx={flexBox(0)}>
               <IconButton
                 onClick={handleFullscreen}
                 disableRipple
@@ -443,7 +445,7 @@ function VideoPlayer({ videoSrc, videoTitle = "" }) {
               spacing={0}
               sx={{
                 ...videoTimeSliderBox,
-                display: { xs: "none", lg: "flex" },
+                display: { xs: "none", sm: "flex" },
               }}
             >
               <Typography component="span" sx={videoTimeSliderNum}>
@@ -459,7 +461,7 @@ function VideoPlayer({ videoSrc, videoTitle = "" }) {
                 {formatTime(currentTime)}
               </Typography>
             </Stack>
-            <Box sx={flexBox(1)}>
+            <Box sx={flexBox(0)}>
               <Tooltip title="ده ثانیه به جلو">
                 <IconButton
                   onClick={handleForward}
@@ -476,7 +478,10 @@ function VideoPlayer({ videoSrc, videoTitle = "" }) {
                 sx={{
                   ...videoControlIcons,
                   "& svg": {
-                    fontSize: "42px",
+                    fontSize: {
+                      xs: "36px",
+                      md: "42px",
+                    },
                   },
                 }}
                 aria-label="play video"

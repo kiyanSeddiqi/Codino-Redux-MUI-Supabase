@@ -21,12 +21,14 @@ function Aboutus() {
             درباره ما
           </Typography>
           <Divider />
-          <Box>
+          <Box sx={{ width: "100%", aspectRatio: "16 / 9" }}>
             <Box
               component="img"
               alt="بنر درباره ما"
               src={about_1}
               sx={aboutusImg}
+              loading="eager"
+              fetchPriority="high"
             />
           </Box>
           <Typography sx={aboutusText}>
@@ -56,6 +58,7 @@ function Aboutus() {
               alt="بنر درباره ما"
               src={about_2}
               sx={aboutusImg}
+              loading="lazy"
             />
           </Box>
           <Typography component="strong" sx={{ fontWeight: 600 }}>
@@ -76,6 +79,7 @@ function Aboutus() {
               alt="بنر درباره ما"
               src={about_3}
               sx={aboutusImg}
+              loading="lazy"
             />
           </Box>
           <Typography component="strong" sx={{ fontWeight: 600 }}>
@@ -107,6 +111,7 @@ function Aboutus() {
               alt="بنر درباره ما"
               src={about_4}
               sx={aboutusImg}
+              loading="lazy"
             />
           </Box>
           <Typography component="strong" sx={{ fontWeight: 600 }}>
@@ -134,6 +139,7 @@ function Aboutus() {
               alt="بنر درباره ما"
               src={about_5}
               sx={aboutusImg}
+              loading="lazy"
             />
           </Box>
           <Typography component="strong" sx={{ fontWeight: 600 }}>

@@ -12,11 +12,12 @@ import VideoPlayer from "../../components/ui/Videoplayer/VideoPlayer";
 import videoSrc from "../../assets/video/roadmap.mp4";
 import { mentor_2, pic_1, pic_2, pic_3, pic_4 } from "../../data/imgSource";
 
+const items = [
+  { title: "مسیر های یادگیری", link: "/roadmap" },
+  { title: "مسیر یادگیری برنامه نویسی" },
+];
+
 function RoadmapDetail() {
-  const items = [
-    { title: "مسیر های یادگیری", link: "/roadmap" },
-    { title: "مسیر یادگیری برنامه نویسی" },
-  ];
   return (
     <>
       <Box sx={{ ...flexCol(5), mt: 4, mb: 6 }}>
@@ -66,6 +67,7 @@ function RoadmapDetail() {
                 alt="سوالات رایج"
                 src={pic_1}
                 sx={roadMapDetailImg}
+                loading="lazy"
               />
             </Box>
             <Box>

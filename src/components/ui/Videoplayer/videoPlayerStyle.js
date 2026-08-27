@@ -53,7 +53,10 @@ export const videoPlayBtn = (isPlaying) => ({
 export const videoControlBox = (isFullscreen) => ({
   ...flexCol(1),
   width: "100%",
-  p: "8px 16px",
+  p: {
+    xs: "8px 8px",
+    sm: "8px 16px",
+  },
   bgcolor: "#292a33",
   borderRadius: "16px",
   color: "#fff",
@@ -81,7 +84,10 @@ export const videoControlIcons = {
     bgcolor: "#4A4A55",
   },
   "& svg": {
-    fontSize: "26px",
+    fontSize: {
+      xs: "20px",
+      md: "26px",
+    },
   },
 };
 

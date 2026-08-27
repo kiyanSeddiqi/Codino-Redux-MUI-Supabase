@@ -44,7 +44,7 @@ const getTheme = (mode) => {
       info: { main: "#3B82F6" },
     },
     typography: {
-      fontFamily: `"Vazirmatn","sans-serif"`,
+      fontFamily: `"Vazirmatn","Arial","sans-serif"`,
     },
     breakpoints: {
       values: {

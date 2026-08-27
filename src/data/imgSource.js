@@ -61,6 +61,15 @@ import pic_1 from "../assets/images/Others/pic_1.webp";
 import pic_2 from "../assets/images/Others/pic_2.webp";
 import pic_3 from "../assets/images/Others/pic_3.webp";
 import pic_4 from "../assets/images/Others/pic_4.webp";
+import zero_pack from "../assets/images/Packs/zero.webp";
+import ai_web_pack from "../assets/images/Packs/ai_web.webp";
+import backend_pack from "../assets/images/Packs/backend.webp";
+import frontend_pack from "../assets/images/Packs/frontend.webp";
+import php_pack from "../assets/images/Packs/php.webp";
+import python_pack from "../assets/images/Packs/ai_python.webp";
+import game_pack from "../assets/images/Packs/game.webp";
+import blockchain_pack from "../assets/images/Packs/blockchain.webp";
+import seo_pack from "../assets/images/Packs/seo.webp";
 
 export {
   darkLogo,
@@ -126,4 +135,13 @@ export {
   pic_2,
   pic_3,
   pic_4,
+  zero_pack,
+  ai_web_pack,
+  backend_pack,
+  frontend_pack,
+  php_pack,
+  python_pack,
+  game_pack,
+  blockchain_pack,
+  seo_pack,
 };

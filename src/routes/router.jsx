@@ -24,6 +24,8 @@ import Aboutus from "../pages/aboutUs/Aboutus";
 import BlogPage from "../pages/blog/BlogPage";
 import RoadmapPage from "../pages/roadmap/RoadMapPage";
 import RoadmapDetail from "../pages/roadmap/RoadmapDetail";
+import CoursePacks from "../pages/packs/CoursePacks";
+import CoursePackDetail from "../pages/packs/CoursePackDetail";
 
 export const router = createBrowserRouter([
   {
@@ -64,6 +66,14 @@ export const router = createBrowserRouter([
       {
         path: "/roadmap/roadmap-detail",
         element: <RoadmapDetail />,
+      },
+      {
+        path: "/packs",
+        element: <CoursePacks />,
+      },
+      {
+        path: "/packs/pack-detail",
+        element: <CoursePackDetail />,
       },
       {
         path: "/about-us",

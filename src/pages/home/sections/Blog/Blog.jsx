@@ -18,18 +18,10 @@ import {
   blogRightImgBox,
   blogRightTextBox,
 } from "./blogStyles";
-import { unreal_blog } from "../../../../data/imgSource";
+
 import { blogData } from "../../../../data/blogData";
 import { CalendarMonth } from "@mui/icons-material";
 import { getRelativeTime } from "../../../../utils/helpers";
-
-// Container یا Box برای سکشن
-// Typography برای عنوان
-// Grid برای چیدمان راست و چپ
-// Card برای هر بلاگ
-// CardActionArea برای لینک شدن کل کارت
-// CardMedia برای عکس
-// CardContent برای متن
 
 function Blog() {
   const [featuredBlog, ...otherBlogs] = blogData;

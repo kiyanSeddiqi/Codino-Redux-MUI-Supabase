@@ -7,11 +7,11 @@ export const desktopMenuData = [
     title: "مسیر های یادگیری",
     path: "/roadmap",
     children: [
-      { title: "همه مسیر های یادگیری", path: "/" },
-      { title: "مسیر یادگیری برنامه نویسی", path: "/" },
-      { title: "مسیر یادگیری فرانت اند", path: "/" },
-      { title: "مسیر یادگیری بک اند", path: "/" },
-      { title: "مسیر یادگیری موبایل", path: "/" },
+      { title: "همه مسیر های یادگیری", path: "/roadmap" },
+      { title: "مسیر یادگیری برنامه نویسی", path: "/roadmap/roadmap-detail" },
+      { title: "مسیر یادگیری فرانت اند", path: "/roadmap/roadmap-detail" },
+      { title: "مسیر یادگیری بک اند", path: "/roadmap/roadmap-detail" },
+      { title: "مسیر یادگیری موبایل", path: "/roadmap/roadmap-detail" },
     ],
   },
   {

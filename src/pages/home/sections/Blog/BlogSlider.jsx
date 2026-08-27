@@ -106,6 +106,7 @@ function BlogSlider() {
                     component="img"
                     alt="بنر بلاگ"
                     src={item.imgUrl}
+                    loading="lazy"
                     sx={{
                       width: "100%",
                       height: "100%",
