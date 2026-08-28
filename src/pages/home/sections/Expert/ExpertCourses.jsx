@@ -18,7 +18,7 @@ function ExpertCourses() {
   return (
     <>
       <Box component="section" sx={{ ...sectionStyle, alignItems: "start" }}>
-        <Typography component="h4" sx={sectionTitle}>
+        <Typography component="h2" sx={sectionTitle}>
           دوره های متخصص
         </Typography>
         <Box sx={coursesCardCotainer}>

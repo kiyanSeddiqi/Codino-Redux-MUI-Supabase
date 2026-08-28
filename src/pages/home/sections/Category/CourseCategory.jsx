@@ -14,7 +14,7 @@ function CourseCategory() {
     <>
       <Box component="section" sx={sectionStyle}>
         <Box sx={flexCol("6px")}>
-          <Typography component="h4" sx={sectionTitle}>
+          <Typography component="h2" sx={sectionTitle}>
             چی میخوای یاد بگیری؟
           </Typography>
           <Typography sx={{ lineHeight: "32px" }}>

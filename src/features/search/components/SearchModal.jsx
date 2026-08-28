@@ -5,9 +5,6 @@ import {
   Divider,
   IconButton,
   InputBase,
-  Typography,
-  useMediaQuery,
-  useTheme,
 } from "@mui/material";
 import {
   navbarSearchInput,
@@ -17,13 +14,21 @@ import {
 } from "../styles/searchStyles";
 import { flexBetween, flexCol } from "../../../styles/globalStyles";
 import { Close, Search } from "@mui/icons-material";
-import Searchbar from "./Searchbar";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import SearchModalResult from "./SearchModalResult";
+import useProducts from "../../product/hooks/useProducts";
 
 function SearchModal({ isOpen, onShow }) {
   const [searchValue, setSearchValue] = useState("");
-  const theme = useTheme();
+
+  const { products } = useProducts();
+
+  const filteredProducts = useMemo(() => {
+    if (!searchValue.trim()) return [];
+    return products.filter((p) =>
+      p.title.toLowerCase().includes(searchValue.trim().toLowerCase()),
+    );
+  }, [searchValue, products]);
 
   useEffect(() => {
     if (isOpen) setSearchValue("");
@@ -63,10 +68,10 @@ function SearchModal({ isOpen, onShow }) {
                 autoComplete="off"
                 name="search"
                 placeholder="دنبال چی میگردی؟"
-                sx={(theme) => ({
+                sx={{
                   ...navbarSearchInput,
                   width: "100%",
-                })}
+                }}
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
               />
@@ -77,7 +82,8 @@ function SearchModal({ isOpen, onShow }) {
         {searchValue.trim().length > 0 && (
           <SearchModalResult
             searchValue={searchValue}
-            onShow={setSearchValue}
+            onClose={() => onShow(false)}
+            searchData={filteredProducts}
           />
         )}
       </Dialog>

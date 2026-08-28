@@ -438,7 +438,7 @@ export const productData = [
     img: productsImgs.html_css,
     level: "advanced",
     status: "completed",
-    duration: "12 : 18 : 2",
+    duration: "12 : 18 : 02",
     teacher: "میلاد ده یامی",
     price: 0,
     slug: "learn-html-css",

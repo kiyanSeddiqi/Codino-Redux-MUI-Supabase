@@ -4,9 +4,7 @@ export const logo = {
     xs: 80,
     md: 95,
   },
-  height: {
-    xs: "auto",
-    md: 31,
-  },
-  aspectRatio: "auto",
+  height: "auto",
+  display: "block",
+  aspectRatio: 190 / 67,
 };

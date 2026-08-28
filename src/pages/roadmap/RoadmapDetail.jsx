@@ -204,7 +204,7 @@ function RoadmapDetail() {
             <Box>
               <Box
                 component="img"
-                alt="فری لنسری"
+                alt="راه‌اندازی استارت‌آپ "
                 src={pic_4}
                 sx={roadMapDetailImg}
               />

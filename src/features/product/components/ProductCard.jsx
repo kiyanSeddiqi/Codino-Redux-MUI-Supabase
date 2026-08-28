@@ -68,9 +68,9 @@ function ProductCard({ itemData, layout = "default" }) {
                   sx={{ height: "26px" }}
                 />
                 {itemData.status === "completed" ? (
-                  <Tooltip title="دوره به پایان رسیده">
+                  <Tooltip title="دوره به پایان رسیده" describeChild>
                     <Box
-                      aria-label="آیکون پایان دوره"
+                      component="span"
                       sx={{ ...cardStatusBadge, bgcolor: "badgeWarning.light" }}
                     >
                       <SvgIcon
@@ -81,9 +81,9 @@ function ProductCard({ itemData, layout = "default" }) {
                     </Box>
                   </Tooltip>
                 ) : (
-                  <Tooltip title="دوره درحال بروز رسانی">
+                  <Tooltip title="دوره درحال بروز رسانی" describeChild>
                     <Box
-                      aria-label="آیکون بروز رسانی"
+                      component="span"
                       sx={{ ...cardStatusBadge, bgcolor: "menuItemBg" }}
                     >
                       <SvgIcon
@@ -125,7 +125,7 @@ function ProductCard({ itemData, layout = "default" }) {
           </Box>
           <Divider />
           <Box sx={flexBetween("row")}>
-            <Box sx={{ display: "flex", alignItems: "center", gap: "4px" }}>
+            <Box sx={flexBox("4px")}>
               <Typography
                 component="strong"
                 sx={{
@@ -145,17 +145,16 @@ function ProductCard({ itemData, layout = "default" }) {
             <Box
               component={Link}
               to={`/course/${itemData.slug}`}
+              aria-label={`مشاهده دوره ${itemData.title}`}
               sx={{
                 display: "flex",
                 "&:focus": { outline: "none" },
               }}
-              aria-label="دکمه نمایش جزییات محصول"
             >
               <ArrowOutward
                 sx={{
                   rotate: "-90deg",
                   color: "primary.main",
-                  cursor: "pointer",
                 }}
               />
             </Box>

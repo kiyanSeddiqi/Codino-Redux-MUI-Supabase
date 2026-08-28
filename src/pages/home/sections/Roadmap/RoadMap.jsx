@@ -18,7 +18,7 @@ function RoadMap() {
     <>
       <Box sx={sectionStyle} component="section" className="roadMap-section">
         <Box sx={{ ...flexBetween("row") }}>
-          <Typography component="h4" sx={sectionTitle}>
+          <Typography component="h2" sx={sectionTitle}>
             مسیرهای یادگیری
           </Typography>
           <SliderNavBtn />

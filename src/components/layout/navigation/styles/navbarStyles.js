@@ -44,6 +44,7 @@ export const themeBtn = {
   padding: "5px",
   cursor: "pointer",
   bgcolor: "divider",
+  border: 0,
 };
 
 export const themeIndicator = (theme) => ({

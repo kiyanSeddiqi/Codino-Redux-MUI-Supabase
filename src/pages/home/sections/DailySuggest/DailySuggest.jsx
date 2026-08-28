@@ -18,7 +18,7 @@ function DailySuggest() {
   return (
     <>
       <Box component="section" sx={sectionStyle}>
-        <Typography component="h4" sx={sectionTitle}>
+        <Typography component="h2" sx={sectionTitle}>
           پیشنهاد روز
         </Typography>
         <Box sx={{ display: "flex", gap: 2.5 }}>

@@ -28,7 +28,7 @@ function Blog() {
   return (
     <>
       <Box sx={sectionStyle} component="section">
-        <Typography component="h4" sx={sectionTitle}>
+        <Typography component="h2" sx={sectionTitle}>
           آخرین مطالب بلاگ
         </Typography>
         <Box sx={blogContainer}>
@@ -46,7 +46,7 @@ function Blog() {
                 {featuredBlog.title}
               </Typography>
               <Typography
-                variant="subtitle2"
+                variant="body2"
                 sx={{ color: "text.secondary", lineHeight: "32px" }}
               >
                 {featuredBlog.text}
@@ -71,8 +71,8 @@ function Blog() {
                   <Typography component="strong" sx={blogLeftTitle}>
                     {item.title}
                   </Typography>
-                  <Typography variant="subtitle2" sx={blogLeftText}>
-                    {item.text}
+                  <Typography variant="body2" sx={blogLeftText}>
+                    {item.text}c
                   </Typography>
                   <Box sx={flexBox(1)}>
                     <CalendarMonth sx={{ color: "primary.main" }} />

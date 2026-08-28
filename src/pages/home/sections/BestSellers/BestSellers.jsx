@@ -30,7 +30,7 @@ function BestSellers() {
         sx={sectionStyle}
       >
         <Box sx={{ ...flexBetween("row") }}>
-          <Typography component="h4" sx={sectionTitle}>
+          <Typography component="h2" sx={sectionTitle}>
             پر فروش ترین ها
           </Typography>
           <SliderNavBtn />

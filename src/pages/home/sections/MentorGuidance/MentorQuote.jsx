@@ -19,7 +19,7 @@ function MentorQuote() {
   return (
     <>
       <Box sx={sectionStyle} component="section">
-        <Typography component="h4" sx={sectionTitle}>
+        <Typography component="h2" sx={sectionTitle}>
           پیشنهاد اساتید کدینو برای شروع!
         </Typography>
         <Box sx={quoteContainer}>
@@ -53,8 +53,8 @@ function MentorQuote() {
                   <CardContent sx={quoteCardContent}>
                     <Typography variant="body1">{item.text}</Typography>
                     <Typography
-                      variant="subtitle2"
-                      sx={{ color: "primary.main" }}
+                      variant="body2"
+                      sx={{ color: "primary.main", fontWeight: 600 }}
                     >
                       {item.mentorName}
                     </Typography>

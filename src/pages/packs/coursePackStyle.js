@@ -1,3 +1,4 @@
+import { LineWeight } from "@mui/icons-material";
 import { flexCol } from "../../styles/globalStyles";
 
 export const gridContainer = {
@@ -46,7 +47,7 @@ export const detailContainer = {
   ...flexCol(5),
 };
 
-export const packDetailBanner = {
+export const imageStyle = {
   width: "100%",
   height: "100%",
   display: "block",
@@ -70,7 +71,7 @@ export const packDetailList = {
 
 export const packDetailListItem = {
   ...flexCol(4),
-  pr: 6,
+  pr: { xs: 2.5, sm: 6 },
   borderRight: 2,
   borderRightColor: "divider",
   position: "relative",
@@ -78,7 +79,7 @@ export const packDetailListItem = {
     content: '""',
     position: "absolute",
     right: 0,
-    top: "-30px",
+    top: "-24px",
     width: "24px",
     height: "24px",
     borderRadius: "100%",
@@ -93,26 +94,59 @@ export const packDetailListItem = {
 
 export const listItemTitleBox = {
   display: "flex",
-  flexDirection: {
-    xs: "column",
-    lg: "row",
-  },
   alignItems: "center",
-  gap: 2.5,
-
+  gap: 2,
   "& > p": {
-    fontSize: "clamp(16px,2.5vw,30px)",
+    fontSize: "clamp(22px,3vw,30px)",
     color: "primary.main",
     fontWeight: 700,
   },
-  "&> a": {
+  "& > a": {
     transition: "all 0.3s",
     fontSize: {
       xs: "16px",
-      sm: "18px",
+      md: "18px",
     },
     "&:hover": {
       color: "primary.main",
     },
   },
+};
+
+export const packDetailCourseCard = {
+  display: "flex",
+  flexDirection: {
+    xs: "column",
+    sm: "row",
+  },
+  gap: 2.5,
+  alignItems: "start",
+};
+
+export const courseCardImgBox = {
+  width: {
+    xs: "100%",
+    sm: "25%",
+  },
+  aspectRatio: 1,
+  borderRadius: "8px",
+};
+
+export const packDetailEnrollBox = {
+  p: 4,
+  border: 1,
+  borderRadius: "12px",
+  borderColor: "divider",
+  ...flexCol(3),
+};
+
+export const enrollBoxAlert = {
+  display: "flex",
+  alignItems: "center",
+  borderRadius: "12px",
+  p: "10px 20px",
+  color: "primary.main",
+  bgcolor: "menuItemBg",
+  height: "52px",
+  lineHeight: "32px",
 };

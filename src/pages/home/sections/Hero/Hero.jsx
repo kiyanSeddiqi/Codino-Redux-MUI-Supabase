@@ -22,7 +22,6 @@ import {
   heroTitle,
 } from "./heroStyles";
 import {
-  flexCenter,
   flexCol,
   textPrimary,
   textSecondary,
@@ -45,7 +44,6 @@ import "swiper/css/autoplay";
 
 const heroImgData = [hero_b_1, hero_b_2, hero_b_3, hero_b_4];
 function Hero() {
-  const theme = useTheme();
   return (
     <>
       <Box component="section" className="hero-section" sx={heroContainer}>
@@ -81,7 +79,7 @@ function Hero() {
             <Box sx={heroIconBox}>
               <SvgIcon name="course" />
               <Box sx={heroStatsText}>
-                <Typography component="h3">178+</Typography>
+                <Typography>178+</Typography>
                 <Typography component="span">دوره تخصصی</Typography>
               </Box>
             </Box>
@@ -89,7 +87,7 @@ function Hero() {
             <Box sx={heroIconBox}>
               <SvgIcon name="clock" />
               <Box sx={heroStatsText}>
-                <Typography component="h3">5,000+</Typography>
+                <Typography>5,000+</Typography>
                 <Typography component="span">ساعت آموزش</Typography>
               </Box>
             </Box>
@@ -97,7 +95,7 @@ function Hero() {
             <Box sx={heroIconBox}>
               <SvgIcon name="student" />
               <Box sx={heroStatsText}>
-                <Typography component="h3">309k+</Typography>
+                <Typography>309k+</Typography>
                 <Typography component="span">دانشجو</Typography>
               </Box>
             </Box>

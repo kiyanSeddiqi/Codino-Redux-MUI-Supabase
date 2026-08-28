@@ -15,34 +15,7 @@ import { Link } from "react-router-dom";
 import { ArrowOutward } from "@mui/icons-material";
 import { searchDropDownListBtn } from "../styles/searchStyles";
 
-const searchData = [
-  {
-    id: 1,
-    title: "آموزش پایتون (python) - از مقدماتی تا پیشرفته ",
-    imgSrc: "../../src/assets/images/Products/python.webp",
-    path: "/roadmap",
-  },
-  {
-    id: 2,
-    title: "آموزش جامع جاوا اسکریپت (JavaScript) - پروژه محور",
-    imgSrc: "../../src/assets/images/Products/javaScript.webp",
-    path: "/pack",
-  },
-  {
-    id: 3,
-    title: "آموزش فریمورک جنگو (django) - پروژه محور از مقدماتی تا پیشرفته",
-    imgSrc: "../../src/assets/images/Products/django.webp",
-    path: "/join-us",
-  },
-  {
-    id: 4,
-    title: "آموزش 0 تا 100 فلاتر (Flutter) + پروژه عملی و ورود به بازار کار",
-    imgSrc: "../../src/assets/images/Products/flutter.webp",
-    path: "/",
-  },
-];
-
-function SearchModalResult({ searchValue, onShow }) {
+function SearchModalResult({ searchValue, onClose, searchData }) {
   return (
     <>
       <Box>
@@ -57,12 +30,6 @@ function SearchModalResult({ searchValue, onShow }) {
             مشاهده تمام نتایج
             <ArrowOutward sx={{ rotate: "-90deg" }} />
           </Button>
-          {/* <CircularProgress
-            enableTrackSlot
-            size="20px"
-            aria-label="Loading…"
-            sx={{ p: "10px", boxSizing: "content-box" }}
-          /> */}
         </Box>
         <Box sx={flexCol("16px")}>
           <Divider sx={{ mt: 2 }} />
@@ -75,14 +42,14 @@ function SearchModalResult({ searchValue, onShow }) {
                     <ListItemButton
                       disableRipple
                       component={Link}
-                      to={item.path}
+                      to={`course/${item.slug}`}
                       sx={searchDropDownListBtn}
-                      onClick={() => onShow(false)}
+                      onClick={onClose}
                     >
                       <ListItemAvatar>
                         <Avatar
                           variant="square"
-                          src={item.imgSrc}
+                          src={item.imageUrl}
                           sx={{
                             width: 44,
                             height: 44,

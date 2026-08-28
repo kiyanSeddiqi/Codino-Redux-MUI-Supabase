@@ -9,7 +9,7 @@ function Faq() {
     <>
       <Box sx={faqContainer}>
         <Box sx={flexCol(1)}>
-          <Typography component="h4" sx={sectionTitle}>
+          <Typography component="h2" sx={sectionTitle}>
             سوالات متداول
           </Typography>
           <Typography

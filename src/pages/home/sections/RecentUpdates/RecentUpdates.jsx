@@ -22,7 +22,7 @@ function RecentUpdates() {
     <>
       <Box component="section" className="recent-section" sx={sectionStyle}>
         <Box sx={{ ...flexBetween("row") }}>
-          <Typography component="h4" sx={sectionTitle}>
+          <Typography component="h2" sx={sectionTitle}>
             آخرین به روزرسانی ها
           </Typography>
           <SliderNavBtn />

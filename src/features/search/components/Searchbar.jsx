@@ -16,7 +16,7 @@ function Searchbar() {
   const [searchValue, setSearchValue] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
 
-  const { products, loading } = useProducts();
+  const { products } = useProducts();
 
   const filteredProducts = useMemo(() => {
     if (!searchValue.trim()) return [];
@@ -54,7 +54,6 @@ function Searchbar() {
           <SearchDropdown
             searchValue={searchValue}
             filteredData={filteredProducts}
-            loading={loading}
             open={searchOpen}
             onClose={() => setSearchOpen(false)}
           />

@@ -28,7 +28,7 @@ function CodinoPlusSlider() {
         sx={sectionStyle}
       >
         <Box sx={{ ...flexBetween("row") }}>
-          <Typography component="h4" sx={sectionTitle}>
+          <Typography component="h2" sx={sectionTitle}>
             آخرین دوره های کدینو پلاس
           </Typography>
           <SliderNavBtn />
