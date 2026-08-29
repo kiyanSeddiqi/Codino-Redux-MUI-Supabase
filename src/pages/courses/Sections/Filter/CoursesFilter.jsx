@@ -2,22 +2,8 @@ import { Box } from "@mui/material";
 import { filterContainer } from "./coursesFilterStyles";
 import FilterSidebar from "./FilterSidebar";
 import FilterMainbar from "./FilterMainbar";
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer } from "react";
 import { useSearchParams } from "react-router-dom";
-
-// const initialFilters = {
-//   search: {
-//     input: "",
-//     qury: "",
-//   },
-//   status: "all",
-//   sort: "latest",
-//   access: {
-//     plus: false,
-//     installment: false,
-//     free: false,
-//   },
-// };
 
 function createInitialFilters(searchParams) {
   return {

@@ -1,15 +1,12 @@
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import {
   cardContainer,
   cardContent,
   cardImg,
   cardImgBox,
-  cardLevelBadge,
   cardStatusBadge,
   cardTitle,
   cardTitleBox,
@@ -18,19 +15,9 @@ import {
 } from "../styles/productCardStyles";
 import { Box, Chip, Divider, Tooltip, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
-import {
-  flexBetween,
-  flexBox,
-  flexCenter,
-  flexCol,
-} from "../../../styles/globalStyles";
+import { flexBetween, flexBox, flexCol } from "../../../styles/globalStyles";
 import SvgIcon from "../../../components/ui/SvgIcon/SvgIcon";
-import {
-  AccessAlarm,
-  AccessTime,
-  ArrowOutward,
-  PermIdentity,
-} from "@mui/icons-material";
+import { AccessTime, ArrowOutward, PermIdentity } from "@mui/icons-material";
 import { addComma } from "../../../utils/helpers";
 
 const levelLabels = {
@@ -56,6 +43,7 @@ function ProductCard({ itemData, layout = "default" }) {
             image={itemData.imageUrl}
             alt={`تصویر ${itemData.title}`}
             component="img"
+            loading="lazy"
           />
         </Box>
         <CardContent sx={cardContent}>

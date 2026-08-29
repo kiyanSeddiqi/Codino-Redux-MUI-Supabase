@@ -18,7 +18,7 @@ function CourseCategory() {
             چی میخوای یاد بگیری؟
           </Typography>
           <Typography sx={{ lineHeight: "32px" }}>
-            دسته‌بندی‌های آموزشی کدیاد رو ببین و از جایی شروع کن که برات جذابه.
+            دسته‌بندی‌های آموزشی کدینو رو ببین و از جایی شروع کن که برات جذابه.
           </Typography>
         </Box>
         <Box sx={courseCategoryGrid}>

@@ -114,7 +114,7 @@ function CoursePackDetail() {
                 </Button>
               </Box>
               <Box sx={enrollBoxAlert}>
-                <Typography variant="subtitle2">
+                <Typography variant="body2">
                   درصورتی که هر یک از دوره های این پک را از قبل خریداری کرده
                   باشید قیمت دوره از مبلغ کل در زمان پرداخت کسر خواهد شد
                 </Typography>

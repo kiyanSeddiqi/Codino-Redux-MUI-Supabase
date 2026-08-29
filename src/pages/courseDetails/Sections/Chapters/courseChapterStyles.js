@@ -106,8 +106,8 @@ export const lessonItemTitleBox = {
 };
 
 export const lessonEmptyBox = {
-  color: "error.main",
-  bgcolor: "error.light",
+  color: "badgeWarning.main",
+  bgcolor: "badgeWarning.light",
   fontSize: "14px",
   p: "10px 20px",
   borderRadius: "12px",
@@ -115,8 +115,4 @@ export const lessonEmptyBox = {
 
 export const lessonItemTitle = {
   fontSize: { xs: "14px", md: "12px", lg: "14px" },
-  overflow: "hidden",
-  display: "-webkit-box",
-  WebkitBoxOrient: "vertical",
-  WebkitLineClamp: 1,
 };

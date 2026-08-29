@@ -36,7 +36,11 @@ function BannerSlider() {
                       srcSet={item.mobileImgSrc}
                     />
                   )}
-                  <img src={item.desktopImgSrc} alt="بنر دوره های آموزشی" />
+                  <img
+                    src={item.desktopImgSrc}
+                    alt="بنر دوره های آموزشی"
+                    loading="lazy"
+                  />
                 </picture>
               </Box>
             </SwiperSlide>

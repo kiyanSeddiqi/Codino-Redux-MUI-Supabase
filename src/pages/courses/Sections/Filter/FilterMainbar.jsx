@@ -9,19 +9,12 @@ import {
   sortMobileContainer,
 } from "./coursesFilterStyles";
 import { flexBox, flexCenter } from "../../../../styles/globalStyles";
-import {
-  ArrowOutward,
-  CallReceived,
-  ExpandLess,
-  ExpandMore,
-  FilterList,
-  Tune,
-} from "@mui/icons-material";
+import { ExpandLess, ExpandMore, FilterList, Tune } from "@mui/icons-material";
 import ProductCard from "../../../../features/product/components/ProductCard";
 import FilterModal from "./FilterModal";
 import { useEffect, useMemo, useState } from "react";
 import SortModal from "./SortModal";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useCourseFilters from "./hooks/useCourseFilters";
 import ProductCardSkeleton from "../../../../features/product/components/ProductCardSkeleton";
 import useProducts from "../../../../features/product/hooks/useProducts";
@@ -29,7 +22,7 @@ import useProducts from "../../../../features/product/hooks/useProducts";
 const INITIAL_VISIBLE = 12;
 
 function FilterMainbar({ filters, dispatch }) {
-  const { search, status, access, sort } = filters;
+  const { status, access, sort } = filters;
   const { slug } = useParams();
 
   const { products, loading } = useProducts();
@@ -157,7 +150,7 @@ function FilterMainbar({ filters, dispatch }) {
         {loading ? (
           <Box sx={coursesCardCotainer}>
             {Array.from({ length: 8 }).map((_, index) => (
-              <ProductCardSkeleton key={index} />
+              <ProductCardSkeleton layout="featured" key={index} />
             ))}
           </Box>
         ) : visibleProducts.length > 0 ? (

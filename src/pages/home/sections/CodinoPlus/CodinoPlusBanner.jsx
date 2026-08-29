@@ -30,7 +30,7 @@ function CodinoPlusBanner() {
               مشاهده دوره ها
               <ArrowOutward sx={{ rotate: "-90deg", fontSize: "20px" }} />
             </Button>
-            <Button component={Link} to="/subscription" color="secondary">
+            <Button component={Link} to="/" color="secondary">
               تهیه اشتراک پلاس
             </Button>
           </Box>

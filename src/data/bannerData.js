@@ -18,31 +18,31 @@ export const bannerData = [
     desktopImgSrc: teachers,
     mobileImgSrc: teachers_mobile,
     mobileText: "به جمع مدرسین کدینو بپیوندید",
-    path: "/join-us",
+    path: "/",
   },
   {
     desktopImgSrc: gem,
     mobileImgSrc: gem_mobile,
-    path: "/codino-gem",
+    path: "/",
   },
   {
     desktopImgSrc: plus,
     mobileImgSrc: plus_mobile,
-    path: "/subscription",
+    path: "/courses?plus=true",
   },
   {
     desktopImgSrc: payment,
     mobileImgSrc: payment_mobile,
-    path: "/courses",
+    path: "/courses?installment=true",
   },
   {
     desktopImgSrc: frontend,
     mobileImgSrc: frontend_mobile,
-    path: "/expert/front-end",
+    path: "course/frontend",
   },
   {
     desktopImgSrc: android,
     mobileImgSrc: android_mobile,
-    path: "/expert/android-with-kotlin-and-java",
+    path: "/course/android-with-kotlin-and-java",
   },
 ];

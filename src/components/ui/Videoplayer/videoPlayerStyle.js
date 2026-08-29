@@ -143,6 +143,7 @@ export const videoSpeedItem = {
   fontFamily: "sans-serif",
   fontWeight: 500,
   "&:hover": { bgcolor: "transparent" },
+  minHeight: 0,
 };
 
 export const volumeBox = {

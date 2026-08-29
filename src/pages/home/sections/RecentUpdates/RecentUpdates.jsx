@@ -52,9 +52,9 @@ function RecentUpdates() {
                     <ProductCardSkeleton />
                   </SwiperSlide>
                 ))
-              : products.map((item, i) => (
+              : products.slice(0, 8).map((item) => (
                   <SwiperSlide key={item.id}>
-                    <ProductCard co itemData={item} />
+                    <ProductCard itemData={item} />
                   </SwiperSlide>
                 ))}
           </Swiper>

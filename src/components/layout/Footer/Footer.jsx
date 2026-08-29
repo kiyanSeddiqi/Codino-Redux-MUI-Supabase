@@ -45,13 +45,13 @@ function Footer() {
             >
               <List disablePadding sx={footerNavList}>
                 <ListItem>
-                  <Link to="/mag">بلاگ</Link>
+                  <Link to="/blog">بلاگ</Link>
                 </ListItem>
                 <ListItem>
                   <Link to="/roadmap">مسیرهای یادگیری</Link>
                 </ListItem>
                 <ListItem>
-                  <Link to="/join-us">همکاری با ما</Link>
+                  <Link to="/">همکاری با ما</Link>
                 </ListItem>
                 <ListItem>
                   <Link to="/courses?filter=freeCourse">دوره های رایگان</Link>

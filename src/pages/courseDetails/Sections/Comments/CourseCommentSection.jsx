@@ -17,7 +17,7 @@ function CourseCommentSection({ product }) {
           </Typography>
           <Typography
             component="span"
-            variant="subtitle2"
+            variant="body2"
             sx={{ color: "text.secondary" }}
           >
             {courseCommentData.length} دیدگاه

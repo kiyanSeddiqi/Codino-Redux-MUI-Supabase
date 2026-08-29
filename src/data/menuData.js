@@ -37,15 +37,15 @@ export const mobileMenuData = [
     title: "مسیر های یادگیری",
     path: "/roadmap",
     children: [
-      { title: "مسیر یادگیری برنامه نویسی", path: "/" },
-      { title: "مسیر یادگیری فرانت اند", path: "/" },
-      { title: "مسیر یادگیری بک اند", path: "/" },
-      { title: "مسیر یادگیری موبایل", path: "/" },
+      { title: "مسیر یادگیری برنامه نویسی", path: "/roadmap/roadmap-detail" },
+      { title: "مسیر یادگیری فرانت اند", path: "/roadmap/roadmap-detail" },
+      { title: "مسیر یادگیری بک اند", path: "/roadmap/roadmap-detail" },
+      { title: "مسیر یادگیری موبایل", path: "/roadmap/roadmap-detail" },
     ],
   },
   {
     title: "همکاری با ما",
-    path: "/join-us",
+    path: "/",
   },
   {
     title: "درباره ما",

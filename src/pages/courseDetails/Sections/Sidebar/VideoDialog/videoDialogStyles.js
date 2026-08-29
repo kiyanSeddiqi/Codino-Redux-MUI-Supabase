@@ -11,7 +11,8 @@ export const videoContainer = {
     overflow: "hidden",
     maxWidth: {
       xs: "90%",
-      md: "50%",
+      md: "60%",
+      xl: "50%",
     },
     bgcolor: "background.default",
   },

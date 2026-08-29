@@ -79,6 +79,18 @@ export const filterListBox = {
   maxHeight: "300px",
   overflowY: "auto",
   overflowX: "hidden",
+  scrollbarWidth: "auto",
+  "&::-webkit-scrollbar": {
+    width: "6px",
+    mr: 1,
+  },
+  "&::-webkit-scrollbar-track": {
+    bgcolor: "menuItemBg",
+  },
+  "&::-webkit-scrollbar-thumb": {
+    bgcolor: "primary.main",
+    borderRadius: "10px",
+  },
 };
 
 export const filterOption = {
@@ -194,7 +206,8 @@ export const coursesCardCotainer = {
     md: "repeat(3, minmax(0, 1fr))",
     xl: "repeat(4, minmax(0, 1fr))",
   },
-  gap: 2.5,
+  columnGap: 2.5,
+  rowGap: 4,
   width: "100%",
 };
 

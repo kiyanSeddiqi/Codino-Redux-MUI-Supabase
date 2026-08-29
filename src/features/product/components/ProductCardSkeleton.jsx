@@ -1,40 +1,45 @@
 import Card from "@mui/material/Card";
-import { cardContainer, cardContent } from "../styles/productCardStyles";
+import {
+  cardContainer,
+  cardContent,
+  cardImgBox,
+  featuredCardContainer,
+  featuredCardImgBox,
+} from "../styles/productCardStyles";
 import { Box, CardContent, Divider, Skeleton } from "@mui/material";
 
-function ProductCardSkeleton() {
+function ProductCardSkeleton({ layout = "default" }) {
   return (
     <>
-      <Card sx={cardContainer}>
-        <Skeleton
-          variant="rectangular"
-          animation="wave"
-          sx={{
-            width: "100%",
-            height: "100%",
-            aspectRatio: "16 / 9",
-          }}
-        />
+      <Card
+        sx={[layout === "featured" ? featuredCardContainer : cardContainer]}
+      >
+        <Box sx={[layout === "featured" ? featuredCardImgBox : cardImgBox]}>
+          <Skeleton
+            variant="rounded"
+            animation="wave"
+            sx={{
+              width: "100%",
+              height: "100%",
+              aspectRatio: "16 / 9",
+            }}
+          />
+        </Box>
 
         <CardContent sx={cardContent}>
-          {/* level / status / certificate */}
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-            <Box sx={{ display: "flex", gap: 1 }}>
-              <Skeleton variant="rounded" width={65} height={26} />
-              <Skeleton variant="rounded" width={26} height={26} />
-            </Box>
-
-            <Skeleton variant="circular" width={24} height={24} />
-          </Box>
-
-          {/* title */}
           <Box>
-            <Skeleton variant="text" width="90%" height={30} />
+            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+              <Box sx={{ display: "flex", gap: 1 }}>
+                <Skeleton variant="rounded" width={65} height={26} />
+                <Skeleton variant="rounded" width={26} height={26} />
+              </Box>
+            </Box>
+            <Box>
+              <Skeleton variant="text" width="90%" />
+            </Box>
           </Box>
 
           <Divider />
-
-          {/* duration */}
           <Box
             sx={{
               display: "flex",
@@ -42,13 +47,10 @@ function ProductCardSkeleton() {
               gap: "10px",
             }}
           >
-            <Skeleton variant="text" width="45%" height={24} />
-            <Skeleton variant="text" width="60%" height={24} />
+            <Skeleton variant="text" width="45%" />
+            <Skeleton variant="text" width="60%" />
           </Box>
-
           <Divider />
-
-          {/* price / arrow */}
           <Box
             sx={{
               display: "flex",
@@ -56,7 +58,7 @@ function ProductCardSkeleton() {
               alignItems: "center",
             }}
           >
-            <Skeleton variant="text" width={100} height={30} />
+            <Skeleton variant="text" width={100} />
             <Skeleton variant="circular" width={24} height={24} />
           </Box>
         </CardContent>

@@ -40,7 +40,7 @@ function CommentList({ courseTeacher }) {
               </Typography>
             </Box>
             <Typography
-              variant="subtitle2"
+              variant="body2"
               sx={{ whiteSpace: "pre-line", lineHeight: "32px" }}
             >
               {item.content}
@@ -49,7 +49,7 @@ function CommentList({ courseTeacher }) {
               <Box sx={commentReplyBox}>
                 <Box sx={replyInnerBox}>
                   <Box sx={replyHeaderBox}>
-                    <Box sx={{ ...flexBox(1), flexWrap: "wrap" }}>
+                    <Box sx={{ ...flexBox(2), flexWrap: "wrap" }}>
                       <Box sx={flexBox(1)}>
                         <Avatar
                           src={item.reply.avatar}
@@ -65,22 +65,26 @@ function CommentList({ courseTeacher }) {
                           {courseTeacher}
                         </Typography>
                       </Box>
-                      <Chip
-                        color="normal"
-                        icon={<SvgIcon name="support" size={19} />}
-                        label="مدرس دوره"
-                      />
+                      <Box sx={flexBox(1)}>
+                        <Chip
+                          color="normal"
+                          icon={<SvgIcon name="support" size={19} />}
+                          label="مدرس دوره"
+                        />
+                        <Circle
+                          sx={{ fontSize: "8px", color: "primary.main" }}
+                        />
+                        <Typography
+                          component="span"
+                          sx={{
+                            color: "text.secondary",
+                            fontSize: { xs: "12px", md: "14px" },
+                          }}
+                        >
+                          {formatJalaliDate(item.reply.created_at)}
+                        </Typography>
+                      </Box>
                     </Box>
-                    <Circle sx={{ fontSize: "8px", color: "primary.main" }} />
-                    <Typography
-                      component="span"
-                      sx={{
-                        color: "text.secondary",
-                        fontSize: { xs: "12px", md: "14px" },
-                      }}
-                    >
-                      {formatJalaliDate(item.reply.created_at)}
-                    </Typography>
                   </Box>
                   <Typography
                     variant="subtitle2"

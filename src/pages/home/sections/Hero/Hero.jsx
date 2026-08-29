@@ -26,23 +26,24 @@ import {
   textPrimary,
   textSecondary,
 } from "../../../../styles/globalStyles";
-import { ArrowOutward, ChevronLeft, ChevronRight } from "@mui/icons-material";
+import { ArrowOutward } from "@mui/icons-material";
 import SvgIcon from "../../../../components/ui/SvgIcon/SvgIcon";
 import SliderNavBtn from "../../../../components/ui/SliderNavBtn/SliderNavBtn";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
-import {
-  hero_b_1,
-  hero_b_2,
-  hero_b_3,
-  hero_b_4,
-} from "../../../../data/imgSource";
+// import { hero_1, hero_2, hero_3, hero_4 } from "../../../../data/imgSource";
 
 import "swiper/css";
 import "swiper/css/autoplay";
 
-const heroImgData = [hero_b_1, hero_b_2, hero_b_3, hero_b_4];
+const heroImgData = [
+  "/hero_1.webp",
+  "/hero_2.webp",
+  "/hero_3.webp",
+  "/hero_4.webp",
+];
+
 function Hero() {
   return (
     <>

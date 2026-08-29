@@ -34,7 +34,7 @@ function CourseHeader({ product }) {
                 icon={<SvgIcon name="credit" size={24} />}
               />
             )}
-            {product.hasCertificate && isDesktop && (
+            {product.has_certificate && isDesktop && (
               <Chip
                 variant="outlined"
                 label="گواهینامه پایان دوره"

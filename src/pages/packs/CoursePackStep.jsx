@@ -68,7 +68,8 @@ function CoursePackStep({ itemData, index }) {
                 sx={{ width: "max-content" }}
               />
               <Typography
-                variant="subtitle2"
+                variant="body2"
+                component="h3"
                 sx={{
                   overflow: "hidden",
                   whiteSpace: "nowrap",
@@ -146,6 +147,7 @@ function CoursePackStep({ itemData, index }) {
 
                 <IconButton
                   disableRipple
+                  aria-label="لینک نمایش جزییات"
                   sx={{
                     color: "primary.main",
                     bgcolor: "menuItemBg",

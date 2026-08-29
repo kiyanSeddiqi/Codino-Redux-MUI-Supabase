@@ -1,3 +1,4 @@
+import { he } from "zod/v4/locales";
 import { flexBox, flexCol } from "../../../../styles/globalStyles";
 
 export const sidebarContainer = {
@@ -29,9 +30,10 @@ export const sidebarImgBox = {
   bgcolor: "divider",
   width: "100%",
   placeItems: "center",
-  aspectRatio: "1 / 1",
+  aspectRatio: 1,
   overflow: "hidden",
   cursor: "pointer",
+  height: "auto",
 };
 
 export const sidebarImg = {

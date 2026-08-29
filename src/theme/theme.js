@@ -153,11 +153,11 @@ const getTheme = (mode) => {
         styleOverrides: {
           tooltip: {
             fontSize: "14px",
-            backgroundColor: "divider",
+            backgroundColor: "background.default",
             fontWeight: 400,
           },
           arrow: {
-            color: "divider",
+            color: "background.default",
           },
         },
       },

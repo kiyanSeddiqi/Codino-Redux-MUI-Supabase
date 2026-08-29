@@ -28,7 +28,7 @@ function CourseLessons({ lessonData }) {
                 color="warning"
                 sx={{
                   lineHeight: "16px",
-                  display: { xs: "none", md: "block" },
+                  display: { xs: "none", sm: "block" },
                 }}
               />
             ) : (

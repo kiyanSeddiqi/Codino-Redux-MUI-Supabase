@@ -4,7 +4,6 @@ import {
   Chip,
   CircularProgress,
   Divider,
-  IconButton,
   Tooltip,
   Typography,
 } from "@mui/material";
@@ -13,7 +12,6 @@ import {
   sidebarContainer,
   sidebarGemBox,
   sidebarHeaderBox,
-  sidebarHeaderTitle,
   sidebarImg,
   sidebarImgBox,
   sidebarinfoBox,
@@ -36,6 +34,7 @@ import useGetUserCourse from "../../../../features/product/hooks/useGetUserCours
 import { useNavigate } from "react-router-dom";
 import useWishlist from "../../../../features/product/hooks/useWishlist.js";
 import useCart from "../../../../features/cart/hooks/useCart";
+import { courseHeaderTitle } from "../Header/courseHeaderStyles.js";
 
 const levelLabels = {
   beginner: "مقدماتی",
@@ -98,7 +97,7 @@ function CourseSidebar({ product }) {
     <>
       <Box sx={sidebarContainer}>
         <Box sx={sidebarHeaderBox}>
-          <Typography component="h1" sx={sidebarHeaderTitle}>
+          <Typography component="h1" sx={courseHeaderTitle}>
             {product.title}
           </Typography>
           <Box sx={{ ...flexBetween(2, "row"), flexWrap: "wrap" }}>
@@ -111,7 +110,7 @@ function CourseSidebar({ product }) {
                 />
               ) : (
                 <Chip
-                  color="info"
+                  color="normal"
                   label="دوره درحال برگزاری"
                   icon={<SvgIcon name="refresh" size={24} />}
                 />
@@ -123,7 +122,7 @@ function CourseSidebar({ product }) {
                   icon={<SvgIcon name="credit" size={24} />}
                 />
               )}
-              {product.hasCertificate && (
+              {product.has_certificate && (
                 <Chip
                   variant="outlined"
                   label="گواهینامه پایان دوره"

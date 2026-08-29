@@ -15,7 +15,7 @@ function CourseChapterSection({ currentProductId }) {
     <>
       <Box id="chapter" component="section" sx={flexCol(2.5)}>
         <Box sx={{ ...flexBox(2), flexWrap: "wrap" }}>
-          <Typography component="h5" sx={chapterSectionTitle}>
+          <Typography component="h2" sx={chapterSectionTitle}>
             سرفصل های دوره
           </Typography>
           <Box sx={flexBox(2)}>

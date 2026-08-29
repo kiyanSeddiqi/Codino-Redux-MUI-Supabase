@@ -15,7 +15,7 @@ function Logo() {
           component="img"
           sx={logo}
           src={isDark ? darkLogo : lightLogo}
-          alt="نشان تجاری"
+          alt="لوگوی کدینو"
         />
       </Link>
     </>

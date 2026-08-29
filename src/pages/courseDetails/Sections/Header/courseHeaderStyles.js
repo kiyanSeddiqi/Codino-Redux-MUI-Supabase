@@ -1,5 +1,3 @@
-import { flexBox } from "../../../../styles/globalStyles";
-
 export const courseHeaderBox = {
   display: {
     xs: "none",
@@ -10,9 +8,7 @@ export const courseHeaderBox = {
 };
 
 export const courseHeaderTitle = {
-  fontSize: {
-    xs: "20px",
-    lg: "24px",
-  },
+  fontSize: "clamp(18px,2.5vw,24px)",
   fontWeight: 600,
+  minHeight: "30px",
 };

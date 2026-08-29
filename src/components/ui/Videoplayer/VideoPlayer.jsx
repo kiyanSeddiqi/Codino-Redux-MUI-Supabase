@@ -160,7 +160,11 @@ function VideoPlayer({ videoSrc, videoTitle = "" }) {
           onMouseMove={() => setShowFullscreenControls(true)}
         >
           <Box sx={videoBackdrop(isPlaying)}>
-            <Button onClick={handlePlayPause} sx={videoPlayBtn(isPlaying)}>
+            <Button
+              onClick={handlePlayPause}
+              sx={videoPlayBtn(isPlaying)}
+              aria-label="دکمه پخش ویدئو"
+            >
               {isPlaying ? (
                 <SvgIcon name="pauseVideoFilled" color="#fff" size={120} />
               ) : (
@@ -194,7 +198,7 @@ function VideoPlayer({ videoSrc, videoTitle = "" }) {
                 spacing={0}
                 sx={{
                   ...videoTimeSliderBox,
-                  display: { xs: "flex", lg: "none" },
+                  display: { xs: "flex", md: "none" },
                 }}
               >
                 <Typography component="span" sx={videoTimeSliderNum}>
@@ -288,7 +292,7 @@ function VideoPlayer({ videoSrc, videoTitle = "" }) {
                   spacing={0}
                   sx={{
                     ...videoTimeSliderBox,
-                    display: { xs: "none", lg: "flex" },
+                    display: { xs: "none", md: "flex" },
                   }}
                 >
                   <Typography component="span" sx={videoTimeSliderNum}>
