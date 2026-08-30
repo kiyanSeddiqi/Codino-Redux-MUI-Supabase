@@ -10,6 +10,7 @@ import {
   Paper,
 } from "@mui/material";
 import {
+  categoryMainMenuItem,
   categoryMainMenuList,
   categoryMenuBox,
   categoryMenuList,
@@ -81,16 +82,7 @@ function CategoryMenu() {
                   key={item.title}
                   selected={activeCategory.title === item.title}
                   onClick={() => setActiveCategory(item)}
-                  sx={{
-                    gap: "4px",
-                    borderRadius: "6px",
-                    py: "4px",
-                    color: "text.main",
-                    "&.Mui-selected": {
-                      color: "primary.main",
-                    },
-                    transition: "0.2s ease",
-                  }}
+                  sx={categoryMainMenuItem}
                 >
                   <ListItemIcon sx={{ color: "text.primary" }}>
                     <SvgIcon name={item.iconName} size={28} />

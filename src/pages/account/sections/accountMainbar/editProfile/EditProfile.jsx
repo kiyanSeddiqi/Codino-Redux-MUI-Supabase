@@ -6,11 +6,7 @@ import {
   textarea,
 } from "./editProfileStyles";
 import { default_avatar } from "../../../../../data/imgSource";
-import {
-  accountFormLabel,
-  formTextField,
-  userImg,
-} from "../../../accountStyles";
+import { accountFormLabel, userImg } from "../../../accountStyles";
 import SvgIcon from "../../../../../components/ui/SvgIcon/SvgIcon";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,14 +20,14 @@ import {
 } from "../../../../../features/auth/services/profileService";
 import { updateUser } from "../../../../../features/auth/redux/authSlice";
 import { getErrorMessage } from "../../../../../utils/getErrorMessage";
-import { supabase } from "../../../../../lib/supabase";
 
 function EditProfile() {
   const [avatarFile, setAvatarFile] = useState(null);
+  const [avatarPreview, setAvatarPreview] = useState(null);
 
   const user = useSelector((state) => state.auth.user);
-
   const dispatch = useDispatch();
+
   const { success, error } = useSnackbar();
 
   const {
@@ -65,6 +61,9 @@ function EditProfile() {
 
       dispatch(updateUser({ ...user, ...updatedProfile }));
 
+      setAvatarFile(null);
+      setAvatarPreview(null);
+
       success("اطلاعات با موفقیت ویرایش شد");
     } catch (err) {
       console.log(err.message);
@@ -86,6 +85,14 @@ function EditProfile() {
       });
     }
   }, [user, reset]);
+
+  useEffect(() => {
+    return () => {
+      if (avatarPreview) {
+        URL.revokeObjectURL(avatarPreview);
+      }
+    };
+  }, [avatarPreview]);
 
   return (
     <>
@@ -109,13 +116,13 @@ function EditProfile() {
               <Box
                 component="img"
                 alt="پروفایل کاربر"
-                src={user?.avatar_url || default_avatar}
+                src={avatarPreview || user?.avatar_url || default_avatar}
                 sx={userImg}
               ></Box>
             </Box>
 
             <Button variant="outlined" component="label">
-              آپلود تصویر پروفایل
+              {avatarFile ? "تغییر تصویر" : "آپلود تصویر پروفایل"}
               <SvgIcon name="upload" size={24} />
               <input
                 type="file"
@@ -123,7 +130,10 @@ function EditProfile() {
                 accept="image/*"
                 id="profile-upload"
                 onChange={(e) => {
-                  setAvatarFile(e.target.files[0] || null);
+                  const file = e.target.files?.[0];
+                  if (!file) return;
+                  setAvatarFile(file);
+                  setAvatarPreview(URL.createObjectURL(file));
                 }}
               />
             </Button>

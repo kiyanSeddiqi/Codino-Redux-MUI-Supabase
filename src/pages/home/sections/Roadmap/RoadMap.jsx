@@ -16,7 +16,7 @@ import "swiper/css/navigation";
 function RoadMap() {
   return (
     <>
-      <Box sx={sectionStyle} component="section" className="roadMap-section">
+      <Box sx={sectionStyle} component="section" className="roadMap">
         <Box sx={{ ...flexBetween("row") }}>
           <Typography component="h2" sx={sectionTitle}>
             مسیرهای یادگیری
@@ -30,8 +30,8 @@ function RoadMap() {
             slidesPerView={3}
             speed={1000}
             navigation={{
-              prevEl: ".roadMap-section .swiper-btn-prev",
-              nextEl: ".roadMap-section .swiper-btn-next",
+              prevEl: ".roadMap .swiper-btn-prev",
+              nextEl: ".roadMap .swiper-btn-next",
             }}
             loop={true}
             breakpoints={{
@@ -40,11 +40,14 @@ function RoadMap() {
               1024: { slidesPerView: 3, spaceBetween: 16 },
             }}
           >
-            {roadMapData.map((item, i) => (
-              <SwiperSlide key={item.id}>
-                <RoadMapCard itemData={item} />
-              </SwiperSlide>
-            ))}
+            {roadMapData.map((item) => {
+              if (!item.steps) return;
+              return (
+                <SwiperSlide key={item.id}>
+                  <RoadMapCard itemData={item} />
+                </SwiperSlide>
+              );
+            })}
           </Swiper>
         </Box>
       </Box>

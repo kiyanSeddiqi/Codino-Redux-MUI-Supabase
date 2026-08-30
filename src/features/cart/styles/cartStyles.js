@@ -1,6 +1,4 @@
-import { whitespace } from "stylis";
-import { flexBox, flexCenter, flexCol } from "../../../styles/globalStyles";
-import { minLength } from "zod";
+import { flexCol } from "../../../styles/globalStyles";
 
 export const cartContainer = {
   ...flexCol(5),
@@ -58,7 +56,7 @@ export const cartItemTextContainer = {
 
 export const discountBox = {
   ...flexCol(2.5),
-  p: 2.5,
+  p: { xs: 1.5, sm: 2.5 },
   border: 1,
   borderRadius: "24px",
   borderColor: "divider",
@@ -99,7 +97,10 @@ export const cartSidebar = {
   border: 1,
   borderColor: "divider",
   borderRadius: "16px",
-  p: 2.5,
+  p: {
+    xs: 1.5,
+    sm: 2.5,
+  },
 };
 
 export const paymentMethodToggle = {
@@ -207,4 +208,13 @@ export const removeDialogStyle = {
     },
     minHeight: "150px",
   },
+};
+
+export const walletAddress = {
+  color: "text.secondary",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  whiteSpace: "nowrap",
+  width: "100%",
+  direction: "ltr",
 };

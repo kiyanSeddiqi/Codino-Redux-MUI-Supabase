@@ -1,9 +1,4 @@
-import {
-  flexCenter,
-  flexCol,
-  sectionStyle,
-} from "../../../../styles/globalStyles";
-import { position } from "stylis";
+import { flexCol, sectionStyle } from "../../../../styles/globalStyles";
 
 export const heroContainer = {
   ...sectionStyle,

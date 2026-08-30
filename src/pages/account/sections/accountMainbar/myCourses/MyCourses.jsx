@@ -10,9 +10,8 @@ import {
   flexCol,
   sectionTitle,
 } from "../../../../../styles/globalStyles";
-import { productData } from "../../../../../data/productData";
 import MyCoursesCard from "./MyCoursesCard";
-import { use, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import SvgIcon from "../../../../../components/ui/SvgIcon/SvgIcon";
 import useMyCourses from "../../../../../features/product/hooks/useMyCourses";
 import MyCoursesCardSkeleton from "./MyCoursesCardSkeleton";
@@ -49,7 +48,12 @@ function MyCourses() {
   return (
     <>
       <Box sx={myCoursesContainer}>
-        <Box sx={{ ...flexBox({ xs: 2, lg: 4 }), flexWrap: "wrap" }}>
+        <Box
+          sx={{
+            ...flexBox({ xs: 2, lg: 4 }),
+            flexWrap: "wrap",
+          }}
+        >
           <Typography sx={{ ...sectionTitle, flexShrink: 0 }}>
             دوره های من
           </Typography>

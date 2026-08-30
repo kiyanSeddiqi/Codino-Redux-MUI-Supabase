@@ -16,13 +16,12 @@ import ChangePassword from "../pages/account/sections/accountMainbar/changePassw
 import Consultations from "../pages/account/sections/accountMainbar/consultations/Consultations";
 import Ticket from "../pages/account/sections/accountMainbar/ticket/Ticket";
 import MyFactors from "../pages/account/sections/accountMainbar/myFactors/MyFactors";
-import Referral from "../pages/account/sections/accountMainbar/referral/Referral";
 import GoogleCallback from "../pages/googleCallback/GoogelCallback";
 import WishList from "../pages/account/sections/accountMainbar/wishList/WishList";
 import Cart from "../features/cart/components/Cart";
 import Aboutus from "../pages/aboutUs/Aboutus";
 import BlogPage from "../pages/blog/BlogPage";
-import RoadmapPage from "../pages/roadmap/RoadMapPage";
+import RoadmapPage from "../pages/roadmap/RoadmapPage";
 import RoadmapDetail from "../pages/roadmap/RoadmapDetail";
 import CoursePacks from "../pages/packs/CoursePacks";
 import CoursePackDetail from "../pages/packs/CoursePackDetail";
@@ -135,10 +134,6 @@ export const router = createBrowserRouter([
           {
             path: "wish-list",
             element: <WishList />,
-          },
-          {
-            path: "referral",
-            element: <Referral />,
           },
         ],
       },

@@ -1,11 +1,5 @@
 import { Search } from "@mui/icons-material";
-import {
-  Box,
-  ClickAwayListener,
-  InputAdornment,
-  InputBase,
-  TextField,
-} from "@mui/material";
+import { Box, ClickAwayListener, InputBase } from "@mui/material";
 
 import SearchDropdown from "./SearchDropdown";
 import { useMemo, useState } from "react";

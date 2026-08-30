@@ -13,6 +13,7 @@ export const blogRightContainer = {
     xs: "none",
     lg: "flex",
   },
+  "&:focus": { outline: "none" },
 };
 
 export const blogRightImgBox = {
@@ -58,6 +59,7 @@ export const blogLeftCardBox = {
     sm: "66%",
     lg: "100%",
   },
+  "&:focus": { outline: "none" },
 };
 
 export const blogLeftTextBox = {

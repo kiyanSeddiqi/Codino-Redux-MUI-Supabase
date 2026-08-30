@@ -1,5 +1,3 @@
-import { Box, Typography } from "@mui/material";
-import SvgIcon from "../../components/ui/SvgIcon/SvgIcon";
 import Hero from "./Sections/Hero/Hero";
 import CourseCategory from "./Sections/Category/CourseCategory";
 import RecentUpdates from "./Sections/RecentUpdates/RecentUpdates";

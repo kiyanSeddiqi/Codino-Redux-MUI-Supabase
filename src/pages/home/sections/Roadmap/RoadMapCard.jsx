@@ -55,7 +55,11 @@ function RoadMapCard({ itemData }) {
           <Box
             component={Link}
             to={itemData.slug}
-            sx={{ ...flexBetween(), color: "primary.main" }}
+            sx={{
+              ...flexBetween(),
+              color: "primary.main",
+              ":focus": { outline: "none" },
+            }}
           >
             <Box sx={flexBox(1)}>
               <SvgIcon name="path" size={24} />

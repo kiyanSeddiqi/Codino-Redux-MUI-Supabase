@@ -1,4 +1,4 @@
-import { Box, Chip, darken, IconButton, Typography } from "@mui/material";
+import { Box, Chip, IconButton, Typography } from "@mui/material";
 import {
   cartItemBox,
   cartItemImg,

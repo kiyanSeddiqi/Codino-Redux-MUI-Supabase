@@ -1,4 +1,3 @@
-import CodinoPlusBanner from "./CodinoPlusBanner";
 import SliderNavBtn from "../../../../components/ui/SliderNavBtn/SliderNavBtn";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";

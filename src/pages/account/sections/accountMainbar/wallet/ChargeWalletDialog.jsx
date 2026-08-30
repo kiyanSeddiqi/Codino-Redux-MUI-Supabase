@@ -5,19 +5,12 @@ import {
   DialogTitle,
   Divider,
   IconButton,
-  InputBase,
   InputLabel,
   TextField,
   Typography,
   useTheme,
 } from "@mui/material";
-import {
-  chargeDialog,
-  chargeDialogInput,
-  chargeDialogLabel,
-  chargeDialogTitle,
-  chargeErrorLabel,
-} from "./walletStyles";
+import { chargeDialog, chargeDialogTitle } from "./walletStyles";
 import { flexBetween, flexCol } from "../../../../../styles/globalStyles";
 import { Close } from "@mui/icons-material";
 import { useForm } from "react-hook-form";
@@ -28,7 +21,6 @@ import { numberToWords } from "@persian-tools/persian-tools";
 import { accountFormLabel, formTextField } from "../../../accountStyles";
 
 function ChargeWalletDialog({ open, onShow }) {
-  const theme = useTheme();
   const { success } = useSnackbar();
 
   const walletSchema = z.object({
@@ -78,7 +70,7 @@ function ChargeWalletDialog({ open, onShow }) {
         <Box>
           <Box sx={flexBetween("row")}>
             <DialogTitle sx={chargeDialogTitle}>شارژ کیف پول</DialogTitle>
-            <IconButton aria-label="close" onClick={handleClose}>
+            <IconButton disableRipple aria-label="close" onClick={handleClose}>
               <Close />
             </IconButton>
           </Box>

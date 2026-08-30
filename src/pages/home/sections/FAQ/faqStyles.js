@@ -9,19 +9,20 @@ export const faqAccordion = {
   bgcolor: "background.default",
   boxShadow: "none",
 
+  "&:before": {
+    opacity: 1,
+    display: "block",
+    borderTop: "1px solid rgba(0, 0, 0, 0.12)",
+  },
+
   "&.Mui-expanded": {
     margin: 0,
     zIndex: 0,
-  },
 
-  "&::before": {
-    opacity: 1,
-  },
-
-  "&.Mui-expanded::before": {
-    opacity: 1,
-    "&:not(:first-child)": {
-      display: "block",
+    "&:not(:first-of-type):before": {
+      opacity: "1 !important",
+      display: "block !important",
+      borderTop: "1px solid rgba(0, 0, 0, 0.12) !important",
     },
   },
 

@@ -1,12 +1,9 @@
 import { Box, Drawer } from "@mui/material";
-import { useLogout } from "../../../../features/auth/hooks/useLogout";
-import { accountMobileMenu, mobileMenuBox } from "../styles/navbarStyles";
+import { accountMobileMenu } from "../styles/navbarStyles";
 import GemSubscribe from "../../../../pages/account/sections/accountSidebar/GemSubscribe";
 import AccountSidebarMenu from "../../../../pages/account/sections/accountSidebar/AccountSidebarMenu";
 
 function AccountDrawer({ isOpen, onShow }) {
-  const { logoutUser } = useLogout();
-
   return (
     <>
       <Drawer

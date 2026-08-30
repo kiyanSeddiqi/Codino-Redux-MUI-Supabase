@@ -16,6 +16,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ArrowOutward, PermIdentity } from "@mui/icons-material";
 import {
   actionMenuStyle,
+  authActionFullName,
   authActionLogoutBtn,
   authActionMenuItem,
 } from "../../styles/navbarStyles";
@@ -61,19 +62,7 @@ function AuthAction() {
       >
         <PermIdentity sx={{ fontSize: { xs: "20px", md: "24px" } }} />
         {fullName && (
-          <Typography
-            variant="subtitle2"
-            sx={{
-              overflow: "hidden",
-              display: { xs: "none", sm: "-webkit-box" },
-              WebkitBoxOrient: "vertical",
-              WebkitLineClamp: 1,
-              textAlign: isPersianName ? "right" : "left",
-              direction: isPersianName ? "rtl" : "ltr",
-              fontFamily: isPersianName ? "inherit" : "sans-serif",
-              textTransform: isPersianName ? "none" : "lowercase",
-            }}
-          >
+          <Typography variant="body2" sx={authActionFullName(isPersianName)}>
             {fullName}
           </Typography>
         )}
@@ -109,12 +98,12 @@ function AuthAction() {
         >
           <Box sx={flexCol(0.5)}>
             {fullName && (
-              <Typography variant="subtitle2" sx={{ lineHeight: "20px" }}>
+              <Typography variant="body2" sx={{ lineHeight: "20px" }}>
                 {fullName}
               </Typography>
             )}
             <Typography
-              variant="caption"
+              variant="body2"
               sx={{ color: "text.secondary", lineHeight: "16px" }}
             >
               {mobile}

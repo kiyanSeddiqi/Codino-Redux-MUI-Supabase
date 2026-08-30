@@ -1,4 +1,4 @@
-import { flexBetween, flexCol } from "../../../../styles/globalStyles";
+import { flexCol } from "../../../../styles/globalStyles";
 
 export const appBar = {
   position: "sticky",
@@ -47,7 +47,6 @@ export const themeBtn = {
   padding: "5px",
   cursor: "pointer",
   bgcolor: "divider",
-  border: 0,
 };
 
 export const themeIndicator = (theme) => ({
@@ -86,6 +85,17 @@ export const categoryMainMenuList = {
   overflowY: "auto",
   scrollbarWidth: "none",
   gap: "12px",
+};
+
+export const categoryMainMenuItem = {
+  gap: "4px",
+  borderRadius: "6px",
+  py: "4px",
+  color: "text.main",
+  "&.Mui-selected": {
+    color: "primary.main",
+  },
+  transition: "0.2s ease",
 };
 
 // ====== NAVBAR MENU ======
@@ -186,6 +196,18 @@ export const actionMenuStyle = {
   },
 };
 
+export const authActionFullName = (isPersianName) => ({
+  overflow: "hidden",
+  display: { xs: "none", sm: "-webkit-box" },
+  fontWeight: 600,
+  WebkitBoxOrient: "vertical",
+  WebkitLineClamp: 1,
+  textAlign: isPersianName ? "right" : "left",
+  direction: isPersianName ? "rtl" : "ltr",
+  fontFamily: isPersianName ? "inherit" : "sans-serif",
+  textTransform: isPersianName ? "none" : "lowercase",
+});
+
 export const authActionMenuItem = {
   gap: 2,
   borderRadius: "8px",
@@ -230,6 +252,14 @@ export const cartActionImgBox = {
   flexShrink: 0,
 };
 
+export const cartActionImg = {
+  width: "100%",
+  height: "100%",
+  display: "block",
+  objectFit: "cover",
+  borderRadius: "6px",
+};
+
 export const authActionLogoutBtn = (theme) => ({
   gap: 2,
   borderRadius: "8px",
@@ -257,4 +287,30 @@ export const cartActionTitle = {
   overflow: "hidden",
   whiteSpace: "nowrap",
   textOverflow: "ellipsis",
+};
+
+export const cartActionMenu = {
+  ...flexCol(2),
+  maxHeight: "350px",
+  overflowY: "auto",
+  scrollbarWidth: "auto",
+  "&::-webkit-scrollbar": {
+    width: "6px",
+    mr: 1,
+  },
+  "&::-webkit-scrollbar-track": {
+    bgcolor: "menuItemBg",
+  },
+  "&::-webkit-scrollbar-thumb": {
+    bgcolor: "primary.main",
+    borderRadius: "10px",
+  },
+};
+
+export const deleteIcon = {
+  borderRadius: "6px",
+  color: "error.main",
+  bgcolor: "badgeWarning.light",
+  "&:hover": { bgcolor: "badgeWarning.light" },
+  ml: 1,
 };

@@ -69,7 +69,6 @@ export const cardTitle = {
 
 export const featuredContainer = {
   display: "flex",
-  // flexWrap: "wrap",
   alignItems: "center",
   width: "100%",
   flexDirection: {
@@ -122,4 +121,5 @@ export const featuredCardImgBox = (theme) => ({
   aspectRatio: "1 / 1",
   overflow: "hidden",
   borderRadius: "20px",
+  "&:focus": { outline: "none" },
 });

@@ -12,16 +12,18 @@ import { useId, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   actionMenuStyle,
+  cartActionImg,
   cartActionImgBox,
+  cartActionMenu,
   cartActionMenuItem,
   cartActionTitle,
+  deleteIcon,
 } from "../../styles/navbarStyles";
 import {
   flexBetween,
   flexBox,
   flexCol,
 } from "../../../../../styles/globalStyles";
-import { productData } from "../../../../../data/productData";
 import { addComma } from "../../../../../utils/helpers";
 import useCart from "../../../../../features/cart/hooks/useCart";
 import useProducts from "../../../../../features/product/hooks/useProducts";
@@ -102,25 +104,7 @@ function CartAction() {
             }}
           >
             <Typography component="strong">سبد خرید</Typography>
-            <Box
-              sx={{
-                ...flexCol(2),
-                maxHeight: "350px",
-                overflowY: "auto",
-                scrollbarWidth: "auto",
-                "&::-webkit-scrollbar": {
-                  width: "6px",
-                  mr: 1,
-                },
-                "&::-webkit-scrollbar-track": {
-                  bgcolor: "menuItemBg",
-                },
-                "&::-webkit-scrollbar-thumb": {
-                  bgcolor: "primary.main",
-                  borderRadius: "10px",
-                },
-              }}
-            >
+            <Box sx={cartActionMenu}>
               {isLoading
                 ? Array.from({ length: 2 }).map((_, i) => (
                     <CartActionSkeleton key={i} />
@@ -142,13 +126,7 @@ function CartAction() {
                             component="img"
                             alt="تصویر محصول"
                             src={item.imageUrl}
-                            sx={{
-                              width: "100%",
-                              height: "100%",
-                              display: "block",
-                              objectFit: "cover",
-                              borderRadius: "6px",
-                            }}
+                            sx={cartActionImg}
                           />
                         </Box>
                         <Typography sx={cartActionTitle}>
@@ -174,13 +152,7 @@ function CartAction() {
                         <IconButton
                           disableRipple
                           onClick={() => removeCartItemHandler(item.id)}
-                          sx={{
-                            borderRadius: "6px",
-                            color: "error.main",
-                            bgcolor: "badgeWarning.light",
-                            "&:hover": { bgcolor: "badgeWarning.light" },
-                            ml: 1,
-                          }}
+                          sx={deleteIcon}
                         >
                           <Delete sx={{ fontSize: "20px" }} />
                         </IconButton>

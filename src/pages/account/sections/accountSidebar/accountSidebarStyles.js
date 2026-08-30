@@ -1,5 +1,3 @@
-import { red } from "@mui/material/colors";
-
 export const gemSubscribeBox = {
   p: 2,
   borderRadius: "12px",

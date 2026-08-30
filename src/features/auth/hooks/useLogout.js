@@ -1,6 +1,5 @@
 import { useSnackbar } from "../../../hooks/useSnackbar";
 import { signOut } from "../services/authServices";
-import { logout } from "../redux/authSlice";
 import { getErrorMessage } from "../../../utils/getErrorMessage";
 
 export function useLogout() {

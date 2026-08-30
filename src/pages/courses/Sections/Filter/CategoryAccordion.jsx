@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useId, useMemo, useState } from "react";
-import { flexBetween, flexCol } from "../../../../styles/globalStyles";
+import { flexCol } from "../../../../styles/globalStyles";
 import {
   filterAccordion,
   filterAccordionTitle,

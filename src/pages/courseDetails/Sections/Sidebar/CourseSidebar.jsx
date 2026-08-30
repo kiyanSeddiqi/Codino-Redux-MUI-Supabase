@@ -16,7 +16,6 @@ import {
   sidebarImgBox,
   sidebarinfoBox,
 } from "./sideBarStyles";
-import { productsImgs } from "../../../../data/productsImages";
 import SvgIcon from "../../../../components/ui/SvgIcon/SvgIcon";
 import { flexBetween, flexBox, flexCol } from "../../../../styles/globalStyles";
 import { addComma } from "../../../../utils/helpers";
@@ -219,7 +218,7 @@ function CourseSidebar({ product }) {
                   lineHeight: "32px",
                 }}
               >
-                با خرید اشتراک کدیاد پلاس، محتوای این دوره و ده‌ها دوره دیگر را
+                با خرید اشتراک کدینو پلاس، محتوای این دوره و ده‌ها دوره دیگر را
                 به صورت رایگان دریافت می‌کنید!
               </Typography>
               <Button variant="outlined">
@@ -347,7 +346,7 @@ function CourseSidebar({ product }) {
                     component="strong"
                     sx={{ fontSize: "18px", color: "primary.main" }}
                   >
-                    4490
+                    4500
                   </Typography>
                   <SvgIcon name="gem" size={24} />
                 </Box>

@@ -1,4 +1,4 @@
-import { Box, Button, ButtonGroup, Divider } from "@mui/material";
+import { Button, ButtonGroup, Divider } from "@mui/material";
 
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import { sliderNavBtn } from "./sliderNavBtnStyles";

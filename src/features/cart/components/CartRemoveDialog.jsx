@@ -29,7 +29,7 @@ function CartRemoveDialog({ open, onShow, onRemoveItem }) {
             >
               <Delete
                 sx={{
-                  fontSize: { xs: "30px", md: "40px", lg: "46px" },
+                  fontSize: "clamp(30px,2.5vw,46px)",
                   color: "error.main",
                   display: "block",
                 }}
@@ -37,12 +37,8 @@ function CartRemoveDialog({ open, onShow, onRemoveItem }) {
             </Box>
             <Typography
               sx={{
-                fontSize: {
-                  xl: "20px",
-                  md: "18px",
-                  xs: "16px",
-                  fontWeight: 600,
-                },
+                fontSize: "clamp(16px,2.5vw,20px)",
+                fontWeight: 600,
               }}
             >
               حذف از سبد خرید

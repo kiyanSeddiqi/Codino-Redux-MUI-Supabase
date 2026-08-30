@@ -13,7 +13,6 @@ import {
 } from "./dashboardStyle";
 import { useDispatch, useSelector } from "react-redux";
 import SvgIcon from "../../../../../components/ui/SvgIcon/SvgIcon";
-import { productData } from "../../../../../data/productData";
 import MySuggestedCourses from "./MySuggestedCourses";
 import { useEffect, useState } from "react";
 import FavoriteCategories from "./FavoriteCategories";
@@ -166,7 +165,10 @@ function Dashboard() {
                 {favoriteList.length > 0 ? (
                   favoriteList?.map((item, i) => {
                     return (
-                      <Box key={item.id || i} sx={flexBetween(1, "row")}>
+                      <Box
+                        key={item.id || i}
+                        sx={{ ...flexBetween(1, "row"), minHeight: "40px" }}
+                      >
                         <Typography sx={{ lineHeight: "32px" }}>
                           {item?.title}
                         </Typography>

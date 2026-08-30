@@ -111,7 +111,7 @@ function DrawerMenu({ isOpen, onShow }) {
                   sx={mobileMenuLogoutBtn}
                 >
                   <SvgIcon name="power" size={20} />
-                  <Typography variant="subtitle2">خروج از حساب</Typography>
+                  <Typography variant="body2">خروج از حساب</Typography>
                 </Button>
               </Box>
             ) : (

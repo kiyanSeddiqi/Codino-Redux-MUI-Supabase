@@ -68,7 +68,7 @@ const getTheme = (mode) => {
             borderRadius: 10,
             padding: 10,
             "&.Mui-focusVisible": {
-              outline: "2px solid #C6B3FF",
+              outline: "1px solid #C6B3FF",
               outlineOffset: "0px",
             },
             gap: "8px",

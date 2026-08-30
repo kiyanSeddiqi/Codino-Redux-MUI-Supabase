@@ -1,5 +1,3 @@
-import { flexBox, flexCol } from "../../../../styles/globalStyles";
-
 export const quoteContainer = {
   width: "100%",
   display: "flex",

@@ -1,5 +1,3 @@
-import { duration } from "@mui/material";
-
 export const chaptersData = [
   {
     id: 1,

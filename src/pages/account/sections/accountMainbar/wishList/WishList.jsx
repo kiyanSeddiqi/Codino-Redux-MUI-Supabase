@@ -1,13 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { productData } from "../../../../../data/productData";
 import ProductCard from "../../../../../features/product/components/ProductCard";
-import { useSelector } from "react-redux";
-import { useEffect } from "react";
-import {
-  addToWishlist,
-  getUserWishlist,
-  removeFromWishlist,
-} from "../../../../../features/auth/services/wishlistService";
 import useWishlist from "../../../../../features/product/hooks/useWishlist";
 import { wishListContainer, wishListPlaceholder } from "./WishListStyle";
 import SvgIcon from "../../../../../components/ui/SvgIcon/SvgIcon";

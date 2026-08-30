@@ -1,5 +1,5 @@
 import { Box, Skeleton } from "@mui/material";
-import { flexBetween, flexCol } from "../../../../../styles/globalStyles";
+import { flexBetween } from "../../../../../styles/globalStyles";
 
 function FavoriteListSkeleton() {
   return (

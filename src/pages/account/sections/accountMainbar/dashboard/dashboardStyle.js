@@ -22,7 +22,7 @@ export const dashboardCard = {
 
 export const userFavoriteListContainer = {
   ...flexCol(1),
-  maxHeight: "82px",
+  maxHeight: "88px",
   overflowY: "auto",
   pl: 1,
   scrollbarWidth: "auto",
@@ -51,9 +51,11 @@ export const favoriteListDialog = {
     borderRadius: "8px",
     bgcolor: "background.default",
     m: 0,
-    width: "fit-content",
-    minWidth: "400px",
-    maxHeight: "90svh",
+    width: { xs: "85vw", sm: "fit-content" },
+    maxHeight: {
+      xs: "60svh",
+      sm: "90svh",
+    },
   },
 
   "& .MuiBackdrop-root": {
@@ -62,13 +64,24 @@ export const favoriteListDialog = {
 };
 
 export const favoriteListTitle = {
-  fontSize: "18px",
+  fontSize: { xs: "16px", sm: "18px" },
   fontWeight: 600,
   p: 0,
 };
 
 export const favoriteListGrid = {
   display: "grid",
-  gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+  gridTemplateColumns: {
+    xs: "repeat(1, minmax(0, 1fr))",
+    sm: "repeat(2, minmax(0, 1fr))",
+  },
   gap: "10px",
 };
+
+export const favoriteListBtn = (selectedCat, itemSlug) => ({
+  fontSize: "12px",
+  borderRadius: "6px",
+  color: selectedCat.includes(itemSlug) ? "primary.main" : "text.primary",
+  borderColor: selectedCat.includes(itemSlug) ? "primary.main" : "divider",
+  fontWeight: selectedCat.includes(itemSlug) ? 600 : 400,
+});

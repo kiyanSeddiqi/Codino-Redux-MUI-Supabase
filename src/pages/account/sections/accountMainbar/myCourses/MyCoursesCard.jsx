@@ -13,12 +13,7 @@ import {
   myCourseCardBox,
 } from "./myCoursesStyle";
 import { flexBox, flexCol } from "../../../../../styles/globalStyles";
-import {
-  AccessAlarm,
-  ChevronLeft,
-  PermIdentity,
-  Schedule,
-} from "@mui/icons-material";
+import { ChevronLeft, PermIdentity, Schedule } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { useUpdateCourseProgress } from "../../../../../features/product/hooks/useUpdateCourseProgress";
 

@@ -1,4 +1,3 @@
-import { he } from "zod/v4/locales";
 import { flexBox, flexCol } from "../../../../../styles/globalStyles";
 
 export const myCoursesContainer = {
@@ -11,6 +10,7 @@ export const tabContainer = {
   overflowX: "auto",
   flexWrap: "nowrap",
   whiteSpace: "nowrap",
+  minHeight: "42px",
 };
 
 export const myCoursesTabBtn = {

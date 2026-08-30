@@ -1,5 +1,3 @@
-import { flexCol } from "../../../../../styles/globalStyles";
-
 export const videoContainer = {
   "& .MuiDialog-paper": {
     m: 0,

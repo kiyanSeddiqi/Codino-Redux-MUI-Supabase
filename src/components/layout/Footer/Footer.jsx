@@ -6,7 +6,12 @@ import {
   ListItem,
   Typography,
 } from "@mui/material";
-import { footerContainer, footerNavList } from "./footerStyles";
+import {
+  footerContainer,
+  footerDescription,
+  footerMobileNavList,
+  footerNavList,
+} from "./footerStyles";
 import { flexBetween, flexBox, flexCol } from "../../../styles/globalStyles";
 import Logo from "../../ui/Logo/Logo";
 import { Link } from "react-router-dom";
@@ -20,18 +25,45 @@ import {
   YouTube,
 } from "@mui/icons-material";
 
-function Footer() {
-  function scrollTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }
+function scrollTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}
 
+const footerLinks = [
+  { label: "بلاگ", link: "/blog" },
+  { label: "مسیرهای یادگیری", link: "/roadmap" },
+  { label: "همکاری با ما", link: "/" },
+  { label: "دوره های رایگان", link: "/courses?filter=freeCourse" },
+];
+
+const socialLinks = [
+  { label: "لینک سایت یوتیوب", icon: YouTube, href: "https://www.youtube.com" },
+  { label: "لینک سایت ایکس", icon: X, href: "https://www.x.com" },
+  {
+    label: "لینک سایت لینکدین",
+    icon: LinkedIn,
+    href: "https://www.linkedin.com",
+  },
+  {
+    label: "لینک تلگرام",
+    icon: Telegram,
+    href: "https://t.me/kiyanSeddiqi",
+  },
+  {
+    label: "لینک اینستاگرام",
+    icon: Instagram,
+    href: "https://instagram.com/kiyan.seddiqi",
+  },
+];
+
+function Footer() {
   return (
     <>
       <Box sx={footerContainer}>
-        <Box sx={{ ...flexBetween(4), flexWrap: "wrap" }}>
+        <Box sx={{ ...flexBetween(4, "row"), flexWrap: "wrap" }}>
           <Box sx={flexBox(4)}>
             <Logo />
             <Box
@@ -44,18 +76,11 @@ function Footer() {
               }}
             >
               <List disablePadding sx={footerNavList}>
-                <ListItem>
-                  <Link to="/blog">بلاگ</Link>
-                </ListItem>
-                <ListItem>
-                  <Link to="/roadmap">مسیرهای یادگیری</Link>
-                </ListItem>
-                <ListItem>
-                  <Link to="/">همکاری با ما</Link>
-                </ListItem>
-                <ListItem>
-                  <Link to="/courses?filter=freeCourse">دوره های رایگان</Link>
-                </ListItem>
+                {footerLinks.map((item, i) => (
+                  <ListItem key={i}>
+                    <Link to={item.link}>{item.label}</Link>
+                  </ListItem>
+                ))}
               </List>
             </Box>
           </Box>
@@ -84,51 +109,18 @@ function Footer() {
                 "& > *": { display: "flex", color: "primary.main" },
               }}
             >
-              <Box
-                component="a"
-                href="https://www.youtube.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="لینک سایت یوتیوب"
-              >
-                <YouTube />
-              </Box>
-              <Box
-                component="a"
-                href="https://www.x.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="لینک سایت ایکس"
-              >
-                <X />
-              </Box>
-              <Box
-                component="a"
-                href="https://www.linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="لینک سایت لینکدین"
-              >
-                <LinkedIn />
-              </Box>
-              <Box
-                component="a"
-                href="https://t.me/kiyanSeddiqi"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="لینک حساب تلگرام"
-              >
-                <Telegram />
-              </Box>
-              <Box
-                component="a"
-                href="https://instagram.com/kiyan.seddiqi"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="لینک حساب اینستاگرام"
-              >
-                <Instagram />
-              </Box>
+              {socialLinks.map((item, i) => (
+                <Box
+                  key={i}
+                  component="a"
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={item.label}
+                >
+                  <item.icon />
+                </Box>
+              ))}
             </Box>
           </Box>
         </Box>
@@ -141,33 +133,12 @@ function Footer() {
             },
           }}
         >
-          <List
-            disablePadding
-            sx={{
-              display: "flex",
-              justifyContent: "space-around",
-              width: "100%",
-              gap: 2,
-              flexWrap: "wrap",
-              "&>*": {
-                p: 0,
-                width: "auto",
-                fontSize: { xs: "14px", sm: "16px" },
-              },
-            }}
-          >
-            <ListItem>
-              <Link to="/mag">بلاگ</Link>
-            </ListItem>
-            <ListItem>
-              <Link to="/roadmap">مسیرهای یادگیری</Link>
-            </ListItem>
-            <ListItem>
-              <Link to="/join-us">همکاری با ما</Link>
-            </ListItem>
-            <ListItem>
-              <Link to="/courses?filter=freeCourse">دوره های رایگان</Link>
-            </ListItem>
+          <List disablePadding sx={footerMobileNavList}>
+            {footerLinks.map((item, i) => (
+              <ListItem key={i}>
+                <Link to={item.link}>{item.label}</Link>
+              </ListItem>
+            ))}
           </List>
         </Box>
         <Box sx={flexCol("32px")}>
@@ -186,14 +157,7 @@ function Footer() {
               <Call sx={{ color: "primary.main", fontSize: "25px" }} />
               <Link to="tel:02193762428">پشتیبانی : 02193762428</Link>
             </Box>
-            <Typography
-              variant="body2"
-              sx={{
-                width: { xs: "auto", lg: "75%" },
-                color: "text.secondary",
-                lineHeight: "32px",
-              }}
-            >
+            <Typography variant="body2" sx={footerDescription}>
               کدینو، تیمی تشکیل شده از مدرسان متخصص در زمینه‌ی برنامه‌ نویسی
               می‌باشد. این تیم با هدف چشاندن لذت کدنویسی و کمک به افراد علاقه‌
               مند این علم تشکیل شده است. در کدینو دوره‌های آموزش متعددی برای
@@ -204,14 +168,7 @@ function Footer() {
             </Typography>
           </Box>
 
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              gap: 2,
-              alignItems: "center",
-            }}
-          >
+          <Box sx={flexBox(2)}>
             <Button
               onClick={scrollTop}
               color="secondary"

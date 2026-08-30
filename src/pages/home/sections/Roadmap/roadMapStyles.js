@@ -1,4 +1,3 @@
-import { line } from "stylis";
 import { flexCol } from "../../../../styles/globalStyles";
 
 export const roadMapCardContainer = (theme) => ({
@@ -14,9 +13,11 @@ export const roadMapCardContainer = (theme) => ({
 
 export const roadMapCardImgBox = {
   width: "100%",
-  // aspectRatio: "16 / 9",
   overflow: "hidden",
   borderRadius: "16px",
+  "&:focus": {
+    outline: "none",
+  },
 };
 
 export const roadMapCardImg = {
@@ -48,6 +49,9 @@ export const roadMapCardTitle = {
   display: "-webkit-box",
   WebkitBoxOrient: "vertical",
   WebkitLineClamp: 1,
+  "&:focus": {
+    outline: "none",
+  },
 };
 
 export const roadMapCardStepText = {

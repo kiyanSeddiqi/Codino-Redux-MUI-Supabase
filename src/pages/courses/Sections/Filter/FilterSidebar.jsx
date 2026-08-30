@@ -1,4 +1,4 @@
-import { ChevronLeft, Search, Tune } from "@mui/icons-material";
+import { Search, Tune } from "@mui/icons-material";
 import { flexBox } from "../../../../styles/globalStyles";
 import { filterSidebar, searchBox } from "./coursesFilterStyles";
 import { Box, Button, Divider, InputBase, Typography } from "@mui/material";
@@ -12,7 +12,7 @@ function FilterSidebar({ filters, dispatch }) {
       <Box sx={filterSidebar} component="aside">
         <Box>
           {/* FILTER HEADER */}
-          <Box sx={flexBox("12px")}>
+          <Box sx={{ ...flexBox("12px"), mb: 1 }}>
             <Tune />
             <Typography component="span">فیلتر ها</Typography>
             <Button

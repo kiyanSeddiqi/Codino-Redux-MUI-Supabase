@@ -1,11 +1,6 @@
 import { Box, Typography } from "@mui/material";
-import {
-  flexCol,
-  sectionStyle,
-  sectionTitle,
-} from "../../../../styles/globalStyles";
+import { sectionStyle, sectionTitle } from "../../../../styles/globalStyles";
 import ProductCard from "../../../../features/product/components/ProductCard";
-import { featuredContainer } from "../../../../features/product/styles/productCardStyles";
 import { coursesCardCotainer } from "../../../courses/Sections/Filter/coursesFilterStyles";
 import useProducts from "../../../../features/product/hooks/useProducts";
 import ProductCardSkeleton from "../../../../features/product/components/ProductCardSkeleton";

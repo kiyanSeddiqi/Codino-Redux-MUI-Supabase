@@ -5,7 +5,6 @@ import {
   updatePassword,
   verifyCurrentPassword,
 } from "../services/authServices";
-import { getErrorMessage } from "../../../utils/getErrorMessage";
 
 export default function useChangePassword() {
   const dispatch = useDispatch();

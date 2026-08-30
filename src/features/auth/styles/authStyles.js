@@ -1,4 +1,3 @@
-import { red } from "@mui/material/colors";
 import { flexCol } from "../../../styles/globalStyles";
 
 export const authModalDialog = {

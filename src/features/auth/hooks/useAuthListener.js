@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { supabase } from "../../../lib/supabase";
 import { authFailure, authSuccess, logout } from "../redux/authSlice";
 import { useSnackbar } from "../../../hooks/useSnackbar";
-import { getErrorMessage } from "../../../utils/getErrorMessage";
 import { getCompleteUser } from "../services/profileService";
 
 export default function useAuthListener() {

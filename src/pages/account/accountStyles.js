@@ -1,5 +1,3 @@
-import { position } from "stylis";
-
 export const accountSidebar = {
   width: {
     xs: "25%",

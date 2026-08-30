@@ -1,6 +1,7 @@
 import { Box, TextField } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { otpTextfield } from "./otpStyles";
+import { flexBox } from "../../../styles/globalStyles";
 
 function OtpInput({ length = 4, onChange, value = "" }) {
   const otp = Array.from({ length }, (_, i) => value[i] ?? "");
@@ -74,10 +75,8 @@ function OtpInput({ length = 4, onChange, value = "" }) {
   return (
     <Box
       sx={{
-        display: "flex",
-        alignItems: "center",
+        ...flexBox(2),
         justifyContent: "space-around",
-        gap: 2,
         direction: "ltr",
       }}
     >

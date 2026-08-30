@@ -9,8 +9,15 @@ import {
   whyChooseUsTitle,
 } from "./whyChooseStyles";
 import { why_choose } from "../../../../data/imgSource";
-import { ArrowOutward, CheckCircle, Done, TaskAlt } from "@mui/icons-material";
+import { ArrowOutward, TaskAlt } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+
+const featureItems = [
+  "مطالب همیشه به‌روز، هماهنگ با بازار کار",
+  "تنوع کامل دوره‌ها برای همه‌ی سطح‌ها",
+  "دسترسی به مشاوره و پشتیبانی تخصصی",
+  "آموزش از حرفه‌ای‌های بازار کار",
+];
 
 function WhyChooseUs() {
   return (
@@ -36,30 +43,12 @@ function WhyChooseUs() {
               فراهمه.
             </Typography>
             <List disablePadding>
-              <ListItem sx={whyChooseUsListItem}>
-                <TaskAlt />
-                <Typography component="strong">
-                  مطالب همیشه به‌روز، هماهنگ با بازار کار
-                </Typography>
-              </ListItem>
-              <ListItem sx={whyChooseUsListItem}>
-                <TaskAlt />
-                <Typography component="strong">
-                  تنوع کامل دوره‌ها برای همه‌ی سطح‌ها
-                </Typography>
-              </ListItem>
-              <ListItem sx={whyChooseUsListItem}>
-                <TaskAlt />
-                <Typography component="strong">
-                  دسترسی به مشاوره و پشتیبانی تخصصی
-                </Typography>
-              </ListItem>
-              <ListItem sx={whyChooseUsListItem}>
-                <TaskAlt />
-                <Typography component="strong">
-                  آموزش از حرفه‌ای‌های بازار کار
-                </Typography>
-              </ListItem>
+              {featureItems.map((item, i) => (
+                <ListItem key={i} sx={whyChooseUsListItem}>
+                  <TaskAlt />
+                  <Typography component="strong">{item}</Typography>
+                </ListItem>
+              ))}
             </List>
             <Box sx={flexBox("12px")}>
               <Button component={Link} to="/courses" sx={flexBox("8px")}>
@@ -70,7 +59,6 @@ function WhyChooseUs() {
                 component={Link}
                 to="/courses?filter=freeCourse"
                 color="secondary"
-                variant="contained"
               >
                 دوره های رایگان
               </Button>

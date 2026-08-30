@@ -10,6 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import {
+  favoriteListBtn,
   favoriteListDialog,
   favoriteListGrid,
   favoriteListTitle,
@@ -125,24 +126,13 @@ function FavoriteCategories({ favoriteList, setFavoriteList }) {
             به یادگیری کدوم موضوعات علاقه مند هستی؟
           </Typography>
           <Box sx={favoriteListGrid}>
-            {categoryData.map((item, index) => {
+            {categoryData.map((item) => {
               if (item.children.length === 0) return null;
               return (
                 <Button
                   key={item.id}
                   variant="outlined"
-                  sx={{
-                    p: "10px 0px",
-                    fontSize: "12px",
-                    borderRadius: "6px",
-                    color: selectedCat.includes(item.slug)
-                      ? "primary.main"
-                      : "text.primary",
-                    borderColor: selectedCat.includes(item.slug)
-                      ? "primary.main"
-                      : "divider",
-                    fontWeight: selectedCat.includes(item.slug) ? 600 : 400,
-                  }}
+                  sx={favoriteListBtn(selectedCat, item.slug)}
                   onClick={() => toggleCategory(item.slug)}
                 >
                   {item.title}

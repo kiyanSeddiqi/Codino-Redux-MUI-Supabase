@@ -3,7 +3,6 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Box,
   Checkbox,
   FormControlLabel,
   FormGroup,
@@ -16,7 +15,6 @@ import {
   filterOption,
   filterOptionCheckbox,
 } from "./coursesFilterStyles";
-import { flexCol } from "../../../../styles/globalStyles";
 import { useNavigate } from "react-router-dom";
 
 function CategoryFilterList({ itemData, currentSlug, onClose }) {

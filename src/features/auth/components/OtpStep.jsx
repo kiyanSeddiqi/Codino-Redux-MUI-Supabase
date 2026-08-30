@@ -1,11 +1,4 @@
-import {
-  Alert,
-  Box,
-  Button,
-  InputBase,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Alert, Box, Button, Typography, useTheme } from "@mui/material";
 import {
   flexBetween,
   flexBox,
@@ -20,7 +13,6 @@ import SvgIcon from "../../../components/ui/SvgIcon/SvgIcon";
 import OtpInput from "../../../components/ui/OtpInput/OtpInput";
 import { useEffect, useState } from "react";
 import useOtp from "../hooks/useOtp";
-import { closeAuthModal } from "../redux/authSlice";
 import { otpAlert } from "../styles/authStyles";
 
 function OtpStep({

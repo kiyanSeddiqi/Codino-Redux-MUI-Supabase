@@ -22,6 +22,7 @@ import {
   paymentSlider,
   paymentToggleBtn,
   trackingCodeInput,
+  walletAddress,
   walletAddressBox,
 } from "../styles/cartStyles";
 import BreadCrumb from "../../../components/ui/Breadcrumb/BreadCrumb";
@@ -46,10 +47,10 @@ import ProductCardSkeleton from "../../product/components/ProductCardSkeleton";
 import ProductCard from "../../product/components/ProductCard";
 import CartSkeleton from "./CartSkeleton";
 import SvgIcon from "../../../components/ui/SvgIcon/SvgIcon";
+import usePurchase from "../hooks/usePurchase";
 
 import "swiper/css";
 import "swiper/css/navigation";
-import usePurchase from "../hooks/usePurchase";
 
 function Cart() {
   const [payMethod, setPayMethod] = useState("rial");
@@ -170,7 +171,11 @@ function Cart() {
                 </Box>
               </Box>
             </Box>
-            <Box sx={{ width: { xs: "100%", xl: "30%", lg: "35%" } }}>
+            <Box
+              sx={{
+                width: { xs: "100%", xl: "30%", lg: "35%" },
+              }}
+            >
               <Box sx={cartSidebar}>
                 {isLoading ? (
                   <Skeleton
@@ -401,15 +406,7 @@ function Cart() {
                               <Typography
                                 variant="subtitle2"
                                 component="span"
-                                sx={{
-                                  color: "text.secondary",
-                                  overflow: "hidden",
-                                  display: "-webkit-box",
-                                  WebkitBoxOrient: "vertical",
-                                  WebkitLineClamp: 1,
-                                  width: "100%",
-                                  direction: "ltr",
-                                }}
+                                sx={walletAddress}
                               >
                                 abcdeTPBkRYm2Ys32stdsdzYvw9XtLubv
                               </Typography>

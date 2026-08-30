@@ -6,13 +6,7 @@ import {
   appSnackbarProgress,
   appSnackbarRoot,
 } from "./snackbarStyles";
-import {
-  Error,
-  GppBad,
-  Info,
-  TaskAlt,
-  WarningAmber,
-} from "@mui/icons-material";
+import { GppBad, Info, TaskAlt, WarningAmber } from "@mui/icons-material";
 
 function AppSnackbar() {
   const theme = useTheme();

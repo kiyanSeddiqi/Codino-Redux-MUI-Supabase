@@ -16,12 +16,10 @@ import {
   formLabel,
   formPasswordIcon,
 } from "../styles/authStyles";
-import { red } from "@mui/material/colors";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "../schemas/registerSchema";
-import { register } from "../services/authServices";
 import { useDispatch, useSelector } from "react-redux";
 import { useRegister } from "../hooks/useRegister";
 import { selectAuthLoading } from "../redux/authSelector";
@@ -88,7 +86,7 @@ function RegisterForm({ setStep, identifier, identifierType, onClose }) {
             />
             <Typography component="p" variant="caption" sx={{ lineHeight: 2 }}>
               ورود یا ثبت‌نام شما به منزله‌ی پذیرش تمامی قوانین و مقررات
-              مجموعه‌ی کدیاد خواهد بود!
+              مجموعه‌ی کدینو خواهد بود!
             </Typography>
           </Box>
           <Box>
@@ -120,7 +118,7 @@ function RegisterForm({ setStep, identifier, identifierType, onClose }) {
               id={"mobile"}
               autoComplete="off"
               name="mobile"
-              placeholder={"09376242832"}
+              placeholder={"09151234567"}
               inputProps={{
                 inputMode: "numeric",
                 pattern: "[0-9]*",

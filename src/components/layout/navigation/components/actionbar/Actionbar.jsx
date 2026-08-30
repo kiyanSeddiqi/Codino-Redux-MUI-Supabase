@@ -1,20 +1,5 @@
-import {
-  Badge,
-  Box,
-  Button,
-  Divider,
-  ListItemIcon,
-  ListItemText,
-  Menu,
-  MenuItem,
-  Typography,
-  useTheme,
-} from "@mui/material";
-import {
-  flexBetween,
-  flexBox,
-  flexCol,
-} from "../../../../../styles/globalStyles";
+import { Box } from "@mui/material";
+import { flexBox } from "../../../../../styles/globalStyles";
 
 import AuthAction from "./AuthAction";
 import CartAction from "./CartAction";

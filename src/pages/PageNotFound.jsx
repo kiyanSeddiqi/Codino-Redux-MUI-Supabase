@@ -1,6 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
-import { flexBox, flexCol } from "../styles/globalStyles";
-import SvgIcon from "../components/ui/SvgIcon/SvgIcon";
+import { flexCol } from "../styles/globalStyles";
 import { Link } from "react-router-dom";
 
 function PageNotFound() {

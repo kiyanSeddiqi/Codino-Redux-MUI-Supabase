@@ -15,3 +15,25 @@ export const footerNavList = {
     p: 0,
   },
 };
+
+export const footerMobileNavList = {
+  display: "flex",
+  justifyContent: "space-around",
+  width: "100%",
+  gap: 2,
+  flexWrap: "wrap",
+  "&>*": {
+    p: 0,
+    width: "auto",
+    fontSize: { xs: "14px", sm: "16px" },
+  },
+};
+
+export const footerDescription = {
+  width: { xs: "auto", lg: "75%" },
+  color: "text.secondary",
+  lineHeight: {
+    xs: "28px",
+    sm: "32px",
+  },
+};

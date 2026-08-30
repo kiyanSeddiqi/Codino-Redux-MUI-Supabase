@@ -1,6 +1,6 @@
 import { RouterProvider } from "react-router-dom";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import getTheme from "./theme/theme";
 import { useSelector } from "react-redux";
 import { router } from "./routes/router";

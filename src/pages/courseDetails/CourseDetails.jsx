@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { flexBetween, flexBox, flexCol } from "../../styles/globalStyles";
+import { flexCol } from "../../styles/globalStyles";
 import {
   courseContainer,
   courseContentBox,
@@ -19,7 +19,6 @@ import { useParams } from "react-router-dom";
 import BreadCrumb from "../../components/ui/Breadcrumb/BreadCrumb";
 import { categoryData } from "../../data/categoryData";
 import useProducts from "../../features/product/hooks/useProducts";
-import ProductCardSkeleton from "../../features/product/components/ProductCardSkeleton";
 import CourseDetailsSkeleton from "./CourseDetailsSkeleton";
 
 function CourseDetails() {

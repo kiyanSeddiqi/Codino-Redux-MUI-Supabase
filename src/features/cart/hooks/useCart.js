@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSnackbar } from "../../../hooks/useSnackbar";
 import {
@@ -28,7 +28,7 @@ export default function useCart() {
     error: cartError,
   } = useSelector((state) => state.cart);
 
-  const { success, error } = useSnackbar();
+  const { success } = useSnackbar();
 
   useEffect(() => {
     if (!userId) {

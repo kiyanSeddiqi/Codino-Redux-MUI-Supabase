@@ -42,11 +42,3 @@ export const sectionTitle = {
   },
   fontWeight: "600",
 };
-
-export const textPrimary = {
-  color: "primary.main",
-};
-
-export const textSecondary = {
-  color: "text.secondary",
-};

@@ -1,4 +1,3 @@
-import { he } from "zod/v4/locales";
 import { flexBox, flexCol } from "../../../../styles/globalStyles";
 
 export const sidebarContainer = {

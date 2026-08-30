@@ -5,8 +5,6 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
-  MenuItem,
-  MenuList,
 } from "@mui/material";
 import { Link, NavLink } from "react-router-dom";
 

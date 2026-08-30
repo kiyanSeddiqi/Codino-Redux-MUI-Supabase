@@ -24,11 +24,7 @@ function BestSellers() {
   const canLoop = bestSellerCourses.length > 4;
   return (
     <>
-      <Box
-        component="section"
-        className="bestSellers-section"
-        sx={sectionStyle}
-      >
+      <Box component="section" className="bestSellers" sx={sectionStyle}>
         <Box sx={{ ...flexBetween("row") }}>
           <Typography component="h2" sx={sectionTitle}>
             پر فروش ترین ها
@@ -42,8 +38,8 @@ function BestSellers() {
             slidesPerView={4.5}
             speed={500}
             navigation={{
-              prevEl: ".bestSellers-section .swiper-btn-prev",
-              nextEl: ".bestSellers-section .swiper-btn-next",
+              prevEl: ".bestSellers .swiper-btn-prev",
+              nextEl: ".bestSellers .swiper-btn-next",
             }}
             loop={canLoop}
             breakpoints={{
@@ -60,7 +56,7 @@ function BestSellers() {
                     <ProductCardSkeleton />
                   </SwiperSlide>
                 ))
-              : bestSellerCourses.map((item, i) => (
+              : bestSellerCourses.map((item) => (
                   <SwiperSlide key={item.id}>
                     <ProductCard co itemData={item} />
                   </SwiperSlide>

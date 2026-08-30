@@ -1,4 +1,3 @@
-import { LineWeight } from "@mui/icons-material";
 import { flexCol } from "../../styles/globalStyles";
 
 export const gridContainer = {

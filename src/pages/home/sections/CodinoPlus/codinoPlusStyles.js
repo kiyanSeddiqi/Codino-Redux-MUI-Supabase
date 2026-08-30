@@ -1,4 +1,3 @@
-import { lineHeight } from "@mui/system";
 import { flexBox, flexCol } from "../../../../styles/globalStyles";
 
 export const bannerContainer = {

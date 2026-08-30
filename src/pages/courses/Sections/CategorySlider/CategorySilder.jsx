@@ -6,7 +6,7 @@ import {
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import "swiper/css";
 import SliderNavBtn from "../../../../components/ui/SliderNavBtn/SliderNavBtn.jsx";

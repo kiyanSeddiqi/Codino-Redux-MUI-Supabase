@@ -1,16 +1,7 @@
-import {
-  AppBar,
-  Box,
-  Button,
-  Container,
-  IconButton,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { AppBar, Box, Button, Toolbar } from "@mui/material";
 import { appBar, navWrapper, toolBar } from "../styles/navbarStyles.js";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleTheme } from "../../../../redux/store/slices/themeSlice.js";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Logo from "../../../ui/Logo/Logo.jsx";
 import ThemeSwitch from "../../../ui/ThemeSwitch/ThemeSwitch.jsx";
 import Searchbar from "../../../../features/search/components/Searchbar";

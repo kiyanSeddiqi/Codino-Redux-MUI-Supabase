@@ -4,24 +4,13 @@ import SliderNavBtn from "../../../../components/ui/SliderNavBtn/SliderNavBtn";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { blogSliderData } from "../../../../data/blogSliderData";
-import { useEffect, useRef } from "react";
 
 import "swiper/css";
 import "swiper/css/navigation";
 
 function BlogSlider() {
   const theme = useTheme();
-
   const isBelowLg = useMediaQuery(theme.breakpoints.down("lg"));
-
-  const swiperRef = useRef(null);
-
-  useEffect(() => {
-    if (!swiperRef.current) return;
-
-    swiperRef.current.changeDirection(isBelowLg ? "horizontal" : "vertical");
-  }, [isBelowLg]);
-
   return (
     <>
       <Box sx={flexCol(2.5)} className="blog-slider">
@@ -36,17 +25,14 @@ function BlogSlider() {
         >
           <Swiper
             modules={[Navigation]}
-            onSwiper={(swiper) => {
-              swiperRef.current = swiper;
-            }}
+            key={isBelowLg ? "horizontal" : "vertical"}
             direction={isBelowLg ? "horizontal" : "vertical"}
             spaceBetween={20}
-            slidesPerView={isBelowLg ? 2.5 : 3}
             navigation={{
               prevEl: ".blog-slider .swiper-btn-prev",
               nextEl: ".blog-slider .swiper-btn-next",
             }}
-            loop={true}
+            loop={blogSliderData.length > 3}
             breakpoints={{
               0: { slidesPerView: 1 },
               400: { slidesPerView: 1.5 },
@@ -71,7 +57,7 @@ function BlogSlider() {
                 <Box
                   sx={{
                     ...flexCol("10px"),
-                    width: isBelowLg ? "100%" : "50%",
+                    width: isBelowLg ? "100%" : "calc(50% - 8px)",
                   }}
                 >
                   <Typography
@@ -97,7 +83,7 @@ function BlogSlider() {
                 </Box>
                 <Box
                   sx={{
-                    width: isBelowLg ? "100%" : "50%",
+                    width: isBelowLg ? "100%" : "calc(50% - 8px)",
                     aspectRatio: "16/9",
                     borderRadius: "8px",
                   }}

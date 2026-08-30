@@ -13,7 +13,6 @@ function ThemeSwitch({ sx }) {
     <>
       <Tooltip title="تغییر تم">
         <Box
-          component="button"
           aria-label="تغییر تم"
           sx={[themeBtn, sx]}
           onClick={() => dispatch(toggleTheme())}

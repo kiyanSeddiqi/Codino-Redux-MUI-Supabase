@@ -9,7 +9,6 @@ import {
   MenuItem,
   TextField,
   Typography,
-  useTheme,
 } from "@mui/material";
 import {
   ticketDialog,
@@ -17,10 +16,10 @@ import {
   ticketDialogTitle,
   ticketTextarea,
 } from "./ticketStyle";
-import { Close, ExpandMore, Label } from "@mui/icons-material";
+import { Close, ExpandMore } from "@mui/icons-material";
 import { flexBetween, flexCol } from "../../../../../styles/globalStyles";
 import { formTextField } from "../../../accountStyles";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { profileTicket } from "../../../../../features/auth/schemas/profileSchema";
 import { useSnackbar } from "../../../../../hooks/useSnackbar";
@@ -45,7 +44,6 @@ function NewTicketDialog({ open, onShow }) {
 
   const {
     register,
-    control,
     reset,
     handleSubmit,
     formState: { errors, isValid },
@@ -68,7 +66,7 @@ function NewTicketDialog({ open, onShow }) {
     onShow(false);
     reset();
   };
-  const theme = useTheme();
+
   return (
     <>
       <Dialog
@@ -80,7 +78,7 @@ function NewTicketDialog({ open, onShow }) {
         <Box>
           <Box sx={flexBetween("row")}>
             <DialogTitle sx={ticketDialogTitle}>ثبت تیکت جدید</DialogTitle>
-            <IconButton aria-label="close" onClick={handleClose}>
+            <IconButton disableRipple aria-label="close" onClick={handleClose}>
               <Close />
             </IconButton>
           </Box>
