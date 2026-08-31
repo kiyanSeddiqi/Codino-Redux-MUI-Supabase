@@ -1,7 +1,7 @@
 import { Breadcrumbs, Typography } from "@mui/material";
 import { NavigateBefore } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import { breadcrumbStyle } from "./breadcrumbStyles";
+import { breadcrumbStyle } from "./breadCrumbStyles";
 
 function BreadCrumb({ items }) {
   return (
