@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { flexCol, sectionTitle } from "../../../../styles/globalStyles";
 import { courseFaqData } from "../../../../data/courseFaqData";
-import FaqAccordion from "../../../home/Sections/FAQ/FaqAccordion";
+import FaqAccordion from "../../../home/sections/FAQ/FaqAccordion";
 
 function CourseFaqSection() {
   return (

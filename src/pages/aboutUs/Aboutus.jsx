@@ -8,7 +8,7 @@ import {
   about_4,
   about_5,
 } from "../../data/imgSource";
-import BlogSlider from "../home/Sections/Blog/BlogSlider";
+import BlogSlider from "../home/sections/Blog/BlogSlider";
 
 function Aboutus() {
   return (

@@ -4,7 +4,7 @@ import BreadCrumb from "../../components/ui/Breadcrumb/BreadCrumb";
 import { blogContainer, blogGridContainer } from "./blogPageStyle";
 import { blogData } from "../../data/blogData";
 import BlogCard from "./BlogCard";
-import BlogSlider from "../home/Sections/Blog/BlogSlider";
+import BlogSlider from "../home/sections/Blog/BlogSlider";
 
 function BlogPage() {
   const items = [{ title: "وبلاگ" }];
