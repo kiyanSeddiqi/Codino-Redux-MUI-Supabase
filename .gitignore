@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+# Local product data
+src/data/productData.js
+src/data/productsImages.js
