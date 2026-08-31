@@ -7,7 +7,7 @@ import { useEffect, useRef } from "react";
 
 export default function useGoogleLogin() {
   const dispatch = useDispatch();
-  const { error } = useSnackbar();
+  const { error, success } = useSnackbar();
 
   const googleLoginSuccess = useRef(false);
   const popupTimer = useRef(null);
@@ -24,6 +24,8 @@ export default function useGoogleLogin() {
           clearInterval(popupTimer.current);
           popupTimer.current = null;
         }
+
+        success("ورود با موفقیت انجام شد");
         return;
       }
 
@@ -50,7 +52,7 @@ export default function useGoogleLogin() {
         popupTimer.current = null;
       }
     };
-  }, [dispatch]);
+  }, [dispatch, success]);
 
   async function googleLogin() {
     try {

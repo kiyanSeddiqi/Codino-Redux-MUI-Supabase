@@ -14,19 +14,23 @@ function VideoSpeed({
   const open = Boolean(anchorEl);
 
   const handleCloseSpeedMenu = () => setAnchorEl(null);
+
   const handleChangeSpeed = (speed) => {
     if (!videoRef.current) return;
 
     videoRef.current.playbackRate = speed;
     setPlaybackRate(speed);
+    setAnchorEl(null);
   };
 
   return (
     <>
       <Menu
         anchorEl={anchorEl}
-        disablePortal
         open={open}
+        disableRestoreFocus
+        disableEnforceFocus
+        disablePortal
         onClose={handleCloseSpeedMenu}
         anchorOrigin={{
           vertical: "top",

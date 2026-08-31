@@ -88,15 +88,26 @@ function VideoPlayer({ videoSrc, videoTitle = "" }) {
   };
 
   const handleFullscreen = async () => {
+    setAnchorEl(null);
+
     if (!document.fullscreenElement) {
-      await playerRef.current.requestFullscreen();
+      await playerRef.current?.requestFullscreen();
     } else {
       await document.exitFullscreen();
     }
   };
 
   const handleOpenSpeedMenu = (event) => {
-    setAnchorEl(event.currentTarget);
+    setShowFullscreenControls(true);
+
+    const target = event.currentTarget;
+
+    if (anchorEl && anchorEl === target) {
+      setAnchorEl(null);
+      return;
+    }
+
+    setAnchorEl(target);
   };
 
   const handleVolumeChange = (_, value) => {
@@ -141,13 +152,33 @@ function VideoPlayer({ videoSrc, videoTitle = "" }) {
 
   useEffect(() => {
     const handleFullscreenChange = () => {
-      setIsFullscreen(!!document.fullscreenElement);
+      const next = !!document.fullscreenElement;
+      setIsFullscreen(next);
+
+      if (!next) {
+        setAnchorEl(null);
+        setShowFullscreenControls(true);
+      }
     };
 
     document.addEventListener("fullscreenchange", handleFullscreenChange);
 
     return () => {
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setAnchorEl(null);
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
     };
   }, []);
 
@@ -237,13 +268,15 @@ function VideoPlayer({ videoSrc, videoTitle = "" }) {
                   >
                     <Settings />
                   </IconButton>
-                  <VideoSpeed
-                    videoRef={videoRef}
-                    anchorEl={anchorEl}
-                    setAnchorEl={setAnchorEl}
-                    playbackRate={playbackRate}
-                    setPlaybackRate={setPlaybackRate}
-                  />
+                  {isFullscreen && (
+                    <VideoSpeed
+                      videoRef={videoRef}
+                      anchorEl={anchorEl}
+                      setAnchorEl={setAnchorEl}
+                      playbackRate={playbackRate}
+                      setPlaybackRate={setPlaybackRate}
+                    />
+                  )}
                   <Box
                     sx={{ position: "relative" }}
                     onMouseEnter={() => setShowVolume(true)}
@@ -394,13 +427,15 @@ function VideoPlayer({ videoSrc, videoTitle = "" }) {
               >
                 <Settings />
               </IconButton>
-              <VideoSpeed
-                videoRef={videoRef}
-                anchorEl={anchorEl}
-                setAnchorEl={setAnchorEl}
-                playbackRate={playbackRate}
-                setPlaybackRate={setPlaybackRate}
-              />
+              {!isFullscreen && (
+                <VideoSpeed
+                  videoRef={videoRef}
+                  anchorEl={anchorEl}
+                  setAnchorEl={setAnchorEl}
+                  playbackRate={playbackRate}
+                  setPlaybackRate={setPlaybackRate}
+                />
+              )}
               <Box
                 sx={{ position: "relative" }}
                 onMouseEnter={() => setShowVolume(true)}

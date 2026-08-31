@@ -1,14 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { supabase } from "../../../lib/supabase";
 import { authFailure, authSuccess, logout } from "../redux/authSlice";
-import { useSnackbar } from "../../../hooks/useSnackbar";
 import { getCompleteUser } from "../services/profileService";
 
 export default function useAuthListener() {
   const dispatch = useDispatch();
-  const { success } = useSnackbar();
-  const hasShownLoginMessage = useRef(false);
 
   useEffect(() => {
     const {
@@ -25,24 +22,24 @@ export default function useAuthListener() {
             }),
           );
 
-          if (!hasShownLoginMessage.current) {
-            success("با موفقیت وارد حساب کاربری شدید");
-            hasShownLoginMessage.current = true;
-          }
           sessionStorage.removeItem("google_login");
         } catch (err) {
-          dispatch(authFailure(err.message));
+          dispatch(
+            authFailure(err?.message || "خطا در بارگذاری اطلاعات کاربر"),
+          );
         }
+
+        return;
       }
 
       if (event === "SIGNED_OUT") {
-        hasShownLoginMessage.current = false;
         dispatch(logout());
+        sessionStorage.removeItem("google_login");
       }
     });
 
     return () => {
       subscription.unsubscribe();
     };
-  }, [dispatch, success]);
+  }, [dispatch]);
 }

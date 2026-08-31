@@ -31,7 +31,7 @@ export function useLogin() {
 
       dispatch(closeAuthModal());
 
-      success("با موفقیت وارد حساب کاربری شدید");
+      success("ورود با موفقیت انجام شد");
 
       return data;
     } catch (err) {
