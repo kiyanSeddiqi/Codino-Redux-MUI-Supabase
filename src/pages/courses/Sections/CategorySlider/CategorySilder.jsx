@@ -10,12 +10,12 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import "swiper/css";
 import SliderNavBtn from "../../../../components/ui/SliderNavBtn/SliderNavBtn.jsx";
-import { courseCategoryCard } from "../../../home/Sections/Category/courseCategoryStyles.js";
+import { courseCategoryCard } from "../../../home/sections/Category/courseCategoryStyles.js";
 import { courseCategoryCardTitle } from "../../coursesStyles.js";
 import { categoryData } from "../../../../data/categoryData.js";
 import SvgIcon from "../../../../components/ui/SvgIcon/SvgIcon.jsx";
 import { Box, Typography } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 function CategorySilder() {
   const { slug } = useParams();

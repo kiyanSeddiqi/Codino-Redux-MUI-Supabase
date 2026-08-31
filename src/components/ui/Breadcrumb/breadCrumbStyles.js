@@ -1,4 +1,4 @@
-export const breadCrumbStyle = {
+export const breadcrumbStyle = {
   fontSize: "14px",
   "& a": {
     transition: "color 0.2s ease",
