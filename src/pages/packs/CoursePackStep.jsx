@@ -23,7 +23,7 @@ function CoursePackStep({ itemData, index }) {
         <Box sx={flexCol("10px")}>
           <Box sx={listItemTitleBox}>
             <Typography>{index + 1}</Typography>
-            <Typography component={Link} to={itemData.slug}>
+            <Typography component={Link} to={`/course/${itemData.slug}`}>
               {itemData.title}
             </Typography>
           </Box>
