@@ -15,7 +15,7 @@ import {
   filterModalTitle,
   sortModalList,
 } from "./coursesFilterStyles";
-import { flexBetween, flexCol } from "../../../../styles/globalStyles";
+import { flexBetween } from "../../../../styles/globalStyles";
 
 const sortItems = [
   {
@@ -47,6 +47,7 @@ function SortModal({ isOpen, onShow, filters, dispatch }) {
         open={isOpen}
         onClose={() => onShow(false)}
         disableScrollLock
+        disableRestoreFocus
         sx={filterModalStyle}
       >
         {/* header */}

@@ -44,6 +44,7 @@ function DrawerMenu({ isOpen, onShow }) {
       <Drawer
         anchor="right"
         open={isOpen}
+        disableRestoreFocus
         onClose={() => onShow(false)}
         sx={{
           display: { xs: "block", lg: "none" },

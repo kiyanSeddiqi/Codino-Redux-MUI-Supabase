@@ -132,20 +132,29 @@ export const courseCardImgBox = {
 };
 
 export const packDetailEnrollBox = {
-  p: 4,
+  p: {
+    xs: 2,
+    sm: 3,
+    lg: 4,
+  },
   border: 1,
   borderRadius: "12px",
   borderColor: "divider",
   ...flexCol(3),
 };
 
-export const enrollBoxAlert = {
+export const enrollBoxAlert = (theme) => ({
   display: "flex",
   alignItems: "center",
   borderRadius: "12px",
-  p: "10px 20px",
-  color: "primary.main",
+  p: {
+    xs: 1.5,
+    sm: 2,
+  },
+  color: theme.palette.mode === "dark" ? "primary.light" : "primary.main",
   bgcolor: "menuItemBg",
-  height: "52px",
   lineHeight: "32px",
-};
+  "& > p": {
+    fontSize: "14px",
+  },
+});

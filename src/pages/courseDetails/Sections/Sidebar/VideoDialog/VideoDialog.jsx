@@ -353,9 +353,7 @@ function VideoDialog({ isOpen, onShow, videoTitle }) {
         </Box>
         <Box className="video-controlbox" sx={videoControlBox(isFullscreen)}>
           <Box sx={videoTitleBox}>
-            <Typography sx={{ fontSize: { xs: "14px", md: "16px" } }}>
-              {videoTitle}
-            </Typography>
+            <Typography sx={{}}>{videoTitle}</Typography>
             <Stack
               direction="row"
               spacing={0}
@@ -379,7 +377,7 @@ function VideoDialog({ isOpen, onShow, videoTitle }) {
             </Stack>
           </Box>
           <Box sx={flexBetween(1)}>
-            <Box sx={flexBox(1)}>
+            <Box sx={flexBox({ xs: 0, sm: 1 })}>
               <IconButton
                 onClick={handleFullscreen}
                 disableRipple
@@ -467,7 +465,7 @@ function VideoDialog({ isOpen, onShow, videoTitle }) {
                 {formatTime(currentTime)}
               </Typography>
             </Stack>
-            <Box sx={flexBox(1)}>
+            <Box sx={flexBox({ xs: 0, sm: 1 })}>
               <Tooltip title="ده ثانیه به جلو">
                 <IconButton
                   onClick={handleForward}
@@ -484,7 +482,7 @@ function VideoDialog({ isOpen, onShow, videoTitle }) {
                 sx={{
                   ...videoControlIcons,
                   "& svg": {
-                    fontSize: "42px",
+                    fontSize: { xs: "30px", sm: "42px" },
                   },
                 }}
                 aria-label="play video"

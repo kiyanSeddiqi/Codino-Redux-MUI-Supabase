@@ -40,6 +40,7 @@ function SearchModal({ isOpen, onShow }) {
         open={isOpen}
         onClose={() => onShow(false)}
         disableScrollLock
+        disableRestoreFocus
         sx={searchModalDialog}
       >
         <Box sx={flexCol("20px", "row")}>

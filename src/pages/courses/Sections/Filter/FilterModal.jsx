@@ -25,6 +25,7 @@ function FilterModal({ isOpen, onShow, filters, dispatch }) {
         open={isOpen}
         onClose={() => onShow(false)}
         disableScrollLock
+        disableRestoreFocus
         sx={filterModalStyle}
       >
         <Box sx={flexCol("20px", "row")}>

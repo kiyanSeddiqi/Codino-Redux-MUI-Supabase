@@ -73,7 +73,13 @@ export const videoTitleBox = {
     xs: "column",
     lg: "row",
   },
-  gap: 2,
+  gap: 1,
+  "& > p": {
+    fontSize: "clamp(12px,2.5vw,16px)",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+  },
 };
 
 export const videoControlIcons = {

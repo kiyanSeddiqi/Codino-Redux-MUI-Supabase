@@ -4,14 +4,14 @@ export const videoContainer = {
     borderRadius: "16px",
     maxHeight: "90svh",
     alignItems: "center",
-    gap: "14px",
+    gap: 1,
     p: 0,
     overflow: "hidden",
     maxWidth: {
-      xs: "90%",
-      md: "60%",
+      xs: "95%",
+      md: "70%",
       xl: "50%",
     },
-    bgcolor: "background.default",
+    bgcolor: "#292a33",
   },
 };

@@ -83,7 +83,9 @@ function CoursePackDetail() {
               <Typography component={"h4"} sx={sectionTitle}>
                 خرید تمام دوره‌های این پک آموزشی
               </Typography>
-              <Box sx={{ ...flexBox(2.5), alignItems: "end" }}>
+              <Box
+                sx={{ ...flexBox(2.5), alignItems: "end", flexWrap: "wrap" }}
+              >
                 <Box sx={{ ...flexCol("10px"), flex: 1 }}>
                   <Chip
                     color="warning"
@@ -108,13 +110,17 @@ function CoursePackDetail() {
                     <Typography variant="caption">تومان</Typography>
                   </Box>
                 </Box>
-
-                <Button sx={{ flex: 1 }}>
+                <Button
+                  sx={{
+                    width: { xs: "100%", sm: "50%" },
+                    minHeight: "43px",
+                  }}
+                >
                   ثبت نام در دوره ها با 10% تخفیف بیشتر
                 </Button>
               </Box>
               <Box sx={enrollBoxAlert}>
-                <Typography variant="body2">
+                <Typography>
                   درصورتی که هر یک از دوره های این پک را از قبل خریداری کرده
                   باشید قیمت دوره از مبلغ کل در زمان پرداخت کسر خواهد شد
                 </Typography>
