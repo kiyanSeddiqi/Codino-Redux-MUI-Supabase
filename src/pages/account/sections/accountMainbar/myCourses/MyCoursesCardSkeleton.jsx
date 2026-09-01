@@ -7,9 +7,13 @@ function MyCoursesCardSkeleton() {
     <>
       <Box sx={myCourseCardBox}>
         <Skeleton
-          variant="rectangular"
+          variant="rounded"
           animation="wave"
-          sx={{ width: 200, height: 200, borderRadius: "12px", flexShrink: 0 }}
+          sx={{
+            width: { xs: "100%", sm: 200 },
+            height: { xs: 350, sm: 200 },
+            flexShrink: 0,
+          }}
         />
         <Box sx={cardTextContainer}>
           <Box sx={flexCol(2)}>

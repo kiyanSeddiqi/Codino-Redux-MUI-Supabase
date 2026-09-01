@@ -7,7 +7,7 @@ import CartAction from "./CartAction";
 function Actionbar() {
   return (
     <>
-      <Box sx={flexBox({ xs: 1, lg: 2 })}>
+      <Box sx={flexBox(1)}>
         <CartAction />
         <AuthAction />
       </Box>

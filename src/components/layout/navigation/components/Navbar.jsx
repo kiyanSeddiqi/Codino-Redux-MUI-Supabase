@@ -13,17 +13,15 @@ import { flexCenter } from "../../../../styles/globalStyles.js";
 import SearchModal from "../../../../features/search/components/SearchModal.jsx";
 import CategoryMenu from "./CategoryMenu.jsx";
 import { openAuthModal } from "../../../../features/auth/redux/authSlice.js";
-import { useLogout } from "../../../../features/auth/hooks/useLogout.js";
 import Actionbar from "./actionbar/Actionbar.jsx";
 import AccountDrawer from "./AccountDrawer.jsx";
 
-function Navbar({ showSearchModal }) {
+function Navbar() {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openAccountDrawer, setOpenAccountDrawer] = useState(false);
   const [openSearchModal, setOpenSearchModal] = useState(false);
 
   const dispatch = useDispatch();
-  const { logoutUser } = useLogout();
   const { isAuthenticated } = useSelector((state) => state.auth);
   const location = useLocation();
 
