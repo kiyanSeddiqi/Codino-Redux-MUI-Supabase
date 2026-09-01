@@ -57,7 +57,7 @@ function SortModal({ isOpen, onShow, filters, dispatch }) {
               <FilterList />
               مرتب سازی بر اساس
             </DialogTitle>
-            <IconButton onClick={() => onShow(false)}>
+            <IconButton disableRipple onClick={() => onShow(false)}>
               <Close sx={{ fontSize: { xs: "20px", md: "24px" } }} />
             </IconButton>
           </Box>

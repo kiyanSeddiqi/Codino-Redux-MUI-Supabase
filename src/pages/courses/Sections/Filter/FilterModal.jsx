@@ -43,7 +43,7 @@ function FilterModal({ isOpen, onShow, filters, dispatch }) {
                 >
                   حذف همه
                 </Button>
-                <IconButton onClick={() => onShow(false)}>
+                <IconButton disableRipple onClick={() => onShow(false)}>
                   <Close sx={{ fontSize: { xs: "20px", md: "24px" } }} />
                 </IconButton>
               </Box>

@@ -1,3 +1,4 @@
+import { bg } from "zod/v4/locales";
 import { flexCol } from "../../../styles/globalStyles";
 
 export const cardContainer = {
@@ -16,6 +17,7 @@ export const cardContent = {
   p: 0,
   "&:last-child": { pb: 0 },
   width: "100%",
+  minWidth: 0,
 };
 
 export const cardImgBox = {
@@ -76,7 +78,8 @@ export const featuredCardContainer = (theme) => ({
     xs: 2,
     md: 0,
   },
-  flexShrink: 0,
+  // flexShrink: 1,
+  // minWidth: 0,
   flexDirection: {
     xs: "row",
     md: "column",
@@ -85,7 +88,7 @@ export const featuredCardContainer = (theme) => ({
     flexDirection: "column",
     borderBottom: 0,
   },
-  bgcolor: "transparent",
+  bgcolor: "background.default",
   boxShadow: "none",
   width: "100%",
   transition: "transform 0.3s ease",

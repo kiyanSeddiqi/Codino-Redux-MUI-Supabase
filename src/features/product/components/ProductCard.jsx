@@ -103,7 +103,8 @@ function ProductCard({ itemData, layout = "default" }) {
               gap: 2,
               flexDirection: { xs: "row", sm: "column" },
               fontSize: "12px",
-              flexShrink: 0,
+              minWidth: 0,
+              flex: 1,
             }}
           >
             <Box
@@ -124,8 +125,15 @@ function ProductCard({ itemData, layout = "default" }) {
                 {itemData.duration}
               </Typography>
             </Box>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-              <PermIdentity sx={{ fontSize: "20px" }} />
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                minWidth: 0,
+              }}
+            >
+              <PermIdentity sx={{ fontSize: "20px", flexShrink: 0 }} />
               <Typography
                 component="span"
                 variant="caption"
@@ -133,6 +141,7 @@ function ProductCard({ itemData, layout = "default" }) {
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   whiteSpace: "nowrap",
+                  minWidth: 0,
                 }}
               >
                 {itemData.teacher}
