@@ -81,7 +81,7 @@ export const featuredCardContainer = (theme) => ({
     xs: "row",
     md: "column",
   },
-  [theme.breakpoints.down(400)]: {
+  [theme.breakpoints.down(360)]: {
     flexDirection: "column",
     borderBottom: 0,
   },
@@ -103,9 +103,9 @@ export const featuredCardImgBox = (theme) => ({
     width: "185px",
   },
   [theme.breakpoints.down(600)]: {
-    width: "140px",
+    width: "120px",
   },
-  [theme.breakpoints.down(400)]: {
+  [theme.breakpoints.down(360)]: {
     width: "100%",
   },
   aspectRatio: "1 / 1",
