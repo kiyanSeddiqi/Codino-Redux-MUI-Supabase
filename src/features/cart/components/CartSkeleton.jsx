@@ -12,7 +12,7 @@ function CartSkeleton() {
       <Box sx={cartItemBox}>
         <Box sx={cartItemImgBox}>
           <Skeleton
-            variant="rectangular"
+            variant="rounded"
             animation="wave"
             width="100%"
             height="100%"
@@ -21,20 +21,20 @@ function CartSkeleton() {
         <Box sx={cartItemTextContainer}>
           <Box sx={flexCol(4)}>
             <Box sx={flexBetween(2, "row")}>
-              <Box sx={flexCol("12px")}>
+              <Box sx={{ ...flexCol("12px"), width: "100%" }}>
                 <Skeleton
                   variant="rounded"
                   animation="wave"
                   width={110}
                   height={25}
                 />
-                <Skeleton variant="text" width={400} height={20} />
+                <Skeleton variant="text" width={"80%"} height={20} />
               </Box>
-              <Skeleton variant="rounded" width={40} height={40} />
+              <Skeleton variant="rounded" width={36} height={36} />
             </Box>
             <Box sx={flexCol("12px")}>
-              <Skeleton variant="text" width={80} height={20} />
-              <Skeleton variant="text" width={80} height={20} />
+              <Skeleton variant="text" width={"60%"} height={20} />
+              <Skeleton variant="text" width={"40%"} height={20} />
             </Box>
           </Box>
         </Box>

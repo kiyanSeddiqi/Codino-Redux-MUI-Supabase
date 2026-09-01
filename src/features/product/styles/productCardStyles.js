@@ -24,7 +24,7 @@ export const cardImgBox = {
   width: "100%",
   aspectRatio: "1 / 1",
   overflow: "hidden",
-  borderRadius: "20px",
+  borderRadius: "16px",
   maxHeight: {
     md: "360px",
   },
@@ -32,7 +32,7 @@ export const cardImgBox = {
 };
 
 export const cardImg = {
-  borderRadius: "20px",
+  borderRadius: "16px",
   height: "100%",
   width: "100%",
   objectFit: "cover",
@@ -72,14 +72,14 @@ export const cardTitle = {
 
 export const featuredCardContainer = (theme) => ({
   display: "flex",
-  alignItems: "start",
+  // alignItems: "start",
   gap: 2,
   pb: {
     xs: 2,
     md: 0,
   },
-  // flexShrink: 1,
-  // minWidth: 0,
+  flexShrink: 1,
+  minWidth: 0,
   flexDirection: {
     xs: "row",
     md: "column",
@@ -88,7 +88,7 @@ export const featuredCardContainer = (theme) => ({
     flexDirection: "column",
     borderBottom: 0,
   },
-  bgcolor: "background.default",
+  bgcolor: "transparent",
   boxShadow: "none",
   width: "100%",
   transition: "transform 0.3s ease",
@@ -113,6 +113,6 @@ export const featuredCardImgBox = (theme) => ({
   },
   aspectRatio: "1 / 1",
   overflow: "hidden",
-  borderRadius: "20px",
+  borderRadius: "16px",
   "&:focus": { outline: "none" },
 });
