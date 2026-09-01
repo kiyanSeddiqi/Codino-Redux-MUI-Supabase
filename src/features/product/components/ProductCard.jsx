@@ -15,7 +15,7 @@ import {
 } from "../styles/productCardStyles";
 import { Box, Chip, Divider, Tooltip, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
-import { flexBetween, flexBox, flexCol } from "../../../styles/globalStyles";
+import { flexBetween, flexBox } from "../../../styles/globalStyles";
 import SvgIcon from "../../../components/ui/SvgIcon/SvgIcon";
 import { AccessTime, ArrowOutward, PermIdentity } from "@mui/icons-material";
 import { addComma } from "../../../utils/helpers";
@@ -97,16 +97,44 @@ function ProductCard({ itemData, layout = "default" }) {
             </Typography>
           </Box>
           <Divider />
-          <Box sx={{ ...flexCol("10px"), fontSize: "12px" }}>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <Box
+            sx={{
+              display: "flex",
+              gap: 2,
+              flexDirection: { xs: "row", sm: "column" },
+              fontSize: "12px",
+              flexShrink: 0,
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                flexShrink: 0,
+              }}
+            >
               <AccessTime sx={{ fontSize: "20px" }} />
-              <Typography component="span" dir="ltr" variant="caption">
+              <Typography
+                component="span"
+                dir="ltr"
+                variant="caption"
+                sx={{ mt: 0.5 }}
+              >
                 {itemData.duration}
               </Typography>
             </Box>
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
               <PermIdentity sx={{ fontSize: "20px" }} />
-              <Typography component="span" variant="caption">
+              <Typography
+                component="span"
+                variant="caption"
+                sx={{
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                }}
+              >
                 {itemData.teacher}
               </Typography>
             </Box>
@@ -118,7 +146,10 @@ function ProductCard({ itemData, layout = "default" }) {
                 component="strong"
                 sx={{
                   fontWeight: 700,
-                  fontSize: itemData.price !== 0 ? "18px" : undefined,
+                  fontSize:
+                    itemData.price !== 0
+                      ? { xs: "16px", sm: "18px" }
+                      : undefined,
                   color: layout === "featured" ? "primary.main" : undefined,
                 }}
               >
@@ -143,6 +174,7 @@ function ProductCard({ itemData, layout = "default" }) {
                 sx={{
                   rotate: "-90deg",
                   color: "primary.main",
+                  fontSize: { xs: "20px", sm: "24px" },
                 }}
               />
             </Box>

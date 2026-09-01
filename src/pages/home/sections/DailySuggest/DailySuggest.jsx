@@ -36,8 +36,9 @@ function DailySuggest() {
             speed={1200}
             loop={true}
             breakpoints={{
-              300: { slidesPerView: 1, spaceBetween: 20 },
-              420: { slidesPerView: 2, spaceBetween: 20 },
+              0: { slidesPerView: 1, spaceBetween: 20 },
+              350: { slidesPerView: 1.5, spaceBetween: 20 },
+              600: { slidesPerView: 2, spaceBetween: 20 },
               780: { slidesPerView: 3, spaceBetween: 20 },
               1280: { slidesPerView: 3.5, spaceBetween: 20 },
             }}

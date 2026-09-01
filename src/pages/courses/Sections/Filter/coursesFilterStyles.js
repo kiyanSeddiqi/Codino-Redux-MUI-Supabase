@@ -207,7 +207,7 @@ export const coursesCardCotainer = {
     xl: "repeat(4, minmax(0, 1fr))",
   },
   columnGap: 2.5,
-  rowGap: 4,
+  rowGap: { xs: 2.5, sm: 4 },
   width: "100%",
 };
 

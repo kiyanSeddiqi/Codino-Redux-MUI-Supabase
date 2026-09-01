@@ -1,9 +1,10 @@
 import { Box, Typography } from "@mui/material";
 import { sectionStyle, sectionTitle } from "../../../../styles/globalStyles";
 import ProductCard from "../../../../features/product/components/ProductCard";
-import { coursesCardCotainer } from "../../../courses/Sections/Filter/coursesFilterStyles";
+
 import useProducts from "../../../../features/product/hooks/useProducts";
 import ProductCardSkeleton from "../../../../features/product/components/ProductCardSkeleton";
+import { coursesCardCotainer } from "../../../courses/Sections/Filter/coursesFilterStyles";
 
 function ExpertCourses() {
   const { products, loading } = useProducts();

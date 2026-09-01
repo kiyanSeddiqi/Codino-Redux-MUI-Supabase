@@ -1,6 +1,6 @@
 import { flexCol } from "../../../styles/globalStyles";
 
-export const cardContainer = (theme) => ({
+export const cardContainer = {
   ...flexCol(2),
   bgcolor: "transparent",
   boxShadow: "none",
@@ -9,10 +9,10 @@ export const cardContainer = (theme) => ({
   "&:hover .MuiCardMedia-root": {
     transform: "scale(1.1) rotate(-1deg)",
   },
-});
+};
 
 export const cardContent = {
-  ...flexCol(2),
+  ...flexCol(1),
   p: 0,
   "&:last-child": { pb: 0 },
   width: "100%",
@@ -35,6 +35,7 @@ export const cardImg = {
   width: "100%",
   objectFit: "cover",
   transition: "transform 0.3s ease",
+  display: "block",
 };
 
 export const cardTitleBox = {
@@ -67,21 +68,9 @@ export const cardTitle = {
   "&:focus": { outline: "none" },
 };
 
-export const featuredContainer = {
-  display: "flex",
-  alignItems: "center",
-  width: "100%",
-  flexDirection: {
-    xs: "column",
-    md: "row",
-  },
-  gap: 2.5,
-  overflowX: "auto",
-};
-
 export const featuredCardContainer = (theme) => ({
   display: "flex",
-  alignItems: "center",
+  alignItems: "start",
   gap: 2,
   pb: {
     xs: 2,
@@ -92,8 +81,9 @@ export const featuredCardContainer = (theme) => ({
     xs: "row",
     md: "column",
   },
-  [theme.breakpoints.down(420)]: {
+  [theme.breakpoints.down(400)]: {
     flexDirection: "column",
+    borderBottom: 0,
   },
   bgcolor: "transparent",
   boxShadow: "none",
@@ -102,21 +92,21 @@ export const featuredCardContainer = (theme) => ({
   "&:hover .MuiCardMedia-root": {
     transform: "scale(1.1) rotate(-1deg)",
   },
+  borderRadius: 0,
+  borderBottom: { md: 0, xs: "1px solid #494b55" },
 });
 
 export const featuredCardImgBox = (theme) => ({
   width: "100%",
-  maxWidth: {
-    xs: "200px",
-    md: "100%",
+  flexShrink: 0,
+  [theme.breakpoints.down(768)]: {
+    width: "185px",
   },
-  maxHeight: {
-    xs: "200px",
-    md: "100%",
+  [theme.breakpoints.down(600)]: {
+    width: "140px",
   },
-  [theme.breakpoints.down(420)]: {
-    maxWidth: "100%",
-    maxHeight: "100%",
+  [theme.breakpoints.down(400)]: {
+    width: "100%",
   },
   aspectRatio: "1 / 1",
   overflow: "hidden",

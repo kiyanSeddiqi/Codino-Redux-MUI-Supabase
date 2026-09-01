@@ -45,11 +45,7 @@ function CourseSidebar({ product }) {
 
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.auth);
-  const {
-    userCoursesHandler,
-    isLoading: coursesLoading,
-    isEnrolled,
-  } = useGetUserCourse();
+  const { userCoursesHandler, isEnrolled } = useGetUserCourse();
 
   const {
     isWishlisted,
