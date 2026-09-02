@@ -4,7 +4,7 @@
     width="30"
     height="30"
     alt="Codino"
-    style="vertical-align: middle;"
+    style="vertical-align: middle"
   >
   Codino
   
@@ -75,7 +75,8 @@ This project helped me practice:
 
 ## 📸 Screenshots
 
-![Courses page](./public/readme/courses.webp)
+![Dashboard page](./public/readme/dashboard.webp)
+
 ![Course details page](./public/readme/details.webp)
 
 <img
