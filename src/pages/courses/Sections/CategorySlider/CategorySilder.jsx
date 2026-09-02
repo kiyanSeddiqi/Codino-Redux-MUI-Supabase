@@ -92,7 +92,7 @@ function CategorySilder() {
                   sx={(theme) => ({
                     ...courseCategoryCard(theme, ""),
                     ...(isActive && {
-                      bgcolor: "menuItemBg",
+                      bgcolor: "bgAccent",
                       color:
                         theme.palette.mode === "dark"
                           ? "text.primary"

@@ -27,7 +27,7 @@ export const courseCategoryCard = (theme, minHeight) => ({
   transition: "all 0.3s ease",
   cursor: "pointer",
   "&:hover": {
-    bgcolor: "menuItemBg",
+    bgcolor: "bgAccent",
     color: theme.palette.mode === "dark" ? "text.primary" : "primary.main",
     "& svg": {
       color: theme.palette.mode === "dark" ? "#fff !important" : "primary.main",

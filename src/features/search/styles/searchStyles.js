@@ -3,7 +3,7 @@ export const navbarSearchInput = {
   height: "46px",
   width: "250px",
   border: "2px solid transparent",
-  bgcolor: "divider",
+  bgcolor: "bgAccent",
   paddingRight: "40px",
   fontSize: "14px",
   color: "text.primary",
@@ -51,7 +51,7 @@ export const searchDropdownBox = {
 export const searchDropDownListBtn = {
   borderRadius: "10px",
   textAlign: "right",
-  "&:hover, &:focus": { bgcolor: "menuItemBg", color: "primary.main" },
+  "&:hover, &:focus": { bgcolor: "bgAccent", color: "primary.main" },
   transition: "0.2s ease",
 };
 

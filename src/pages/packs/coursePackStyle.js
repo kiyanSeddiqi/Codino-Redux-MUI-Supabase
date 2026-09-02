@@ -152,7 +152,7 @@ export const enrollBoxAlert = (theme) => ({
     sm: 2,
   },
   color: theme.palette.mode === "dark" ? "primary.light" : "primary.main",
-  bgcolor: "menuItemBg",
+  bgcolor: "bgAccent",
   lineHeight: "32px",
   "& > p": {
     fontSize: "14px",

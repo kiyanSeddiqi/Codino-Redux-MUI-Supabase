@@ -10,7 +10,7 @@ export const resetForm = {
 export const resetFormAlert = {
   p: "10px 20px",
   borderRadius: "10px",
-  bgcolor: "menuItemBg",
+  bgcolor: "bgAccent",
   color: "primary.main",
   mb: 1,
 };

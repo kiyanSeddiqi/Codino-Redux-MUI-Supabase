@@ -23,7 +23,7 @@ const getTheme = (mode) => {
       },
       divider: isDark ? "#494b55" : "#d7d4ec",
       iconAccent: isDark ? "#ff4aff" : "#ff0eff",
-      menuItemBg: isDark ? "#bb86fc24" : "#6700e512",
+      bgAccent: isDark ? "#bb86fc24" : "#6700e512",
       accent: { main: "#ff4aff" },
       badgeWarning: {
         main: isDark ? "#ff9560" : "#b33b00",
@@ -185,7 +185,7 @@ const getTheme = (mode) => {
             color: theme.palette.badgeWarning.main,
           }),
           colorNormal: ({ theme }) => ({
-            backgroundColor: theme.palette.menuItemBg,
+            backgroundColor: theme.palette.bgAccent,
             color: theme.palette.primary.light,
           }),
           outlined: ({ theme }) => ({

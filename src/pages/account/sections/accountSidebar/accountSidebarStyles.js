@@ -11,7 +11,7 @@ export const accountListBtn = (theme) => ({
   textAlign: "right",
   gap: 2,
   "&:hover": {
-    bgcolor: "menuItemBg",
+    bgcolor: "bgAccent",
     color: theme.palette.mode === "dark" ? "primary.light" : "primary.main",
   },
 

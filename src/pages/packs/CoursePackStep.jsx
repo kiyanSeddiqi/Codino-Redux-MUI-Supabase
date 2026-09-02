@@ -150,7 +150,7 @@ function CoursePackStep({ itemData, index }) {
                   aria-label="لینک نمایش جزییات"
                   sx={{
                     color: "primary.main",
-                    bgcolor: "menuItemBg",
+                    bgcolor: "bgAccent",
                     borderRadius: "10px",
                     p: "10px",
                   }}

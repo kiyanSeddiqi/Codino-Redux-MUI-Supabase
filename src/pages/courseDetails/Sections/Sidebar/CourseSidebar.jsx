@@ -187,7 +187,7 @@ function CourseSidebar({ product }) {
               <Button
                 variant="text"
                 sx={{
-                  bgcolor: "menuItemBg",
+                  bgcolor: "bgAccent",
                   minWidth: "44px",
                   minHeight: "44px",
                 }}

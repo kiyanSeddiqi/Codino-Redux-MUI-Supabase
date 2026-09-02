@@ -3,7 +3,7 @@ import { flexCol } from "../../../../styles/globalStyles";
 export const CTAContainer = {
   p: "40px 32px",
   borderRadius: "24px",
-  bgcolor: "menuItemBg",
+  bgcolor: "bgAccent",
   color: "primary.main",
   width: {
     xs: "100%",

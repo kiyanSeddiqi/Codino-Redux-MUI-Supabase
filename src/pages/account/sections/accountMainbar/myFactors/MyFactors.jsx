@@ -38,7 +38,7 @@ function MyFactors() {
               <TableRow
                 sx={{
                   "&:hover": {
-                    bgcolor: "menuItemBg",
+                    bgcolor: "bgAccent",
                     transition: "all 0.2s ease",
                   },
                 }}

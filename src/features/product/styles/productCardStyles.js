@@ -49,7 +49,7 @@ export const cardLevelBadge = (theme) => ({
   borderRadius: 2,
   p: "4px 8px",
   color: theme.palette.mode === "dark" ? "primary.light" : "primary.main",
-  bgcolor: "menuItemBg",
+  bgcolor: "bgAccent",
   fontSize: "12px",
 });
 
@@ -72,7 +72,6 @@ export const cardTitle = {
 
 export const featuredCardContainer = (theme) => ({
   display: "flex",
-  // alignItems: "start",
   gap: 2,
   pb: {
     xs: 2,
@@ -96,7 +95,10 @@ export const featuredCardContainer = (theme) => ({
     transform: "scale(1.1) rotate(-1deg)",
   },
   borderRadius: 0,
-  borderBottom: { md: 0, xs: "1px solid #494b55" },
+  borderBottom: {
+    xs: `1px solid ${theme.palette.divider}`,
+    md: "none",
+  },
 });
 
 export const featuredCardImgBox = (theme) => ({

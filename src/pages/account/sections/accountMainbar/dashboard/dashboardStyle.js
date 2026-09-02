@@ -31,7 +31,7 @@ export const userFavoriteListContainer = {
     mr: 1,
   },
   "&::-webkit-scrollbar-track": {
-    bgcolor: "menuItemBg",
+    bgcolor: "bgAccent",
   },
   "&::-webkit-scrollbar-thumb": {
     bgcolor: "primary.main",

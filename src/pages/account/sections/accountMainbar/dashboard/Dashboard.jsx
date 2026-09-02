@@ -176,7 +176,7 @@ function Dashboard() {
                           component={Link}
                           to={`/courses/${item?.slug}`}
                           variant="text"
-                          sx={{ bgcolor: "menuItemBg", p: 1 }}
+                          sx={{ bgcolor: "bgAccent", p: 1 }}
                         >
                           دوره ها
                         </Button>

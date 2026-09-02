@@ -58,7 +58,7 @@ function CourseLessons({ lessonData }) {
               variant="outlined"
               sx={{
                 minWidth: 0,
-                bgcolor: "menuItemBg",
+                bgcolor: "bgAccent",
                 p: { xs: "6px", md: "10px" },
               }}
             >

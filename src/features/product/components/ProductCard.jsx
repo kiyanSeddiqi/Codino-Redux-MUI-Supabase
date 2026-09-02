@@ -72,7 +72,7 @@ function ProductCard({ itemData, layout = "default" }) {
                   <Tooltip title="دوره درحال بروز رسانی" describeChild>
                     <Box
                       component="span"
-                      sx={{ ...cardStatusBadge, bgcolor: "menuItemBg" }}
+                      sx={{ ...cardStatusBadge, bgcolor: "bgAccent" }}
                     >
                       <SvgIcon
                         name="refresh"

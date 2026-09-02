@@ -393,7 +393,7 @@ function Cart() {
                                 sx={{
                                   p: "6px",
                                   borderRadius: "6px",
-                                  "&:hover": { bgcolor: "menuItemBg" },
+                                  "&:hover": { bgcolor: "bgAccent" },
                                 }}
                               >
                                 <ContentCopy

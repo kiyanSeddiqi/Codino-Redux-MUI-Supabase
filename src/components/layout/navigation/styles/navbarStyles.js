@@ -117,7 +117,7 @@ export const navLink = {
 
 export const navLinkDropdown = (theme) => ({
   position: "absolute",
-  bgcolor: "background.paper",
+  bgcolor: "background.default",
   top: "100%",
   right: 0,
   minWidth: 242,
@@ -141,7 +141,7 @@ export const navLinkDropdownBtn = {
   textAlign: "right",
   "&:hover": {
     color: "primary.main",
-    bgcolor: "menuItemBg",
+    bgcolor: "bgAccent",
   },
 };
 
@@ -166,7 +166,7 @@ export const accountMobileMenu = {
 export const mobileMenuListBtn = {
   borderRadius: "10px",
   textAlign: "right",
-  "&:hover, &:focus": { bgcolor: "menuItemBg", color: "primary.main" },
+  "&:hover, &:focus": { bgcolor: "bgAccent", color: "primary.main" },
   transition: "0.2s ease",
   p: "10px",
 };
@@ -219,7 +219,7 @@ export const authActionMenuItem = {
     color: "text.primary",
   },
   "&:hover": {
-    bgcolor: "menuItemBg",
+    bgcolor: "bgAccent",
     "& .MuiListItemIcon-root": {
       color: "primary.main",
     },
@@ -299,7 +299,7 @@ export const cartActionMenu = {
     mr: 1,
   },
   "&::-webkit-scrollbar-track": {
-    bgcolor: "menuItemBg",
+    bgcolor: "bgAccent",
   },
   "&::-webkit-scrollbar-thumb": {
     bgcolor: "primary.main",
