@@ -11,6 +11,7 @@ import "swiper/css/navigation";
 function BlogSlider() {
   const theme = useTheme();
   const isBelowLg = useMediaQuery(theme.breakpoints.down("lg"));
+
   return (
     <>
       <Box sx={flexCol(2.5)} className="blog-slider">
@@ -41,7 +42,7 @@ function BlogSlider() {
             }}
             style={{
               width: "100%",
-              height: isBelowLg ? "auto" : "360px",
+              height: isBelowLg ? "auto" : "375px",
             }}
           >
             {blogSliderData.map((item) => (

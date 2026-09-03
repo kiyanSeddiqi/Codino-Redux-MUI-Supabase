@@ -29,10 +29,7 @@ export const roadmapCardImg = {
 
 export const roadmapCardTitle = {
   fontWeight: 700,
-  fontSize: {
-    xs: "16px",
-    sm: "18px",
-  },
+  fontSize: "clamp(14px, 2.5vw, 18px)",
 };
 
 export const detailContainer = {

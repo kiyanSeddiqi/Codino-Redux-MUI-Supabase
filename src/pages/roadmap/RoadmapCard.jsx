@@ -12,7 +12,7 @@ import { ArrowOutward } from "@mui/icons-material";
 function RoadmapCard({ itemData }) {
   return (
     <>
-      <Box sx={flexCol(2.5)}>
+      <Box sx={flexCol(2)}>
         <Box component={Link} to={itemData.slug} sx={roadmapCardImgBox}>
           <Box
             component="img"
@@ -30,7 +30,9 @@ function RoadmapCard({ itemData }) {
         <Box sx={{ ...flexBetween(1, "row"), color: "primary.main" }}>
           <Box sx={flexBox(1)} component={Link} to={itemData.slug}>
             <SvgIcon name="path" size={24} />
-            <Typography>مشاهده مسیر</Typography>
+            <Typography sx={{ fontSize: { xs: "14px", sm: "16px" } }}>
+              مشاهده مسیر
+            </Typography>
           </Box>
           <ArrowOutward sx={{ rotate: "-90deg" }} />
         </Box>
