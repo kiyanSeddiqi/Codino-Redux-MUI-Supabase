@@ -191,10 +191,19 @@ export const sortMobileContainer = (theme) => ({
     borderRadius: "8px",
     gap: "12px",
     width: "100%",
-    py: "16px",
+    p: { xs: "10px", sm: "16px" },
+    ".MuiTypography-root": {
+      fontSize: {
+        xs: "14px",
+        sm: "16px",
+      },
+    },
+    "& svg": {
+      fontSize: { xs: "20px", sm: "24px" },
+    },
   },
   flexWrap: "nowrap",
-  [theme.breakpoints.down(480)]: {
+  [theme.breakpoints.down(360)]: {
     flexWrap: "wrap",
   },
 });
@@ -212,8 +221,8 @@ export const coursesCardCotainer = {
 };
 
 export const sortMobileBadge = (theme) => ({
-  p: "4px 12px",
-  borderRadius: "8px",
+  p: "4px 8px",
+  borderRadius: "6px",
   display: "grid",
   placeItems: "center",
   fontSize: "14px",
